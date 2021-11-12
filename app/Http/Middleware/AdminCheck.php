@@ -24,7 +24,7 @@ class AdminCheck
         // getting user roles
 
         // check if user is super admin or not
-        if (in_array("superadmin", $roles)) {
+        if (in_array("admin", $roles)) {
             return $next($request);
         } else {
             return redirect()->route("home.index");
