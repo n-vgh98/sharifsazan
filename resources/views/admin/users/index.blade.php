@@ -63,8 +63,8 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->name }}</td>
                 <th scope="row">{{ $number }}</th>
-            </tr>
 
+            </tr>
 
             @php
                 $number++;

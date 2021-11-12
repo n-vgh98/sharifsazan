@@ -32,6 +32,15 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     route::prefix("users")->group(function () {
         route::get("/", [AdminUserController::class, "index"])->name("admin.users");
         route::delete("/destroy/{id}", [AdminUserController::class, "destroy"])->name("admin.users.destroy");
+        route::prefix("normal")->group(function () {
+            route::get("/", [AdminUserController::class, "normal"])->name("admin.normal.users");
+        });
+        route::prefix("writer")->group(function () {
+            route::get("/", [AdminUserController::class, "writer"])->name("admin.writer.users");
+        });
+        route::prefix("admin")->group(function () {
+            route::get("/", [AdminUserController::class, "admin"])->name("admin.admin.users");
+        });
     });
     // ##
 

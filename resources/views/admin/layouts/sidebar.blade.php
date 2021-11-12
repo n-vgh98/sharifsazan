@@ -33,11 +33,14 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.users') }}"><i class="fa fa-circle-o"></i>لیست
                             همه کاربران</a></li>
-                    <li class="active"><a href="{{ route('admin.users') }}"><i class="fa fa-circle-o"></i>لیست
+                    <li class="active"><a href="{{ route('admin.normal.users') }}"><i
+                                class="fa fa-circle-o"></i>لیست
                             کاربران عادی</a></li>
-                    <li class="active"><a href="{{ route('admin.users') }}"><i class="fa fa-circle-o"></i>لیست
+                    <li class="active"><a href="{{ route('admin.writer.users') }}"><i
+                                class="fa fa-circle-o"></i>لیست
                             کاربران نویسنده</a></li>
-                    <li class="active"><a href="{{ route('admin.users') }}"><i class="fa fa-circle-o"></i>لیست
+                    <li class="active"><a href="{{ route('admin.admin.users') }}"><i
+                                class="fa fa-circle-o"></i>لیست
                             ادمین ها</a></li>
                 </ul>
             </li>

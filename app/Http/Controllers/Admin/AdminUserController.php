@@ -16,9 +16,34 @@ class AdminUserController extends Controller
     public function index()
     {
         $users = User::all();
-        // dd($users[0]->roles()->exists("admin"));
         return view("admin.users.index", compact("users"));
     }
+
+    // safe haye har role ro miare 
+    public function normal()
+    {
+        $users = User::all();
+        return view("admin.users.normal", compact("users"));
+    }
+
+
+    public function writer()
+    {
+        $users = User::all();
+        // dd($users[0]->roles()->exists("admin"));
+        return view("admin.users.writer", compact("users"));
+    }
+
+
+    public function admin()
+    {
+        $users = User::all();
+        // dd($users[0]->roles()->exists("admin"));
+        return view("admin.users.admin", compact("users"));
+    }
+    // safe haye har role ro miare 
+
+
 
     /**
      * Show the form for creating a new resource.
