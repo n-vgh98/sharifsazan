@@ -45,10 +45,10 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('جنسیت') }}</label>
 
                                 <div class="col-md-6">
-                                    <select class="custom-select">
+                                    <select class="custom-select" name="gender">
                                         <option selected>جنسیت</option>
-                                        <option value="1">مرد</option>
-                                        <option value="2">زن</option>
+                                        <option value="0">مرد</option>
+                                        <option value="1">زن</option>
                                     </select>
 
                                     @error('Job')
