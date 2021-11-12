@@ -31,6 +31,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     // admin can do users operation throw this routes##
     route::prefix("users")->group(function () {
         route::get("/", [AdminUserController::class, "index"])->name("admin.users");
+        route::delete("/destroy/{id}", [AdminUserController::class, "destroy"])->name("admin.users.destroy");
     });
     // ##
 

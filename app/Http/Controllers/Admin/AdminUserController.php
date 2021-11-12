@@ -16,7 +16,8 @@ class AdminUserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view("admin.users.index",compact("users"));
+        // dd($users[0]->roles()->exists("admin"));
+        return view("admin.users.index", compact("users"));
     }
 
     /**
@@ -82,6 +83,8 @@ class AdminUserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back();
     }
 }
