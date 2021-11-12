@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     route::get("/", [AdminController::class, "index"])->name("admin.home");
+
+    // admin can do users operation throw this routes##
+    route::prefix("users")->group(function () {
+        route::get("/", [AdminUserController::class, "index"])->name("admin.users");
+    });
+    // ##
+
 });

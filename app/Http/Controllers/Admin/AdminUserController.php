@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class AdminUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view("admin.index", compact("users"));
+        return view("admin.users.index");
     }
 
     /**
