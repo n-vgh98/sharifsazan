@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
-    // Route::get("/",)
+    route::get("/", [AdminController::class, "index"])->name("admin.home");
 });
