@@ -17,8 +17,16 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('avatar')->nullable();
             $table->string('password');
+            $table->tinyInteger('gender')->nullable()->comment("0 is male 1 is female");
+            $table->string('job')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            // required fields for google login
+            $table->string('provider', 20)->nullable();
+            $table->string('provider_id')->nullable();
+            $table->string('access_token')->nullable();
+            // required fields for google login
             $table->rememberToken();
             $table->timestamps();
         });
