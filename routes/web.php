@@ -70,7 +70,18 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     });
 
     // notifications  routes
-    route::prefix("contact")->group(function () {
-        route::get("/", [AdminNotificationController::class, "index"])->name("admin.contact.index");
+    // route for showing all messages
+    route::prefix("notifications")->group(function () {
+        route::get("/", [AdminNotificationController::class, "index"])->name("admin.notifications.index");
+
+        // route for showing public messages
+        route::prefix("public")->group(function () {
+            route::get("/", [AdminNotificationController::class, "public"])->name("admin.notifications.public");
+        });
+
+        // route for showing private messages
+        route::prefix("private")->group(function () {
+            route::get("/", [AdminNotificationController::class, "private"])->name("admin.notifications.private");
+        });
     });
 });
