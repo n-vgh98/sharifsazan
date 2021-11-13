@@ -73,7 +73,7 @@
 
                             @if (in_array('writer', $rolesname))
                                 <li>
-                                    <form action="{{ route('admin.demote', $user->id) }}" method="POST"
+                                    <form action="{{ route('writer.demote', $user->id) }}" method="POST"
                                         style="margin-right:15px;">
                                         @csrf
                                         <button type="submit" class="btn">قطع دسترسی نویسنده</button>
@@ -81,7 +81,7 @@
                                 </li>
                             @else
                                 <li>
-                                    <form action="{{ route('admin.promote', $user->id) }}" method="POST"
+                                    <form action="{{ route('writer.promote', $user->id) }}" method="POST"
                                         style="margin-right:15px;">
                                         @csrf
                                         <button type="submit" class="btn">دادن دسترسی نویسنده</button>

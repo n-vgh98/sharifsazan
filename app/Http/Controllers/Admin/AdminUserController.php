@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 
 class AdminUserController extends Controller
 {
@@ -44,17 +45,55 @@ class AdminUserController extends Controller
     // safe haye har role ro miare 
 
 
+
+
     // give admin access
     public function promotetoadmin($id)
     {
-        dd("hi");
+        $user = User::find($id);
+        $role = Role::where("name", "admin")->first();
+        $user->roles()->attach($role->id);
+        return redirect()->back();
+    }
+
+    // remove admin access
+    public function demoteadmin($id)
+    {
+        $user = User::find($id);
+        $role = Role::where("name", "admin")->first();
+        $user->roles()->detach($role->id);
+        return redirect()->back();
     }
 
 
     // give writer access
     public function promotetowriter($id)
     {
+        $user = User::find($id);
+        $role = Role::where("name", "writer")->first();
+        $user->roles()->attach($role->id);
+        return redirect()->back();
     }
+
+
+    // remove writer access
+    public function demotewriter($id)
+    {
+        $user = User::find($id);
+        $role = Role::where("name", "writer")->first();
+        $user->roles()->detach($role->id);
+        return redirect()->back();
+    }
+
+    // remove all access
+    public function clearroles($id)
+    {
+        $user = User::find($id);
+        $role = Role::where("name", "user")->first();
+        $user->roles()->sync($role->id);
+        return redirect()->back();
+    }
+
 
 
 
