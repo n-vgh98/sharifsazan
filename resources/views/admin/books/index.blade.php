@@ -11,19 +11,35 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th scope="col">تنظیمات</th>
+                <th scope="col">لینک دانلود</th>
+                <th scope="col">نام کتاب </th>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
+            @php
+                $number = 1;
+            @endphp
+            @foreach ($books as $book)
+
+                <tr>
+                    <td>
+                        <form action="{{ route('admin.books.destroy', $book->id) }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button class="btn btn-danger" type="submit">حذف</button>
+                        </form>
+                    </td>
+                    <td><a class="btn btn-info" href="{{ route('admin.books.download', $book->id) }}">دانلود</a></td>
+                    <td>{{ $book->name }}</td>
+                    <th scope="row">{{ $number }}</th>
+                </tr>
+                @php
+                    $number++;
+                @endphp
+            @endforeach
+
         </tbody>
     </table>
 @endsection

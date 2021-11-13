@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminContact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -122,5 +123,12 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::prefix("offline")->group(function () {
             route::get("/", [AdminCourseController::class, "offline"])->name("admin.courses.offline");
         });
+    });
+
+    // route for books
+    route::prefix("books")->group(function () {
+        route::get("/", [AdminBooksController::class, "index"])->name("admin.books.index");
+        route::get("/download/{id}", [AdminBooksController::class, "download"])->name("admin.books.download");
+        route::delete("/destroy/{id}", [AdminBooksController::class, "destroy"])->name("admin.books.destroy");
     });
 });

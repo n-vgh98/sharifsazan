@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminBooksController extends Controller
 {
@@ -14,7 +15,14 @@ class AdminBooksController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return view("admin.books.index", compact("books"));
+    }
+
+    public function download($id)
+    {
+        $book = Book::find($id);
+        return response()->download($book->link);
     }
 
     /**
@@ -80,6 +88,8 @@ class AdminBooksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+        $book->delete();
+        return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت حذف شد");
     }
 }
