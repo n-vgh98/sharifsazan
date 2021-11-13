@@ -1,5 +1,6 @@
 @extends('admin.layouts.master')
 @section('content')
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -28,7 +29,8 @@
                     </td>
 
                     <td>
-                        <a href="#" class="btn btn-primary">دانلود فایل</a>
+                        <a href="{{ route('admin.contact.download.file', $contact->id) }}" class="btn btn-primary">دانلود
+                            فایل</a>
                     </td>
 
                     <td>{{ substr($contact->text, 0, 25) }}</td>

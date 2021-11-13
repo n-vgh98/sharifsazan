@@ -65,5 +65,6 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     // contact us routes
     route::prefix("contact")->group(function () {
         route::get("/", [AdminContact::class, "index"])->name("admin.contact.index");
+        route::get("/download/{id}", [AdminContact::class, "download"])->name("admin.contact.download.file");
     });
 });

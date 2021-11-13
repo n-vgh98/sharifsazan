@@ -19,6 +19,21 @@ class AdminContact extends Controller
         return view("admin.contact.index", compact("contacts"));
     }
 
+
+    public function download($id)
+    {
+        $contact = Contact_Us::find($id);
+        $path = $contact->file_path;
+        // check if file exist
+        if (file_exists($path)) {
+            return response()->download($path);
+        }
+        // return error if file dosnt exist
+        else {
+            return redirect()->back()->with("fail", "فایل شما در سرور وجود ندارد.");
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
