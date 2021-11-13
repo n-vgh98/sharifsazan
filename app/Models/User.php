@@ -46,4 +46,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany("App\Models\Role");
     }
+
+
+    // relation with notificatios for user
+    public function notifications()
+    {
+        return $this->hasMany("App\Models\Notification");
+    }
 }
