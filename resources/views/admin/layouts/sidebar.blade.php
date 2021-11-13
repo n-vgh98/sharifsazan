@@ -74,6 +74,26 @@
             </li>
             {{-- notifications --}}
 
+            {{-- amoozesh --}}
+            <li class="header">تحقیق و توسعه</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>دوره ها</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                                class="fa fa-circle-o"></i>همه دوره ها</a></li>
+                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                                class="fa fa-circle-o"></i>دوره های رایگان</a></li>
+                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                                class="fa fa-circle-o"></i>دوره های پولی</a></li>
+                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                                class="fa fa-circle-o"></i>دوره های آنلاین</a></li>
+                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                                class="fa fa-circle-o"></i>دوره های آفلاین</a></li>
+                </ul>
+            </li>
+            {{-- amoozesh --}}
         </ul>
     </section>
     <!-- /.sidebar -->
