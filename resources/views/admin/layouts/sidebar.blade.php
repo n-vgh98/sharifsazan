@@ -25,7 +25,7 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            {{-- <li class="header">دسترسی</li> --}}
+            <li class="header">تنظیمات کاربران</li>
             <li class=" treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>کاربران</span> <i class="fa fa-angle-left pull-right"></i>
@@ -46,6 +46,7 @@
             </li>
 
             {{-- contact_us --}}
+            <li class="header">ارتباطات</li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>تماس با ما</span> <i class="fa fa-angle-left pull-right"></i>
