@@ -93,4 +93,5 @@
             @endforeach
         </tbody>
     </table>
+    <a href="{{ route('admin.courses.create') }} " class="btn btn-primary">ساخت دوره جدید</a>
 @endsection

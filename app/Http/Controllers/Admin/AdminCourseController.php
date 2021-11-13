@@ -67,7 +67,7 @@ class AdminCourseController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.courses.create");
     }
 
     /**
