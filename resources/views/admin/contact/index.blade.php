@@ -1,4 +1,11 @@
 @extends('admin.layouts.master')
+@section('sitetitle')
+    تماس با ما
+@endsection
+
+@section('pagetitle')
+    تماس با ما
+@endsection
 @section('content')
 
     <table class="table table-striped">

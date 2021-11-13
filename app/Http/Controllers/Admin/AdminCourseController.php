@@ -123,6 +123,8 @@ class AdminCourseController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $notification = Course::find($id);
+        $notification->delete();
+        return redirect()->back()->with("success", ".دوره شما با موفقیت حذف شد");
     }
 }
