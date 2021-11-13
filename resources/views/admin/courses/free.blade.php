@@ -31,7 +31,9 @@
                 <tr>
 
                     <td>
-                        <form action="{{ route('admin.courses.destroy', $course->id) }}">
+                        <form action="{{ route('admin.courses.destroy', $course->id) }}" method="POST">
+                            @csrf
+                            @method("DELETE")
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
