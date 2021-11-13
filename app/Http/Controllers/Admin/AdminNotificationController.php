@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notifications;
 use Illuminate\Http\Request;
 
 class AdminNotificationController extends Controller
@@ -12,9 +13,27 @@ class AdminNotificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // show all notifs
     public function index()
     {
-        //
+        $notifications = Notifications::all();
+        return view("admin.notifications.index", compact("notifications"));
+    }
+
+
+    // show all public
+    public function public()
+    {
+        $notifications = Notifications::where("mode", 1)->get();
+        return view("admin.notifications.public", compact("notifications"));
+    }
+
+
+    // show all private
+    public function private()
+    {
+        $notifications = Notifications::where("mode", 0)->get();
+        return view("admin.notifications.private", compact("notifications"));
     }
 
     /**

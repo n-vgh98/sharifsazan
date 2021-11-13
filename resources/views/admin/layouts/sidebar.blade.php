@@ -44,6 +44,8 @@
                             ادمین ها</a></li>
                 </ul>
             </li>
+
+            {{-- contact_us --}}
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>تماس با ما</span> <i class="fa fa-angle-left pull-right"></i>
@@ -54,6 +56,25 @@
                             های دریافت شده</a></li>
                 </ul>
             </li>
+            {{-- contact_us --}}
+
+
+            {{-- notifications --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>پیام ها</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.notifications.index') }}"><i
+                                class="fa fa-circle-o"></i>همه پیام ها</a></li>
+                    <li class="active"><a href="{{ route('admin.notifications.private') }}"><i
+                                class="fa fa-circle-o"></i>پیام های خصوصی</a></li>
+                    <li class="active"><a href="{{ route('admin.notifications.public') }}"><i
+                                class="fa fa-circle-o"></i>پیام های عمومی</a></li>
+                </ul>
+            </li>
+            {{-- notifications --}}
+
         </ul>
     </section>
     <!-- /.sidebar -->
