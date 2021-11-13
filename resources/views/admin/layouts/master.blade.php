@@ -26,6 +26,7 @@
 
             <!-- Main content -->
             <section class="content">
+                @include('admin.layouts.eror')
                 @yield('content')
             </section>
             <!-- /.content -->
