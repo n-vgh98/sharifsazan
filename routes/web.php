@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminContact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
@@ -60,4 +61,9 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     });
     // ##
 
+
+    // contact us routes
+    route::prefix("contact")->group(function () {
+        route::get("/", [AdminContact::class, "index"])->name("admin.users");
+    });
 });

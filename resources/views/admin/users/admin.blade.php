@@ -11,7 +11,6 @@
         <tr>
             <th scope="col">تنظیمات</th>
             <th scope="col">تغیر سطوح دسترسی </th>
-
             <th scope="col">دسترسی ها</th>
             <th scope="col">جنسیت</th>
             <th scope="col">شغل</th>
