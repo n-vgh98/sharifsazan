@@ -93,7 +93,20 @@
                                 class="fa fa-circle-o"></i>دوره های آفلاین</a></li>
                 </ul>
             </li>
-            {{-- amoozesh --}}
+            {{-- end of amoozesh --}}
+
+            {{-- books --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>کتاب ها</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.courses.all') }}"><i
+                                class="fa fa-circle-o"></i>لیست کتاب ها</a></li>
+
+                </ul>
+            </li>
+            {{-- end of books --}}
         </ul>
     </section>
     <!-- /.sidebar -->
