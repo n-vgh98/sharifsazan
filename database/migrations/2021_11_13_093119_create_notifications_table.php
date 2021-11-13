@@ -20,6 +20,7 @@ class CreateNotificationsTable extends Migration
             $table->text("link")->nullable();
             $table->tinyInteger("mode")->comment("0 is private and 1 is public");
             $table->tinyInteger("status")->default(1)->comment("0 is not show and 1 is show");
+            $table->tinyInteger("user_seen")->default(0)->comment("0 is not seen and 1 is seen this field is for private messages");
             $table->timestamps();
         });
     }
