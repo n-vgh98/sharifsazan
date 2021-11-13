@@ -1,10 +1,10 @@
 @extends('admin.layouts.master')
 @section('sitetitle')
-    تمام دوره ها
+    دوره های آفلاین
 @endsection
 
 @section('pagetitle')
-    تمام دوره ها
+    دوره های آفلاین
 @endsection
 @section('content')
     <table class="table  table-striped">
@@ -31,10 +31,9 @@
                 <tr>
 
                     <td>
-                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                            data-target="#edit{{ $course->id }}">
-                            حذف
-                        </button>
+                        <form action="{{ route('admin.courses.destroy', $course->id) }}">
+                            <button class="btn btn-danger" type="submit">حذف</button>
+                        </form>
                     </td>
                     <td>
                         <a href="{{ 'admin.courses.create' }}" class="btn btn-warning">ویرایش</a>

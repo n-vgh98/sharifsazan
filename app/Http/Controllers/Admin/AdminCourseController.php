@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CourseCreateRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
 
@@ -76,9 +77,27 @@ class AdminCourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseCreateRequest $request)
     {
-        //
+        $course = new Course();
+        $course->title = $request->title;
+        $course->price = $request->price;
+        $course->master_name = $request->master_name;
+        $course->master_job = $request->master_job;
+        if ($request->link !== null) {
+            $course->link = $request->link;
+        }
+        $course->introduction_v_link = $request->introduction_v_link;
+        if ($request->off > 0) {
+            $course->off = $request->off;
+        }
+        $course->type = $request->type;
+        $course->mode = $request->mode;
+        $course->introduction = $request->introduction;
+        $course->description = $request->description;
+        $course->licensable = $request->licensable;
+        $course->save();
+        return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ساخته شد");
     }
 
     /**

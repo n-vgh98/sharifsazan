@@ -27,10 +27,6 @@ class CourseCreateRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'master_Job' => ['required', 'string', 'max:255'],
             'master_name' => ['required', 'string', 'max:255'],
-            'price' => ['required'],
-            'introduction_v_link' => ['required'],
-            'introduction' => ['required', 'string'],
-            'description' => ['required', 'string'],
         ];
     }
 }

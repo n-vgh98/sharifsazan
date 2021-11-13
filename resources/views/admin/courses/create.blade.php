@@ -104,9 +104,8 @@
 
         <div style="margin-top: 25px;">
             <label for="introduction">متن معرفی</label>
-            <input class="form-control" type="text" name="introduction" id="introduction" required
-                placeholder="آموزش رایگان اتوکد">
-            @error('introduction')
+            <textarea name="introduction" id="introduction" rows="10" cols="80"></textarea>
+            @error('description')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -115,7 +114,7 @@
 
         <div style="margin-top: 25px;">
             <label for="description">متن توضیحات</label>
-            <input class="form-control" type="text" name="description" id="description" required>
+            <textarea name="description" id="description" rows="10" cols="80"></textarea>
             @error('description')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -131,9 +130,9 @@
 @section('script')
 
     <script src="{{ asset('adminpanel/ckeditor/ckeditor.js') }}"></script>
-    <script>
-        CKEDITOR.replace('introduction');
-        CKEDITOR.replace('description');
-    </script>
 
+    <script>
+        CKEDITOR.replace('description');
+        CKEDITOR.replace('introduction');
+    </script>
 @endsection
