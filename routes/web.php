@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminContact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminUserController;
 
@@ -86,6 +87,35 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         // route for showing private messages
         route::prefix("private")->group(function () {
             route::get("/", [AdminNotificationController::class, "private"])->name("admin.notifications.private");
+        });
+    });
+
+
+    // route for courses
+    route::prefix("courses")->group(function () {
+
+        // route for showing all courses
+        route::get("/", [AdminCourseController::class, "all"])->name("admin.courses.all");
+
+
+        // route for showing free courses
+        route::prefix("free")->group(function () {
+            route::get("/", [AdminCourseController::class, "free"])->name("admin.courses.free");
+        });
+
+        // route for showing not_free courses
+        route::prefix("notfree")->group(function () {
+            route::get("/", [AdminCourseController::class, "notfree"])->name("admin.courses.not.free");
+        });
+
+        // route for showing online courses
+        route::prefix("online")->group(function () {
+            route::get("/", [AdminCourseController::class, "online"])->name("admin.courses.online");
+        });
+
+        // route for showing offline courses
+        route::prefix("offline")->group(function () {
+            route::get("/", [AdminCourseController::class, "offline"])->name("admin.courses.offline");
         });
     });
 });

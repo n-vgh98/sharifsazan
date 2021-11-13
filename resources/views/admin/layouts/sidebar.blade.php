@@ -81,15 +81,15 @@
                     <i class="fa fa-dashboard"></i> <span>دوره ها</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.courses.all') }}"><i
                                 class="fa fa-circle-o"></i>همه دوره ها</a></li>
-                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.courses.free') }}"><i
                                 class="fa fa-circle-o"></i>دوره های رایگان</a></li>
-                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.courses.not.free') }}"><i
                                 class="fa fa-circle-o"></i>دوره های پولی</a></li>
-                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.courses.online') }}"><i
                                 class="fa fa-circle-o"></i>دوره های آنلاین</a></li>
-                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.courses.offline') }}"><i
                                 class="fa fa-circle-o"></i>دوره های آفلاین</a></li>
                 </ul>
             </li>

@@ -18,12 +18,12 @@ class CreateCoursesTable extends Migration
             $table->string("title");
             $table->text("introduction");
             $table->text("description");
-            $table->decimal("price", 20, 2);
+            $table->decimal("price", 20, 0);
             $table->tinyInteger("licensable")->comment("1 is ye and 0 is no");
             $table->string("master_name");
             $table->string("master_job");
             $table->tinyInteger("type")->comment("1 is physical and 0 is electronic");
-            $table->tinyInteger("mode")->comment("1 is ye and 0 is no");
+            $table->tinyInteger("mode")->comment("1 is online and 0 is offline");
             $table->text("link")->nullable()->comment("for electronic courses");
             $table->text("introduction_v_link")->comment("for introduction video");
             $table->integer("off")->default(0)->comment("takhfifat be darsad");
