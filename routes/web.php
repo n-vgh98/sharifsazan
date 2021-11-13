@@ -31,6 +31,22 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     // admin can do users operation throw this routes##
     route::prefix("users")->group(function () {
         route::get("/", [AdminUserController::class, "index"])->name("admin.users");
+        // dadane dastresi admin
+        route::post("/promotetoadmin/{id}", [AdminUserController::class, "promotetoadmin"])->name("admin.promote");
+
+        // hazfe dastresi admin
+        route::post("/demoteadmin/{id}", [AdminUserController::class, "demoteadmin"])->name("admin.demote");
+
+        // hazfe dastresi writer
+        route::post("/demotewriter/{id}", [AdminUserController::class, "demotewriter"])->name("writer.demote");
+
+        // dadane dastresi writer
+        route::post("/promotetowriter/{id}", [AdminUserController::class, "promotetowriter"])->name("writer.promote");
+
+        // hazfe tamame dastresi ha
+        route::post("/clearroles/{id}", [AdminUserController::class, "clearroles"])->name("admin.user.clear.roles");
+
+
         route::delete("/destroy/{id}", [AdminUserController::class, "destroy"])->name("admin.users.destroy");
         route::prefix("normal")->group(function () {
             route::get("/", [AdminUserController::class, "normal"])->name("admin.normal.users");

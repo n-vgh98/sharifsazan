@@ -51,29 +51,59 @@
                     </td>
 
                     {{-- section for changing roles --}}
-                <td>
-                    <div class="btn-group"> <button type="button" class="btn btn-info dropdown-toggle"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">تغیر سطح <span
-                                class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            @if (in_array('admin', $rolesname))
-                                <li><a href="#">قطع دسترسی ادمین</a></li>
-                            @else
-                                <li><a href="#">دادن دسترسی ادمین</a></li>
-                            @endif
+                    <td>
+                        <div class="btn-group"> <button type="button" class="btn btn-info dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">تغیر سطح <span
+                                    class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                @if (in_array('admin', $rolesname))
+                                    <li>
+                                        <form action="{{ route('admin.demote', $user->id) }}" method="POST"
+                                            style="margin-right:15px;">
+                                            @csrf
+                                            <button type="submit" class="btn">قطع دسترسی ادمین</button>
+                                        </form>
+                                    </li>
+                                @else
+                                    <li>
+                                        <form action="{{ route('admin.promote', $user->id) }}" method="POST"
+                                            style="margin-right:15px;">
+                                            @csrf
+                                            <button type="submit" class="btn">دادن دسترسی ادمین</button>
+                                        </form>
+                                    </li>
+                                @endif
 
-                            @if (in_array('writer', $rolesname))
-                                <li><a href="#">قطع دسترسی نویسنده</a></li>
-                            @else
-                                <li><a href="#">دادن دسترسی نویسنده</a></li>
-                            @endif
-                            @if (count($rolesname) > 0)
-                                <li><a href="#">قطع تمامی دسترسی ها</a></li>
-                            @endif
+                                @if (in_array('writer', $rolesname))
+                                    <li>
+                                        <form action="{{ route('admin.demote', $user->id) }}" method="POST"
+                                            style="margin-right:15px;">
+                                            @csrf
+                                            <button type="submit" class="btn">قطع دسترسی نویسنده</button>
+                                        </form>
+                                    </li>
+                                @else
+                                    <li>
+                                        <form action="{{ route('admin.promote', $user->id) }}" method="POST"
+                                            style="margin-right:15px;">
+                                            @csrf
+                                            <button type="submit" class="btn">دادن دسترسی نویسنده</button>
+                                        </form>
+                                    </li>
+                                @endif
+                                @if (count($rolesname) > 0)
+                                    <li>
+                                        <form action="{{ route('admin.user.clear.roles', $user->id) }}" method="POST"
+                                            style="margin-right:15px;">
+                                            @csrf
+                                            <button type="submit" class="btn">قطع تمامی دسترسی ها </button>
+                                        </form>
+                                    </li>
+                                @endif
 
-                        </ul>
-                    </div>
-                </td>
+                            </ul>
+                        </div>
+                    </td>
 
                     {{-- change $rolesname to string to show roles --}}
                     @if (count($rolesname) !== 0)

@@ -44,6 +44,20 @@ class AdminUserController extends Controller
     // safe haye har role ro miare 
 
 
+    // give admin access
+    public function promotetoadmin($id)
+    {
+        dd("hi");
+    }
+
+
+    // give writer access
+    public function promotetowriter($id)
+    {
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.
