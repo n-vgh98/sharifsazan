@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminContact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminUserController;
 
 /*
@@ -70,7 +71,6 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
     // notifications  routes
     route::prefix("contact")->group(function () {
-        route::get("/", [AdminContact::class, "index"])->name("admin.contact.index");
-        route::get("/download/{id}", [AdminContact::class, "download"])->name("admin.contact.download.file");
+        route::get("/", [AdminNotificationController::class, "index"])->name("admin.contact.index");
     });
 });
