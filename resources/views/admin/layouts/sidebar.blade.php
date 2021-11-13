@@ -49,7 +49,8 @@
                     <i class="fa fa-dashboard"></i> <span>تماس با ما</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.users') }}"><i class="fa fa-circle-o"></i>پیام
+                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
+                                class="fa fa-circle-o"></i>پیام
                             های دریافت شده</a></li>
                 </ul>
             </li>

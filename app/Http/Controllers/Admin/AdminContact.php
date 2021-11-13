@@ -14,7 +14,7 @@ class AdminContact extends Controller
      */
     public function index()
     {
-        dd("hi");
+        return view("admin.contact.index");
     }
 
     /**
