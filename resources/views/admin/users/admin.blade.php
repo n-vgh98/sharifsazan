@@ -10,6 +10,8 @@
     <thead>
         <tr>
             <th scope="col">تنظیمات</th>
+            <th scope="col">تغیر سطوح دسترسی </th>
+
             <th scope="col">دسترسی ها</th>
             <th scope="col">جنسیت</th>
             <th scope="col">شغل</th>
@@ -48,8 +50,41 @@
 
                     </td>
 
+                    {{-- section for changing roles --}}
+                <td>
+                    <div class="btn-group"> <button type="button" class="btn btn-info dropdown-toggle"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">تغیر سطح <span
+                                class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            @if (in_array('admin', $rolesname))
+                                <li><a href="#">قطع دسترسی ادمین</a></li>
+                            @else
+                                <li><a href="#">دادن دسترسی ادمین</a></li>
+                            @endif
+
+                            @if (in_array('writer', $rolesname))
+                                <li><a href="#">قطع دسترسی نویسنده</a></li>
+                            @else
+                                <li><a href="#">دادن دسترسی نویسنده</a></li>
+                            @endif
+                            @if (count($rolesname) > 0)
+                                <li><a href="#">قطع تمامی دسترسی ها</a></li>
+                            @endif
+
+                        </ul>
+                    </div>
+                </td>
+
                     {{-- change $rolesname to string to show roles --}}
-                    <td>{{ implode(',', $rolesname) }}</td>
+                    @if (count($rolesname) !== 0)
+                        <td>
+                            {{ implode(',', $rolesname) }}
+
+                        </td>
+                    @else
+                        {{-- if $rolesname is null so its user --}}
+                        <td>User</td>
+                    @endif
 
 
                     {{-- check if user is male of femail --}}
