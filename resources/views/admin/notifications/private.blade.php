@@ -60,7 +60,13 @@
                     @endif
                     {{-- for changing status --}}
 
-                    <td><a href="{{ $notification->link }}">ورود به لینک</a></td>
+                    <td>
+                        @if ($notification->link == null)
+                            ندارد
+                        @else
+                            <a href="{{ $notification->link }}">ورود به لینک</a>
+                        @endif
+                    </td>
                     <td>
                         {{-- button to show full message --}}
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"

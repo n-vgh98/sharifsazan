@@ -10,6 +10,7 @@
     <thead>
         <tr>
             <th scope="col">تنظیمات</th>
+            <th scope="col">امکانات</th>
             <th scope="col">تغیر سطوح دسترسی </th>
             <th scope="col">دسترسی ها</th>
             <th scope="col">جنسیت</th>
@@ -48,6 +49,15 @@
                         </form>
 
                     </td>
+
+                    {{-- section for sending message to user --}}
+                    <td>
+                        <button type="button" class="btn btn-warning" data-toggle="modal"
+                            data-target="#notif{{ $user->id }}">
+                            ارسال پیام
+                        </button>
+                    </td>
+                    {{-- end of section for sending message to user --}}
 
                     {{-- section for changing roles --}}
                     <td>
@@ -128,6 +138,55 @@
                     <td>{{ $user->name }}</td>
                     <th scope="row">{{ $number }}</th>
                 </tr>
+
+                {{-- modal for sending notification to user --}}
+                <div class="modal fade" id="notif{{ $user->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">ارسال پیام به {{ $user->name }}
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('admin.notifications.store', $user->id) }}" method="POST">
+                                    @csrf
+                                    <div>
+                                        <label for="text">متن پیام</label>
+                                        <input type="text" required name="text" class="form-control">
+                                        @error('text')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div>
+                                        <label for="link">لینک</label>
+                                        <input type="text" name="link" placeholder="این قسمت میتواند خالی باشد"
+                                            class="form-control">
+                                        @error('link')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div style="margin-top:15px;">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">منصرف
+                                            شدم</button>
+                                        <button type="submit" class="btn btn-primary">ارسال</button>
+                                    </div>
+                                    <input type="hidden" name="mode" value="0">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @php
                     $number++;
                 @endphp

@@ -152,7 +152,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('admin.notifications.store', $user->id) }}" method="POST">
+                            <form action="{{ route('admin.notifications.store') }}" method="POST">
                                 @csrf
                                 <div>
                                     <label for="text">متن پیام</label>
@@ -179,6 +179,7 @@
                                     <button type="submit" class="btn btn-primary">ارسال</button>
                                 </div>
                                 <input type="hidden" name="mode" value="0">
+                                <input type="hidden" name="user_id" value="{{ $user->id }}">
                             </form>
                         </div>
                         <div class="modal-footer">

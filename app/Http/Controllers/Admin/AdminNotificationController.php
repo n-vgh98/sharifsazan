@@ -46,14 +46,25 @@ class AdminNotificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(NotificationRequest $request, $userid)
+    public function store(NotificationRequest $request)
     {
-        $notification = new Notifications();
-        $notification->text = $request->text;
-        $notification->link = $request->link;
-        $notification->mode = $request->mode;
-        $notification->user_id = $userid;
-        $notification->save();
+        if ($request->mode == 0) {
+            $notification = new Notifications();
+            $notification->text = $request->text;
+            $notification->link = $request->link;
+            $notification->mode = $request->mode;
+            $notification->user_id = $request->user_id;
+            $notification->save();
+        }
+
+        if ($request->mode == 1) {
+            $notification = new Notifications();
+            $notification->text = $request->text;
+            $notification->link = $request->link;
+            $notification->mode = $request->mode;
+            $notification->save();
+        }
+
         return redirect()->back()->with("success", ".پیام شما با موفقیت ارسال شد");
     }
 
