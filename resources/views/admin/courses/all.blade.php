@@ -38,7 +38,7 @@
                         </form>
                     </td>
                     <td>
-                        <a href="{{ 'admin.courses.create' }}" class="btn btn-warning">ویرایش</a>
+                        <a href="{{ route('admin.courses.edit', $course->id) }}" class="btn btn-warning">ویرایش</a>
                     </td>
                     <td>{{ $course->use_time }}</td>
                     <td>{{ $course->off }}%</td>

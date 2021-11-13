@@ -119,7 +119,8 @@ class AdminCourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        return view("admin.courses.edit", compact("course"));
     }
 
     /**
@@ -131,7 +132,25 @@ class AdminCourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $course = Course::find($id);
+        $course->title = $request->title;
+        $course->price = $request->price;
+        $course->master_name = $request->master_name;
+        $course->master_job = $request->master_job;
+        if ($request->link !== null) {
+            $course->link = $request->link;
+        }
+        $course->introduction_v_link = $request->introduction_v_link;
+        if ($request->off > 0) {
+            $course->off = $request->off;
+        }
+        $course->type = $request->type;
+        $course->mode = $request->mode;
+        $course->introduction = $request->introduction;
+        $course->description = $request->description;
+        $course->licensable = $request->licensable;
+        $course->save();
+        return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ویرایش شد");
     }
 
     /**
