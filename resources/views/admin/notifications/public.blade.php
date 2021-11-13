@@ -1,4 +1,10 @@
 @extends('admin.layouts.master')
+@section('sitetitle')
+     پیام های عمومی
+@endsection
+@section('pagetitle')
+    پیام های عمومی
+@endsection
 @section('content')
     <table class="table table-striped">
         <thead>

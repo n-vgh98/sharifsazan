@@ -72,7 +72,10 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     // notifications  routes
     // route for showing all messages
     route::prefix("notifications")->group(function () {
-        route::get("/", [AdminNotificationController::class, "index"])->name("admin.notifications.index");
+        // route::get("/", [AdminNotificationController::class, "index"])->name("admin.notifications.index");
+        route::delete("/destroy/{id}", [AdminNotificationController::class, "destroy"])->name("admin.notifications.destroy");
+        route::post("/status/update/{id}", [AdminNotificationController::class, "statusupdate"])->name("admin.notifications.status.update");
+        route::post("/store/{userid}", [AdminNotificationController::class, "store"])->name("admin.notifications.store");
 
         // route for showing public messages
         route::prefix("public")->group(function () {

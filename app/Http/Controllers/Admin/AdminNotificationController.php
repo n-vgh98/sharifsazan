@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NotificationRequest;
 use App\Models\Notifications;
 use Illuminate\Http\Request;
 
@@ -13,13 +14,6 @@ class AdminNotificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // show all notifs
-    public function index()
-    {
-        $notifications = Notifications::all();
-        return view("admin.notifications.index", compact("notifications"));
-    }
-
 
     // show all public
     public function public()
@@ -52,9 +46,15 @@ class AdminNotificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NotificationRequest $request, $userid)
     {
-        //
+        $notification = new Notifications();
+        $notification->text = $request->text;
+        $notification->link = $request->link;
+        $notification->mode = $request->mode;
+        $notification->user_id = $userid;
+        $notification->save();
+        return redirect()->back()->with("success", ".پیام شما با موفقیت ارسال شد");
     }
 
     /**
@@ -99,6 +99,24 @@ class AdminNotificationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $notification = Notifications::find($id);
+        $notification->delete();
+        return redirect()->back()->with("success", ".پیام شما با موفقیت حذف شد");
+    }
+
+
+    public function statusupdate($id)
+    {
+        $notification = Notifications::find($id);
+        if ($notification->status == 1) {
+            $notification->status = 0;
+            $notification->save();
+            return redirect()->back()->with("success", ". وضعیت پیام شما با موفقیت به عدم نمایش تغیر داده شد");
+        }
+        if ($notification->status == 0) {
+            $notification->status = 1;
+            $notification->save();
+            return redirect()->back()->with("success", ".وضعیت پیام شما با موفقیت به در حال نمایش تغیر داده شد");
+        }
     }
 }

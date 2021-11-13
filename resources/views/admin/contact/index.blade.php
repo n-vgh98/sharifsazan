@@ -22,10 +22,7 @@
             @foreach ($contacts as $contact)
                 <tr>
                     <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#text{{ $contact->id }}">
-                            مشاهده متن کامل
-                        </button>
+
                     </td>
 
                     <td>
@@ -33,7 +30,10 @@
                             فایل</a>
                     </td>
 
-                    <td>{{ substr($contact->text, 0, 25) }}</td>
+                    <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                            data-target="#text{{ $contact->id }}">
+                            متن کامل
+                        </button>{{ substr($contact->text, 0, 25) }}</td>
 
                     <td>{{ $contact->email }}</td>
 
