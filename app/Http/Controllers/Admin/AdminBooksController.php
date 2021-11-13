@@ -19,11 +19,6 @@ class AdminBooksController extends Controller
         return view("admin.books.index", compact("books"));
     }
 
-    public function download($id)
-    {
-        $book = Book::find($id);
-        return response()->download($book->link);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +38,11 @@ class AdminBooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book();
+        $book->name = $request->name;
+        $book->link = $request->link;
+        $book->save();
+        return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت اضافه شد");
     }
 
     /**

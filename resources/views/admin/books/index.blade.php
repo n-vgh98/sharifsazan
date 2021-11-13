@@ -31,7 +31,7 @@
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-info" href="{{ route('admin.books.download', $book->id) }}">دانلود</a></td>
+                    <td><a class="btn btn-info" href="{{ $book->link }}">دانلود</a></td>
                     <td>{{ $book->name }}</td>
                     <th scope="row">{{ $number }}</th>
                 </tr>
@@ -42,4 +42,41 @@
 
         </tbody>
     </table>
+    {{-- create books --}}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        ساخت کتاب جدید
+    </button>
+
+    {{-- modal for making book --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ساخت کتاب جدید</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.books.store') }}" method="POST">
+                        @csrf
+                        <div style="margin-top: 25px;">
+                            <label for="name">نام کتاب</label>
+                            <input type="text" name="name" id="name" required class="form-control">
+                        </div>
+                        <div style="margin-top: 25px;">
+                            <label for="link">لینک دانلود کتاب</label>
+                            <input type="text" name="link" id="link" required class="form-control">
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                        <button type="submit" class="btn btn-primary"> ذخیره</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
