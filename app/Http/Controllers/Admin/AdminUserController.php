@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -53,7 +54,7 @@ class AdminUserController extends Controller
         $user = User::find($id);
         $role = Role::where("name", "admin")->first();
         $user->roles()->attach($role->id);
-        return redirect()->back();
+        return redirect()->back()->with("success", " دسترسی مدریرت به کاربر داده شد");
     }
 
     // remove admin access
@@ -62,7 +63,7 @@ class AdminUserController extends Controller
         $user = User::find($id);
         $role = Role::where("name", "admin")->first();
         $user->roles()->detach($role->id);
-        return redirect()->back();
+        return redirect()->back()->with("success", " دسترسی مدیریت از کاربر گرفته شد");
     }
 
 
@@ -72,7 +73,7 @@ class AdminUserController extends Controller
         $user = User::find($id);
         $role = Role::where("name", "writer")->first();
         $user->roles()->attach($role->id);
-        return redirect()->back();
+        return redirect()->back()->with("success", " دسترسی نویسندگی به کاربر داده شد");
     }
 
 
@@ -82,7 +83,7 @@ class AdminUserController extends Controller
         $user = User::find($id);
         $role = Role::where("name", "writer")->first();
         $user->roles()->detach($role->id);
-        return redirect()->back();
+        return redirect()->back()->with("success", " دسترسی نویسندگی از کاربر گرفته شد");
     }
 
     // remove all access
@@ -91,7 +92,7 @@ class AdminUserController extends Controller
         $user = User::find($id);
         $role = Role::where("name", "user")->first();
         $user->roles()->sync($role->id);
-        return redirect()->back();
+        return redirect()->back()->with("success", "تمامی دسترسی ها از کاربر گرفته شد");
     }
 
 
@@ -116,7 +117,14 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+        $user->Job = $request->Job;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->back()->with("success", ".کاربر شما با موفقیت اضافه شد");
     }
 
     /**
@@ -163,6 +171,6 @@ class AdminUserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->back();
+        return redirect()->back()->with("success", "کاربر شما با موفقیت حذف شد");
     }
 }

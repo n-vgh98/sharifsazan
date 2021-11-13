@@ -33,6 +33,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     // admin can do users operation throw this routes##
     route::prefix("users")->group(function () {
         route::get("/", [AdminUserController::class, "index"])->name("admin.users");
+        route::post("/store", [AdminUserController::class, "store"])->name("admin.users.store");
         // dadane dastresi admin
         route::post("/promotetoadmin/{id}", [AdminUserController::class, "promotetoadmin"])->name("admin.promote");
 
