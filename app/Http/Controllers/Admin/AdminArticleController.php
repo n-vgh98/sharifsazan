@@ -7,6 +7,7 @@ use App\Models\ArticleCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\CreateArticleRequest;
+use App\Models\Article;
 use App\Models\EnglishArticle;
 use App\Models\FarsiArticle;
 
@@ -17,15 +18,21 @@ class AdminArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        $articles = Article::all();
+        return view("admin.articles.index", compact("articles"));
+    }
+
     public function indexfarsi()
     {
-        $articles = FarsiArticle::all();
+        $articles = Article::where("language", 0)->get();
         return view("admin.articles.index", compact("articles"));
     }
 
     public function indexenglish()
     {
-        $articles = EnglishArticle::all();
+        $articles = Article::where("language", 1)->get();
         return view("admin.articles.index", compact("articles"));
     }
 
@@ -48,35 +55,18 @@ class AdminArticleController extends Controller
      */
     public function store(CreateArticleRequest $request)
     {
-        // check if language of article is farsi or not?
-        if ($request->language == 0) {
-            $category = ArticleCategory::find($request->category_id)->first();
-            $article = new FarsiArticle();
-            $article->title = $request->title;
-            $article->category_id = $request->category_id;
-            $article->text = $request->text;
-            $imagename = time() . "." . $request->image->extension();
-            $filename = $article->title . "." . $category->id;
-            $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
-            $article->image = "photos/articles/$category->title/$filename/$imagename";
-            $article->save();
-            return redirect()->route("admin.articles.farsi.index")->with("success", "مقاله شما با موفقیت ساخته شد");
-        }
-
-        // check if language of article is english or not?
-        if ($request->language == 1) {
-            $category = ArticleCategory::find($request->category_id)->first();
-            $article = new EnglishArticle();
-            $article->title = $request->title;
-            $article->category_id = $request->category_id;
-            $article->text = $request->text;
-            $imagename = time() . "." . $request->image->extension();
-            $filename = $article->title . "." . $category->id;
-            $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
-            $article->image = "photos/articles/$category->title/$filename/$imagename";
-            $article->save();
-            return redirect()->route("admin.articles.english.index")->with("success", "مقاله شما با موفقیت ساخته شد");
-        }
+        $category = ArticleCategory::find($request->category_id)->first();
+        $article = new Article();
+        $article->title = $request->title;
+        $article->language = $request->language;
+        $article->category_id = $request->category_id;
+        $article->text = $request->text;
+        $imagename = time() . "." . $request->image->extension();
+        $filename = $article->title . "." . $category->id;
+        $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
+        $article->image = "photos/articles/$category->title/$filename/$imagename";
+        $article->save();
+        return redirect()->route("admin.articles.index")->with("success", "مقاله شما با موفقیت ساخته شد");
     }
 
     /**
@@ -96,19 +86,13 @@ class AdminArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editfarsi($id)
+    public function edit($id)
     {
-        $article = FarsiArticle::find($id);
+        $article = Article::find($id);
         $categories = ArticleCategory::all();
         return view("admin.articles.edit", compact("article", "categories"));
     }
 
-    public function editenglish($id)
-    {
-        $article = EnglishArticle::find($id);
-        $categories = ArticleCategory::all();
-        return view("admin.articles.edit", compact("article", "categories"));
-    }
 
     /**
      * Update the specified resource in storage.
@@ -119,25 +103,12 @@ class AdminArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // check if language of article is farsi or not?
-        if ($request->lang == 0) {
-            $article =  FarsiArticle::find($id);
-            $article->title = $request->title;
-            $article->category_id = $request->category_id;
-            $article->text = $request->text;
-            $article->save();
-            return redirect()->route("admin.articles.farsi.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
-        }
-
-        // check if language of article is english or not?
-        if ($request->lang == 1) {
-            $article = EnglishArticle::find($id);
-            $article->title = $request->title;
-            $article->category_id = $request->category_id;
-            $article->text = $request->text;
-            $article->save();
-            return redirect()->route("admin.articles.english.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
-        }
+        $article =  Article::find($id);
+        $article->title = $request->title;
+        $article->category_id = $request->category_id;
+        $article->text = $request->text;
+        $article->save();
+        return redirect()->route("admin.articles.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
     }
 
     /**
@@ -146,19 +117,9 @@ class AdminArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyfarsi($id)
+    public function destroy($id)
     {
-        // destroy farsi articles
-        $article = FarsiArticle::find($id);
-        File::delete($article->image);
-        $article->delete();
-        return redirect()->back()->with("success", "مقاله شما با موفقیت حذف شد");
-    }
-
-    public function destroyenglish($id)
-    {
-        // destroy english articles
-        $article = EnglishArticle::find($id);
+        $article = Article::find($id);
         File::delete($article->image);
         $article->delete();
         return redirect()->back()->with("success", "مقاله شما با موفقیت حذف شد");

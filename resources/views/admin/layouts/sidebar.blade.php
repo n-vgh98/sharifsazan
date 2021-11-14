@@ -116,6 +116,8 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.articles.categories.index') }}"><i
                                 class="fa fa-circle-o"></i>دسته بندی ها</a></li>
+                    <li class="active"><a href="{{ route('admin.articles.index') }}"><i
+                                class="fa fa-circle-o"></i>همه مقالات </a></li>
                     <li class="active"><a href="{{ route('admin.articles.farsi.index') }}"><i
                                 class="fa fa-circle-o"></i>لیست مقالات فارسی</a></li>
                     <li class="active"><a href="{{ route('admin.articles.english.index') }}"><i

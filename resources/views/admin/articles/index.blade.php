@@ -26,38 +26,14 @@
             @foreach ($articles as $article)
 
                 <tr>
-                    @if ($article->language == 1)
-                        <td>
-                            {{-- check if its english give english destroy link --}}
-                            <form action="{{ route('admin.articles.destroy.english', $article->id) }}" method="POST">
-                                @csrf
-                                @method("DELETE")
-                                <button class="btn btn-danger" type="submit">حذف</button>
-                            </form>
-                        </td>
-                    @else
-                        {{-- check if its farsi give english destroy link --}}
-                        <td>
-                            <form action="{{ route('admin.articles.destroy.farsi', $article->id) }}" method="POST">
-                                @csrf
-                                @method("DELETE")
-                                <button class="btn btn-danger" type="submit">حذف</button>
-                            </form>
-                        </td>
-                    @endif
-
                     <td>
-                        @if ($article->language == 1)
-                            <a class="btn btn-warning"
-                                href="{{ route('admin.articles.edit.english', $article->id) }}">ویرایش</a>
-
-                        @else
-                            <a class="btn btn-warning"
-                                href="{{ route('admin.articles.edit.farsi', $article->id) }}">ویرایش</a>
-
-                        @endif
-
+                        <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button class="btn btn-danger" type="submit">حذف</button>
+                        </form>
                     </td>
+                    <td><a class="btn btn-warning" href="{{ route('admin.articles.edit', $article->id) }}">ویرایش</a></td>
                     <td>
                         @php
                             echo substr($article->text, 0, 30);

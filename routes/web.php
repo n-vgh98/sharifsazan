@@ -136,15 +136,14 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
     // route for articles
     route::prefix("articles")->group(function () {
+        route::get("/", [AdminArticleController::class, "index"])->name("admin.articles.index");
         route::get("/farsi", [AdminArticleController::class, "indexfarsi"])->name("admin.articles.farsi.index");
         route::get("/english", [AdminArticleController::class, "indexenglish"])->name("admin.articles.english.index");
         route::get("/show/{id}", [AdminArticleController::class, "show"])->name("admin.articles.show");
-        route::delete("/destroy/farsi/{id}", [AdminArticleController::class, "destroyfarsi"])->name("admin.articles.destroy.farsi");
-        route::delete("/destroy/english/{id}", [AdminArticleController::class, "destroyenglish"])->name("admin.articles.destroy.english");
+        route::delete("/destroy/{id}", [AdminArticleController::class, "destroy"])->name("admin.articles.destroy");
         route::get("/create", [AdminArticleController::class, "create"])->name("admin.articles.create");
         route::post("/store", [AdminArticleController::class, "store"])->name("admin.articles.store");
-        route::get("/edit/farsi/{id}", [AdminArticleController::class, "editfarsi"])->name("admin.articles.edit.farsi");
-        route::get("/edit/english/{id}", [AdminArticleController::class, "editenglish"])->name("admin.articles.edit.english");
+        route::get("/edit/{id}", [AdminArticleController::class, "edit"])->name("admin.articles.edit");
         route::post("/update/{id}", [AdminArticleController::class, "update"])->name("admin.articles.update");
 
         // route for article categories

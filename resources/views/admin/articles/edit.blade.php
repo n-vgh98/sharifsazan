@@ -45,15 +45,6 @@
         <div style="margin-top: 25px;">
             <button class="btn btn-success">ویرایش مقاله</button>
         </div>
-
-        {{-- ino mifresim ke too methode update befahmim az kodom model estefade konim va nakhaym dota method update dashte bashim --}}
-        @if ($article->language == 0)
-            <input type="hidden" name="lang" value="0">
-        @else
-            <input type="hidden" name="lang" value="1">
-        @endif
-        {{-- ino mifresim ke too methode update befahmim az kodom model estefade konim va nakhaym dota method update dashte bashim --}}
-
     </form>
 @endsection
 @section('script')
