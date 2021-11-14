@@ -44,7 +44,7 @@
     </table>
     {{-- create books --}}
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        ساخت کتاب جدید
+        ساخت دسته بندی جدید
     </button>
 
     {{-- modal for making book --}}
@@ -59,15 +59,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.books.store') }}" method="POST">
+                    <form action="{{ route('admin.articles.categories.store') }}" method="POST">
                         @csrf
                         <div style="margin-top: 25px;">
-                            <label for="name">نام کتاب</label>
-                            <input type="text" name="name" id="name" required class="form-control">
-                        </div>
-                        <div style="margin-top: 25px;">
-                            <label for="link">لینک دانلود کتاب</label>
-                            <input type="text" name="link" id="link" required class="form-control">
+                            <label for="title">نام دسته بندی</label>
+                            <input type="text" name="title" id="title" required class="form-control">
                         </div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
                         <button type="submit" class="btn btn-primary"> ذخیره</button>

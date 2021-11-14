@@ -138,11 +138,13 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     route::prefix("articles")->group(function () {
         route::get("/", [AdminArticleController::class, "index"])->name("admin.articles.index");
         route::delete("/destroy/{id}", [AdminArticleController::class, "destroy"])->name("admin.articles.destroy");
+        route::post("/store", [AdminArticleController::class, "store"])->name("admin.articles.store");
 
         // route for article categories
         route::prefix("categories")->group(function () {
             route::get("/", [AdminArticleCategoryController::class, "index"])->name("admin.articles.categories.index");
             route::delete("/destroy/{id}", [AdminArticleCategoryController::class, "destroy"])->name("admin.articles.categories.destroy");
+            route::post("/store", [AdminArticleCategoryController::class, "store"])->name("admin.articles.categories.store");
         });
     });
 });

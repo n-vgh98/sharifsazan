@@ -37,7 +37,10 @@ class AdminArticleCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new ArticleCategory();
+        $category->title = $request->title;
+        $category->save();
+        return redirect()->back()->with("success", "دسته بندی شما با موفقیت اضافه شد");
     }
 
     /**
