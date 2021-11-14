@@ -7,21 +7,21 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-right info">
-                <p>آکادمی آنلاین روکسو</p>
+                <p>شریف سازان</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="جستجو...">
-                <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i
-                            class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </form>
+        {{--<form action="#" method="get" class="sidebar-form">--}}
+            {{--<div class="input-group">--}}
+                {{--<input type="text" name="q" class="form-control" placeholder="جستجو...">--}}
+                {{--<span class="input-group-btn">--}}
+                    {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i--}}
+                            {{--class="fa fa-search"></i>--}}
+                    {{--</button>--}}
+                {{--</span>--}}
+            {{--</div>--}}
+        {{--</form>--}}
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
@@ -52,9 +52,9 @@
                     <i class="fa fa-dashboard"></i> <span>تماس با ما</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.contact.index') }}"><i
-                                class="fa fa-circle-o"></i>پیام
-                            های دریافت شده</a></li>
+                    <li class="active">
+                        <a href="{{ route('admin.contact.index') }}"><i class="fa fa-circle-o"></i>پیام های دریافت شده</a>
+                    </li>
                 </ul>
             </li>
             {{-- contact_us --}}
@@ -73,6 +73,7 @@
                 </ul>
             </li>
             {{-- notifications --}}
+<<<<<<< Updated upstream
 
             {{-- amoozesh --}}
             <li class="header">تحقیق و توسعه</li>
@@ -149,6 +150,21 @@
 
             {{-- invite to coaperate --}}
 
+=======
+            {{--  Start Footer --}}
+            <li class="header">footer</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>footer</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active">
+                        <a href="{{route('footer.index')}}"><i class="fa fa-circle-o"></i>متن های Footer</a>
+                    </li>
+                </ul>
+            </li>
+            {{--  End Footer --}}
+>>>>>>> Stashed changes
         </ul>
     </section>
     <!-- /.sidebar -->

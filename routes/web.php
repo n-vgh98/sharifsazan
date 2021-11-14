@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminArticleCategoryController;
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminContact;
+use App\Http\Controllers\Admin\AdminFooter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminInvitePagesController;
 use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminUserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +97,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         });
     });
 
+<<<<<<< Updated upstream
 
     // route for courses
     route::prefix("courses")->group(function () {
@@ -173,4 +176,8 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
             route::delete("/destroy/{id}", [AdminInvitePagesController::class, "destroy"])->name("admin.invites.pages.destroy");
         });
     });
+=======
+    // footer routes
+    Route::resource('footer', 'App\Http\Controllers\Admin\AdminFooter');
+>>>>>>> Stashed changes
 });
