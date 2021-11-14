@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
 
 class AdminArticleController extends Controller
@@ -80,6 +81,8 @@ class AdminArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = ArticleCategory::find($id);
+        $category->delete();
+        return redirect()->back()->with("success", "دسته بندی شما و تمام کتاب های زیر دسته آن با موفقیت حذف شد");
     }
 }
