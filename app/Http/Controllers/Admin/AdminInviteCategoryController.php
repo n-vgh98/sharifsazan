@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\InviteCategory;
+use App\Models\InvitePage;
 use Illuminate\Http\Request;
 
 class AdminInviteCategoryController extends Controller
@@ -43,7 +44,7 @@ class AdminInviteCategoryController extends Controller
         $category->technical_exam_form_link = $request->technical_exam_form_link;
         $category->register_form_link = $request->register_form_link;
         $category->save();
-        return redirect()->route("admin.invites.category.index")->with("success", "گروه مورد نظر شما با موفقیت ایجاد شد");
+        return redirect()->route("admin.invites.category.index")->with("success", "گروه مورد نظر شما با موفقیت انجام شد");
     }
 
     /**
@@ -54,7 +55,8 @@ class AdminInviteCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = InviteCategory::find($id);
+        return view("admin.invites.category.show", compact("category"));
     }
 
     /**
