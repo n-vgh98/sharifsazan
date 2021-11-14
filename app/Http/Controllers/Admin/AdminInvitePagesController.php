@@ -73,7 +73,9 @@ class AdminInvitePagesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = InviteCategory::all();
+        $page = InvitePage::find($id);
+        return view("admin.invites.edit", compact("page", "categories"));
     }
 
     /**
@@ -85,7 +87,13 @@ class AdminInvitePagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $page = InvitePage::find($id);
+        $page->title = $request->title;
+        $page->category_id = $request->category_id;
+        $page->text1 = $request->text1;
+        $page->text2 = $request->text2;
+        $page->save();
+        return redirect()->route("admin.invites.pages.index")->with("success", "صفحه شما با موفقیت ویرایش شد");
     }
 
     /**
