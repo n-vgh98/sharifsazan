@@ -151,6 +151,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
             route::get("/", [AdminArticleCategoryController::class, "index"])->name("admin.articles.categories.index");
             route::delete("/destroy/{id}", [AdminArticleCategoryController::class, "destroy"])->name("admin.articles.categories.destroy");
             route::post("/store", [AdminArticleCategoryController::class, "store"])->name("admin.articles.categories.store");
+            route::get("/show/{id}", [AdminArticleCategoryController::class, "show"])->name("admin.articles.categories.show");
         });
     });
 });

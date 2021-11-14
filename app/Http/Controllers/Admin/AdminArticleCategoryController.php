@@ -51,7 +51,8 @@ class AdminArticleCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = ArticleCategory::find($id);
+        return view("admin.articles.category.show", compact("category"));
     }
 
     /**

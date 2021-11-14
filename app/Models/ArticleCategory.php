@@ -13,6 +13,6 @@ class ArticleCategory extends Model
     // relation between articles and categories
     public function articles()
     {
-        return $this->hasMany("App\Models\Article");
+        return $this->hasMany("App\Models\Article", "category_id");
     }
 }

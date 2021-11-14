@@ -31,7 +31,10 @@
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-info" href="#">مشاهده مقالات این دسته بندی</a></td>
+                    <td><a class="btn btn-info"
+                            href="{{ route('admin.articles.categories.show', $category->id) }}">مشاهده
+                            مقالات این دسته
+                            بندی</a></td>
                     <td>{{ $category->title }}</td>
                     <th scope="row">{{ $number }}</th>
                 </tr>
