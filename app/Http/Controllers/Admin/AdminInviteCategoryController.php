@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\InviteCategory;
 use Illuminate\Http\Request;
 
 class AdminInviteCategoryController extends Controller
@@ -14,7 +15,8 @@ class AdminInviteCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = InviteCategory::all();
+        return view("admin.invites.category.index", compact("categories"));
     }
 
     /**
@@ -35,7 +37,13 @@ class AdminInviteCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new InviteCategory();
+        $category->title = $request->title;
+        $category->practical_exam_form_link = $request->practical_exam_form_link;
+        $category->technical_exam_form_link = $request->technical_exam_form_link;
+        $category->register_form_link = $request->register_form_link;
+        $category->save();
+        return redirect()->route("admin.invites.category.index")->with("success", "گروه مورد نظر شما با موفقیت ایجاد شد");
     }
 
     /**
@@ -80,6 +88,8 @@ class AdminInviteCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = InviteCategory::find($id);
+        $category->delete();
+        return redirect()->back()->with("success", "گروه مورد نظر شما با موفقیت حذف شد");
     }
 }

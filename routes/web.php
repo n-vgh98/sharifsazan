@@ -160,5 +160,8 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     // route for invite
     route::prefix("invite_group")->group(function () {
         route::get("/", [AdminInviteCategoryController::class, "index"])->name("admin.invites.category.index");
+        route::delete("/destroy/{id}", [AdminInviteCategoryController::class, "destroy"])->name("admin.invites.category.destroy");
+        route::post("/store", [AdminInviteCategoryController::class, "store"])->name("admin.invites.category.store");
+        route::get("/show/{id}", [AdminInviteCategoryController::class, "show"])->name("admin.invites.category.show");
     });
 });

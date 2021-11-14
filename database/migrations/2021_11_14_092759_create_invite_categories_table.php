@@ -15,6 +15,7 @@ class CreateInviteCategoriesTable extends Migration
     {
         Schema::create('invite_categories', function (Blueprint $table) {
             $table->id();
+            $table->string("title");
             $table->text("register_form_link");
             $table->text("technical_exam_form_link")->comment("fani");
             $table->text("practical_exam_form_link")->comment("amali");
