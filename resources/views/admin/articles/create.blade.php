@@ -28,6 +28,12 @@
                 @endforeach
 
             </select>
+
+            <select name="language" class="custom-select">
+                <option selected>زبان مقاله</option>
+                <option value="1">اینگلیسی</option>
+                <option value="0">فارسی</option>
+            </select>
         </div>
 
         <div style="margin-top: 25px;">

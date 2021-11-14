@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticlesTable extends Migration
+class CreateFarsiArticlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('farsi_articles', function (Blueprint $table) {
             $table->id();
             $table->foreignId("category_id")->constrained("article_categories")->onDelete("cascade")->onUpdate("cascade");
             $table->string("title");
             $table->text("text");
+            $table->tinyInteger("language")->default(0)->comment("0 is fa and 1 is en");
             $table->text("image");
             $table->timestamps();
         });
@@ -30,6 +31,6 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('farsi_articles');
     }
 }
