@@ -178,5 +178,5 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
     // footer routes
     Route::resource('footer', 'App\Http\Controllers\Admin\AdminFooter');
-// Stashed changes
+    // Stashed changes
 });
