@@ -35,6 +35,16 @@
         </div>
 
         <div style="margin-top: 25px;">
+            <label for="image_name">نام عکس</label>
+            <input type="text" name="image_name" id="image_name" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="alt">Alt</label>
+            <input type="text" name="alt" id="alt" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
             <label for="text1">متن اول</label>
             <textarea name="text1" id="text1" rows="10" cols="80"></textarea>
             @error('text1')
