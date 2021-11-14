@@ -19,7 +19,6 @@ class CreateArticlesTable extends Migration
             $table->string("title");
             $table->text("text");
             $table->tinyInteger("language")->comment("0 is fa and 1 is en");
-            $table->text("image");
             $table->timestamps();
         });
     }
