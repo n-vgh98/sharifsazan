@@ -12,6 +12,6 @@ class Book extends Model
     // polymorphic relation to image table
     public function images()
     {
-        return $this->morphToMany("App\Models\Image", "imageable");
+        return $this->morphMany("App\Models\Image", "imageable");
     }
 }

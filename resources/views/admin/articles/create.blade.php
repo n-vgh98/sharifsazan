@@ -42,6 +42,16 @@
         </div>
 
         <div style="margin-top: 25px;">
+            <label for="image_name">نام عکس</label>
+            <input type="text" name="image_name" id="image_name" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="alt">Alt</label>
+            <input type="text" name="alt" id="alt" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
             <label for="text">متن مقاله</label>
             <textarea name="text" id="text" rows="10" cols="80"></textarea>
             @error('text')

@@ -10,6 +10,7 @@ use App\Http\Requests\CreateArticleRequest;
 use App\Models\Article;
 use App\Models\EnglishArticle;
 use App\Models\FarsiArticle;
+use App\Models\Image;
 
 class AdminArticleController extends Controller
 {
@@ -64,8 +65,17 @@ class AdminArticleController extends Controller
         $imagename = time() . "." . $request->image->extension();
         $filename = $article->title . "." . $category->id;
         $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
-        $article->image = "photos/articles/$category->title/$filename/$imagename";
         $article->save();
+
+        // saving image in image table
+        $image = new Image();
+        $image->name = $request->image_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $image->path = "photos/articles/$category->title/$filename/$imagename";
+        $article->images()->save($image);
+        // saving image in image table
+
         return redirect()->route("admin.articles.index")->with("success", "مقاله شما با موفقیت ساخته شد");
     }
 
@@ -120,7 +130,7 @@ class AdminArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::find($id);
-        File::delete($article->image);
+        File::delete($article->images[0]->path);
         $article->delete();
         return redirect()->back()->with("success", "مقاله شما با موفقیت حذف شد");
     }
