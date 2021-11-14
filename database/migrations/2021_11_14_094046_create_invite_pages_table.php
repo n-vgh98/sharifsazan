@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvitePagesCategory extends Migration
+class CreateInvitePagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateInvitePagesCategory extends Migration
      */
     public function up()
     {
-        Schema::create('invite_pages_category', function (Blueprint $table) {
+        Schema::create('invite_pages', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger("title")->comment("0 is sabte nam  1 is azmoon fani 2 is azmoon amali");
             $table->foreignId("category_id")->constrained("invite_categories")->onDelete("cascade")->onUpdate("cascade");
@@ -31,6 +31,6 @@ class CreateInvitePagesCategory extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invite_pages_category');
+        Schema::dropIfExists('invite_pages');
     }
 }
