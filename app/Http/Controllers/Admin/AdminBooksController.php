@@ -101,8 +101,10 @@ class AdminBooksController extends Controller
      */
     public function destroy($id)
     {
+
         $book = Book::find($id);
         File::delete($book->images[0]->path);
+        $book->images()->delete();
         $book->delete();
         return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت حذف شد");
     }

@@ -175,10 +175,12 @@ class AdminCourseController extends Controller
      */
     public function destroy($id)
     {
+
         $course = Course::find($id);
         foreach ($course->images as $image) {
             File::delete($image->path);
         }
+        $course->images()->delete();
         $course->delete();
         return redirect()->back()->with("success", ".دوره شما با موفقیت حذف شد");
     }

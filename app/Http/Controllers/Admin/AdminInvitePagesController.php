@@ -118,6 +118,7 @@ class AdminInvitePagesController extends Controller
         foreach ($page->images as $image) {
             File::delete($image->path);
         }
+        $page->images()->delete();
         $page->delete();
         return redirect()->back()->with("success", "صفحه شما با موفقیت حذف شد");
     }

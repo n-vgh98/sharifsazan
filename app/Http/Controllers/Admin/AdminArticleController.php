@@ -131,6 +131,7 @@ class AdminArticleController extends Controller
     {
         $article = Article::find($id);
         File::delete($article->images[0]->path);
+        $article->images()->delete();
         $article->delete();
         return redirect()->back()->with("success", "مقاله شما با موفقیت حذف شد");
     }
