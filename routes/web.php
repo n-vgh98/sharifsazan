@@ -142,6 +142,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         // route for article categories
         route::prefix("categories")->group(function () {
             route::get("/", [AdminArticleCategoryController::class, "index"])->name("admin.articles.categories.index");
+            route::delete("/destroy/{id}", [AdminArticleCategoryController::class, "destroy"])->name("admin.articles.categories.destroy");
         });
     });
 });

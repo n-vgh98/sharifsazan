@@ -32,7 +32,7 @@
                         </form>
                     </td>
                     <td><a class="btn btn-info" href="#">مشاهده مقالات این دسته بندی</a></td>
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->title }}</td>
                     <th scope="row">{{ $number }}</th>
                 </tr>
                 @php

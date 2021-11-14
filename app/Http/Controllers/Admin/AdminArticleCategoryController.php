@@ -82,6 +82,8 @@ class AdminArticleCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = ArticleCategory::find($id);
+        $category->delete();
+        return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
     }
 }
