@@ -26,13 +26,24 @@
             @foreach ($articles as $article)
 
                 <tr>
-                    <td>
-                        <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST">
-                            @csrf
-                            @method("DELETE")
-                            <button class="btn btn-danger" type="submit">حذف</button>
-                        </form>
-                    </td>
+                    @if ($article->language == 1)
+                        <td>
+                            <form action="{{ route('admin.articles.destroy.english', $article->id) }}" method="POST">
+                                @csrf
+                                @method("DELETE")
+                                <button class="btn btn-danger" type="submit">حذف</button>
+                            </form>
+                        </td>
+                    @else
+                        <td>
+                            <form action="{{ route('admin.articles.destroy.farsi', $article->id) }}" method="POST">
+                                @csrf
+                                @method("DELETE")
+                                <button class="btn btn-danger" type="submit">حذف</button>
+                            </form>
+                        </td>
+                    @endif
+
                     <td><a class="btn btn-warning" href="{{ route('admin.articles.edit', $article->id) }}">ویرایش</a></td>
                     <td>
                         @php

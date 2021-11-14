@@ -53,7 +53,7 @@
 
 
         <div style="margin-top: 25px;">
-            <button class="btn btn-success">ساخت دوره</button>
+            <button class="btn btn-success">ساخت مقاله</button>
         </div>
     </form>
 @endsection

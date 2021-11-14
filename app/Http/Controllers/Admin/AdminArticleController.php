@@ -60,7 +60,7 @@ class AdminArticleController extends Controller
             $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
             $article->image = "photos/articles/$category->title/$filename/$imagename";
             $article->save();
-            return redirect()->route("admin.articles.index")->with("success", "مقاله شما با موفقیت ساخته شد");
+            return redirect()->route("admin.articles.farsi.index")->with("success", "مقاله شما با موفقیت ساخته شد");
         }
 
         // check if language of article is english or not?
@@ -75,7 +75,7 @@ class AdminArticleController extends Controller
             $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
             $article->image = "photos/articles/$category->title/$filename/$imagename";
             $article->save();
-            return redirect()->route("admin.articles.index")->with("success", "مقاله شما با موفقیت ساخته شد");
+            return redirect()->route("admin.articles.english.index")->with("success", "مقاله شما با موفقیت ساخته شد");
         }
     }
 
