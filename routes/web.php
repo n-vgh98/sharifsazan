@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminInviteCategoryController;
+use App\Http\Controllers\Admin\AdminInvitePagesController;
 use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminUserController;
 
@@ -153,5 +155,10 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
             route::post("/store", [AdminArticleCategoryController::class, "store"])->name("admin.articles.categories.store");
             route::get("/show/{id}", [AdminArticleCategoryController::class, "show"])->name("admin.articles.categories.show");
         });
+    });
+
+    // route for invite
+    route::prefix("invite_group")->group(function () {
+        route::get("/", [AdminInviteCategoryController::class, "index"])->name("admin.invites.category.index");
     });
 });

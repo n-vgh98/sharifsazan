@@ -126,6 +126,22 @@
                 </ul>
             </li>
             {{-- end of articels --}}
+
+
+            {{-- invite to coaperate --}}
+            <li class="header">دعوت به همکاری</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>گروه ها</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.invites.category.index') }}"><i
+                                class="fa fa-circle-o"></i>مشاهده همه گروه ها</a></li>
+                </ul>
+            </li>
+
+            {{-- invite to coaperate --}}
+
         </ul>
     </section>
     <!-- /.sidebar -->
