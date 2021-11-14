@@ -136,7 +136,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
     // route for articles
     route::prefix("articles")->group(function () {
-        route::get("/", [AdminArticleController::class, "index"])->name("admin.books.index");
+        route::get("/", [AdminArticleController::class, "index"])->name("admin.articles.index");
 
         // route for article categories
         route::prefix("categories")->group(function () {

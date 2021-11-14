@@ -107,6 +107,21 @@
                 </ul>
             </li>
             {{-- end of books --}}
+
+            {{-- articels --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>مقالات</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.articles.categories.index') }}"><i
+                                class="fa fa-circle-o"></i>دسته بندی ها</a></li>
+                    <li class="active"><a href="{{ route('admin.articles.index') }}"><i
+                                class="fa fa-circle-o"></i>لیست مقاله ها</a></li>
+
+                </ul>
+            </li>
+            {{-- end of articels --}}
         </ul>
     </section>
     <!-- /.sidebar -->
