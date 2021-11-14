@@ -49,7 +49,7 @@ class AdminArticleController extends Controller
     public function store(CreateArticleRequest $request)
     {
         // check if language of article is farsi or not?
-        if ($request->language = 0) {
+        if ($request->language == 0) {
             $category = ArticleCategory::find($request->category_id)->first();
             $article = new FarsiArticle();
             $article->title = $request->title;
@@ -64,7 +64,7 @@ class AdminArticleController extends Controller
         }
 
         // check if language of article is english or not?
-        if ($request->language = 1) {
+        if ($request->language == 1) {
             $category = ArticleCategory::find($request->category_id)->first();
             $article = new EnglishArticle();
             $article->title = $request->title;
@@ -96,9 +96,18 @@ class AdminArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editfarsi($id)
     {
-        //
+        $article = FarsiArticle::find($id);
+        $categories = ArticleCategory::all();
+        return view("admin.articles.edit", compact("article", "categories"));
+    }
+
+    public function editenglish($id)
+    {
+        $article = EnglishArticle::find($id);
+        $categories = ArticleCategory::all();
+        return view("admin.articles.edit", compact("article", "categories"));
     }
 
     /**
@@ -110,7 +119,25 @@ class AdminArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // check if language of article is farsi or not?
+        if ($request->lang == 0) {
+            $article =  FarsiArticle::find($id);
+            $article->title = $request->title;
+            $article->category_id = $request->category_id;
+            $article->text = $request->text;
+            $article->save();
+            return redirect()->route("admin.articles.farsi.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
+        }
+
+        // check if language of article is english or not?
+        if ($request->lang == 1) {
+            $article = EnglishArticle::find($id);
+            $article->title = $request->title;
+            $article->category_id = $request->category_id;
+            $article->text = $request->text;
+            $article->save();
+            return redirect()->route("admin.articles.english.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
+        }
     }
 
     /**
