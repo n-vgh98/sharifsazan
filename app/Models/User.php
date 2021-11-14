@@ -53,4 +53,10 @@ class User extends Authenticatable
     {
         return $this->hasMany("App\Models\Notification");
     }
+
+    // polymorphic relation to image table
+    public function images()
+    {
+        return $this->morphToMany("App\Models\Image", "imageable");
+    }
 }

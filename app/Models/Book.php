@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
+    
+    // polymorphic relation to image table
+    public function images()
+    {
+        return $this->morphToMany("App\Models\Image", "imageable");
+    }
 }

@@ -12,4 +12,10 @@ class Article extends Model
     {
         return $this->belongsTo("App\Models\ArticleCategory", "category_id");
     }
+
+    // polymorphic relation to image table
+    public function images()
+    {
+        return $this->morphToMany("App\Models\Image", "imageable");
+    }
 }

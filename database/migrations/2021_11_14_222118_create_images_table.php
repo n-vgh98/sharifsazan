@@ -18,7 +18,9 @@ class CreateImagesTable extends Migration
             $table->string("name");
             $table->text("path");
             $table->string("alt");
-            $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
+            $table->string("imageable_type");
+            $table->integer("imageable_id");
+            $table->foreignId("uploader_id")->comment("baraye inke moshakhas beshe ki aksro gozashte")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

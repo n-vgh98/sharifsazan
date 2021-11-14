@@ -14,4 +14,10 @@ class InvitePage extends Model
     {
         return $this->belongsTo("App\Models\InviteCategory", "category_id");
     }
+
+    // polymorphic relation to image table
+    public function images()
+    {
+        return $this->morphToMany("App\Models\Image", "imageable");
+    }
 }
