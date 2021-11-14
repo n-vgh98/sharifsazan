@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class InvitePage extends Model
 {
     use HasFactory;
+    protected $table = "invite_pages";
 
     public function category()
     {

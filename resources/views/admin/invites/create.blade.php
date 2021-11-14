@@ -15,12 +15,12 @@
                 <option value="0">ثبت نام</option>
                 <option value="1">فرم آزمون فنی </option>
                 <option value="2">فرم آزمون عملی </option>
-                <option value="3">صفحه اصلی ثبت نام </option>
+                <option value="3">صفحه همکاری با ما </option>
             </select>
         </div>
 
         <div style="margin-top: 25px;">
-            <select name="title" class="custom-select">
+            <select name="category_id" class="custom-select">
                 <option selected>گروه مد نظر</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->title }}</option>

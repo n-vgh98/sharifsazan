@@ -52,6 +52,8 @@
                             <p>آزمون فنی</p>
                         @elseif($page->title == 2)
                             <p>آزمون عملی</p>
+                        @elseif($page->title == 3)
+                            <p>همکاری با ما</p>
                         @endif
 
                     </td>

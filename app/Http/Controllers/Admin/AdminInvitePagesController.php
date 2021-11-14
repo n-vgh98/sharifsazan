@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\InvitePage;
 use Illuminate\Http\Request;
+use App\Models\InviteCategory;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class AdminInvitePagesController extends Controller
 {
@@ -26,7 +28,8 @@ class AdminInvitePagesController extends Controller
      */
     public function create()
     {
-        //
+        $categories = InviteCategory::all();
+        return view("admin.invites.create", compact("categories"));
     }
 
     /**
@@ -37,7 +40,18 @@ class AdminInvitePagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = InviteCategory::find($request->category_id);
+        $page = new InvitePage();
+        $imagename = time() . "." . $request->image->extension();
+        $page->title = $request->title;
+        $page->category_id = $request->category_id;
+        $page->text1 = $request->text1;
+        $page->text2 = $request->text2;
+        $filename = $category->title . "." . $category->id;
+        $request->image->move(public_path("photos/pages/$filename/"), $imagename);
+        $page->image = "photos/pages/$filename/$imagename";
+        $page->save();
+        return redirect()->route("admin.invites.pages.index")->with("success", "صفحه شما با موفقیت ساخته شد");
     }
 
     /**
@@ -83,6 +97,7 @@ class AdminInvitePagesController extends Controller
     public function destroy($id)
     {
         $page = InvitePage::find($id);
+        File::delete($page->image);
         $page->delete();
         return redirect()->back()->with("success", "صفحه شما با موفقیت حذف شد");
     }
