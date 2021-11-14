@@ -62,13 +62,13 @@ class AdminArticleController extends Controller
         $article->language = $request->language;
         $article->category_id = $request->category_id;
         $article->text = $request->text;
-        $imagename = time() . "." . $request->image->extension();
-        $filename = $article->title . "." . $category->id;
-        $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
         $article->save();
 
         // saving image in image table
         $image = new Image();
+        $imagename = time() . "." . $request->image->extension();
+        $filename = $article->title . "." . $category->id;
+        $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
         $image->name = $request->image_name;
         $image->alt = $request->alt;
         $image->uploader_id = auth()->user()->id;

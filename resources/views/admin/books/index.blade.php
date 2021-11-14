@@ -59,7 +59,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.books.store') }}" method="POST">
+                    <form action="{{ route('admin.books.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div style="margin-top: 25px;">
                             <label for="name">نام کتاب</label>
@@ -68,6 +68,19 @@
                         <div style="margin-top: 25px;">
                             <label for="link">لینک دانلود کتاب</label>
                             <input type="text" name="link" id="link" required class="form-control">
+                        </div>
+                        <div style="margin-top: 25px;">
+                            <label for="image">عکس کتاب</label>
+                            <input type="file" name="image" id="image" required class="form-control">
+                        </div>
+                        <div style="margin-top: 25px;">
+                            <label for="image_name">نام عکس</label>
+                            <input type="text" name="image_name" id="image_name" required class="form-control">
+                        </div>
+
+                        <div style="margin-top: 25px;">
+                            <label for="alt">Alt</label>
+                            <input type="text" name="alt" id="alt" required class="form-control">
                         </div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
                         <button type="submit" class="btn btn-primary"> ذخیره</button>

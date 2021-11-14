@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Book;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class AdminBooksController extends Controller
 {
@@ -42,6 +44,18 @@ class AdminBooksController extends Controller
         $book->name = $request->name;
         $book->link = $request->link;
         $book->save();
+
+        // saving image in image table
+        $image = new Image();
+        $imagename = time() . "." . $request->image->extension();
+        $filename = $book->name . "." . $book->id;
+        $request->image->move(public_path("photos/books/$filename/"), $imagename);
+        $image->name = $request->image_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $image->path = "photos/books/$filename/$imagename";
+        $book->images()->save($image);
+        // saving image in image table
         return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت اضافه شد");
     }
 
@@ -88,6 +102,7 @@ class AdminBooksController extends Controller
     public function destroy($id)
     {
         $book = Book::find($id);
+        File::delete($book->images[0]->path);
         $book->delete();
         return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت حذف شد");
     }
