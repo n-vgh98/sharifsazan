@@ -96,8 +96,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
             route::get("/", [AdminNotificationController::class, "private"])->name("admin.notifications.private");
         });
     });
-
-<<<<<<< Updated upstream
+    //Updated upstream
 
     // route for courses
     route::prefix("courses")->group(function () {
@@ -176,8 +175,8 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
             route::delete("/destroy/{id}", [AdminInvitePagesController::class, "destroy"])->name("admin.invites.pages.destroy");
         });
     });
-=======
+
     // footer routes
     Route::resource('footer', 'App\Http\Controllers\Admin\AdminFooter');
->>>>>>> Stashed changes
+// Stashed changes
 });

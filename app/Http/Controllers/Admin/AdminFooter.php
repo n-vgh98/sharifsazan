@@ -82,7 +82,17 @@ class AdminFooter extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $footer = Footer::findOrFail($id);
+        $footer->about_us = $request->input('about_us');
+        $footer->address = $request->input('address');
+        $footer->phone_num = $request->input('phone_num');
+        $footer->mobile_num = $request->input('mobile_num');
+        $footer->insta_link = $request->input('insta_link');
+        $footer->mail_link = $request->input('mail_link');
+        $footer->LinkedIn_link = $request->input('LinkedIn_link');
+        $footer->face_link = $request->input('face_link');
+        $footer->save();
+        return redirect()->back()->with("success", " Footerبا موفقیت ویرایش شد  ");
     }
 
     /**
