@@ -7,7 +7,7 @@
     ساخت دوره جدید
 @endsection
 @section('content')
-    <form action="{{ route('admin.courses.store') }}" method="POST">
+    <form action="{{ route('admin.courses.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="title">عنوان دوره</label>
@@ -100,6 +100,21 @@
                 <option value="1">الکترونیک</option>
                 <option value="0">غیر الکترونیک(بسته های ارسالی)</option>
             </select>
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="image">عکس مقاله</label>
+            <input type="file" name="image" id="image" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="image_name">نام عکس</label>
+            <input type="text" name="image_name" id="image_name" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="alt">Alt</label>
+            <input type="text" name="alt" id="alt" required class="form-control">
         </div>
 
         <div style="margin-top: 25px;">

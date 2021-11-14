@@ -37,7 +37,7 @@
         </div>
 
         <div style="margin-top: 25px;">
-            <label for="image">عکس مقاله</label>
+            <label for="image">عکس دوره</label>
             <input type="file" name="image" id="image" required class="form-control">
         </div>
 

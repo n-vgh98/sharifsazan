@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CourseCreateRequest;
+use App\Models\Image;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\CourseCreateRequest;
 
 class AdminCourseController extends Controller
 {
@@ -97,6 +99,18 @@ class AdminCourseController extends Controller
         $course->description = $request->description;
         $course->licensable = $request->licensable;
         $course->save();
+
+        // saving image in image table
+        $image = new Image();
+        $imagename = time() . "." . $request->image->extension();
+        $filename = $course->title . "." . $course->id;
+        $request->image->move(public_path("photos/courses/$filename/"), $imagename);
+        $image->name = $request->image_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $image->path = "photos/courses/$filename/$imagename";
+        $course->images()->save($image);
+        // saving image in image table
         return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ساخته شد");
     }
 
@@ -161,8 +175,11 @@ class AdminCourseController extends Controller
      */
     public function destroy($id)
     {
-        $notification = Course::find($id);
-        $notification->delete();
+        $course = Course::find($id);
+        foreach ($course->images as $image) {
+            File::delete($image->path);
+        }
+        $course->delete();
         return redirect()->back()->with("success", ".دوره شما با موفقیت حذف شد");
     }
 }
