@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Article;
-use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
+use App\Models\ArticleCategory;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use App\Http\Requests\CreateArticleRequest;
 
 class AdminArticleController extends Controller
 {
@@ -27,7 +29,8 @@ class AdminArticleController extends Controller
      */
     public function create()
     {
-        //
+        $categories = ArticleCategory::all();
+        return view("admin.articles.create", compact("categories"));
     }
 
     /**
@@ -36,9 +39,19 @@ class AdminArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateArticleRequest $request)
     {
-        //
+        $category = ArticleCategory::find($request->category_id)->first();
+        $article = new Article();
+        $article->title = $request->title;
+        $article->category_id = $request->category_id;
+        $article->text = $request->text;
+        $imagename = time() . "." . $request->image->extension();
+        $filename = $article->title . "." . $category->id;
+        $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
+        $article->image = "photos/articles/$category->title/$filename/$imagename";
+        $article->save();
+        return redirect()->route("admin.articles.index")->with("success", "مقاله شما با موفقیت ساخته شد");
     }
 
     /**
@@ -84,6 +97,7 @@ class AdminArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::find($id);
+        File::delete($article->image);
         $article->delete();
         return redirect()->back()->with("success", "مقاله شما با موفقیت حذف شد");
     }

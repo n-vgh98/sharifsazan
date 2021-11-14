@@ -34,10 +34,16 @@
                         </form>
                     </td>
                     <td><a class="btn btn-warning" href="{{ route('admin.articles.edit', $article->id) }}">ویرایش</a></td>
-                    <td><button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                    <td>
+                        @php
+                            echo substr($article->text, 0, 30);
+                        @endphp
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                             data-target="#article{{ $article->id }}">
                             متن کامل
-                        </button>{{ substr($article->text, 0, 30) }}</td>
+                        </button>
+
+                    </td>
                     <td>{{ $article->category->title }}</td>
                     <td>{{ $article->title }}</td>
                     <th scope="row">{{ $number }}</th>
@@ -55,7 +61,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                {{ $article->text }}
+                                @php
+                                    echo $article->text;
+                                @endphp
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
