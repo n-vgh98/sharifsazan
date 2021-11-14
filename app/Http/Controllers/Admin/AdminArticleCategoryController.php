@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ArticleCategory;
 use Illuminate\Http\Request;
 
 class AdminArticleCategoryController extends Controller
@@ -14,7 +15,8 @@ class AdminArticleCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = ArticleCategory::all();
+        return view("admin.articles.category.index", compact("categories"));
     }
 
     /**

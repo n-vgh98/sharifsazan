@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminContact;
 use Illuminate\Support\Facades\Auth;
@@ -130,5 +132,15 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::get("/", [AdminBooksController::class, "index"])->name("admin.books.index");
         route::delete("/destroy/{id}", [AdminBooksController::class, "destroy"])->name("admin.books.destroy");
         route::post("/store", [AdminBooksController::class, "store"])->name("admin.books.store");
+    });
+
+    // route for articles
+    route::prefix("articles")->group(function () {
+        route::get("/", [AdminArticleController::class, "index"])->name("admin.books.index");
+
+        // route for article categories
+        route::prefix("categories")->group(function () {
+            route::get("/", [AdminArticleCategoryController::class, "index"])->name("admin.articles.categories.index");
+        });
     });
 });
