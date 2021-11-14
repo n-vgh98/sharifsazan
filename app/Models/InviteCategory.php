@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class InviteCategory extends Model
 {
     use HasFactory;
+    public function pages()
+    {
+        return $this->hasMany("App\Models\InvitePage", "category_id");
+    }
 }

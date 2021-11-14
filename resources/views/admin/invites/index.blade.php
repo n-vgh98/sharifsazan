@@ -1,10 +1,10 @@
 @extends('admin.layouts.master')
 @section('sitetitle')
-    کتابخانه آنلاین
+    صفحات
 @endsection
 
 @section('pagetitle')
-    لیست کتاب ها
+    لیست صفحات
 @endsection
 
 @section('content')
@@ -12,10 +12,11 @@
         <thead>
             <tr>
                 <th scope="col">تنظیمات</th>
-                <th scope="col">لینک فرم ثبت نام</th>
-                <th scope="col">لینک فرم آزمون عملی</th>
-                <th scope="col">لینک فرم ثبت نام</th>
-                <th scope="col">نام گروه' </th>
+                <th scope="col">تغیر</th>
+                <th scope="col">متن دوم</th>
+                <th scope="col">متن اول</th>
+                <th scope="col">نام صفحه</th>
+                <th scope="col">نام گروه</th>
                 <th scope="col">#</th>
             </tr>
         </thead>
@@ -23,20 +24,89 @@
             @php
                 $number = 1;
             @endphp
-            @foreach ($books as $book)
+            @foreach ($pages as $page)
 
                 <tr>
                     <td>
-                        <form action="{{ route('admin.books.destroy', $book->id) }}" method="POST">
+                        <form action="{{ route('admin.invites.pages.destroy', $page->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-info" href="{{ $book->link }}">دانلود</a></td>
-                    <td>{{ $book->name }}</td>
+                    <td><a class="btn btn-warning" href="{{ route('admin.invites.pages.edit', $page->id) }}">ویرایش</a>
+                    </td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#text2{{ $page->id }}">
+                            مشاهده متن دوم
+                        </button></td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#text1{{ $page->id }}">
+                            مشاهده متن اول
+                        </button></td>
+                    <td>
+                        {{-- title har safhe ba asase adad kar mikone ta moshakhas beshe har safhe bara che ghesmate --}}
+                        @if ($page->title == 0)
+                            <p>ثبت نام</p>
+                        @elseif($page->title == 1)
+                            <p>آزمون فنی</p>
+                        @elseif($page->title == 2)
+                            <p>آزمون عملی</p>
+                        @endif
+
+                    </td>
+                    <th scope="row">{{ $page->category->title }}</th>
                     <th scope="row">{{ $number }}</th>
                 </tr>
+
+                {{-- modal for first text --}}
+                <div class="modal fade" id="text1{{ $page->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">متن اول(بالای صفحه)</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @php
+                                    echo $page->text1;
+                                @endphp
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- end of modal for first text --}}
+
+                {{-- modal for second text --}}
+                <div class="modal fade" id="text2{{ $page->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">متن دوم(پایین صفحه)</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @php
+                                    echo $page->text2;
+                                @endphp
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- end of modal for second text --}}
+
                 @php
                     $number++;
                 @endphp
@@ -44,41 +114,5 @@
 
         </tbody>
     </table>
-    {{-- create books --}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        ساخت کتاب جدید
-    </button>
-
-    {{-- modal for making book --}}
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ساخت کتاب جدید</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('admin.books.store') }}" method="POST">
-                        @csrf
-                        <div style="margin-top: 25px;">
-                            <label for="name">نام کتاب</label>
-                            <input type="text" name="name" id="name" required class="form-control">
-                        </div>
-                        <div style="margin-top: 25px;">
-                            <label for="link">لینک دانلود کتاب</label>
-                            <input type="text" name="link" id="link" required class="form-control">
-                        </div>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
-                        <button type="submit" class="btn btn-primary"> ذخیره</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-
-                </div>
-            </div>
-        </div>
-    </div>
+    <a href="{{ route('admin.invites.pages.create') }}" class="btn btn-info">ساخته صفحه جدید</a>
 @endsection

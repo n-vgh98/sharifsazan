@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\InvitePage;
 use Illuminate\Http\Request;
 
 class AdminInvitePagesController extends Controller
@@ -14,7 +15,8 @@ class AdminInvitePagesController extends Controller
      */
     public function index()
     {
-        //
+        $pages = InvitePage::all();
+        return view("admin.invites.index", compact("pages"));
     }
 
     /**
@@ -80,6 +82,8 @@ class AdminInvitePagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $page = InvitePage::find($id);
+        $page->delete();
+        return redirect()->back()->with("success", "صفحه شما با موفقیت حذف شد");
     }
 }

@@ -137,7 +137,14 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.invites.category.index') }}"><i
                                 class="fa fa-circle-o"></i>مشاهده همه گروه ها</a></li>
+
                 </ul>
+
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.invites.pages.index') }}"><i
+                                class="fa fa-circle-o"></i>مشاهده همه صفحات</a></li>
+                </ul>
+
             </li>
 
             {{-- invite to coaperate --}}

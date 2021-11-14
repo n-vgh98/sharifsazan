@@ -163,5 +163,14 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::delete("/destroy/{id}", [AdminInviteCategoryController::class, "destroy"])->name("admin.invites.category.destroy");
         route::post("/store", [AdminInviteCategoryController::class, "store"])->name("admin.invites.category.store");
         route::get("/show/{id}", [AdminInviteCategoryController::class, "show"])->name("admin.invites.category.show");
+        // route to show invite pages for each group
+        route::prefix("pages")->group(function () {
+            route::get("/", [AdminInvitePagesController::class, "index"])->name("admin.invites.pages.index");
+            route::get("/edit/{id}", [AdminInvitePagesController::class, "edit"])->name("admin.invites.pages.edit");
+            route::post("/update/{id}", [AdminInvitePagesController::class, "update"])->name("admin.invites.pages.update");
+            route::post("/store", [AdminInvitePagesController::class, "store"])->name("admin.invites.pages.store");
+            route::get("/create", [AdminInvitePagesController::class, "create"])->name("admin.invites.pages.create");
+            route::delete("/destroy/{id}", [AdminInvitePagesController::class, "destroy"])->name("admin.invites.pages.destroy");
+        });
     });
 });
