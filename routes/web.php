@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminInvitePagesController;
 use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminUserController;
-
+use App\Http\Controllers\Writer\WriterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +35,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
+
+// admin routing
 route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     route::get("/", [AdminController::class, "index"])->name("admin.home");
 
@@ -179,4 +181,11 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     // footer routes
     Route::resource('footer', 'App\Http\Controllers\Admin\AdminFooter');
     // Stashed changes
+});
+// end of admin routing
+
+
+// writer routing
+route::prefix("writer")->middleware(["auth", "writer"])->group(function () {
+    route::get("/", [WriterController::class, "index"])->name("writer.index");
 });
