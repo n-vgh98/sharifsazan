@@ -177,9 +177,11 @@ class AdminCourseController extends Controller
     {
 
         $course = Course::find($id);
+        $path = pathinfo($course->images[0]->path)["dirname"];
         foreach ($course->images as $image) {
             File::delete($image->path);
         }
+        rmdir($path);
         $course->images()->delete();
         $course->delete();
         return redirect()->back()->with("success", ".دوره شما با موفقیت حذف شد");

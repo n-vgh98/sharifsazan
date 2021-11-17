@@ -102,8 +102,11 @@ class WriterBooksController extends Controller
     public function destroy($id)
     {
 
+
         $book = Book::find($id);
+        $path = pathinfo($book->images[0]->path)["dirname"];
         File::delete($book->images[0]->path);
+        rmdir($path);
         $book->images()->delete();
         $book->delete();
         return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت حذف شد");

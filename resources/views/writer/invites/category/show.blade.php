@@ -116,5 +116,5 @@
 
         </tbody>
     </table>
-    <a href="{{ route('admin.invites.pages.create') }}" class="btn btn-info">ساخته صفحه جدید</a>
+    <a href="{{ route('writer.invites.pages.create') }}" class="btn btn-info">ساخته صفحه جدید</a>
 @endsection

@@ -115,9 +115,11 @@ class WriterInvitePagesController extends Controller
     public function destroy($id)
     {
         $page = InvitePage::find($id);
+        $path = pathinfo($page->images[0]->path)["dirname"];
         foreach ($page->images as $image) {
             File::delete($image->path);
         }
+        rmdir($path);
         $page->images()->delete();
         $page->delete();
         return redirect()->back()->with("success", "صفحه شما با موفقیت حذف شد");

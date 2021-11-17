@@ -67,7 +67,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.invites.category.store') }}" method="POST">
+                    <form action="{{ route('writer.invites.category.store') }}" method="POST">
                         @csrf
                         <div style="margin-top: 25px;">
                             <label for="title">نام گروه</label>

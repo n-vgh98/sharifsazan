@@ -28,13 +28,13 @@
 
                 <tr>
                     <td>
-                        <form action="{{ route('admin.invites.pages.destroy', $page->id) }}" method="POST">
+                        <form action="{{ route('writer.invites.pages.destroy', $page->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-warning" href="{{ route('admin.invites.pages.edit', $page->id) }}">ویرایش</a>
+                    <td><a class="btn btn-warning" href="{{ route('writer.invites.pages.edit', $page->id) }}">ویرایش</a>
                     </td>
                     <td><button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#text2{{ $page->id }}">
@@ -116,5 +116,5 @@
 
         </tbody>
     </table>
-    <a href="{{ route('admin.invites.pages.create') }}" class="btn btn-info">ساخته صفحه جدید</a>
+    <a href="{{ route('writer.invites.pages.create') }}" class="btn btn-info">ساخته صفحه جدید</a>
 @endsection

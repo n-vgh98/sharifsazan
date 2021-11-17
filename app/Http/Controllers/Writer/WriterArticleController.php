@@ -129,6 +129,8 @@ class WriterArticleController extends Controller
     {
         $article = Article::find($id);
         File::delete($article->images[0]->path);
+        $path = pathinfo($article->images[0]->path)["dirname"];
+        rmdir($path);
         $article->images()->delete();
         $article->delete();
         return redirect()->back()->with("success", "مقاله شما با موفقیت حذف شد");
