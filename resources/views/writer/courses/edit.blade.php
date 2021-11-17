@@ -107,6 +107,18 @@
         </div>
 
         <div style="margin-top: 25px;">
+            <label for="meta_key_words">کلمات کلیدی</label>
+            <input type="text" value="{{ $course->meta_key_words }}" name="meta_key_words" id="meta_key_words" required
+                class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="meta_descriptions">meta description</label>
+            <input type="text" value="{{ $course->meta_descriptions }}" name="meta_descriptions" id="meta_descriptions"
+                required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
             <label for="introduction">متن معرفی</label>
             <textarea name="introduction" id="introduction" rows="10" cols="80">{{ $course->introduction }}</textarea>
             @error('description')

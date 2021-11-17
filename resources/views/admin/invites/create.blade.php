@@ -45,6 +45,16 @@
         </div>
 
         <div style="margin-top: 25px;">
+            <label for="meta_key_words">کلمات کلیدی</label>
+            <input type="text" name="meta_key_words" id="meta_key_words" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="meta_description">meta description</label>
+            <input type="text" name="meta_descriptions" id="meta_descriptions" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
             <label for="text1">متن اول</label>
             <textarea name="text1" id="text1" rows="10" cols="80"></textarea>
             @error('text1')
