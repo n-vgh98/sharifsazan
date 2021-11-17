@@ -13,7 +13,13 @@ use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminInvitePagesController;
 use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Writer\WriterArticleCategoryController;
+use App\Http\Controllers\Writer\WriterArticleController;
+use App\Http\Controllers\Writer\WriterBooksController;
 use App\Http\Controllers\Writer\WriterController;
+use App\Http\Controllers\Writer\WriterCourseController;
+use App\Http\Controllers\Writer\WriterInviteCategoryController;
+use App\Http\Controllers\Writer\WriterInvitePagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +87,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     });
 
     // notifications  routes
+
     // route for showing all messages
     route::prefix("notifications")->group(function () {
         // route::get("/", [AdminNotificationController::class, "index"])->name("admin.notifications.index");
@@ -188,4 +195,84 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 // writer routing
 route::prefix("writer")->middleware(["auth", "writer"])->group(function () {
     route::get("/", [WriterController::class, "index"])->name("writer.index");
+
+    // courses route
+    route::prefix("courses")->group(function () {
+
+        // route for showing all courses
+        route::get("/", [WriterCourseController::class, "all"])->name("writer.courses.all");
+        route::get("/create", [WriterCourseController::class, "create"])->name("writer.courses.create");
+        route::post("/store", [WriterCourseController::class, "store"])->name("writer.courses.store");
+        route::post("/update/{id}", [WriterCourseController::class, "update"])->name("writer.courses.update");
+        route::get("/edit/{id}", [WriterCourseController::class, "edit"])->name("writer.courses.edit");
+        route::delete("/delete/{id}", [WriterCourseController::class, "destroy"])->name("writer.courses.destroy");
+
+
+        // route for showing free courses
+        route::prefix("free")->group(function () {
+            route::get("/", [WriterCourseController::class, "free"])->name("writer.courses.free");
+        });
+
+        // route for showing not_free courses
+        route::prefix("notfree")->group(function () {
+            route::get("/", [WriterCourseController::class, "notfree"])->name("writer.courses.not.free");
+        });
+
+        // route for showing online courses
+        route::prefix("online")->group(function () {
+            route::get("/", [WriterCourseController::class, "online"])->name("writer.courses.online");
+        });
+
+        // route for showing offline courses
+        route::prefix("offline")->group(function () {
+            route::get("/", [WriterCourseController::class, "offline"])->name("writer.courses.offline");
+        });
+    });
+
+
+    // route for books
+    route::prefix("books")->group(function () {
+        route::get("/", [WriterBooksController::class, "index"])->name("writer.books.index");
+        route::delete("/destroy/{id}", [WriterBooksController::class, "destroy"])->name("writer.books.destroy");
+        route::post("/store", [WriterBooksController::class, "store"])->name("writer.books.store");
+    });
+
+    // route for articles
+    route::prefix("articles")->group(function () {
+        route::get("/", [WriterArticleController::class, "index"])->name("writer.articles.index");
+        route::get("/farsi", [WriterArticleController::class, "indexfarsi"])->name("writer.articles.farsi.index");
+        route::get("/english", [WriterArticleController::class, "indexenglish"])->name("writer.articles.english.index");
+        route::get("/show/{id}", [WriterArticleController::class, "show"])->name("writer.articles.show");
+        route::delete("/destroy/{id}", [WriterArticleController::class, "destroy"])->name("writer.articles.destroy");
+        route::get("/create", [WriterArticleController::class, "create"])->name("writer.articles.create");
+        route::post("/store", [WriterArticleController::class, "store"])->name("writer.articles.store");
+        route::get("/edit/{id}", [WriterArticleController::class, "edit"])->name("writer.articles.edit");
+        route::post("/update/{id}", [WriterArticleController::class, "update"])->name("writer.articles.update");
+
+        // route for article categories
+        route::prefix("categories")->group(function () {
+            route::get("/", [WriterArticleCategoryController::class, "index"])->name("writer.articles.categories.index");
+            route::delete("/destroy/{id}", [WriterArticleCategoryController::class, "destroy"])->name("writer.articles.categories.destroy");
+            route::post("/store", [WriterArticleCategoryController::class, "store"])->name("writer.articles.categories.store");
+            route::get("/show/{id}", [WriterArticleCategoryController::class, "show"])->name("writer.articles.categories.show");
+        });
+    });
+
+    // route for invite
+    route::prefix("invite_group")->group(function () {
+        route::get("/", [WriterInviteCategoryController::class, "index"])->name("writer.invites.category.index");
+        route::delete("/destroy/{id}", [WriterInviteCategoryController::class, "destroy"])->name("writer.invites.category.destroy");
+        route::post("/store", [WriterInviteCategoryController::class, "store"])->name("writer.invites.category.store");
+        route::get("/show/{id}", [WriterInviteCategoryController::class, "show"])->name("writer.invites.category.show");
+        // route to show invite pages for each group
+        route::prefix("pages")->group(function () {
+            route::get("/", [WriterInvitePagesController::class, "index"])->name("writer.invites.pages.index");
+            route::get("/edit/{id}", [WriterInvitePagesController::class, "edit"])->name("writer.invites.pages.edit");
+            route::post("/update/{id}", [WriterInvitePagesController::class, "update"])->name("writer.invites.pages.update");
+            route::post("/store", [WriterInvitePagesController::class, "store"])->name("writer.invites.pages.store");
+            route::get("/create", [WriterInvitePagesController::class, "create"])->name("writer.invites.pages.create");
+            route::delete("/destroy/{id}", [WriterInvitePagesController::class, "destroy"])->name("writer.invites.pages.destroy");
+        });
+    });
+    
 });
