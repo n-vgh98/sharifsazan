@@ -3,7 +3,7 @@
 
 <head>
 
-    @include('admin.layouts.head')
+    @include('writer.layouts.head')
     <title>@yield('sitetitle')</title>
 
     @yield('head')
@@ -12,9 +12,9 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
-        @include('admin.layouts.header')
+        @include('writer.layouts.header')
         <!-- Left side column. contains the logo and sidebar -->
-        @include('admin.layouts.sidebar')
+        @include('writer.layouts.sidebar')
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -26,16 +26,16 @@
 
             <!-- Main content -->
             <section class="content">
-                @include('admin.layouts.eror')
+                @include('writer.layouts.eror')
                 @yield('content')
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        @include('admin.layouts.footer')
+        @include('writer.layouts.footer')
 
         <!-- Control Sidebar -->
-        @include('admin.layouts.controlsidebar')
+        @include('writer.layouts.controlsidebar')
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -43,7 +43,7 @@
     </div>
     <!-- ./wrapper -->
 
-    @include('admin.layouts.scripts')
+    @include('writer.layouts.scripts')
     @yield('script')
 </body>
 
