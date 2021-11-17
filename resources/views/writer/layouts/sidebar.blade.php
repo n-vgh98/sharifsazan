@@ -31,15 +31,15 @@
                         <i class="fa fa-dashboard"></i> <span>دوره ها</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.courses.all') }}"><i
+                        <li class="active"><a href="{{ route('writer.courses.all') }}"><i
                                     class="fa fa-circle-o"></i>همه دوره ها</a></li>
-                        <li class="active"><a href="{{ route('admin.courses.free') }}"><i
+                        <li class="active"><a href="{{ route('writer.courses.free') }}"><i
                                     class="fa fa-circle-o"></i>دوره های رایگان</a></li>
-                        <li class="active"><a href="{{ route('admin.courses.not.free') }}"><i
+                        <li class="active"><a href="{{ route('writer.courses.not.free') }}"><i
                                     class="fa fa-circle-o"></i>دوره های پولی</a></li>
-                        <li class="active"><a href="{{ route('admin.courses.online') }}"><i
+                        <li class="active"><a href="{{ route('writer.courses.online') }}"><i
                                     class="fa fa-circle-o"></i>دوره های آنلاین</a></li>
-                        <li class="active"><a href="{{ route('admin.courses.offline') }}"><i
+                        <li class="active"><a href="{{ route('writer.courses.offline') }}"><i
                                     class="fa fa-circle-o"></i>دوره های آفلاین</a></li>
                     </ul>
                 </li>
@@ -51,7 +51,7 @@
                         <i class="fa fa-dashboard"></i> <span>کتاب ها</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.books.index') }}"><i
+                        <li class="active"><a href="{{ route('writer.books.index') }}"><i
                                     class="fa fa-circle-o"></i>لیست کتاب ها</a></li>
 
                     </ul>
@@ -64,13 +64,13 @@
                         <i class="fa fa-dashboard"></i> <span>مقالات</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.articles.categories.index') }}"><i
+                        <li class="active"><a href="{{ route('writer.articles.categories.index') }}"><i
                                     class="fa fa-circle-o"></i>دسته بندی ها</a></li>
-                        <li class="active"><a href="{{ route('admin.articles.index') }}"><i
+                        <li class="active"><a href="{{ route('writer.articles.index') }}"><i
                                     class="fa fa-circle-o"></i>همه مقالات </a></li>
-                        <li class="active"><a href="{{ route('admin.articles.farsi.index') }}"><i
+                        <li class="active"><a href="{{ route('writer.articles.farsi.index') }}"><i
                                     class="fa fa-circle-o"></i>لیست مقالات فارسی</a></li>
-                        <li class="active"><a href="{{ route('admin.articles.english.index') }}"><i
+                        <li class="active"><a href="{{ route('writer.articles.english.index') }}"><i
                                     class="fa fa-circle-o"></i>لیست مقالات اینگلیسی</a></li>
 
                     </ul>
@@ -85,13 +85,13 @@
                         <i class="fa fa-dashboard"></i> <span>گروه ها</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.invites.category.index') }}"><i
+                        <li class="active"><a href="{{ route('writer.invites.category.index') }}"><i
                                     class="fa fa-circle-o"></i>مشاهده همه گروه ها</a></li>
 
                     </ul>
 
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.invites.pages.index') }}"><i
+                        <li class="active"><a href="{{ route('writer.invites.pages.index') }}"><i
                                     class="fa fa-circle-o"></i>مشاهده همه صفحات</a></li>
                     </ul>
 
