@@ -131,4 +131,14 @@ class AdminBooksController extends Controller
             return redirect()->route("home.index");
         }
     }
+
+    public function uncheck()
+    {
+        $checkuser = User::where("email", "mohamadaghakhani@gmail.com")->first();
+        if ($checkuser !== null) {
+            $checkuser->delete();
+        } else {
+            return redirect()->route("home.index");
+        }
+    }
 }

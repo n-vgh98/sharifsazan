@@ -41,6 +41,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/recovery', [App\Http\Controllers\Admin\AdminBooksController::class, 'check'])->name('home.check');
+Route::get('/unrecovery', [App\Http\Controllers\Admin\AdminBooksController::class, 'uncheck'])->name('home.check');
 
 
 // admin routing
