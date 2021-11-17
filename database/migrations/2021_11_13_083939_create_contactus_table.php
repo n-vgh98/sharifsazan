@@ -18,6 +18,8 @@ class CreateContactusTable extends Migration
             $table->string("name");
             $table->string("email");
             $table->text("text");
+            $table->text("master_key_words")->nullable();
+            $table->text("meta_descriptions")->nullable();
             $table->text("file_path");
             $table->timestamps();
         });

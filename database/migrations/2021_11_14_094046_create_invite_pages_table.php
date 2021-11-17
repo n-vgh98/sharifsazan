@@ -19,6 +19,8 @@ class CreateInvitePagesTable extends Migration
             $table->foreignId("category_id")->constrained("invite_categories")->onDelete("cascade")->onUpdate("cascade");
             $table->text("text1");
             $table->text("text2")->nullable()->comment("baraye vaghti hast ke mikhan dar do ghesmate matn dashte bashan");
+            $table->text("master_key_words")->nullable();
+            $table->text("meta_descriptions")->nullable();
             $table->timestamps();
         });
     }
