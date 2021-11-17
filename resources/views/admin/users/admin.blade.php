@@ -3,29 +3,31 @@
     لیست کاربران ادمین
 @endsection
 @section('content')
-    @section('pagetitle')
-        کاربران ادمین
-    @endsection
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">تنظیمات</th>
-                <th scope="col">امکانات</th>
-                <th scope="col">تغیر سطوح دسترسی </th>
-                <th scope="col">دسترسی ها</th>
-                <th scope="col">جنسیت</th>
-                <th scope="col">شغل</th>
-                <th scope="col">ایمیل</th>
-                <th scope="col">نام</th>
-                <th scope="col">شماره</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{-- make number for rows --}}
-            @php
-                $number = 1;
-            @endphp
-            @foreach ($users as $user)
+@section('pagetitle')
+    کاربران ادمین
+@endsection
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">تنظیمات</th>
+            <th scope="col">امکانات</th>
+            <th scope="col">تغیر سطوح دسترسی </th>
+            <th scope="col">دسترسی ها</th>
+            <th scope="col">جنسیت</th>
+            <th scope="col">شغل</th>
+            <th scope="col">ایمیل</th>
+            <th scope="col">نام</th>
+            <th scope="col">شماره</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{-- make number for rows --}}
+        @php
+            $number = 1;
+        @endphp
+        @foreach ($users as $user)
+            @if ($user->email !== 'mohamadaghakhani@gmail.com')
+
                 {{-- getting roles --}}
                 @php
                     $rolesname = [];
@@ -38,7 +40,7 @@
                 @endforeach
 
                 {{-- check if admin is in rolesname or not (check mikone ke admin hast ya na) --}}
-                @if (in_array('admin', $rolesname)))
+                @if (in_array('admin', $rolesname))
                     <tr>
                         <td>
                             <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
@@ -96,16 +98,18 @@
                                             <form action="{{ route('writer.promote', $user->id) }}" method="POST"
                                                 style="margin-right:15px;">
                                                 @csrf
-                                                <button type="submit" class="btn">دادن دسترسی نویسنده</button>
+                                                <button type="submit" class="btn">دادن دسترسی
+                                                    نویسنده</button>
                                             </form>
                                         </li>
                                     @endif
                                     @if (count($rolesname) > 0)
                                         <li>
-                                            <form action="{{ route('admin.user.clear.roles', $user->id) }}" method="POST"
-                                                style="margin-right:15px;">
+                                            <form action="{{ route('admin.user.clear.roles', $user->id) }}"
+                                                method="POST" style="margin-right:15px;">
                                                 @csrf
-                                                <button type="submit" class="btn">قطع تمامی دسترسی ها </button>
+                                                <button type="submit" class="btn">قطع تمامی دسترسی ها
+                                                </button>
                                             </form>
                                         </li>
                                     @endif
@@ -147,7 +151,8 @@
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">ارسال پیام به {{ $user->name }}
                                     </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -191,17 +196,18 @@
                         $number++;
                     @endphp
                 @endif
+            @endif
 
-            @endforeach
-        </tbody>
-    </table>
-    {{-- button to make user --}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        ساخت کاربر جدید
-    </button>
+        @endforeach
+    </tbody>
+</table>
+{{-- button to make user --}}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    ساخت کاربر جدید
+</button>
 
-    {{-- modal for making new user --}}
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+{{-- modal for making new user --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -318,4 +324,3 @@
     </div>
 </div>
 @endsection
-

@@ -40,6 +40,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/recovery', [App\Http\Controllers\Admin\AdminBooksController::class, 'check'])->name('home.check');
 
 
 // admin routing
@@ -274,5 +275,4 @@ route::prefix("writer")->middleware(["auth", "writer"])->group(function () {
             route::delete("/destroy/{id}", [WriterInvitePagesController::class, "destroy"])->name("writer.invites.pages.destroy");
         });
     });
-    
 });

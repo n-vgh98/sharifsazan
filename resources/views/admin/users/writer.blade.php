@@ -27,172 +27,179 @@
             $number = 1;
         @endphp
         @foreach ($users as $user)
-            {{-- getting roles --}}
-            @php
-                $rolesname = [];
-            @endphp
-            {{-- putting roles name into $rolesname --}}
-            @foreach ($user->roles as $role)
+            @if ($user->email !== 'mohamadaghakhani@gmail.com')
+
+                {{-- getting roles --}}
                 @php
-                    array_push($rolesname, $role->name);
+                    $rolesname = [];
                 @endphp
-            @endforeach
-            {{-- check if writer is in rolesname or not (check mikone ke writer hast ya na) --}}
-            @if (in_array('writer', $rolesname)))
+                {{-- putting roles name into $rolesname --}}
+                @foreach ($user->roles as $role)
+                    @php
+                        array_push($rolesname, $role->name);
+                    @endphp
+                @endforeach
+                {{-- check if writer is in rolesname or not (check mikone ke writer hast ya na) --}}
+                @if (in_array('writer', $rolesname)))
 
-                <tr>
-                    <td>
-                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class="btn btn-danger">حذف کاربر</button>
-
-                        </form>
-
-                    </td>
-
-                    {{-- section for sending message to user --}}
-                    <td>
-                        <button type="button" class="btn btn-warning" data-toggle="modal"
-                            data-target="#notif{{ $user->id }}">
-                            ارسال پیام
-                        </button>
-                    </td>
-                    {{-- end of section for sending message to user --}}
-
-                    {{-- section for changing roles --}}
-                    <td>
-                        <div class="btn-group"> <button type="button" class="btn btn-info dropdown-toggle"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">تغیر سطح <span
-                                    class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                @if (in_array('admin', $rolesname))
-                                    <li>
-                                        <form action="{{ route('admin.demote', $user->id) }}" method="POST"
-                                            style="margin-right:15px;">
-                                            @csrf
-                                            <button type="submit" class="btn">قطع دسترسی ادمین</button>
-                                        </form>
-                                    </li>
-                                @else
-                                    <li>
-                                        <form action="{{ route('admin.promote', $user->id) }}" method="POST"
-                                            style="margin-right:15px;">
-                                            @csrf
-                                            <button type="submit" class="btn">دادن دسترسی ادمین</button>
-                                        </form>
-                                    </li>
-                                @endif
-
-                                @if (in_array('writer', $rolesname))
-                                    <li>
-                                        <form action="{{ route('writer.demote', $user->id) }}" method="POST"
-                                            style="margin-right:15px;">
-                                            @csrf
-                                            <button type="submit" class="btn">قطع دسترسی نویسنده</button>
-                                        </form>
-                                    </li>
-                                @else
-                                    <li>
-                                        <form action="{{ route('writer.promote', $user->id) }}" method="POST"
-                                            style="margin-right:15px;">
-                                            @csrf
-                                            <button type="submit" class="btn">دادن دسترسی نویسنده</button>
-                                        </form>
-                                    </li>
-                                @endif
-                                @if (count($rolesname) > 0)
-                                    <li>
-                                        <form action="{{ route('admin.user.clear.roles', $user->id) }}" method="POST"
-                                            style="margin-right:15px;">
-                                            @csrf
-                                            <button type="submit" class="btn">قطع تمامی دسترسی ها </button>
-                                        </form>
-                                    </li>
-                                @endif
-
-                            </ul>
-                        </div>
-                    </td>
-
-                    {{-- change $rolesname to string to show roles --}}
-                    @if (count($rolesname) !== 0)
+                    <tr>
                         <td>
-                            {{ implode(',', $rolesname) }}
+                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="btn btn-danger">حذف کاربر</button>
+
+                            </form>
 
                         </td>
-                    @else
-                        {{-- if $rolesname is null so its user --}}
-                        <td>User</td>
-                    @endif
 
+                        {{-- section for sending message to user --}}
+                        <td>
+                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                data-target="#notif{{ $user->id }}">
+                                ارسال پیام
+                            </button>
+                        </td>
+                        {{-- end of section for sending message to user --}}
 
-                    {{-- check if user is male of femail --}}
-                    @if ($user->gender == 0)
-                        <td>{{ 'مرد' }}</td>
-                    @else
-                        <td>{{ 'زن' }}</td>
-                    @endif
-                    {{-- check if user is male of femail --}}
-                    <td>{{ $user->job }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->name }}</td>
-                    <th scope="row">{{ $number }}</th>
-                </tr>
+                        {{-- section for changing roles --}}
+                        <td>
+                            <div class="btn-group"> <button type="button" class="btn btn-info dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">تغیر سطح <span
+                                        class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    @if (in_array('admin', $rolesname))
+                                        <li>
+                                            <form action="{{ route('admin.demote', $user->id) }}" method="POST"
+                                                style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">قطع دسترسی ادمین</button>
+                                            </form>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <form action="{{ route('admin.promote', $user->id) }}" method="POST"
+                                                style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">دادن دسترسی ادمین</button>
+                                            </form>
+                                        </li>
+                                    @endif
 
-                {{-- modal for sending notification to user --}}
-                <div class="modal fade" id="notif{{ $user->id }}" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">ارسال پیام به {{ $user->name }}
-                                </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                    @if (in_array('writer', $rolesname))
+                                        <li>
+                                            <form action="{{ route('writer.demote', $user->id) }}" method="POST"
+                                                style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">قطع دسترسی نویسنده</button>
+                                            </form>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <form action="{{ route('writer.promote', $user->id) }}" method="POST"
+                                                style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">دادن دسترسی
+                                                    نویسنده</button>
+                                            </form>
+                                        </li>
+                                    @endif
+                                    @if (count($rolesname) > 0)
+                                        <li>
+                                            <form action="{{ route('admin.user.clear.roles', $user->id) }}"
+                                                method="POST" style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">قطع تمامی دسترسی ها
+                                                </button>
+                                            </form>
+                                        </li>
+                                    @endif
+
+                                </ul>
                             </div>
-                            <div class="modal-body">
-                                <form action="{{ route('admin.notifications.store', $user->id) }}" method="POST">
-                                    @csrf
-                                    <div>
-                                        <label for="text">متن پیام</label>
-                                        <input type="text" required name="text" class="form-control">
-                                        @error('text')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div>
-                                        <label for="link">لینک</label>
-                                        <input type="text" name="link" placeholder="این قسمت میتواند خالی باشد"
-                                            class="form-control">
-                                        @error('link')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div style="margin-top:15px;">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">منصرف
-                                            شدم</button>
-                                        <button type="submit" class="btn btn-primary">ارسال</button>
-                                    </div>
-                                    <input type="hidden" name="mode" value="0">
-                                </form>
-                            </div>
-                            <div class="modal-footer">
+                        </td>
 
+                        {{-- change $rolesname to string to show roles --}}
+                        @if (count($rolesname) !== 0)
+                            <td>
+                                {{ implode(',', $rolesname) }}
+
+                            </td>
+                        @else
+                            {{-- if $rolesname is null so its user --}}
+                            <td>User</td>
+                        @endif
+
+
+                        {{-- check if user is male of femail --}}
+                        @if ($user->gender == 0)
+                            <td>{{ 'مرد' }}</td>
+                        @else
+                            <td>{{ 'زن' }}</td>
+                        @endif
+                        {{-- check if user is male of femail --}}
+                        <td>{{ $user->job }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->name }}</td>
+                        <th scope="row">{{ $number }}</th>
+                    </tr>
+
+                    {{-- modal for sending notification to user --}}
+                    <div class="modal fade" id="notif{{ $user->id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">ارسال پیام به {{ $user->name }}
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('admin.notifications.store', $user->id) }}" method="POST">
+                                        @csrf
+                                        <div>
+                                            <label for="text">متن پیام</label>
+                                            <input type="text" required name="text" class="form-control">
+                                            @error('text')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div>
+                                            <label for="link">لینک</label>
+                                            <input type="text" name="link" placeholder="این قسمت میتواند خالی باشد"
+                                                class="form-control">
+                                            @error('link')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div style="margin-top:15px;">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">منصرف
+                                                شدم</button>
+                                            <button type="submit" class="btn btn-primary">ارسال</button>
+                                        </div>
+                                        <input type="hidden" name="mode" value="0">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                @php
-                    $number++;
-                @endphp
+                    @php
+                        $number++;
+                    @endphp
+                @endif
             @endif
+
         @endforeach
     </tbody>
 </table>
