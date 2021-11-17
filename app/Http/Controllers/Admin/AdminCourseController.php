@@ -98,6 +98,8 @@ class AdminCourseController extends Controller
         $course->introduction = $request->introduction;
         $course->description = $request->description;
         $course->licensable = $request->licensable;
+        $course->meta_key_words = $request->meta_key_words;
+        $course->meta_descriptions = $request->meta_descriptions;
         $course->save();
 
         // saving image in image table
@@ -160,6 +162,8 @@ class AdminCourseController extends Controller
         }
         $course->type = $request->type;
         $course->mode = $request->mode;
+        $course->meta_key_words = $request->meta_key_words;
+        $course->meta_descriptions = $request->meta_descriptions;
         $course->introduction = $request->introduction;
         $course->description = $request->description;
         $course->licensable = $request->licensable;

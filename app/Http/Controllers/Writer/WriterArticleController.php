@@ -60,6 +60,8 @@ class WriterArticleController extends Controller
         $article->language = $request->language;
         $article->category_id = $request->category_id;
         $article->text = $request->text;
+        $article->meta_key_words = $request->meta_key_words;
+        $article->meta_descriptions = $request->meta_descriptions;
         $article->save();
 
         // saving image in image table
@@ -115,6 +117,8 @@ class WriterArticleController extends Controller
         $article->title = $request->title;
         $article->category_id = $request->category_id;
         $article->text = $request->text;
+        $article->meta_key_words = $request->meta_key_words;
+        $article->meta_descriptions = $request->meta_descriptions;
         $article->save();
         return redirect()->route("writer.articles.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
     }

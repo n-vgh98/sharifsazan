@@ -97,6 +97,8 @@ class WriterCourseController extends Controller
         $course->introduction = $request->introduction;
         $course->description = $request->description;
         $course->licensable = $request->licensable;
+        $course->meta_key_words = $request->meta_key_words;
+        $course->meta_descriptions = $request->meta_descriptions;
         $course->save();
 
         // saving image in image table
@@ -162,6 +164,8 @@ class WriterCourseController extends Controller
         $course->introduction = $request->introduction;
         $course->description = $request->description;
         $course->licensable = $request->licensable;
+        $course->meta_key_words = $request->meta_key_words;
+        $course->meta_descriptions = $request->meta_descriptions;
         $course->save();
         return redirect()->route("writer.courses.all")->with("success", ".دوره شما با موفقیت ویرایش شد");
     }

@@ -62,6 +62,8 @@ class AdminArticleController extends Controller
         $article->language = $request->language;
         $article->category_id = $request->category_id;
         $article->text = $request->text;
+        $article->meta_key_words = $request->meta_key_words;
+        $article->meta_descriptions = $request->meta_descriptions;
         $article->save();
 
         // saving image in image table
@@ -116,6 +118,8 @@ class AdminArticleController extends Controller
         $article =  Article::find($id);
         $article->title = $request->title;
         $article->category_id = $request->category_id;
+        $article->meta_key_words = $request->meta_key_words;
+        $article->meta_descriptions = $request->meta_descriptions;
         $article->text = $request->text;
         $article->save();
         return redirect()->route("admin.articles.index")->with("success", "مقاله شما با موفقیت ویرایش شد");

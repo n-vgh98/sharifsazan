@@ -48,6 +48,8 @@ class AdminInvitePagesController extends Controller
         $page->category_id = $request->category_id;
         $page->text1 = $request->text1;
         $page->text2 = $request->text2;
+        $page->meta_key_words = $request->meta_key_words;
+        $page->meta_descriptions = $request->meta_descriptions;
         $page->save();
 
         // saving image in image table
@@ -102,6 +104,8 @@ class AdminInvitePagesController extends Controller
         $page->category_id = $request->category_id;
         $page->text1 = $request->text1;
         $page->text2 = $request->text2;
+        $page->meta_key_words = $request->meta_key_words;
+        $page->meta_descriptions = $request->meta_descriptions;
         $page->save();
         return redirect()->route("admin.invites.pages.index")->with("success", "صفحه شما با موفقیت ویرایش شد");
     }
