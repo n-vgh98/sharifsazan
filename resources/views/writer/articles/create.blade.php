@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     ساخت مقاله
 @endsection
@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('writer.articles.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="title">عنوان مقاله</label>

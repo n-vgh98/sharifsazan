@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     مقالات
 @endsection
@@ -27,13 +27,13 @@
 
                 <tr>
                     <td>
-                        <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST">
+                        <form action="{{ route('writer.articles.destroy', $article->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-warning" href="{{ route('admin.articles.edit', $article->id) }}">ویرایش</a></td>
+                    <td><a class="btn btn-warning" href="{{ route('writer.articles.edit', $article->id) }}">ویرایش</a></td>
                     <td>
                         @php
                             echo substr($article->text, 0, 30);
@@ -80,6 +80,6 @@
 
         </tbody>
     </table>
-    <a href="{{ route('admin.articles.create') }}" class="btn btn-primary">ساخت مقاله جدید</a>
+    <a href="{{ route('writer.articles.create') }}" class="btn btn-primary">ساخت مقاله جدید</a>
 
 @endsection

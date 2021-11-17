@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     ویرایش مقاله
 @endsection
@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('admin.articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('writer.articles.update', $article->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="title">عنوان مقاله</label>

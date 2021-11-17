@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     ساخت دوره جدید
 @endsection
@@ -7,7 +7,7 @@
     ساخت دوره جدید
 @endsection
 @section('content')
-    <form action="{{ route('admin.courses.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('writer.courses.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="title">عنوان دوره</label>

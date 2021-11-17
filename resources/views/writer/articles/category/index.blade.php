@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     دسته بندی مقالات
 @endsection
@@ -25,14 +25,14 @@
 
                 <tr>
                     <td>
-                        <form action="{{ route('admin.articles.categories.destroy', $category->id) }}" method="POST">
+                        <form action="{{ route('writer.articles.categories.destroy', $category->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
                     <td><a class="btn btn-info"
-                            href="{{ route('admin.articles.categories.show', $category->id) }}">مشاهده
+                            href="{{ route('writer.articles.categories.show', $category->id) }}">مشاهده
                             مقالات این دسته
                             بندی</a></td>
                     <td>{{ $category->title }}</td>
@@ -62,7 +62,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.articles.categories.store') }}" method="POST">
+                    <form action="{{ route('writer.articles.categories.store') }}" method="POST">
                         @csrf
                         <div style="margin-top: 25px;">
                             <label for="title">نام دسته بندی</label>

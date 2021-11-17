@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     ساخت صفحه جدید
 @endsection
@@ -7,7 +7,7 @@
     ساخت صفحه جدید
 @endsection
 @section('content')
-    <form action="{{ route('admin.invites.pages.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('writer.invites.pages.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div style="margin-top: 25px;">
             <select name="title" class="custom-select">

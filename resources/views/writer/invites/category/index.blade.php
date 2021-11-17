@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     گروه ها
 @endsection
@@ -28,13 +28,13 @@
 
                 <tr>
                     <td>
-                        <form action="{{ route('admin.invites.category.destroy', $category->id) }}" method="POST">
+                        <form action="{{ route('writer.invites.category.destroy', $category->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-info" href="{{ route('admin.invites.category.show', $category->id) }}">مشاهده
+                    <td><a class="btn btn-info" href="{{ route('writer.invites.category.show', $category->id) }}">مشاهده
                             صفحات گروه</a>
                     </td>
                     <td><a href="{{ $category->technical_exam_form_link }}">فرم آزمون عملی</a></td>

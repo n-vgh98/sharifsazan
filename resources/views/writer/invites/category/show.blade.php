@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     صفحات
 @endsection
@@ -28,13 +28,13 @@
 
                 <tr>
                     <td>
-                        <form action="{{ route('admin.invites.pages.destroy', $page->id) }}" method="POST">
+                        <form action="{{ route('writer.invites.pages.destroy', $page->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-warning" href="{{ route('admin.invites.pages.edit', $page->id) }}">ویرایش</a>
+                    <td><a class="btn btn-warning" href="{{ route('writer.invites.pages.edit', $page->id) }}">ویرایش</a>
                     </td>
                     <td><button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#text2{{ $page->id }}">

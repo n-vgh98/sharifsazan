@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     کتابخانه آنلاین
 @endsection
@@ -25,7 +25,7 @@
 
                 <tr>
                     <td>
-                        <form action="{{ route('admin.books.destroy', $book->id) }}" method="POST">
+                        <form action="{{ route('writer.books.destroy', $book->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
                             <button class="btn btn-danger" type="submit">حذف</button>
@@ -59,7 +59,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.books.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('writer.books.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div style="margin-top: 25px;">
                             <label for="name">نام کتاب</label>

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     ویرایش صفحه
 @endsection
@@ -7,7 +7,7 @@
     ویرایش صفحه
 @endsection
 @section('content')
-    <form action="{{ route('admin.invites.pages.update', $page->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('writer.invites.pages.update', $page->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div style="margin-top: 25px;">
             <select name="title" class="custom-select">

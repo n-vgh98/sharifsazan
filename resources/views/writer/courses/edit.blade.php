@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     ویرایش دوره
 @endsection
@@ -7,7 +7,7 @@
     ویرایش دوره
 @endsection
 @section('content')
-    <form action="{{ route('admin.courses.update', $course->id) }}" method="POST">
+    <form action="{{ route('writer.courses.update', $course->id) }}" method="POST">
         @csrf
         <div>
             <label for="title">عنوان دوره</label>

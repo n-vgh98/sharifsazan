@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('writer.layouts.master')
 @section('sitetitle')
     دوره های آفلاین
 @endsection
@@ -31,14 +31,14 @@
                 <tr>
 
                     <td>
-                        <form action="{{ route('admin.courses.destroy', $course->id) }}" method="POST">
+                        <form action="{{ route('writer.courses.destroy', $course->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
                     <td>
-                        <a href="{{ route('admin.courses.edit', $course->id) }}" class="btn btn-warning">ویرایش</a>
+                        <a href="{{ route('writer.courses.edit', $course->id) }}" class="btn btn-warning">ویرایش</a>
                     </td>
                     <td>{{ $course->use_time }}</td>
                     <td>{{ $course->off }}%</td>
@@ -71,5 +71,5 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('admin.courses.create') }} " class="btn btn-primary">ساخت دوره جدید</a>
+    <a href="{{ route('writer.courses.create') }} " class="btn btn-primary">ساخت دوره جدید</a>
 @endsection
