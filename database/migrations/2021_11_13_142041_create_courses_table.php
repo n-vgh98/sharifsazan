@@ -18,7 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string("title");
             $table->text("introduction");
             $table->text("description");
-            $table->text("master_key_words")->nullable();
+            $table->text("meta_key_words")->nullable();
             $table->text("meta_descriptions")->nullable();
             $table->decimal("price", 20, 0);
             $table->tinyInteger("licensable")->comment("1 is ye and 0 is no");

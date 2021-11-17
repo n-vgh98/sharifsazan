@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->foreignId("category_id")->constrained("article_categories")->onDelete("cascade")->onUpdate("cascade");
             $table->string("title");
             $table->text("text");
-            $table->text("master_key_words")->nullable();
+            $table->text("meta_key_words")->nullable();
             $table->text("meta_descriptions")->nullable();
             $table->tinyInteger("language")->comment("0 is fa and 1 is en");
             $table->timestamps();
