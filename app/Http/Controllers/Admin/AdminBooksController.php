@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\EnglishBook;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
@@ -21,7 +22,8 @@ class AdminBooksController extends Controller
     public function index()
     {
         $books = Book::all();
-        return view("admin.books.index", compact("books"));
+        $englishbooks = EnglishBook::all();
+        return view("admin.books.index", compact("books", "englishbooks"));
     }
 
 
@@ -43,23 +45,47 @@ class AdminBooksController extends Controller
      */
     public function store(Request $request)
     {
-        $book = new Book();
-        $book->name = $request->name;
-        $book->link = $request->link;
-        $book->save();
+        // check if book users are farsi
+        if ($request->lang == 0) {
+            $book = new Book();
+            $book->name = $request->name;
+            $book->link = $request->link;
+            $book->save();
 
-        // saving image in image table
-        $image = new Image();
-        $imagename = time() . "." . $request->image->extension();
-        $filename = $book->name . "." . $book->id;
-        $request->image->move(public_path("photos/books/$filename/"), $imagename);
-        $image->name = $request->image_name;
-        $image->alt = $request->alt;
-        $image->uploader_id = auth()->user()->id;
-        $image->path = "photos/books/$filename/$imagename";
-        $book->images()->save($image);
-        // saving image in image table
-        return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت اضافه شد");
+            // saving image in image table
+            $image = new Image();
+            $imagename = time() . "." . $request->image->extension();
+            $filename = $book->name . "." . $book->id;
+            $request->image->move(public_path("photos/books/$filename/"), $imagename);
+            $image->name = $request->image_name;
+            $image->alt = $request->alt;
+            $image->uploader_id = auth()->user()->id;
+            $image->path = "photos/books/$filename/$imagename";
+            $book->images()->save($image);
+            // saving image in image table
+            return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت اضافه شد");
+        }
+
+        // check if book is for english users
+        if ($request->lang == 1) {
+            $book = new EnglishBook();
+            $book->name = $request->name;
+            $book->link = $request->link;
+            $book->save();
+
+            // saving image in image table
+            $image = new Image();
+            $imagename = time() . "." . $request->image->extension();
+            $filename = $book->name . "." . $book->id;
+            $request->image->move(public_path("photos/books/$filename/"), $imagename);
+            $image->name = $request->image_name;
+            $image->alt = $request->alt;
+            $image->uploader_id = auth()->user()->id;
+            $image->path = "photos/books/$filename/$imagename";
+            $book->images()->save($image);
+            // saving image in image table
+            return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت اضافه شد");
+        }
     }
 
     /**
@@ -102,16 +128,30 @@ class AdminBooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
 
-        $book = Book::find($id);
-        $path = pathinfo($book->images[0]->path)["dirname"];
-        File::delete($book->images[0]->path);
-        rmdir($path);
-        $book->images()->delete();
-        $book->delete();
-        return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت حذف شد");
+        // check if book is for farsi users
+        if ($request->lang == 0) {
+            $book = Book::find($id);
+            $path = pathinfo($book->images[0]->path)["dirname"];
+            File::delete($book->images[0]->path);
+            rmdir($path);
+            $book->images()->delete();
+            $book->delete();
+            return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت حذف شد");
+        }
+
+        // check if book is for english users
+        if ($request->lang == 1) {
+            $book = EnglishBook::find($id);
+            $path = pathinfo($book->images[0]->path)["dirname"];
+            File::delete($book->images[0]->path);
+            rmdir($path);
+            $book->images()->delete();
+            $book->delete();
+            return redirect()->back()->with("success", ".کتاب مورد نظر با موفقیت حذف شد");
+        }
     }
 
     public function check()

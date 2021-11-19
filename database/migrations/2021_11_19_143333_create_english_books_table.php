@@ -15,6 +15,8 @@ class CreateEnglishBooksTable extends Migration
     {
         Schema::create('english_books', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->text("link");
             $table->timestamps();
         });
     }
