@@ -15,7 +15,7 @@ class CreateEnglishArticlesTable extends Migration
     {
         Schema::create('english_articles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("category_id")->constrained("article_categories")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("category_id")->constrained("english_article_categories")->onDelete("cascade")->onUpdate("cascade");
             $table->string("title");
             $table->text("text");
             $table->text("meta_key_words")->nullable();

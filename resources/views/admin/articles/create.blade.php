@@ -28,12 +28,6 @@
                 @endforeach
 
             </select>
-
-            <select name="language" class="custom-select">
-                <option selected>زبان مقاله</option>
-                <option value="1">اینگلیسی</option>
-                <option value="0">فارسی</option>
-            </select>
         </div>
 
         <div style="margin-top: 25px;">
@@ -71,9 +65,9 @@
             @enderror
         </div>
 
-
+        <input type="hidden" name="lang" value="{{ $lang }}">
         <div style="margin-top: 25px;">
-            <button class="btn btn-success">ساخت مقاله</button>
+            <button type="submit" class="btn btn-success">ساخت مقاله</button>
         </div>
     </form>
 @endsection

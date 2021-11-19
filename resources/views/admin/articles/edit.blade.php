@@ -52,7 +52,7 @@
             @enderror
         </div>
 
-
+        <input type="hidden" name="lang" value="{{ $lang }}">
         <div style="margin-top: 25px;">
             <button class="btn btn-success">ویرایش مقاله</button>
         </div>
