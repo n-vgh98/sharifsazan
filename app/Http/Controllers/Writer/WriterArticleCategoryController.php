@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Writer;
 use Illuminate\Http\Request;
 use App\Models\ArticleCategory;
 use App\Http\Controllers\Controller;
+use App\Models\EnglishArticleCategory;
 
 class WriterArticleCategoryController extends Controller
 {
@@ -16,7 +17,8 @@ class WriterArticleCategoryController extends Controller
     public function index()
     {
         $categories = ArticleCategory::all();
-        return view("writer.articles.category.index", compact("categories"));
+        $englishcategories = EnglishArticleCategory::all();
+        return view("writer.articles.category.index", compact("categories", "englishcategories"));
     }
 
     /**
@@ -37,10 +39,19 @@ class WriterArticleCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new ArticleCategory();
-        $category->title = $request->title;
-        $category->save();
-        return redirect()->back()->with("success", "دسته بندی شما با موفقیت اضافه شد");
+        if ($request->lang == 0) {
+            $category = new ArticleCategory();
+            $category->title = $request->title;
+            $category->save();
+            return redirect()->back()->with("success", "دسته بندی شما با موفقیت اضافه شد");
+        }
+
+        if ($request->lang == 1) {
+            $category = new EnglishArticleCategory();
+            $category->title = $request->title;
+            $category->save();
+            return redirect()->back()->with("success", "دسته بندی شما با موفقیت اضافه شد");
+        }
     }
 
     /**
@@ -49,10 +60,19 @@ class WriterArticleCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $lang)
     {
-        $category = ArticleCategory::find($id);
-        return view("writer.articles.category.show", compact("category"));
+        // check if category is farsi
+        if ($lang == 0) {
+            $category = ArticleCategory::find($id);
+            return view("writer.articles.category.show", compact("category", "lang"));
+        }
+
+        // check if category is english
+        if ($lang == 1) {
+            $category = EnglishArticleCategory::find($id);
+            return view("writer.articles.category.show", compact("category", "lang"));
+        }
     }
 
     /**
@@ -84,10 +104,19 @@ class WriterArticleCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $category = ArticleCategory::find($id);
-        $category->delete();
-        return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
+        // check if category is farsi
+        if ($request->lang == 0) {
+            $category = ArticleCategory::find($id);
+            $category->delete();
+            return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
+        }
+        // check if category is english
+        if ($request->lang == 1) {
+            $category = EnglishArticleCategory::find($id);
+            $category->delete();
+            return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
+        }
     }
 }

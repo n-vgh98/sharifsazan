@@ -7,6 +7,7 @@
     ویرایش دوره
 @endsection
 @section('content')
+
     <form action="{{ route('writer.courses.update', $course->id) }}" method="POST">
         @csrf
         <div>
@@ -121,7 +122,7 @@
         <div style="margin-top: 25px;">
             <label for="introduction">متن معرفی</label>
             <textarea name="introduction" id="introduction" rows="10" cols="80">{{ $course->introduction }}</textarea>
-            @error('description')
+            @error('introduction')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -137,6 +138,7 @@
                 </span>
             @enderror
         </div>
+        <input type="hidden" name="lang" value="{{ $lang }}">
 
         <div style="margin-top: 25px;">
             <button class="btn btn-success">ویرایش دوره</button>

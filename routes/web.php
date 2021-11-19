@@ -204,7 +204,7 @@ route::prefix("writer")->middleware(["auth", "writer"])->group(function () {
         route::get("/create", [WriterCourseController::class, "create"])->name("writer.courses.create");
         route::post("/store", [WriterCourseController::class, "store"])->name("writer.courses.store");
         route::post("/update/{id}", [WriterCourseController::class, "update"])->name("writer.courses.update");
-        route::get("/edit/{id}", [WriterCourseController::class, "edit"])->name("writer.courses.edit");
+        route::get("/edit/{id}/{lang}", [WriterCourseController::class, "edit"])->name("writer.courses.edit");
         route::delete("/delete/{id}", [WriterCourseController::class, "destroy"])->name("writer.courses.destroy");
 
 
@@ -239,14 +239,13 @@ route::prefix("writer")->middleware(["auth", "writer"])->group(function () {
 
     // route for articles
     route::prefix("articles")->group(function () {
-        route::get("/", [WriterArticleController::class, "index"])->name("writer.articles.index");
         route::get("/farsi", [WriterArticleController::class, "indexfarsi"])->name("writer.articles.farsi.index");
         route::get("/english", [WriterArticleController::class, "indexenglish"])->name("writer.articles.english.index");
         route::get("/show/{id}", [WriterArticleController::class, "show"])->name("writer.articles.show");
         route::delete("/destroy/{id}", [WriterArticleController::class, "destroy"])->name("writer.articles.destroy");
-        route::get("/create", [WriterArticleController::class, "create"])->name("writer.articles.create");
+        route::get("/create/{lang}", [WriterArticleController::class, "create"])->name("writer.articles.create");
         route::post("/store", [WriterArticleController::class, "store"])->name("writer.articles.store");
-        route::get("/edit/{id}", [WriterArticleController::class, "edit"])->name("writer.articles.edit");
+        route::get("/edit/{id}/{lang}", [WriterArticleController::class, "edit"])->name("writer.articles.edit");
         route::post("/update/{id}", [WriterArticleController::class, "update"])->name("writer.articles.update");
 
         // route for article categories
@@ -254,7 +253,7 @@ route::prefix("writer")->middleware(["auth", "writer"])->group(function () {
             route::get("/", [WriterArticleCategoryController::class, "index"])->name("writer.articles.categories.index");
             route::delete("/destroy/{id}", [WriterArticleCategoryController::class, "destroy"])->name("writer.articles.categories.destroy");
             route::post("/store", [WriterArticleCategoryController::class, "store"])->name("writer.articles.categories.store");
-            route::get("/show/{id}", [WriterArticleCategoryController::class, "show"])->name("writer.articles.categories.show");
+            route::get("/show/{id}/{lang}", [WriterArticleCategoryController::class, "show"])->name("writer.articles.categories.show");
         });
     });
 

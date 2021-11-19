@@ -8,6 +8,9 @@
 @endsection
 
 @section('content')
+    <br><br><br>
+    <strong>کتاب برای کاربران فارسی زبان </strong>
+    <br><br>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -28,6 +31,7 @@
                         <form action="{{ route('writer.books.destroy', $book->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
+                            <input type="hidden" value="0" name="lang">
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
@@ -42,6 +46,50 @@
 
         </tbody>
     </table>
+
+    {{-- create books --}}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        ساخت کتاب جدید
+    </button>
+
+    <br><br><br><br><br>
+    <strong>کتاب برای کاربران اینگلیسی زبان </strong>
+    <br><br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">تنظیمات</th>
+                <th scope="col">لینک دانلود</th>
+                <th scope="col">نام کتاب </th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $number = 1;
+            @endphp
+            @foreach ($englishbooks as $book)
+                <tr>
+                    <td>
+                        <form action="{{ route('writer.books.destroy', $book->id) }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <input type="hidden" value="1" name="lang">
+                            <button class="btn btn-danger" type="submit">حذف</button>
+                        </form>
+                    </td>
+                    <td><a class="btn btn-info" href="{{ $book->link }}">دانلود</a></td>
+                    <td>{{ $book->name }}</td>
+                    <th scope="row">{{ $number }}</th>
+                </tr>
+                @php
+                    $number++;
+                @endphp
+            @endforeach
+
+        </tbody>
+    </table>
+
     {{-- create books --}}
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         ساخت کتاب جدید
@@ -82,8 +130,20 @@
                             <label for="alt">Alt</label>
                             <input type="text" name="alt" id="alt" required class="form-control">
                         </div>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
-                        <button type="submit" class="btn btn-primary"> ذخیره</button>
+
+                        <div style="margin-top: 25px;">
+                            <select class="form-control" name="lang" class="custom-select">
+                                <option selected>زبان کاربران کتاب</option>
+                                <option value="1">اینگلیسی</option>
+                                <option value="0">فارسی</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-top: 25px;">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                            <button type="submit" class="btn btn-primary"> ذخیره</button>
+                        </div>
+
                     </form>
                 </div>
                 <div class="modal-footer">
