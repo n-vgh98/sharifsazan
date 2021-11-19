@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class EnglishCourse extends Model
 {
     use HasFactory;
+    public function images()
+    {
+        return $this->morphMany("App\Models\Image", "imageable");
+    }
 }

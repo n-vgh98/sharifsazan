@@ -116,7 +116,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::get("/create", [AdminCourseController::class, "create"])->name("admin.courses.create");
         route::post("/store", [AdminCourseController::class, "store"])->name("admin.courses.store");
         route::post("/update/{id}", [AdminCourseController::class, "update"])->name("admin.courses.update");
-        route::get("/edit/{id}", [AdminCourseController::class, "edit"])->name("admin.courses.edit");
+        route::get("/edit/{id}/{lang}", [AdminCourseController::class, "edit"])->name("admin.courses.edit");
         route::delete("/delete/{id}", [AdminCourseController::class, "destroy"])->name("admin.courses.destroy");
 
 

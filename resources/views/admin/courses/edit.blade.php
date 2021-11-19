@@ -7,6 +7,7 @@
     ویرایش دوره
 @endsection
 @section('content')
+
     <form action="{{ route('admin.courses.update', $course->id) }}" method="POST">
         @csrf
         <div>
@@ -137,6 +138,7 @@
                 </span>
             @enderror
         </div>
+        <input type="hidden" name="lang" value="{{ $lang }}">
 
         <div style="margin-top: 25px;">
             <button class="btn btn-success">ویرایش دوره</button>
