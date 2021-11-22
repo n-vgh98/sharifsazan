@@ -146,21 +146,36 @@
 
                 {{-- invite to coaperate --}}
 
-                =======
-                {{-- Start Footer --}}
-                <li class="header">footer</li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>footer</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="active">
-                            <a href="{{ route('footer.index') }}"><i class="fa fa-circle-o"></i>متن های Footer</a>
-                        </li>
-                    </ul>
-                </li>
-                {{-- End Footer --}}
-                >>>>>>> Stashed changes
+            {{-- Start OurTeam --}}
+            <li class="header">تیم ما</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>تیم ما</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('our_team.index') }}"><i
+                                    class="fa fa-circle-o"></i>صفحه اصلی تیم ما</a></li>
+                    <li class="active"><a href="#"><i
+                                    class="fa fa-circle-o"></i>همکاران </a></li>
+                </ul>
+            </li>
+            {{-- End OurTeam --}}
+
+            {{--  Start Footer --}}
+            <li class="header">footer</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>footer</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active">
+                        <a href="{{route('footer.index')}}"><i class="fa fa-circle-o"></i>متن های Footer</a>
+                    </li>
+                </ul>
+            </li>
+            {{--  End Footer --}}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         </ul>
     </section>
     <!-- /.sidebar -->

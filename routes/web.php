@@ -184,6 +184,8 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
             route::delete("/destroy/{id}", [AdminInvitePagesController::class, "destroy"])->name("admin.invites.pages.destroy");
         });
     });
+    // our_team routes
+    Route::resource('/our_team','App\Http\Controllers\Admin\AdminOurTeamController');
 
     // footer routes
     Route::resource('footer', 'App\Http\Controllers\Admin\AdminFooter');
