@@ -54,7 +54,7 @@ body {
 
 @font-face {
 	font-family: iranL;
-	src: url(Fonts/IRANSansWeb_Light.ttf);
+	src: url(../Fonts/IRANSansWeb_Light.ttf);
 }
 
 a {

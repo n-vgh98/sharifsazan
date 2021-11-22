@@ -33,7 +33,7 @@ use App\Http\Controllers\Writer\WriterInvitePagesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.index');
 });
 
 
@@ -185,7 +185,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         });
     });
     // our_team routes
-    Route::resource('/our_team','App\Http\Controllers\Admin\AdminOurTeamController');
+    Route::resource('/our_team', 'App\Http\Controllers\Admin\AdminOurTeamController');
 
     // footer routes
     Route::resource('footer', 'App\Http\Controllers\Admin\AdminFooter');
