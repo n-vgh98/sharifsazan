@@ -8,7 +8,7 @@
 @endsection
 @section('content')
 
-    <form action="{{ route('admin.courses.update', $course->id) }}" method="POST">
+    <form action="{{ route('admin.courses.update', $course->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="title">عنوان دوره</label>
@@ -120,6 +120,27 @@
         </div>
 
         <div style="margin-top: 25px;">
+            <label for="image_name">image name</label>
+            <input type="text" value="{{ $course->images[0]->name }}" name="image_name" id="image_name" required
+                class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="image_alt">image alt</label>
+            <input type="text" value="{{ $course->images[0]->alt }}" name="alt" id="alt" required class="form-control">
+        </div>
+
+
+
+        <div style="margin-top: 25px;">
+            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                مشاهده عکس فعلی
+            </button>
+            <label for="image">تغییر عکس </label>
+            <input type="file" name="image" id="image" class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
             <label for="introduction">متن معرفی</label>
             <textarea name="introduction" id="introduction" rows="10" cols="80">{{ $course->introduction }}</textarea>
             @error('introduction')
@@ -144,6 +165,27 @@
             <button class="btn btn-success">ویرایش دوره</button>
         </div>
     </form>
+    {{-- modal for showing image --}}
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">عکس فعلی</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset($course->images[0]->path) }}" alt="" style="height: 500px; width:500px;">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('script')
 

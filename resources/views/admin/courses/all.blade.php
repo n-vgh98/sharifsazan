@@ -37,7 +37,7 @@
                         <form action="{{ route('admin.courses.destroy', $course->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
-                            <input type="hidde" name="lang" value="0">
+                            <input type="hidden" name="lang" value="0">
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>

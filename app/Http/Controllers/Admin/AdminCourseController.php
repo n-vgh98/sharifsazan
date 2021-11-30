@@ -208,6 +208,7 @@ class AdminCourseController extends Controller
             $course = Course::find($id);
             $course->title = $request->title;
             $course->price = $request->price;
+            $course->price = $request->price;
             $course->master_name = $request->master_name;
             $course->master_job = $request->master_job;
             if ($request->link !== null) {
@@ -224,6 +225,20 @@ class AdminCourseController extends Controller
             $course->introduction = $request->introduction;
             $course->description = $request->description;
             $course->licensable = $request->licensable;
+
+            // update image
+            if ($request->image !== null) {
+                $image = Image::find($course->images[0]->id);
+                $imagename = time() . "." . $request->image->extension();
+                $filename = $course->title . "." . $course->id;
+                $request->image->move(public_path("photos/courses/$filename/"), $imagename);
+                $image->name = $request->image_name;
+                $image->alt = $request->alt;
+                $image->uploader_id = auth()->user()->id;
+                $image->path = "photos/courses/$filename/$imagename";
+                $course->images()->save($image);
+            }
+
             $course->save();
             return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ویرایش شد");
         }
@@ -250,6 +265,18 @@ class AdminCourseController extends Controller
             $course->introduction = $request->introduction;
             $course->description = $request->description;
             $course->licensable = $request->licensable;
+            // update image
+            if ($request->image !== null) {
+                $image = Image::find($course->images[0]->id);
+                $imagename = time() . "." . $request->image->extension();
+                $filename = $course->title . "." . $course->id;
+                $request->image->move(public_path("photos/courses/$filename/"), $imagename);
+                $image->name = $request->image_name;
+                $image->alt = $request->alt;
+                $image->uploader_id = auth()->user()->id;
+                $image->path = "photos/courses/$filename/$imagename";
+                $course->images()->save($image);
+            }
             $course->save();
             return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ویرایش شد");
         }
