@@ -146,6 +146,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::get("/", [AdminBooksController::class, "index"])->name("admin.books.index");
         route::delete("/destroy/{id}", [AdminBooksController::class, "destroy"])->name("admin.books.destroy");
         route::post("/store", [AdminBooksController::class, "store"])->name("admin.books.store");
+        route::post("/update/{id}", [AdminBooksController::class, "update"])->name("admin.books.update");
     });
 
     // route for articles

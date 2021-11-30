@@ -119,7 +119,44 @@ class AdminBooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // check if lang is farsi
+        if ($request->lang == 0) {
+            $book = Book::find($id);
+            $book->name = $request->name;
+            $book->link = $request->link;
+            if ($request->image !== null) {
+                $image = Image::find($book->images[0]->id);
+                File::delete($image->path);
+                $imagename = time() . "." . $request->image->extension();
+                $filename = $book->name . "." . $book->id;
+                $request->image->move(public_path("photos/books/$filename/"), $imagename);
+                $image->name = $request->image_name;
+                $image->alt = $request->alt;
+                $image->uploader_id = auth()->user()->id;
+                $image->path = "photos/books/$filename/$imagename";
+                $book->images()->save($image);
+            }
+            $book->save();
+        }
+        if ($request->lang == 1) {
+            $book = EnglishBook::find($id);
+            $book->name = $request->name;
+            $book->link = $request->link;
+            if ($request->image !== null) {
+                $image = Image::find($book->images[0]->id);
+                File::delete($image->path);
+                $imagename = time() . "." . $request->image->extension();
+                $filename = $book->name . "." . $book->id;
+                $request->image->move(public_path("photos/books/$filename/"), $imagename);
+                $image->name = $request->image_name;
+                $image->alt = $request->alt;
+                $image->uploader_id = auth()->user()->id;
+                $image->path = "photos/books/$filename/$imagename";
+                $book->images()->save($image);
+            }
+            $book->save();
+            return redirect()->back()->with("success", "تغیرات شما با موفقیت اعمال شد");
+        }
     }
 
     /**
