@@ -172,6 +172,21 @@ class AdminArticleController extends Controller
             $article->meta_key_words = $request->meta_key_words;
             $article->meta_descriptions = $request->meta_descriptions;
             $article->text = $request->text;
+            // update image
+            if ($request->image !== null) {
+                $category = ArticleCategory::find($request->category_id)->first();
+                $image = Image::find($article->images[0]->id);
+                File::delete($image->path);
+                $imagename = time() . "." . $request->image->extension();
+                $filename = $article->title . "." . $category->id;
+                $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
+                $image->name = $request->image_name;
+                $image->alt = $request->alt;
+                $image->uploader_id = auth()->user()->id;
+                $image->path = "photos/articles/$category->title/$filename/$imagename";
+                $article->images()->save($image);
+            }
+
             $article->save();
             return redirect()->route("admin.articles.farsi.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
         }
@@ -184,6 +199,20 @@ class AdminArticleController extends Controller
             $article->meta_key_words = $request->meta_key_words;
             $article->meta_descriptions = $request->meta_descriptions;
             $article->text = $request->text;
+            // update image
+            if ($request->image !== null) {
+                $category = EnglishArticleCategory::find($request->category_id)->first();
+                $image = Image::find($article->images[0]->id);
+                File::delete($image->path);
+                $imagename = time() . "." . $request->image->extension();
+                $filename = $article->title . "." . $category->id;
+                $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
+                $image->name = $request->image_name;
+                $image->alt = $request->alt;
+                $image->uploader_id = auth()->user()->id;
+                $image->path = "photos/articles/$category->title/$filename/$imagename";
+                $article->images()->save($image);
+            }
             $article->save();
             return redirect()->route("admin.articles.english.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
         }

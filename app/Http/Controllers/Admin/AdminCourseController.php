@@ -229,6 +229,7 @@ class AdminCourseController extends Controller
             // update image
             if ($request->image !== null) {
                 $image = Image::find($course->images[0]->id);
+                File::delete($image->path);
                 $imagename = time() . "." . $request->image->extension();
                 $filename = $course->title . "." . $course->id;
                 $request->image->move(public_path("photos/courses/$filename/"), $imagename);
@@ -268,6 +269,7 @@ class AdminCourseController extends Controller
             // update image
             if ($request->image !== null) {
                 $image = Image::find($course->images[0]->id);
+                File::delete($image->path);
                 $imagename = time() . "." . $request->image->extension();
                 $filename = $course->title . "." . $course->id;
                 $request->image->move(public_path("photos/courses/$filename/"), $imagename);
