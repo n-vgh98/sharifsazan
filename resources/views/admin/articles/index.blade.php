@@ -19,6 +19,7 @@
             <tr>
                 <th scope="col">تنظیمات</th>
                 <th scope="col">امکانات</th>
+                <th scope="col">زبان</th>
                 <th scope="col">خلاصه متن</th>
                 <th scope="col">نام دسته بندی </th>
                 <th scope="col">عنوان مقاله </th>
@@ -40,6 +41,7 @@
                         </form>
                     </td>
                     <td><a class="btn btn-warning" href="#">ویرایش</a></td>
+                    <td>{{ $article->category->language->name }}</td>
                     <td>
                         @php
                             echo substr($article->text, 0, 30);
