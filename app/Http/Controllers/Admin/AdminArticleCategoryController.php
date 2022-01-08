@@ -17,22 +17,20 @@ class AdminArticleCategoryController extends Controller
      */
     public function all()
     {
-        $categories = ArticleCategory::all();
-        return view("admin.articles.category.index", compact("categories"));
+        $languages = Lang::where("langable_type", "App\Models\ArticleCategory")->get();
+        return view("admin.articles.category.index", compact("languages"));
     }
 
     public function farsi()
     {
-        dd("farsi");
-        $categories = ArticleCategory::all();
-        return view("admin.articles.category.index", compact("categories"));
+        $languages = Lang::where([["name", "fa"], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        return view("admin.articles.category.index", compact("languages"));
     }
 
     public function english()
     {
-        dd("english");
-        $categories = ArticleCategory::all();
-        return view("admin.articles.category.index", compact("categories"));
+        $languages = Lang::where([["name", "en"], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        return view("admin.articles.category.index", compact("languages"));
     }
 
     /**
@@ -83,13 +81,13 @@ class AdminArticleCategoryController extends Controller
     public function show($id, $lang)
     {
         // check if category is farsi
-        if ($lang == 0) {
-            $category = ArticleCategory::find($id);
-            return view("admin.articles.category.show", compact("category", "lang"));
+        if ($lang == "fa") {
+            $language = Lang::where([["langable_id", $id], ["langable_type", "App\Models\ArticleCategory"]])->first();
+            return view("admin.articles.category.show", compact("language"));
         }
 
         // check if category is english
-        if ($lang == 1) {
+        if ($lang == "en") {
             $category = EnglishArticleCategory::find($id);
             return view("admin.articles.category.show", compact("category", "lang"));
         }
@@ -132,12 +130,6 @@ class AdminArticleCategoryController extends Controller
             $category = ArticleCategory::find($id);
             $language = Lang::findorfail($category->language->id);
             $language->delete();
-            $category->delete();
-            return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
-        }
-        // check if category is english
-        if ($request->lang == 1) {
-            $category = ArticleCategory::find($id);
             $category->delete();
             return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
         }

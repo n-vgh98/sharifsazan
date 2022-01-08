@@ -12,6 +12,7 @@ use App\Models\EnglishArticle;
 use App\Models\EnglishArticleCategory;
 use App\Models\FarsiArticle;
 use App\Models\Image;
+use App\Models\Lang;
 
 class AdminArticleController extends Controller
 {
@@ -20,24 +21,37 @@ class AdminArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $articles = Article::all();
-    //     return view("admin.articles.index", compact("articles"));
-    // }
 
-    public function indexfarsi()
+    public function all()
     {
         $articles = Article::all();
-        $lang = 0;
-        return view("admin.articles.index", compact("articles", "lang"));
+        return view("admin.articles.index", compact("articles"));
     }
 
-    public function indexenglish()
+    public function english()
     {
-        $articles = EnglishArticle::all();
-        $lang = 1;
-        return view("admin.articles.index", compact("articles", "lang"));
+        $languages = Lang::where([["name", "en"], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        $articles = [];
+        foreach ($languages as $language) {
+            // making collection to array
+            foreach ($language->langable->articles as $articless) {
+                array_push($articles, $articless);
+            }
+        }
+        return view("admin.articles.index", compact("articles"));
+    }
+
+    public function farsi()
+    {
+        $languages = Lang::where([["name", "fa"], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        $articles = [];
+        foreach ($languages as $language) {
+            // making collection to array
+            foreach ($language->langable->articles as $articless) {
+                array_push($articles, $articless);
+            }
+        }
+        return view("admin.articles.index", compact("articles"));
     }
 
     /**
@@ -45,19 +59,13 @@ class AdminArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($lang)
+    public function create($id)
     {
-        // check if article is for farsi users
-        if ($lang == 0) {
-            $categories = ArticleCategory::all();
-            return view("admin.articles.create", compact("categories", "lang"));
-        }
 
-        // check if article is for english users
-        if ($lang == 1) {
-            $categories = EnglishArticleCategory::all();
-            return view("admin.articles.create", compact("categories", "lang"));
-        }
+        // check if article is for farsi users
+        $category = ArticleCategory::findorfail($id);
+        dd($category);
+        return view("admin.articles.create", compact("category", "id"));
     }
 
     /**

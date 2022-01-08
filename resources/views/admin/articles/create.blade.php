@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="#" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
             <label for="title">عنوان مقاله</label>

@@ -28,19 +28,22 @@
             @php
                 $number = 1;
             @endphp
-            @foreach ($categories as $category)
+            @foreach ($languages as $language)
+
+                @php
+                    $category = $language->langable;
+                @endphp
 
                 <tr>
                     <td>
                         <form action="{{ route('admin.articles.categories.destroy', $category->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
-                            <input type="hidden" name="lang" value="0">
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
                     <td><a class="btn btn-info"
-                            href="{{ route('admin.articles.categories.show', [$category->id, 0]) }}">مشاهده
+                            href="{{ route('admin.articles.categories.show', [$category->id, $category->language->name]) }}">مشاهده
                             مقالات این دسته
                             بندی</a></td>
                     <td>{{ $category->title }}</td>
@@ -50,6 +53,8 @@
                     $number++;
                 @endphp
             @endforeach
+
+
 
         </tbody>
     </table>

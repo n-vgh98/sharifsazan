@@ -8,6 +8,12 @@
 @endsection
 
 @section('content')
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.articles.farsi') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.articles.english') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -30,12 +36,10 @@
                         <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
-                            <input type="hidden" name="lang" value="{{ $lang }}">
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-warning"
-                            href="{{ route('admin.articles.edit', [$article->id, $lang]) }}">ویرایش</a></td>
+                    <td><a class="btn btn-warning" href="#">ویرایش</a></td>
                     <td>
                         @php
                             echo substr($article->text, 0, 30);
@@ -82,6 +86,6 @@
 
         </tbody>
     </table>
-    <a href="{{ route('admin.articles.create', $lang) }}" class="btn btn-primary">ساخت مقاله جدید</a>
+    <a href="{{ route('admin.articles.create') }}" class="btn btn-primary">ساخت مقاله جدید</a>
 
 @endsection

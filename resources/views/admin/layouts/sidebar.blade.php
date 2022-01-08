@@ -116,6 +116,12 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.articles.categories.all') }}"><i
                                 class="fa fa-circle-o"></i>دسته بندی ها</a></li>
+                    <li class="active"><a href="{{ route('admin.articles.all') }}"><i
+                                class="fa fa-circle-o"></i>لیست مقالات</a></li>
+                    <li class="active"><a href="{{ route('admin.articles.farsi') }}"><i
+                                class="fa fa-circle-o"></i>لیست مقالات فارسی</a></li>
+                    <li class="active"><a href="{{ route('admin.articles.english') }}"><i
+                                class="fa fa-circle-o"></i>لیست مقالات فارسی</a></li>
 
                 </ul>
             </li>
