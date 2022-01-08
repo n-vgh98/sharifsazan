@@ -74,7 +74,8 @@
                 </ul>
             </li>
             {{-- notifications --}}
-            <<<<<<< Updated upstream {{-- amoozesh --}} <li class="header">تحقیق و توسعه</li>
+            {{-- amoozesh --}}
+            <li class="header">تحقیق و توسعه</li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>دوره ها</span> <i class="fa fa-angle-left pull-right"></i>
@@ -118,7 +119,7 @@
                         <li class="active"><a href="{{ route('admin.articles.farsi.index') }}"><i
                                     class="fa fa-circle-o"></i>لیست مقالات فارسی</a></li>
                         <li class="active"><a href="{{ route('admin.articles.english.index') }}"><i
-                                    class="fa fa-circle-o"></i>لیست مقالات اینگلیسی</a></li>
+                                    class="fa fa-circle-o"></i>لیست مقالات انگلیسی</a></li>
 
                     </ul>
                 </li>
@@ -153,9 +154,9 @@
                     <i class="fa fa-dashboard"></i> <span>تیم ما</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('our_team.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.our_team.index') }}"><i
                                     class="fa fa-circle-o"></i>صفحه اصلی تیم ما</a></li>
-                    <li class="active"><a href="#"><i
+                    <li class="active"><a href="{{route('members.index')}}"><i
                                     class="fa fa-circle-o"></i>همکاران </a></li>
                 </ul>
             </li>
@@ -174,8 +175,6 @@
                 </ul>
             </li>
             {{--  End Footer --}}
->>>>>>> Stashed changes
->>>>>>> Stashed changes
         </ul>
     </section>
     <!-- /.sidebar -->

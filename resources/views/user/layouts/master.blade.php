@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 
-<head>
-    @include('user.layouts.head')
-    <title>@yield('title')</title>
-    @yield('head')
-</head>
+    <head>
+       @include('user.layouts.head')
+       @yield('header')
+    </head>
 
 
-<body>
-    @include('user.layouts.header')
+    <body>
+        <div id="go-to-top"></div>
+        <!-- START HEADER -->
+        <header>
+       @include('user.layouts.header')
+        </header>
+        <!-- END HEADER -->
+		
+		@yield('content')
+		
+        <!-- START FOOTER  -->
+        <footer>
+            @include('user.layouts.footer')
 
-    @yield('content')
-
-    @include('user.layouts.footer')
-
-    @include('user.layouts.scripts')
-    @yield('script')
-</body>
+        </footer>
+        <!-- END FOOTER -->
+      @include('user.layouts.scripts')
+    </body>
 
 </html>

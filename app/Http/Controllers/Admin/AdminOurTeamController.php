@@ -16,7 +16,7 @@ class AdminOurTeamController extends Controller
      */
     public function index()
     {
-        $ourteam = OurTeam::all();
+        $ourteam = OurTeam::with('images')->get();
         return view('admin.ourteam.index',compact('ourteam'));
     }
 
@@ -41,10 +41,9 @@ class AdminOurTeamController extends Controller
         $ourteam = new OurTeam();
         $ourteam->text = $request->input('text');
         $ourteam->save();
-        return redirect('/our_team')->with("success", "تیم ما با موفقیت ایجاد شد");
-        // new image
+        //store new image for our_team
         $image = new Image();
-        $imagename = time() . "." . $request->image->extension();
+        $imagename = time() . "." . $request->image->getClientOriginalName();
         $filename = $ourteam->name . "." . $ourteam->id;
         $request->image->move(public_path("photos/our_team/$filename/"), $imagename);
         $image->name = $request->image_name;
@@ -52,7 +51,8 @@ class AdminOurTeamController extends Controller
         $image->uploader_id = auth()->user()->id;
         $image->path = "photos/our_team/$filename/$imagename";
         $ourteam->images()->save($image);
-        return redirect('/our_team')->with("success", "تیم ما با موفقیت ایجاد شد");
+
+        return redirect()->route('admin.our_team.index')->with("success", "تیم ما با موفقیت ایجاد شد");
 
     }
 
@@ -88,21 +88,24 @@ class AdminOurTeamController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $ourteam = OurTeam::findOrFail($id);
+        if($file = $request->file('image')) {
+            $image = Image::findOrFail($ourteam->images->id);
+            $imagename = time() . "." . $request->image->getClientOriginalName();
+            $filename = $ourteam->name . "." . $ourteam->id;
+            $request->image->move(public_path("photos/our_team/$filename/"), $imagename);
+            $image->name = $request->image_name;
+            $image->alt = $request->alt;
+            $image->uploader_id = auth()->user()->id;
+            $image->path = "photos/our_team/$filename/$imagename";
+            $ourteam->images()->save($image);
+        }
+
         $ourteam->text = $request->input('text');
         $ourteam->save();
-        return redirect('/our_team')->with("success", "تیم ما با موفقیت ویرایش شد");
-        // edit image
-        $image = Image::findOrFail($id);
-        $imagename = time() . "." . $request->image->extension();
-        $filename = $ourteam->name . "." . $ourteam->id;
-        $request->image->move(public_path("photos/our_team/$filename/"), $imagename);
-        $image->name = $request->image_name;
-        $image->alt = $request->alt;
-        $image->uploader_id = auth()->user()->id;
-        $image->path = "photos/our_team/$filename/$imagename";
-        $ourteam->images()->save($image);
-        return redirect('/our_team')->with("success", "تیم ما با موفقیت ویرایش شد");
+
+        return redirect()->route('admin.our_team.index')->with("success", "تیم ما با موفقیت ویرایش شد");
 
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\TeamMember;
 use Illuminate\Http\Request;
 
 class AdminTeamMemberController extends Controller
@@ -14,7 +15,8 @@ class AdminTeamMemberController extends Controller
      */
     public function index()
     {
-        //
+        $members = TeamMember::with('images')->get();
+        return view('admin.ourteam.members.index',compact('members'));
     }
 
     /**
@@ -24,7 +26,8 @@ class AdminTeamMemberController extends Controller
      */
     public function create()
     {
-        //
+        $members = new TeamMember();
+
     }
 
     /**
@@ -35,7 +38,17 @@ class AdminTeamMemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $members = new TeamMember();
+        $members->name = $request->input('name');
+        $members->job_title = $request->input('job_title');
+        $members->education = $request->input('education');
+        $members->attribute = $request->input('attribute');
+        $members->admin = $request->input('admin');
+        $members->mode = $request->input('mode');
+        $members->save();
+
+
+        return redirect()->route('members.index')->with("success", "همکار با موفقیت ثبت شد");
     }
 
     /**
@@ -69,7 +82,16 @@ class AdminTeamMemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $members = TeamMember::findOrFail($id);
+        $members->name = $request->input('name');
+        $members->job_title = $request->input('job_title');
+        $members->education = $request->input('education');
+        $members->attribute = $request->input('attribute');
+        $members->admin = $request->input('admin ');
+        $members->mode = $request->input('mode');
+        $members->save();
+
+        return redirect()->route('members.index')->with("success", "همکار با موفقیت ویرایش شد");
     }
 
     /**

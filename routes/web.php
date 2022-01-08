@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminContact;
 use App\Http\Controllers\Admin\AdminFooter;
+use App\Http\Controllers\Admin\AdminOurTeamController;
+use App\Http\Controllers\Admin\AdminTeamMemberController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
@@ -186,11 +188,17 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         });
     });
     // our_team routes
-    Route::resource('/our_team', 'App\Http\Controllers\Admin\AdminOurTeamController');
+    route::prefix("our_team")->group(function () {
+        route::get("/", [AdminOurTeamController::class, "index"])->name("admin.our_team.index");
+        route::get("/edit/{id}", [AdminOurTeamController::class, "edit"])->name("admin.our_team.edit");
+        route::post("/update/{id}", [AdminOurTeamController::class, "update"])->name("admin.our_team.update");
+        route::post("/store", [AdminOurTeamController::class, "store"])->name("admin.our_team.store");
+        route::get("/create", [AdminOurTeamController::class, "create"])->name("admin.our_team.create");
+        Route::resource('members', 'App\Http\Controllers\Admin\AdminTeamMemberController');
+    });
 
     // footer routes
     Route::resource('footer', 'App\Http\Controllers\Admin\AdminFooter');
-    // Stashed changes
 });
 // end of admin routing
 

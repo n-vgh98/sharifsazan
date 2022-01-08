@@ -1,202 +1,144 @@
 @extends('user.layouts.master')
 @section('content')
-    <!-- START SECTION CONTAINER-SWIPER-AND BTN -->
-    <section class="container-swiper_and_btn">
-        <!-- Slider main container -->
-        <div class="swiper mySwiper">
-            <!-- start all slide swiper -->
-            <div class="swiper-wrapper">
-                <!-- SLIDE-ONE -->
-                <div class="swiper-slide">
-                    <!-- btn start -->
-                    <div class="parenet-swiper-btn">
-                        <a href="">درخواست پروژه</a>
-                    </div>
-                    <!-- btn end -->
 
-                    <img src="imgs/swiper_slider.png" alt="">
-                    <nav class="social-media-swiper">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-facebook-square"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-instagram-square"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- ENDS SOCIAL-MEDIA-SWIPER -->
+<main  class="myMargin-top">
+  
+			<div id="mydiv">
+    
+    <div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 3</div>
+  <img src="imgs/swiper_slider.png" style="width:100%">
+  <div class="text">Caption Text</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 3</div>
+  <img src="imgs/swiper_slider.png" style="width:100%">
+  <div class="text">Caption Two</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 3</div>
+  <img src="imgs/swiper_slider.png" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div></div>
+			
+			
+			
+			
+<h1 class="project-title-h1">شریف سازان</h1>			
+			
+<section class="why-us">
+	
+	  <div > 
+            <section class="sections-title" >
+                <p>
+                    چرا ما
+                </p>
+                 
+             </section>
+                <article>
+                    <p>
+                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                    </p>
+                </article>
                 </div>
+	
+	    <figure>
+                        <img src="imgs/1-TEAM.jpg" alt="">
+       </figure>   		
+			
+</section>			
+			
+			<!--			  just 3-->
+		                 <div class="examples-project-main">
+                               
+                            <h2 class="project-title-h2">آخرین پروژه ها</h2>
+                            <section class="examples-project-full2">
+                        
+                           <a href="#"> 
+                               <div class="examples-project-item2">
+                            
+                                <img src="imgs/b32.png" alt="">
+                                <p>عنوان</p>
+                                   <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+                                
+                            </div></a>
+                            <a href="#"> <div class="examples-project-item2">
+                            
+                                <img src="imgs/b32.png" alt="">
+                                <p>عنوان</p>
+                                <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+                            </div></a>
+                             <a href="#"> <div class="examples-project-item2">
+                            
+                                <img src="imgs/b32.png" alt="">
+                                <p>عنوان</p>
+                                 <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+								 </div></a>
+                        </section> 
+                        </div>	
+			
+<!--			  just 3-->
+			  <div class="examples-project-main">
+                               
+                            <h3 class="project-title-h2">آخرین پروژه ها</h3>
+                            <section class="examples-project-full2">
+                        
+                           <a href="#"> 
+                               <div class="examples-project-item2">
+                            
+                                <img src="imgs/b32.png" alt="">
+                                <p>عنوان</p>
+                                   <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+                                
+                            </div></a>
+                            <a href="#"> <div class="examples-project-item2">
+                            
+                                <img src="imgs/b32.png" alt="">
+                                <p>عنوان</p>
+                                <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+                            </div></a>
+                             <a href="#"> <div class="examples-project-item2">
+                            
+                                <img src="imgs/b32.png" alt="">
+                                <p>عنوان</p>
+                                 <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+								 </div></a>
+                        </section> 
+                        </div>	
+			
+			
+			
+			
+			
+			
+		
+		</main>
+		
+		
 
-                <!-- START SOCIAL-MEDIA-SWIPER -->
-
-
-
-                <!-- SLIDE-TWO -->
-                <div class="swiper-slide">
-                    <img src="imgs/swiper_slider.png" alt="">
-                    <div class="parenet-swiper-btn">
-                        <a href="">درخواست پروژه</a>
-                    </div>
-                    <!-- START SOCIAL-MEDIA-SWIPER -->
-                    <nav class="social-media-swiper">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-facebook-square"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-instagram-square"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- ENDS SOCIAL-MEDIA-SWIPER -->
-
-                </div>
-
-
-
-                <!-- SLIDE-THERE -->
-                <div class="swiper-slide">
-                    <img src="imgs/swiper_slider.png" alt="">
-                    <div class="parenet-swiper-btn">
-                        <a href="">درخواست پروژه</a>
-                    </div>
-                    <!-- START SOCIAL-MEDIA-SWIPER -->
-                    <nav class="social-media-swiper">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-facebook-square"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-instagram-square"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- ENDS SOCIAL-MEDIA-SWIPER -->
-                </div>
-
-
-                <!-- SLIDE-FOURE -->
-                <div class="swiper-slide">
-                    <img src="imgs/swiper_slider.png" alt="">
-                    <div class="parenet-swiper-btn">
-                        <a href="">درخواست پروژه</a>
-                    </div>
-                    <!-- START SOCIAL-MEDIA-SWIPER -->
-                    <nav class="social-media-swiper">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-facebook-square"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fas fa-envelope"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fab fa-instagram-square"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- ENDS SOCIAL-MEDIA-SWIPER -->
-                </div>
-
-            </div>
-            <!-- end all slide swiper -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-        <!-- Slider main container end -->
-
-        <section class="wrapper-btn-darkhast">
-            <div class="praent-btn">
-                <a href="">درخواست پروژه</a>
-            </div>
-        </section>
-    </section>
-    <!-- END SECTION CONTAINER-SWIPER-AND BTN -->
-
-    <!-- START SECTION TEXT AND SOCIAL MEDIA RESPONSIVE -->
-    <section class="parent-text_and_socialMedia">
-        <div>
-            <p>sharif sazan</p>
-        </div>
-        <nav>
-
-            <ul class="ul-social-media">
-                <li>
-                    <a href="#">
-                        <i class="fab fa-facebook-square"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fab fa-instagram-square"></i> </a>
-                </li>
-            </ul>
-        </nav>
-    </section>
-    <!-- END SECTION TEXT AND SOCIAL MEDIA RESPONSIVE -->
 @endsection
+ 
+  
+

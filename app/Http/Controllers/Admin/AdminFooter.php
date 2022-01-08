@@ -24,11 +24,11 @@ class AdminFooter extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        return view('admin.footer.create');
+        //
     }
-
     /**
      * Store a newly created resource in storage.
      *
