@@ -73,7 +73,6 @@ $category = $language->langable;
                     </div>
                 </div>
                 {{-- end of modal to show full text of article --}}
-
                 @php
                     $number++;
                 @endphp

@@ -9,6 +9,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\EnglishBook;
+use App\Models\Lang;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,11 +20,22 @@ class AdminBooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function all()
     {
-        $books = Book::all();
-        $englishbooks = EnglishBook::all();
-        return view("admin.books.index", compact("books", "englishbooks"));
+        $languages = Lang::where("langable_type", "App\Models\Book")->get();
+        return view("admin.books.index", compact("languages"));
+    }
+
+    public function english()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Book"], ["name", "en"]])->get();
+        return view("admin.books.index", compact("languages"));
+    }
+
+    public function farsi()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Book"], ["name", "fa"]])->get();
+        return view("admin.books.index", compact("languages"));
     }
 
 

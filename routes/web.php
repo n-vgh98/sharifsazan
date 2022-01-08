@@ -145,7 +145,9 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
     // route for books
     route::prefix("books")->group(function () {
-        route::get("/", [AdminBooksController::class, "index"])->name("admin.books.index");
+        route::get("/", [AdminBooksController::class, "all"])->name("admin.books.all");
+        route::get("/english", [AdminBooksController::class, "english"])->name("admin.books.english");
+        route::get("/farsi", [AdminBooksController::class, "farsi"])->name("admin.books.farsi");
         route::delete("/destroy/{id}", [AdminBooksController::class, "destroy"])->name("admin.books.destroy");
         route::post("/store", [AdminBooksController::class, "store"])->name("admin.books.store");
         route::post("/update/{id}", [AdminBooksController::class, "update"])->name("admin.books.update");
