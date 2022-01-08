@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Lang;
 use App\Models\Footer;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminFooter extends Controller
 {
@@ -13,10 +14,10 @@ class AdminFooter extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $footer = Footer::all()->sortByDesc('updated_at')->take(1);
-        return view('admin.footer.index',compact('footer'));
+        $languages = Lang::where([["langable_type", "App\Models\Footer"], ["name", $lang]])->get();
+        return view('admin.footer.index',compact('languages','lang'));
     }
 
     /**
@@ -47,7 +48,13 @@ class AdminFooter extends Controller
         $footer->LinkedIn_link = $request->input('LinkedIn_link');
         $footer->face_link = $request->input('face_link');
         $footer->save();
-        return redirect()->back()->with("success", " Footerبا موفقیت ثبت شد ");
+
+         // saving language for footer
+         $language = new Lang();
+         $language->name = $request->lang;
+         $footer->language()->save($language);
+
+        return redirect()->route('admin.footer.index',$request->lang)->with("success", " Footerبا موفقیت ثبت شد ");
 
     }
 
@@ -105,6 +112,7 @@ class AdminFooter extends Controller
     {
         $footer = Footer::findOrFail($id);
         $footer->delete();
+        $footer->language()->delete();
         return redirect()->back()->with("success", "Footer حذف شد");
     }
 }

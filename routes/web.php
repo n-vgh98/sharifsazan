@@ -197,7 +197,15 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     });
 
     // footer routes
-    Route::resource('footer', 'App\Http\Controllers\Admin\AdminFooter');
+    // Route::resource('footer/{lang}', 'App\Http\Controllers\Admin\AdminFooter');
+    route::prefix("footer")->group(function () {
+        route::get("/{lang}", [AdminFooter::class, "index"])->name("admin.footer.index");
+        // route::get("/edit/{id}", [AdminFooter::class, "edit"])->name("admin.our_team.edit");
+        // route::post("/update/{id}", [AdminFooter::class, "update"])->name("admin.our_team.update");
+        route::post("/store", [AdminFooter::class, "store"])->name("admin.footer.store");
+        route::get("/create", [AdminFooter::class, "create"])->name("admin.footer.create");
+        route::delete("/destroy/{id}", [AdminFooter::class, "destroy"])->name("admin.footer.destroy");
+    });
 });
 // end of admin routing
 
