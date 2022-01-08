@@ -81,5 +81,5 @@ $category = $language->langable;
 
         </tbody>
     </table>
-    <a href="{{ route('admin.articles.create', $category->id) }}" class="btn btn-primary">ساخت مقاله جدید</a>
+    <a href="{{ route('admin.articles.create', $category->language->name) }}" class="btn btn-primary">ساخت مقاله جدید</a>
 @endsection
