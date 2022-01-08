@@ -121,7 +121,7 @@
                     <li class="active"><a href="{{ route('admin.articles.farsi') }}"><i
                                 class="fa fa-circle-o"></i>لیست مقالات فارسی</a></li>
                     <li class="active"><a href="{{ route('admin.articles.english') }}"><i
-                                class="fa fa-circle-o"></i>لیست مقالات فارسی</a></li>
+                                class="fa fa-circle-o"></i>لیست مقالات اینگلیسی</a></li>
 
                 </ul>
             </li>
@@ -171,13 +171,10 @@
                     <i class="fa fa-dashboard"></i> <span>footer</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active">
-<<<<<<< HEAD
+                    {{-- <li class="active">
                         <a href="{{ route('footer.index') }}"><i class="fa fa-circle-o"></i>متن های Footer</a>
-=======
                         <a href="{{route('admin.footer.index','fa')}}"><i class="fa fa-circle-o"></i>متن های Footer</a>
->>>>>>> f823cfff3fb76f9bec55ecc9377631ec7a91e8d5
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
             {{-- End Footer --}}
