@@ -1,10 +1,15 @@
 @extends('admin.layouts.master')
 @section('content')
-
+<section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.footer.index', 'fa') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.footer.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">تاریخ آخرین تغییرات</th>
+                <th scope="col">حذف</th>
                 <th scope="col">لینک فیسبوک</th>
                 <th scope="col">لینک LinkedIn</th>
                 <th scope="col">لینک ایمیل</th>
@@ -15,27 +20,92 @@
                 <th scope="col">درباره ما</th>
             </tr>
         </thead>
+       
         <tbody>
-            @foreach ($footer as $foot)
+        @foreach ($languages as $language)
+                @php
+                    $foot = $language->langable;
+                @endphp
                 <tr>
-                    <td>{{ $foot->updated_at }}</td>
+                    <td>
+                    <form action="{{ route('admin.footer.destroy', $foot->id) }}" method="post">
+                        @csrf
+                        @method("DELETE")
+                        <button type="submit" class="btn btn-danger">حذف</button>
+                    </form>
+                    </td>
                     <td>{{ $foot->face_link }}</td>
                     <td>{{ $foot->LinkedIn_link }}</td>
                     <td>{{ $foot->mail_link }}</td>
                     <td>{{ $foot->insta_link }}</td>
                     <td>{{ $foot->mobile_num }}</td>
                     <td>{{ $foot->phone_num }}</td>
-                    <td>{{ $foot->address }}</td>
-                    <td>{{ $foot->about_us }}</td>
-
+                    <td>
+                    {!! \Illuminate\Support\Str::limit($foot->address,'50') !!}
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                            data-target="#foot{{ $foot->id }}">
+                            متن کامل
+                        </button>
+                    </td>
+                    <td>
+                    {!! \Illuminate\Support\Str::limit($foot->about_us,'50') !!}
+                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
+                            data-target="#foot_aboutus{{ $foot->id }}">
+                            متن کامل
+                        </button>
+                    </td>
+                </tr>
+        {{-- modal to show full text of address --}}
+                <div class="modal fade" id="foot{{ $foot->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">آدرس </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @php
+                                    echo $foot->address;
+                                @endphp
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {{-- end of modal to show full text of address --}}
+        {{-- modal to show full text of about_us --}}
+                <div class="modal fade" id="foot_aboutus{{ $foot->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">درباره ما </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @php
+                                    echo $foot->about_us;
+                                @endphp
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {{-- end of modal to show full text of about_us --}}
+        @endforeach
         </tbody>
     </table>
-    <form action="{{ route('footer.destroy', $foot->id) }}" method="post">
-        @csrf
-        @method("DELETE")
-        <button type="submit" class="btn btn-danger">حذف footer</button>
-    </form>
-    @endforeach
+   
+   
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         ایجاد Fotter جدید
     </button>
@@ -52,8 +122,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('footer.store') }}" method="POST">
+                    <form action="{{ route('admin.footer.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="lang" value="{{ $lang }}">
+
                         <div class="form-group row">
                             <label for="about_us"
                                 class="col-md-4 col-form-label text-md-right">{{ __('درباره ما') }}</label>

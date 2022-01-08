@@ -170,7 +170,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active">
-                        <a href="{{route('footer.index')}}"><i class="fa fa-circle-o"></i>متن های Footer</a>
+                        <a href="{{route('admin.footer.index','fa')}}"><i class="fa fa-circle-o"></i>متن های Footer</a>
                     </li>
                 </ul>
             </li>
