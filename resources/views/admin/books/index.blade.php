@@ -146,7 +146,7 @@
         </tbody>
     </table>
 
-    
+
     {{-- create books --}}
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         ساخت کتاب جدید
@@ -191,8 +191,8 @@
                         <div style="margin-top: 25px;">
                             <select class="form-control" name="lang" class="custom-select">
                                 <option selected>زبان کاربران کتاب</option>
-                                <option value="1">اینگلیسی</option>
-                                <option value="0">فارسی</option>
+                                <option value="en">اینگلیسی</option>
+                                <option value="fa">فارسی</option>
                             </select>
                         </div>
 
