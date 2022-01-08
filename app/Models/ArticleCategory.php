@@ -15,4 +15,8 @@ class ArticleCategory extends Model
     {
         return $this->hasMany("App\Models\Article", "category_id");
     }
+    public function language()
+    {
+        return $this->morphone("App\Models\Lang", "langable");
+    }
 }

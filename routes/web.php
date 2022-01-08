@@ -153,18 +153,13 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
     // route for articles
     route::prefix("articles")->group(function () {
-        route::get("/farsi", [AdminArticleController::class, "indexfarsi"])->name("admin.articles.farsi.index");
-        route::get("/english", [AdminArticleController::class, "indexenglish"])->name("admin.articles.english.index");
-        route::get("/show/{id}/", [AdminArticleController::class, "show"])->name("admin.articles.show");
-        route::delete("/destroy/{id}", [AdminArticleController::class, "destroy"])->name("admin.articles.destroy");
-        route::get("/create/{lang}", [AdminArticleController::class, "create"])->name("admin.articles.create");
-        route::post("/store", [AdminArticleController::class, "store"])->name("admin.articles.store");
-        route::get("/edit/{id}/{lang}", [AdminArticleController::class, "edit"])->name("admin.articles.edit");
-        route::post("/update/{id}", [AdminArticleController::class, "update"])->name("admin.articles.update");
+        route::get("/", [AdminArticleController::class, "index"])->name("admin.articles.index");
 
         // route for article categories
         route::prefix("categories")->group(function () {
-            route::get("/", [AdminArticleCategoryController::class, "index"])->name("admin.articles.categories.index");
+            route::get("/", [AdminArticleCategoryController::class, "all"])->name("admin.articles.categories.all");
+            route::get("/farsi", [AdminArticleCategoryController::class, "farsi"])->name("admin.articles.categories.farsi");
+            route::get("/english", [AdminArticleCategoryController::class, "english"])->name("admin.articles.categories.english");
             route::delete("/destroy/{id}", [AdminArticleCategoryController::class, "destroy"])->name("admin.articles.categories.destroy");
             route::post("/store", [AdminArticleCategoryController::class, "store"])->name("admin.articles.categories.store");
             route::get("/show/{id}/{lang}", [AdminArticleCategoryController::class, "show"])->name("admin.articles.categories.show");

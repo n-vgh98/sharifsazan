@@ -76,76 +76,72 @@
             {{-- notifications --}}
             {{-- amoozesh --}}
             <li class="header">تحقیق و توسعه</li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>دوره ها</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.courses.all') }}"><i
-                                    class="fa fa-circle-o"></i>همه دوره ها</a></li>
-                        <li class="active"><a href="{{ route('admin.courses.free') }}"><i
-                                    class="fa fa-circle-o"></i>دوره های رایگان</a></li>
-                        <li class="active"><a href="{{ route('admin.courses.not.free') }}"><i
-                                    class="fa fa-circle-o"></i>دوره های پولی</a></li>
-                        <li class="active"><a href="{{ route('admin.courses.online') }}"><i
-                                    class="fa fa-circle-o"></i>دوره های آنلاین</a></li>
-                        <li class="active"><a href="{{ route('admin.courses.offline') }}"><i
-                                    class="fa fa-circle-o"></i>دوره های آفلاین</a></li>
-                    </ul>
-                </li>
-                {{-- end of amoozesh --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>دوره ها</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.courses.all') }}"><i
+                                class="fa fa-circle-o"></i>همه دوره ها</a></li>
+                    <li class="active"><a href="{{ route('admin.courses.free') }}"><i
+                                class="fa fa-circle-o"></i>دوره های رایگان</a></li>
+                    <li class="active"><a href="{{ route('admin.courses.not.free') }}"><i
+                                class="fa fa-circle-o"></i>دوره های پولی</a></li>
+                    <li class="active"><a href="{{ route('admin.courses.online') }}"><i
+                                class="fa fa-circle-o"></i>دوره های آنلاین</a></li>
+                    <li class="active"><a href="{{ route('admin.courses.offline') }}"><i
+                                class="fa fa-circle-o"></i>دوره های آفلاین</a></li>
+                </ul>
+            </li>
+            {{-- end of amoozesh --}}
 
-                {{-- books --}}
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>کتاب ها</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.books.index') }}"><i
-                                    class="fa fa-circle-o"></i>لیست کتاب ها</a></li>
+            {{-- books --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>کتاب ها</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.books.index') }}"><i
+                                class="fa fa-circle-o"></i>لیست کتاب ها</a></li>
 
-                    </ul>
-                </li>
-                {{-- end of books --}}
+                </ul>
+            </li>
+            {{-- end of books --}}
 
-                {{-- articels --}}
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>مقالات</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.articles.categories.index') }}"><i
-                                    class="fa fa-circle-o"></i>دسته بندی ها</a></li>
-                        <li class="active"><a href="{{ route('admin.articles.farsi.index') }}"><i
-                                    class="fa fa-circle-o"></i>لیست مقالات فارسی</a></li>
-                        <li class="active"><a href="{{ route('admin.articles.english.index') }}"><i
-                                    class="fa fa-circle-o"></i>لیست مقالات انگلیسی</a></li>
+            {{-- articels --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>مقالات</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.articles.categories.all') }}"><i
+                                class="fa fa-circle-o"></i>دسته بندی ها</a></li>
 
-                    </ul>
-                </li>
-                {{-- end of articels --}}
+                </ul>
+            </li>
+            {{-- end of articels --}}
 
 
-                {{-- invite to coaperate --}}
-                <li class="header">دعوت به همکاری</li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>گروه ها</span> <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.invites.category.index') }}"><i
-                                    class="fa fa-circle-o"></i>مشاهده همه گروه ها</a></li>
+            {{-- invite to coaperate --}}
+            <li class="header">دعوت به همکاری</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>گروه ها</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.invites.category.index') }}"><i
+                                class="fa fa-circle-o"></i>مشاهده همه گروه ها</a></li>
 
-                    </ul>
+                </ul>
 
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{ route('admin.invites.pages.index') }}"><i
-                                    class="fa fa-circle-o"></i>مشاهده همه صفحات</a></li>
-                    </ul>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.invites.pages.index') }}"><i
+                                class="fa fa-circle-o"></i>مشاهده همه صفحات</a></li>
+                </ul>
 
-                </li>
+            </li>
 
-                {{-- invite to coaperate --}}
+            {{-- invite to coaperate --}}
 
             {{-- Start OurTeam --}}
             <li class="header">تیم ما</li>
@@ -155,14 +151,14 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.our_team.index') }}"><i
-                                    class="fa fa-circle-o"></i>صفحه اصلی تیم ما</a></li>
-                    <li class="active"><a href="{{route('members.index')}}"><i
-                                    class="fa fa-circle-o"></i>همکاران </a></li>
+                                class="fa fa-circle-o"></i>صفحه اصلی تیم ما</a></li>
+                    <li class="active"><a href="{{ route('members.index') }}"><i
+                                class="fa fa-circle-o"></i>همکاران </a></li>
                 </ul>
             </li>
             {{-- End OurTeam --}}
 
-            {{--  Start Footer --}}
+            {{-- Start Footer --}}
             <li class="header">footer</li>
             <li class="treeview">
                 <a href="#">
@@ -170,11 +166,11 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active">
-                        <a href="{{route('footer.index')}}"><i class="fa fa-circle-o"></i>متن های Footer</a>
+                        <a href="{{ route('footer.index') }}"><i class="fa fa-circle-o"></i>متن های Footer</a>
                     </li>
                 </ul>
             </li>
-            {{--  End Footer --}}
+            {{-- End Footer --}}
         </ul>
     </section>
     <!-- /.sidebar -->

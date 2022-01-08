@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ArticleCategory;
 use App\Models\EnglishArticleCategory;
+use App\Models\Lang;
 use Illuminate\Http\Request;
 
 class AdminArticleCategoryController extends Controller
@@ -14,11 +15,24 @@ class AdminArticleCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function all()
     {
         $categories = ArticleCategory::all();
-        $englishcategories = EnglishArticleCategory::all();
-        return view("admin.articles.category.index", compact("categories", "englishcategories"));
+        return view("admin.articles.category.index", compact("categories"));
+    }
+
+    public function farsi()
+    {
+        dd("farsi");
+        $categories = ArticleCategory::all();
+        return view("admin.articles.category.index", compact("categories"));
+    }
+
+    public function english()
+    {
+        dd("english");
+        $categories = ArticleCategory::all();
+        return view("admin.articles.category.index", compact("categories"));
     }
 
     /**
@@ -43,13 +57,19 @@ class AdminArticleCategoryController extends Controller
             $category = new ArticleCategory();
             $category->title = $request->title;
             $category->save();
+            $articlelang = new Lang();
+            $articlelang->name = "fa";
+            $category->language()->save($articlelang);
             return redirect()->back()->with("success", "دسته بندی شما با موفقیت اضافه شد");
         }
 
         if ($request->lang == 1) {
-            $category = new EnglishArticleCategory();
+            $category = new ArticleCategory();
             $category->title = $request->title;
             $category->save();
+            $articlelang = new Lang();
+            $articlelang->name = "en";
+            $category->language()->save($articlelang);
             return redirect()->back()->with("success", "دسته بندی شما با موفقیت اضافه شد");
         }
     }
@@ -106,15 +126,18 @@ class AdminArticleCategoryController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+
         // check if category is farsi
         if ($request->lang == 0) {
             $category = ArticleCategory::find($id);
+            $language = Lang::findorfail($category->language->id);
+            $language->delete();
             $category->delete();
             return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
         }
         // check if category is english
         if ($request->lang == 1) {
-            $category = EnglishArticleCategory::find($id);
+            $category = ArticleCategory::find($id);
             $category->delete();
             return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
         }
