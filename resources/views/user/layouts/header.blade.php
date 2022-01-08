@@ -10,12 +10,12 @@
                         <i class="fas fa-chevron-down"></i>
                     </span>
                     <span>fa</span>
-                    <img src="imgs/iran-flag.png" alt="">
+                    <img src="{{asset('frontend/imgs/iran-flag.png')}}" alt="">
                     <ul class="wrapper-flag">
                         <span>
                         </span>
                         <span>eg</span>
-                        <img src="imgs/eng-flag.png" alt="">
+                        <img src="{{asset('frontend/imgs/eng-flag.png')}}" alt="">
                     </ul>
                 </li>
             </ul>
@@ -55,12 +55,12 @@
                             <i class="fas fa-chevron-down"></i>
                         </span>
                         <span>fa</span>
-                        <img src="imgs/iran-flag.png" alt="">
+                        <img src="{{asset('frontend/imgs/iran-flag.png')}}" alt="">
                         <ul class="wrapper-flag-main-menu">
                             <span>
                             </span>
                             <span>eg</span>
-                            <img src="imgs/eng-flag.png" alt="">
+                            <img src="{{asset('frontend/imgs/eng-flag.png')}}" alt="">
                         </ul>
                     </li>
                 </ul>

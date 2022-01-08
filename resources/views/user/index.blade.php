@@ -9,19 +9,19 @@
 
 <div class="mySlides fade">
   <div class="numbertext">1 / 3</div>
-  <img src="imgs/swiper_slider.png" style="width:100%">
+  <img src="{{asset('frontend/imgs/swiper_slider.png') }}" style="width:100%">
   <div class="text">Caption Text</div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">2 / 3</div>
-  <img src="imgs/swiper_slider.png" style="width:100%">
+  <img src="{{asset('frontend/imgs/swiper_slider.png') }}" style="width:100%">
   <div class="text">Caption Two</div>
 </div>
 
 <div class="mySlides fade">
   <div class="numbertext">3 / 3</div>
-  <img src="imgs/swiper_slider.png" style="width:100%">
+  <img src="{{asset('frontend/imgs/swiper_slider.png') }}" style="width:100%">
   <div class="text">Caption Three</div>
 </div>
 
@@ -59,7 +59,7 @@
                 </div>
 	
 	    <figure>
-                        <img src="imgs/1-TEAM.jpg" alt="">
+                        <img src="{{asset('frontend/imgs/1-TEAM.jpg') }}" alt="">
        </figure>   		
 			
 </section>			
