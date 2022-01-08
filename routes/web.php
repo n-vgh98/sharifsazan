@@ -156,7 +156,9 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::get("/", [AdminArticleController::class, "all"])->name("admin.articles.all");
         route::get("/english", [AdminArticleController::class, "english"])->name("admin.articles.english");
         route::get("/farsi", [AdminArticleController::class, "farsi"])->name("admin.articles.farsi");
-        route::get("/create", [AdminArticleController::class, "create"])->name("admin.articles.create");
+        route::get("/create/{lang}", [AdminArticleController::class, "create"])->name("admin.articles.create");
+        route::post("/store", [AdminArticleController::class, "store"])->name("admin.articles.store");
+        route::get("/edit/{id}", [AdminArticleController::class, "edit"])->name("admin.articles.edit");
         route::delete("/destroy/{id}", [AdminArticleController::class, "destroy"])->name("admin.articles.destroy");
 
         // route for article categories

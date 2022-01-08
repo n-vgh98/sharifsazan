@@ -40,7 +40,7 @@
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-warning" href="#">ویرایش</a></td>
+                    <td><a class="btn btn-warning" href="{{ route('admin.articles.edit', $article->id) }}">ویرایش</a></td>
                     <td>{{ $article->category->language->name }}</td>
                     <td>
                         @php
@@ -88,6 +88,8 @@
 
         </tbody>
     </table>
-    <a href="{{ route('admin.articles.create') }}" class="btn btn-primary">ساخت مقاله جدید</a>
+    @if ($makeable != 0)
+        <a href="{{ route('admin.articles.create', $makeable) }}" class="btn btn-primary">ساخت مقاله جدید</a>
+    @endif
 
 @endsection

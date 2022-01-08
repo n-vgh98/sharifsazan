@@ -80,17 +80,8 @@ class AdminArticleCategoryController extends Controller
      */
     public function show($id, $lang)
     {
-        // check if category is farsi
-        if ($lang == "fa") {
-            $language = Lang::where([["langable_id", $id], ["langable_type", "App\Models\ArticleCategory"]])->first();
-            return view("admin.articles.category.show", compact("language"));
-        }
-
-        // check if category is english
-        if ($lang == "en") {
-            $category = EnglishArticleCategory::find($id);
-            return view("admin.articles.category.show", compact("category", "lang"));
-        }
+        $language = Lang::where([["langable_id", $id], ["langable_type", "App\Models\ArticleCategory"]])->first();
+        return view("admin.articles.category.show", compact("language"));
     }
 
     /**
