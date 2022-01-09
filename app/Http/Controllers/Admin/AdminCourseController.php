@@ -49,33 +49,175 @@ class AdminCourseController extends Controller
     //  for showing online courses
     public function online()
     {
-        $courses = Course::where("mode", 1)->get();
-        $englishcourses = EnglishCourse::where("mode", 1)->get();
-        return view("admin.courses.online", compact("courses", "englishcourses"));
+        $languages = Lang::where("langable_type", "App\Models\Course")->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->mode == 1) {
+                array_push($langs, $language);
+            }
+        }
+        return view("admin.courses.online", compact("langs"));
     }
+
+    public function onlineEn()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", "en"]])->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->mode == 1) {
+                array_push($langs, $language);
+            }
+        }
+
+        return view("admin.courses.online", compact("langs"));
+    }
+
+    public function onlineFa()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", "fa"]])->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->mode == 1) {
+                array_push($langs, $language);
+            }
+        }
+
+        return view("admin.courses.online", compact("langs"));
+    }
+
+
 
     //  for showing offline courses
     public function offline()
     {
-        $courses = Course::where("mode", 0)->get();
-        $englishcourses = EnglishCourse::where("mode", 0)->get();
-        return view("admin.courses.offline", compact("courses", "englishcourses"));
+        $languages = Lang::where("langable_type", "App\Models\Course")->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->mode == 0) {
+                array_push($langs, $language);
+            }
+        }
+        return view("admin.courses.offline", compact("langs"));
     }
+
+    //  for showing offline courses
+    public function offlineEn()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", "en"]])->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->mode == 0) {
+                array_push($langs, $language);
+            }
+        }
+
+        return view("admin.courses.offline", compact("langs"));
+    }
+
+    //  for showing offline courses
+    public function offlineFa()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", "fa"]])->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->mode == 0) {
+                array_push($langs, $language);
+            }
+        }
+
+        return view("admin.courses.offline", compact("langs"));
+    }
+
+
+
+
+
+
 
     //  for showing free courses
     public function free()
     {
-        $courses = Course::where("price", 0)->get();
-        $englishcourses = EnglishCourse::where("price", 0)->get();
-        return view("admin.courses.free", compact("courses", "englishcourses"));
+        $languages = Lang::where("langable_type", "App\Models\Course")->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->price == 0) {
+                array_push($langs, $language);
+            }
+        }
+        return view("admin.courses.free", compact("langs"));
+    }
+
+    public function freeFa()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", "fa"]])->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->price == 0) {
+                array_push($langs, $language);
+            }
+        }
+        return view("admin.courses.free", compact("langs"));
+    }
+
+    public function freeEn()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", "en"]])->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->price == 0) {
+                array_push($langs, $language);
+            }
+        }
+        return view("admin.courses.free", compact("langs"));
     }
 
     //  for showing not_free courses
     public function notfree()
     {
-        $courses = Course::where("price", ">", 0)->get();
-        $englishcourses = EnglishCourse::where("price", ">", 0)->get();
-        return view("admin.courses.notfree", compact("courses", "englishcourses"));
+        $languages = Lang::where("langable_type", "App\Models\Course")->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->price != 0) {
+                array_push($langs, $language);
+            }
+        }
+        return view("admin.courses.notfree", compact("langs"));
+    }
+
+    public function notfreeFa()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", "fa"]])->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->price != 0) {
+                array_push($langs, $language);
+            }
+        }
+        return view("admin.courses.notfree", compact("langs"));
+    }
+
+    public function notfreeEn()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", "en"]])->with("langable")->get();
+        // get online courses
+        $langs = [];
+        foreach ($languages as $language) {
+            if ($language->langable->price != 0) {
+                array_push($langs, $language);
+            }
+        }
+        return view("admin.courses.notfree", compact("langs"));
     }
 
 

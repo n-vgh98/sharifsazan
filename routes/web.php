@@ -127,21 +127,29 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         // route for showing free courses
         route::prefix("free")->group(function () {
             route::get("/", [AdminCourseController::class, "free"])->name("admin.courses.free");
+            route::get("/farsi", [AdminCourseController::class, "freeFa"])->name("admin.courses.free.farsi");
+            route::get("/english", [AdminCourseController::class, "freeEn"])->name("admin.courses.free.english");
         });
 
         // route for showing not_free courses
         route::prefix("notfree")->group(function () {
             route::get("/", [AdminCourseController::class, "notfree"])->name("admin.courses.not.free");
+            route::get("/english", [AdminCourseController::class, "notfreeEn"])->name("admin.courses.not.free.english");
+            route::get("/farsi", [AdminCourseController::class, "notfreeFa"])->name("admin.courses.not.free.farsi");
         });
 
         // route for showing online courses
         route::prefix("online")->group(function () {
             route::get("/", [AdminCourseController::class, "online"])->name("admin.courses.online");
+            route::get("/farsi", [AdminCourseController::class, "onlineFa"])->name("admin.courses.online.farsi");
+            route::get("/english", [AdminCourseController::class, "onlineEn"])->name("admin.courses.online.english");
         });
 
         // route for showing offline courses
         route::prefix("offline")->group(function () {
             route::get("/", [AdminCourseController::class, "offline"])->name("admin.courses.offline");
+            route::get("/farsi", [AdminCourseController::class, "offlineFa"])->name("admin.courses.offline.farsi");
+            route::get("/english", [AdminCourseController::class, "offlineEn"])->name("admin.courses.offline.english");
         });
     });
 
