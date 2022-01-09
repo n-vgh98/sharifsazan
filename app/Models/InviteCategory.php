@@ -12,4 +12,8 @@ class InviteCategory extends Model
     {
         return $this->hasMany("App\Models\InvitePage", "category_id");
     }
+    public function language()
+    {
+        return $this->morphone("App\Models\Lang", "langable");
+    }
 }

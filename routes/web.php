@@ -187,7 +187,9 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
     // route for invite
     route::prefix("invite_group")->group(function () {
-        route::get("/", [AdminInviteCategoryController::class, "index"])->name("admin.invites.category.index");
+        route::get("/", [AdminInviteCategoryController::class, "all"])->name("admin.invites.category.all");
+        route::get("/farsi", [AdminInviteCategoryController::class, "farsi"])->name("admin.invites.category.farsi");
+        route::get("/english", [AdminInviteCategoryController::class, "english"])->name("admin.invites.category.english");
         route::delete("/destroy/{id}", [AdminInviteCategoryController::class, "destroy"])->name("admin.invites.category.destroy");
         route::post("/store", [AdminInviteCategoryController::class, "store"])->name("admin.invites.category.store");
         route::get("/show/{id}", [AdminInviteCategoryController::class, "show"])->name("admin.invites.category.show");

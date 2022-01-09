@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\InviteCategory;
+use App\Models\Lang;
 use App\Models\InvitePage;
 use Illuminate\Http\Request;
+use App\Models\InviteCategory;
+use App\Http\Controllers\Controller;
 
 class AdminInviteCategoryController extends Controller
 {
@@ -14,10 +15,22 @@ class AdminInviteCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function all()
     {
-        $categories = InviteCategory::all();
-        return view("admin.invites.category.index", compact("categories"));
+        $languages = Lang::where("langable_type", "App\Models\InviteCategory")->get();
+        return view("admin.invites.category.index", compact("languages"));
+    }
+
+    public function farsi()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\InviteCategory"], ["name", "fa"]])->get();
+        return view("admin.invites.category.index", compact("languages"));
+    }
+
+    public function english()
+    {
+        $languages = Lang::where([["langable_type", "App\Models\InviteCategory"], ["name", "en"]])->get();
+        return view("admin.invites.category.index", compact("languages"));
     }
 
     /**
@@ -44,7 +57,10 @@ class AdminInviteCategoryController extends Controller
         $category->technical_exam_form_link = $request->technical_exam_form_link;
         $category->register_form_link = $request->register_form_link;
         $category->save();
-        return redirect()->route("admin.invites.category.index")->with("success", "گروه مورد نظر شما با موفقیت انجام شد");
+        $categorylanguage = new Lang();
+        $categorylanguage->name = $request->lang;
+        $category->language()->save($categorylanguage);
+        return redirect()->route("admin.invites.category.all")->with("success", "گروه مورد نظر شما با موفقیت انجام شد");
     }
 
     /**
@@ -91,6 +107,7 @@ class AdminInviteCategoryController extends Controller
     public function destroy($id)
     {
         $category = InviteCategory::find($id);
+        $category->language()->delete();
         $category->delete();
         return redirect()->back()->with("success", "گروه مورد نظر شما با موفقیت حذف شد");
     }
