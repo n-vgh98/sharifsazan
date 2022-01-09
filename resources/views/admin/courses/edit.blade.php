@@ -89,21 +89,21 @@
 
         <div style="margin-top: 25px;">
             <select name="licensable" class="custom-select">
-                <option selected>مدرک دارد؟</option>
+                <option value="{{ $course->licensable }}" selected>مدرک دارد؟</option>
                 <option value="1">بله</option>
                 <option value="0">خیر</option>
             </select>
 
             <select name="mode" class="custom-select">
-                <option selected>نحوه ارائه</option>
+                <option value="{{ $course->mode }}" selected>نحوه ارائه</option>
                 <option value="1">آنلاین</option>
                 <option value="0">آفلاین(بسته های ارسالی و دوره های از پیش ظبط شده)</option>
             </select>
 
             <select name="type" class="custom-select">
-                <option selected>نوع دوره</option>
-                <option value="1">الکترونیک</option>
-                <option value="0">غیر الکترونیک(بسته های ارسالی)</option>
+                <option value="{{ $course->type }}" selected>نوع دوره</option>
+                <option value="0">الکترونیک</option>
+                <option value="1">غیر الکترونیک(بسته های ارسالی)</option>
             </select>
         </div>
 
@@ -159,7 +159,6 @@
                 </span>
             @enderror
         </div>
-        <input type="hidden" name="lang" value="{{ $lang }}">
 
         <div style="margin-top: 25px;">
             <button class="btn btn-success">ویرایش دوره</button>

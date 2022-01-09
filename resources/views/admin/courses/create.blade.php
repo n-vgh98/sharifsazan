@@ -97,14 +97,14 @@
 
             <select name="type" class="custom-select">
                 <option selected>نوع دوره</option>
-                <option value="1">الکترونیک</option>
-                <option value="0">غیر الکترونیک(بسته های ارسالی)</option>
+                <option value="0">الکترونیک</option>
+                <option value="1">غیر الکترونیک(بسته های ارسالی)</option>
             </select>
 
             <select name="lang" class="custom-select">
                 <option selected>زبان دوره</option>
-                <option value="1">اینگلیسی</option>
-                <option value="0">فارسی</option>
+                <option value="en">اینگلیسی</option>
+                <option value="fa">فارسی</option>
             </select>
         </div>
 

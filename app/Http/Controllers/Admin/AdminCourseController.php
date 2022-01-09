@@ -44,6 +44,8 @@ class AdminCourseController extends Controller
 
     // end of methods for showing all courses
 
+
+
     //  for showing online courses
     public function online()
     {
@@ -95,77 +97,43 @@ class AdminCourseController extends Controller
      */
     public function store(Request $request)
     {
-        // if its persian
-        if ($request->lang == 0) {
-            $course = new Course();
-            $course->title = $request->title;
-            $course->price = $request->price;
-            $course->master_name = $request->master_name;
-            $course->master_job = $request->master_job;
-            if ($request->link !== null) {
-                $course->link = $request->link;
-            }
-            $course->introduction_v_link = $request->introduction_v_link;
-            if ($request->off > 0) {
-                $course->off = $request->off;
-            }
-            $course->type = $request->type;
-            $course->mode = $request->mode;
-            $course->introduction = $request->introduction;
-            $course->description = $request->description;
-            $course->licensable = $request->licensable;
-            $course->meta_key_words = $request->meta_key_words;
-            $course->meta_descriptions = $request->meta_descriptions;
-            $course->save();
 
-            // saving image in image table
-            $image = new Image();
-            $imagename = time() . "." . $request->image->extension();
-            $filename = $course->title . "." . $course->id;
-            $request->image->move(public_path("photos/courses/$filename/"), $imagename);
-            $image->name = $request->image_name;
-            $image->alt = $request->alt;
-            $image->uploader_id = auth()->user()->id;
-            $image->path = "photos/courses/$filename/$imagename";
-            $course->images()->save($image);
-            // saving image in image table
+        $course = new Course();
+        $course->title = $request->title;
+        $course->price = $request->price;
+        $course->master_name = $request->master_name;
+        $course->master_job = $request->master_job;
+        if ($request->link !== null) {
+            $course->link = $request->link;
         }
-
-        // if its english
-        if ($request->lang == 1) {
-            $course = new EnglishCourse();
-            $course->title = $request->title;
-            $course->price = $request->price;
-            $course->master_name = $request->master_name;
-            $course->master_job = $request->master_job;
-            if ($request->link !== null) {
-                $course->link = $request->link;
-            }
-            $course->introduction_v_link = $request->introduction_v_link;
-            if ($request->off > 0) {
-                $course->off = $request->off;
-            }
-            $course->type = $request->type;
-            $course->mode = $request->mode;
-            $course->introduction = $request->introduction;
-            $course->description = $request->description;
-            $course->licensable = $request->licensable;
-            $course->meta_key_words = $request->meta_key_words;
-            $course->meta_descriptions = $request->meta_descriptions;
-            $course->save();
-
-            // saving image in image table
-            $image = new Image();
-            $imagename = time() . "." . $request->image->extension();
-            $filename = $course->title . "." . $course->id;
-            $request->image->move(public_path("photos/courses/$filename/"), $imagename);
-            $image->name = $request->image_name;
-            $image->alt = $request->alt;
-            $image->uploader_id = auth()->user()->id;
-            $image->path = "photos/courses/$filename/$imagename";
-            $course->images()->save($image);
-            // saving image in image table
+        $course->introduction_v_link = $request->introduction_v_link;
+        if ($request->off > 0) {
+            $course->off = $request->off;
         }
+        $course->type = $request->type;
+        $course->mode = $request->mode;
+        $course->introduction = $request->introduction;
+        $course->description = $request->description;
+        $course->licensable = $request->licensable;
+        $course->meta_key_words = $request->meta_key_words;
+        $course->meta_descriptions = $request->meta_descriptions;
+        $course->save();
+        $courselanguage = new Lang();
+        $courselanguage->name = $request->lang;
+        $course->language()->save($courselanguage);
+
+        // saving image in image table
+        $image = new Image();
+        $imagename = time() . "." . $request->image->extension();
+        $filename = $course->title . "." . $course->id;
+        $request->image->move(public_path("photos/courses/$filename/"), $imagename);
+        $image->name = $request->image_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $image->path = "photos/courses/$filename/$imagename";
+        $course->images()->save($image);
+        // saving image in image table
+
         return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ساخته شد");
     }
 
@@ -186,19 +154,11 @@ class AdminCourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $lang)
+    public function edit($id)
     {
-        // check if course is farsi
-        if ($lang == 0) {
-            $course = Course::find($id);
-            return view("admin.courses.edit", compact("course", "lang"));
-        }
 
-        // check if course is english
-        if ($lang == 1) {
-            $course = EnglishCourse::find($id);
-            return view("admin.courses.edit", compact("course", "lang"));
-        }
+        $course = Course::find($id);
+        return view("admin.courses.edit", compact("course"));
     }
 
     /**
@@ -211,85 +171,41 @@ class AdminCourseController extends Controller
     public function update(Request $request, $id)
     {
 
-        // check if course is farsi
-        if ($request->lang == 0) {
-            $course = Course::find($id);
-            $course->title = $request->title;
-            $course->price = $request->price;
-            $course->price = $request->price;
-            $course->master_name = $request->master_name;
-            $course->master_job = $request->master_job;
-            if ($request->link !== null) {
-                $course->link = $request->link;
-            }
-            $course->introduction_v_link = $request->introduction_v_link;
-            if ($request->off > 0) {
-                $course->off = $request->off;
-            }
-            $course->type = $request->type;
-            $course->mode = $request->mode;
-            $course->meta_key_words = $request->meta_key_words;
-            $course->meta_descriptions = $request->meta_descriptions;
-            $course->introduction = $request->introduction;
-            $course->description = $request->description;
-            $course->licensable = $request->licensable;
-
-            // update image
-            if ($request->image !== null) {
-                $image = Image::find($course->images[0]->id);
-                File::delete($image->path);
-                $imagename = time() . "." . $request->image->extension();
-                $filename = $course->title . "." . $course->id;
-                $request->image->move(public_path("photos/courses/$filename/"), $imagename);
-                $image->name = $request->image_name;
-                $image->alt = $request->alt;
-                $image->uploader_id = auth()->user()->id;
-                $image->path = "photos/courses/$filename/$imagename";
-                $course->images()->save($image);
-            }
-
-            $course->save();
-            return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ویرایش شد");
+        $course = Course::find($id);
+        $course->title = $request->title;
+        $course->price = $request->price;
+        $course->master_name = $request->master_name;
+        $course->master_job = $request->master_job;
+        if ($request->link !== null) {
+            $course->link = $request->link;
         }
-
-
-        // check if course is english
-        if ($request->lang == 1) {
-            $course = EnglishCourse::find($id);
-            $course->title = $request->title;
-            $course->price = $request->price;
-            $course->master_name = $request->master_name;
-            $course->master_job = $request->master_job;
-            if ($request->link !== null) {
-                $course->link = $request->link;
-            }
-            $course->introduction_v_link = $request->introduction_v_link;
-            if ($request->off > 0) {
-                $course->off = $request->off;
-            }
-            $course->type = $request->type;
-            $course->mode = $request->mode;
-            $course->meta_key_words = $request->meta_key_words;
-            $course->meta_descriptions = $request->meta_descriptions;
-            $course->introduction = $request->introduction;
-            $course->description = $request->description;
-            $course->licensable = $request->licensable;
-            // update image
-            if ($request->image !== null) {
-                $image = Image::find($course->images[0]->id);
-                File::delete($image->path);
-                $imagename = time() . "." . $request->image->extension();
-                $filename = $course->title . "." . $course->id;
-                $request->image->move(public_path("photos/courses/$filename/"), $imagename);
-                $image->name = $request->image_name;
-                $image->alt = $request->alt;
-                $image->uploader_id = auth()->user()->id;
-                $image->path = "photos/courses/$filename/$imagename";
-                $course->images()->save($image);
-            }
-            $course->save();
-            return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ویرایش شد");
+        $course->introduction_v_link = $request->introduction_v_link;
+        if ($request->off > 0) {
+            $course->off = $request->off;
         }
+        $course->type = $request->type;
+        $course->mode = $request->mode;
+        $course->meta_key_words = $request->meta_key_words;
+        $course->meta_descriptions = $request->meta_descriptions;
+        $course->introduction = $request->introduction;
+        $course->description = $request->description;
+        $course->licensable = $request->licensable;
+
+        // update image
+        if ($request->image !== null) {
+            $image = Image::find($course->images[0]->id);
+            File::delete($image->path);
+            $imagename = time() . "." . $request->image->extension();
+            $filename = $course->title . "." . $course->id;
+            $request->image->move(public_path("photos/courses/$filename/"), $imagename);
+            $image->name = $request->image_name;
+            $image->alt = $request->alt;
+            $image->uploader_id = auth()->user()->id;
+            $image->path = "photos/courses/$filename/$imagename";
+            $course->images()->save($image);
+        }
+        $course->save();
+        return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ویرایش شد");
     }
 
     /**
@@ -300,30 +216,16 @@ class AdminCourseController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        // check if course in farsi
-        if ($request->lang == 0) {
-            $course = Course::find($id);
-            $path = pathinfo($course->images[0]->path)["dirname"];
-            foreach ($course->images as $image) {
-                File::delete($image->path);
-            }
-            rmdir($path);
-            $course->images()->delete();
-            $course->delete();
-            return redirect()->back()->with("success", ".دوره شما با موفقیت حذف شد");
-        }
 
-        // check if course in english
-        if ($request->lang == 1) {
-            $course = EnglishCourse::find($id);
-            $path = pathinfo($course->images[0]->path)["dirname"];
-            foreach ($course->images as $image) {
-                File::delete($image->path);
-            }
-            rmdir($path);
-            $course->images()->delete();
-            $course->delete();
-            return redirect()->back()->with("success", ".دوره شما با موفقیت حذف شد");
+        $course = Course::find($id);
+        $path = pathinfo($course->images[0]->path)["dirname"];
+        foreach ($course->images as $image) {
+            File::delete($image->path);
         }
+        rmdir($path);
+        $course->images()->delete();
+        $course->language()->delete();
+        $course->delete();
+        return redirect()->back()->with("success", ".دوره شما با موفقیت حذف شد");
     }
 }
