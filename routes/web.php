@@ -52,7 +52,7 @@ Route::get('/recovery', [App\Http\Controllers\Admin\AdminBooksController::class,
 
 // admin routing
 route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
-    route::get("/", [AdminController::class, "index"])->name("admin.home");
+    route::get("/home", [AdminController::class, "index"])->name("admin.home");
 
     // admin can do users operation throw this routes##
     route::prefix("users")->group(function () {
