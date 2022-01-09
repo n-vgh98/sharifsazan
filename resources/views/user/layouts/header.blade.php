@@ -211,6 +211,14 @@
                  </ul>
              </li>
          </ul>
+         @auth
+
+             <form action="{{ route('logout') }}" method="POST">
+                 @csrf
+                 <button type="submit">خروج</button>
+             </form>
+         @endauth
+
      </nav>
      <!-- end icon main -->
 
