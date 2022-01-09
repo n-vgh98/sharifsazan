@@ -91,38 +91,63 @@
         <!--right side	-->
 
         <div class="right-side">
-            <form class="form-right" action="">
-
+            <form class="form-right" action="{{ route('register') }}" method="POST">
+                @csrf
                 <div class="gender">
                     <label for=""><b>جنسیت</b>*</label>
 
-                    <input class="rd" type="radio" name="rd1">
+                    <input name="gender" value="1" class="rd" type="radio">
                     <label for=""><b>خانم</b></label>
 
 
-                    <input class="rd" type="radio" name="rd1">
+                    <input name="gender" value="0" class="rd" type="radio">
                     <label for=""><b>آقا</b></label>
+                    @error('gender')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
+
+                <div class="name"><label for="" class="label1"><b>نام</b></label>
+                    <input name="name" type="text" class="txt1">
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
 
                 <div class="job"><label for="" class="label1"><b>شغل</b></label>
-                    <input type="text" class="txt1">
+                    <input name="Job" type="text" class="txt1">
+                    @error('job')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
 
-                <input type="text" class="txt2" required placeholder="ایمیل یا شماره موبایل">
+                <input type="email" name="email" class="txt2" required placeholder="ایمیل ">
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
+                <input type="text" name="password" class="txt2" required placeholder="رمز عبور (حداقل 7 حرف)*">
+                <input type="text" name="password_confirmation" class="txt2" required
+                    placeholder="تایید رمز عبور*">
 
 
-                <input type="text" class="txt2" required placeholder="رمز عبور (حداقل 7 حرف)*">
-
-
-                <div><input type="text" class="txt3" required placeholder="کد امنیتی">
+                {{-- <div><input type="text" class="txt3" required placeholder="کد امنیتی">
                     <div class="code">
                         <p><b>79+3</b></p>
                     </div>
-                </div>
+                </div> --}}
 
-                <button class="btn1">ثبت نام</button>
+                <button type="submit" class="btn1">ثبت نام</button>
 
                 <p class="or-sabtenamlogin ">
                     <bb>___________یا__________</bb>
