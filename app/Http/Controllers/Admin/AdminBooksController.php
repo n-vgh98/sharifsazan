@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\EnglishBook;
 use App\Models\Lang;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Lang;
 use App\Models\Image;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\CourseCreateRequest;
-use App\Models\EnglishCourse;
 
 class AdminCourseController extends Controller
 {
@@ -18,13 +18,31 @@ class AdminCourseController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+    //  methods for showing all courses
+
     //  for showing all courses
     public function all()
     {
-        $courses = Course::all();
-        $englishcourses = EnglishCourse::all();
-        return view("admin.courses.all", compact("courses", "englishcourses"));
+        $languages = Lang::where("langable_type", "App\Models\Course")->get();
+        return view("admin.courses.all", compact("languages"));
     }
+
+    //  for showing all farsi courses
+    public function farsi()
+    {
+        $languages = Lang::where([["name", "fa"], ["langable_type", "App\Models\Course"]])->get();
+        return view("admin.courses.all", compact("languages"));
+    }
+
+    //  for showing all english courses
+    public function english()
+    {
+        $languages = Lang::where([["name", "en"], ["langable_type", "App\Models\Course"]])->get();
+        return view("admin.courses.all", compact("languages"));
+    }
+
+    // end of methods for showing all courses
 
     //  for showing online courses
     public function online()
@@ -57,16 +75,6 @@ class AdminCourseController extends Controller
         $englishcourses = EnglishCourse::where("price", ">", 0)->get();
         return view("admin.courses.notfree", compact("courses", "englishcourses"));
     }
-
-
-
-
-
-
-
-
-
-
 
 
     /**
