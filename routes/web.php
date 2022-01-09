@@ -1,27 +1,28 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminArticleCategoryController;
-use App\Http\Controllers\Admin\AdminArticleController;
-use App\Http\Controllers\Admin\AdminBooksController;
-use App\Http\Controllers\Admin\AdminContact;
-use App\Http\Controllers\Admin\AdminFooter;
-use App\Http\Controllers\Admin\AdminOurTeamController;
-use App\Http\Controllers\Admin\AdminTeamMemberController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminFooter;
+use App\Http\Controllers\Admin\AdminContact;
+use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Writer\WriterController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminCourseController;
-use App\Http\Controllers\Admin\AdminInviteCategoryController;
+use App\Http\Controllers\Admin\AdminArticleController;
+use App\Http\Controllers\Admin\AdminOurTeamController;
+use App\Http\Controllers\Writer\WriterBooksController;
+use App\Http\Controllers\Writer\WriterCourseController;
+use App\Http\Controllers\Writer\WriterArticleController;
+use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminInvitePagesController;
 use App\Http\Controllers\Admin\AdminNotificationController;
-use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\Writer\WriterArticleCategoryController;
-use App\Http\Controllers\Writer\WriterArticleController;
-use App\Http\Controllers\Writer\WriterBooksController;
-use App\Http\Controllers\Writer\WriterController;
-use App\Http\Controllers\Writer\WriterCourseController;
-use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
+use App\Http\Controllers\Admin\AdminInviteCategoryController;
+use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Writer\WriterInviteCategoryController;
+use App\Http\Controllers\Writer\WriterArticleCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,14 +35,18 @@ use App\Http\Controllers\Writer\WriterInvitePagesController;
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
+
+route::get("/", function () {
+    return redirect()->route("home");
+})->middleware("language");
+
+Route::prefix('/{locale}')->middleware("language")->group(function () {
+    Auth::routes();
+    route::get("/", [HomeController::class, "index"])->name("home");
 });
 
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/recovery', [App\Http\Controllers\Admin\AdminBooksController::class, 'check'])->name('home.check');
 
 
