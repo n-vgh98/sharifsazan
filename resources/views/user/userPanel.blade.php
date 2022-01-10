@@ -1,4 +1,28 @@
 @extends('user.layouts.master')
+@section('header')
+    <style>
+        html,
+        body {
+            scroll-behavior: smooth;
+            background-image: url({{ asset('frontend/imgs/triangle.png') }});
+        }
+
+        .nav-res-menu-btn {
+            height: 95vh;
+
+        }
+
+
+
+        @media screen and (max-width: 576px) {
+            .nav-res-menu-btn {
+
+                height: 106vh;
+            }
+        }
+
+    </style>
+@endsection
 @section('content')
     <section class="parent-parent-panel">
         <section>
@@ -6,9 +30,9 @@
                 <section class="parent-breadcrumb-section">
                     <div class="breadcrumb-section">
                         <ul id="breadcrumbs">
-                            <li><a href="#">خانه</a></li>
+                            <li><a href="{{ route('home') }}">خانه</a></li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('panel.index') }}">
                                     پنل کاربر
                                 </a>
                             </li>
@@ -63,38 +87,31 @@
                             <div>
                                 <p>تکرار رمز عبور جدید*:</p>
                             </div>
-
                             <input type="password">
 
                         </form>
                         <form action="#">
                             <button class="button-changepass"> <a href="#"> تغییر رمز عبور </a></button>
-
                         </form>
                     </div>
 
                 </section>
             </section>
         </section>
-
-
-
-
         <section class="parent-panel">
 
             <div class="panel-icon-pf">
                 <figure class="parent-topimg-paenlkarbari">
 
-                    <img src="imgs/panel_profile_img.png" alt="" class="fa-circle-user">
+                    <img src="{{ asset('frontend/imgs/panel_profile_img.png') }}" alt="" class="fa-circle-user">
                     <a href="#">
                         <i class="fa fa-camera"></a></i>
                 </figure>
 
             </div>
 
-            <div>نام و نام خانوادگی:ایلین ارمی</div>
-            <div>email</div>
-            <div>phone</div>
+            <div>نام و نام خانوادگی:{{ auth()->user()->name }}</div>
+            <div>email:{{ auth()->user()->email }}</div>
 
             <div class="parent-btn-panel">
                 <button class="btn-change-password-panel" id="btn-change-password-panel">تغییر رمز عبور</button>
@@ -133,15 +150,13 @@
             </nav>
         </section>
         <!-- change pass -->
-
-
-
     </section>
 @endsection
+
 @section('scripts')
-    <script src="{{ asset('front/jqery/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('front/js/responsiveMenu.js') }}"></script>
+    <script src="{{ asset('frontend/jqery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/responsiveMenu.js') }}"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <script src="{{ asset('front/js/homepage.js') }}"></script>
-    <script src="{{ asset('front/js/panelkarbari.js') }}">
-    @endsection
+    <script src="{{ asset('frontend/js/homepage.js') }}"></script>
+    <script src="{{ asset('frontend/js/panelkarbari.js') }}"> </script>
+@endsection

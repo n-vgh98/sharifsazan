@@ -14,7 +14,7 @@ class UserPanelController extends Controller
      */
     public function index()
     {
-        dd("Hi");
+        return view("user.userPanel");
     }
 
     /**

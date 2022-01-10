@@ -190,7 +190,8 @@
              </li>
              <li>
                  @if (Auth::check())
-                     <a href="{{ route('panel.index') }}"><i class="fas">{{ auth()->user()->name }}</i></a>
+                     <a href="{{ route('panel.index') }}"><i
+                             class="fas">{{ auth()->user()->name }}</i></a>
                  @else
                      <a href="{{ route('login') }}">
                          <i class="fas fa-user"></i>
