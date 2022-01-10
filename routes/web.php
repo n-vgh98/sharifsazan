@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Front\UserPanelController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterArticleCategoryController;
 
@@ -42,6 +43,12 @@ route::get("/", function () {
 
 Route::prefix('/{locale}')->middleware("language")->group(function () {
     Auth::routes();
+
+    // routing for user panel
+    Route::prefix('panel')->middleware("auth")->group(function () {
+        route::get("/", [UserPanelController::class, "index"])->name("panel.index");
+    });
+
     route::get("/", [HomeController::class, "index"])->name("home");
 });
 
