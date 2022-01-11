@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->tinyInteger('gender')->nullable()->comment("0 is male 1 is female");
             $table->string('job')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             // required fields for google login
             $table->string('provider', 20)->nullable();

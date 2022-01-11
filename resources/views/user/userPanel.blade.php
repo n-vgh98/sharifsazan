@@ -79,20 +79,20 @@
                     </div>
                     <div class="wrapper-virayesh-panel">
 
-                        <form action="#">
-                            <p>رمز عبور قبلی*:</p>
-                            <input type="password">
+                        <form action="{{ route('panel.updatePassword') }}" method="POST">
+                            @csrf
                             <p>رمز عبور جدید*:</p>
-                            <input type="password">
+                            <input name="password" type="password">
                             <div>
                                 <p>تکرار رمز عبور جدید*:</p>
                             </div>
-                            <input type="password">
+                            <input name="password_confirmation" type="password">
+                            <br>
+                            <button type="submit" class="button-changepass"> تغییر رمز عبور </button>
+                        </form>
 
-                        </form>
-                        <form action="#">
-                            <button class="button-changepass"> <a href="#"> تغییر رمز عبور </a></button>
-                        </form>
+
+
                     </div>
 
                 </section>

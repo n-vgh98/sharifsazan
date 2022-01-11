@@ -136,6 +136,13 @@
                     </span>
                 @enderror
 
+                <input type="phone" name="phone" class="txt2" required placeholder="شماره تماس ">
+                @error('phone')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+
                 <input type="text" name="password" class="txt2" required placeholder="رمز عبور (حداقل 7 حرف)*">
                 <input type="text" name="password_confirmation" class="txt2" required
                     placeholder="تایید رمز عبور*">

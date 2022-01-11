@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserPanelController extends Controller
 {
@@ -16,6 +19,19 @@ class UserPanelController extends Controller
     {
         return view("user.userPanel");
     }
+
+
+
+    public function updatePassword(Request $request)
+    {
+
+        if ($request->password == $request->password_confirmation) {
+            $user = User::findorfail(auth()->user()->id);
+            $user->password = Hash::make($request->passowrd);
+            $user->save();
+        }
+    }
+
 
     /**
      * Show the form for creating a new resource.

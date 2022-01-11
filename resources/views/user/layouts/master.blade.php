@@ -17,6 +17,9 @@
 
     @yield('content')
 
+    {{-- sweet alert --}}
+    @include('user.layouts.sweetalert.error')
+
     <!-- START FOOTER  -->
     <footer>
         @include('user.layouts.footer')
