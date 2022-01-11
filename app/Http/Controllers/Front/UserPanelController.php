@@ -29,6 +29,7 @@ class UserPanelController extends Controller
             $user = User::findorfail(auth()->user()->id);
             $user->password = Hash::make($request->passowrd);
             $user->save();
+            return redirect()->back()->with("success", (__("translation.password-change-confirm")));
         }
     }
 
