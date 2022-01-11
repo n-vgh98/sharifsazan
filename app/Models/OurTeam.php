@@ -12,7 +12,11 @@ class OurTeam extends Model
 
     public function images()
     {
-        return $this->morphOne("App\Models\Image", "imageable");
+        return $this->morphMany("App\Models\Image", "imageable");
+    }
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
     }
 }
 

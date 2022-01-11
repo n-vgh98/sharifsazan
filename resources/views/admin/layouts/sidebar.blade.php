@@ -154,9 +154,9 @@
                     <i class="fa fa-dashboard"></i> <span>تیم ما</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.our_team.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.our_team.index','fa') }}"><i
                                     class="fa fa-circle-o"></i>صفحه اصلی تیم ما</a></li>
-                    <li class="active"><a href="{{route('members.index')}}"><i
+                    <li class="active"><a href="{{route('admin.our_team.member.index','fa')}}"><i
                                     class="fa fa-circle-o"></i>همکاران </a></li>
                 </ul>
             </li>
