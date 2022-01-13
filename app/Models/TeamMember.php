@@ -14,4 +14,8 @@ class TeamMember extends Model
     {
         return $this->morphMany("App\Models\Image", "imageable");
     }
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }

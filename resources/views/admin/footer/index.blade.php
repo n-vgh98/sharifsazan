@@ -5,7 +5,7 @@
             <a href="{{ route('admin.footer.index', 'fa') }}" class="btn btn-primary">فارسی</a>
             <a href="{{ route('admin.footer.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
         </div>
-    </section>
+</section>
     <table class="table table-striped">
         <thead>
             <tr>

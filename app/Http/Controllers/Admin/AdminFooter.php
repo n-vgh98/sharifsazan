@@ -113,6 +113,6 @@ class AdminFooter extends Controller
         $footer = Footer::findOrFail($id);
         $footer->delete();
         $footer->language()->delete();
-        return redirect()->back()->with("success", "Footer حذف شد");
+        return redirect()->back()->with("danger", "Footer حذف شد");
     }
 }

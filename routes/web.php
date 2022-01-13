@@ -218,12 +218,20 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     });
     // our_team routes
     route::prefix("our_team")->group(function () {
-        route::get("/", [AdminOurTeamController::class, "index"])->name("admin.our_team.index");
+        route::get("/{lang}", [AdminOurTeamController::class, "index"])->name("admin.our_team.index");
         route::get("/edit/{id}", [AdminOurTeamController::class, "edit"])->name("admin.our_team.edit");
         route::post("/update/{id}", [AdminOurTeamController::class, "update"])->name("admin.our_team.update");
         route::post("/store", [AdminOurTeamController::class, "store"])->name("admin.our_team.store");
-        route::get("/create", [AdminOurTeamController::class, "create"])->name("admin.our_team.create");
-        Route::resource('members', 'App\Http\Controllers\Admin\AdminTeamMemberController');
+        route::get("/create/{lang}", [AdminOurTeamController::class, "create"])->name("admin.our_team.create");
+    });
+    route::prefix("memebrs")->group(function (){
+        route::get("/{lang}", [AdminTeamMemberController::class, "index"])->name("admin.our_team.member.index");
+        // route::get("/edit/{id}", [AdminTeamMemberController::class, "edit"])->name("admin.our_team.member.edit");
+        route::post("/update/{id}", [AdminTeamMemberController::class, "update"])->name("admin.our_team.member.update");
+        route::post("/store", [AdminTeamMemberController::class, "store"])->name("admin.our_team.member.store");
+        // route::get("/create/{lang}", [AdminTeamMemberController::class, "create"])->name("admin.our_team.member.create");
+        route::delete("/destroy/{id}", [AdminTeamMemberController::class, "destroy"])->name("admin.our_team.member.destroy");
+        route::post("/updateimage/{id}", [AdminTeamMemberController::class, "updateimage"])->name("admin.our_team.member.update.image");
     });
 
     // footer routes

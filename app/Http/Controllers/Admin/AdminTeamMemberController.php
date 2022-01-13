@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Lang;
+use App\Models\Image;
 use App\Models\TeamMember;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class AdminTeamMemberController extends Controller
 {
@@ -13,10 +16,10 @@ class AdminTeamMemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $members = TeamMember::with('images')->get();
-        return view('admin.ourteam.members.index',compact('members'));
+        $languages = Lang::where([["langable_type", "App\Models\TeamMember"], ["name", $lang]])->get();
+        return view('admin.ourteam.members.index',compact('languages','lang'));
     }
 
     /**
@@ -26,7 +29,6 @@ class AdminTeamMemberController extends Controller
      */
     public function create()
     {
-        $members = new TeamMember();
 
     }
 
@@ -47,8 +49,22 @@ class AdminTeamMemberController extends Controller
         $members->mode = $request->input('mode');
         $members->save();
 
+        //saving image member    
+        $image = new Image();
+        $image->name = $request->img_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $imagename = time() . "." . $request->path->extension();
+        $request->path->move(public_path("images/ourteam/members/"), $imagename);
+        $image->path = "images/ourteam/members/" . $imagename;
+        $members->images()->save($image);
 
-        return redirect()->route('members.index')->with("success", "همکار با موفقیت ثبت شد");
+         // saving language for footer
+         $language = new Lang();
+         $language->name = $request->lang;
+         $members->language()->save($language);
+
+        return redirect()->route('admin.our_team.member.index',$request->lang)->with("success", "همکار با موفقیت ثبت شد");
     }
 
     /**
@@ -87,11 +103,11 @@ class AdminTeamMemberController extends Controller
         $members->job_title = $request->input('job_title');
         $members->education = $request->input('education');
         $members->attribute = $request->input('attribute');
-        $members->admin = $request->input('admin ');
+        $members->admin = $request->input('admin');
         $members->mode = $request->input('mode');
         $members->save();
 
-        return redirect()->route('members.index')->with("success", "همکار با موفقیت ویرایش شد");
+        return redirect()->back()->with("success", "همکار با موفقیت ویرایش شد");
     }
 
     /**
@@ -102,6 +118,27 @@ class AdminTeamMemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $member = TeamMember::findOrFail($id);
+        $image = $member->images[0];
+        unlink($image->path);
+        $image->delete();
+        $member->delete();
+        $member->language()->delete();
+        return redirect()->back()->with("success","همکار حذف شد.");
+    }
+
+    public function updateimage(Request $request, $id)
+    {
+        $image = Image::findOrFail($id);
+        $image->name = $request->name;
+        $image->alt = $request->alt;
+        if ($request->path !== null) {
+            unlink($image->path);
+            $imagename = time() . "." . $request->path->extension();
+            $request->path->move(public_path("images/ourteam/members/"), $imagename);
+            $image->path = "images/ourteam/members/" . $imagename;
+        }
+        $image->save();
+        return redirect()->back()->with("success", "عکس همکار  با موفقیت ویرایش شد");
     }
 }
