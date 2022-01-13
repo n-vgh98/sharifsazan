@@ -8,55 +8,12 @@
 @endsection
 
 @section('content')
-    <br><br>
-    <strong>دسته بندی برای کاربران فارسی زبان</strong>
-    <br><br>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">تنظیمات</th>
-                <th scope="col">مشاهده</th>
-                <th scope="col">نام دسته بندی </th>
-                <th scope="col">#</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php
-                $number = 1;
-            @endphp
-            @foreach ($categories as $category)
-
-                <tr>
-                    <td>
-                        <form action="{{ route('admin.articles.categories.destroy', $category->id) }}" method="POST">
-                            @csrf
-                            @method("DELETE")
-                            <input type="hidden" name="lang" value="0">
-                            <button class="btn btn-danger" type="submit">حذف</button>
-                        </form>
-                    </td>
-                    <td><a class="btn btn-info"
-                            href="{{ route('admin.articles.categories.show', [$category->id, 0]) }}">مشاهده
-                            مقالات این دسته
-                            بندی</a></td>
-                    <td>{{ $category->title }}</td>
-                    <th scope="row">{{ $number }}</th>
-                </tr>
-                @php
-                    $number++;
-                @endphp
-            @endforeach
-
-        </tbody>
-    </table>
-
-    {{-- create category --}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        ساخت دسته بندی جدید
-    </button>
-
-    <br><br><br><br>
-    <strong>دسته بندی برای کاربران اینگلیسی زبان</strong>
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.articles.categories.farsi') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.articles.categories.english') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <br><br>
     <table class="table table-striped">
         <thead>
@@ -71,19 +28,22 @@
             @php
                 $number = 1;
             @endphp
-            @foreach ($englishcategories as $category)
+            @foreach ($languages as $language)
+
+                @php
+                    $category = $language->langable;
+                @endphp
 
                 <tr>
                     <td>
                         <form action="{{ route('admin.articles.categories.destroy', $category->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
-                            <input type="hidden" name="lang" value="1">
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
                     <td><a class="btn btn-info"
-                            href="{{ route('admin.articles.categories.show', [$category->id, 1]) }}">مشاهده
+                            href="{{ route('admin.articles.categories.show', [$category->id, $category->language->name]) }}">مشاهده
                             مقالات این دسته
                             بندی</a></td>
                     <td>{{ $category->title }}</td>
@@ -94,12 +54,17 @@
                 @endphp
             @endforeach
 
+
+
         </tbody>
     </table>
+
     {{-- create category --}}
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         ساخت دسته بندی جدید
     </button>
+
+
 
     {{-- modal for making category --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

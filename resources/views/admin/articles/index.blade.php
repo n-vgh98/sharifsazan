@@ -8,11 +8,18 @@
 @endsection
 
 @section('content')
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.articles.farsi') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.articles.english') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">تنظیمات</th>
                 <th scope="col">امکانات</th>
+                <th scope="col">زبان</th>
                 <th scope="col">خلاصه متن</th>
                 <th scope="col">نام دسته بندی </th>
                 <th scope="col">عنوان مقاله </th>
@@ -30,12 +37,11 @@
                         <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST">
                             @csrf
                             @method("DELETE")
-                            <input type="hidden" name="lang" value="{{ $lang }}">
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-warning"
-                            href="{{ route('admin.articles.edit', [$article->id, $lang]) }}">ویرایش</a></td>
+                    <td><a class="btn btn-warning" href="{{ route('admin.articles.edit', $article->id) }}">ویرایش</a></td>
+                    <td>{{ $article->category->language->name }}</td>
                     <td>
                         @php
                             echo substr($article->text, 0, 30);
@@ -82,6 +88,8 @@
 
         </tbody>
     </table>
-    <a href="{{ route('admin.articles.create', $lang) }}" class="btn btn-primary">ساخت مقاله جدید</a>
+    @if ($makeable != 0)
+        <a href="{{ route('admin.articles.create', $makeable) }}" class="btn btn-primary">ساخت مقاله جدید</a>
+    @endif
 
 @endsection

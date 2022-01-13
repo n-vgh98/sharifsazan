@@ -8,11 +8,18 @@
 @endsection
 
 @section('content')
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.invites.category.farsi') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.invites.category.english') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">تنظیمات</th>
                 <th scope="col">مشاهده</th>
+                <th scope="col">زبان</th>
                 <th scope="col">لینک فرم آزمون عملی</th>
                 <th scope="col">لینک فرم آزمون فنی</th>
                 <th scope="col">لینک فرم ثبت نام</th>
@@ -24,8 +31,10 @@
             @php
                 $number = 1;
             @endphp
-            @foreach ($categories as $category)
-
+            @foreach ($languages as $language)
+                @php
+                    $category = $language->langable;
+                @endphp
                 <tr>
                     <td>
                         <form action="{{ route('admin.invites.category.destroy', $category->id) }}" method="POST">
@@ -37,6 +46,7 @@
                     <td><a class="btn btn-info" href="{{ route('admin.invites.category.show', $category->id) }}">مشاهده
                             صفحات گروه</a>
                     </td>
+                    <td>{{ $category->language->name }}</td>
                     <td><a href="{{ $category->technical_exam_form_link }}">فرم آزمون عملی</a></td>
                     <td><a href="{{ $category->practical_exam_form_link }}">فرم آزمون فنی</a></td>
                     <td><a href="{{ $category->register_form_link }}">فرم ثبت نام</a></td>
@@ -88,6 +98,15 @@
                             <input type="text" name="practical_exam_form_link" id="practical_exam_form_link" required
                                 class="form-control">
                         </div>
+                        <div style="margin-top: 25px;">
+                            <select name="lang" class="custom-select">
+                                <option selected>زبان دسته بندی</option>
+                                <option value="en">اینگلیسی</option>
+                                <option value="fa">فارسی</option>
+                            </select>
+                        </div>
+                        <br><br>
+
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
                         <button type="submit" class="btn btn-primary"> ذخیره</button>
                     </form>

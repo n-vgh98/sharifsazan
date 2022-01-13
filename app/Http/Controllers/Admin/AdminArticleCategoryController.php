@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ArticleCategory;
 use App\Models\EnglishArticleCategory;
+use App\Models\Lang;
 use Illuminate\Http\Request;
 
 class AdminArticleCategoryController extends Controller
@@ -14,11 +15,22 @@ class AdminArticleCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function all()
     {
-        $categories = ArticleCategory::all();
-        $englishcategories = EnglishArticleCategory::all();
-        return view("admin.articles.category.index", compact("categories", "englishcategories"));
+        $languages = Lang::where("langable_type", "App\Models\ArticleCategory")->get();
+        return view("admin.articles.category.index", compact("languages"));
+    }
+
+    public function farsi()
+    {
+        $languages = Lang::where([["name", "fa"], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        return view("admin.articles.category.index", compact("languages"));
+    }
+
+    public function english()
+    {
+        $languages = Lang::where([["name", "en"], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        return view("admin.articles.category.index", compact("languages"));
     }
 
     /**
@@ -43,13 +55,19 @@ class AdminArticleCategoryController extends Controller
             $category = new ArticleCategory();
             $category->title = $request->title;
             $category->save();
+            $articlelang = new Lang();
+            $articlelang->name = "fa";
+            $category->language()->save($articlelang);
             return redirect()->back()->with("success", "دسته بندی شما با موفقیت اضافه شد");
         }
 
         if ($request->lang == 1) {
-            $category = new EnglishArticleCategory();
+            $category = new ArticleCategory();
             $category->title = $request->title;
             $category->save();
+            $articlelang = new Lang();
+            $articlelang->name = "en";
+            $category->language()->save($articlelang);
             return redirect()->back()->with("success", "دسته بندی شما با موفقیت اضافه شد");
         }
     }
@@ -62,17 +80,8 @@ class AdminArticleCategoryController extends Controller
      */
     public function show($id, $lang)
     {
-        // check if category is farsi
-        if ($lang == 0) {
-            $category = ArticleCategory::find($id);
-            return view("admin.articles.category.show", compact("category", "lang"));
-        }
-
-        // check if category is english
-        if ($lang == 1) {
-            $category = EnglishArticleCategory::find($id);
-            return view("admin.articles.category.show", compact("category", "lang"));
-        }
+        $language = Lang::where([["langable_id", $id], ["langable_type", "App\Models\ArticleCategory"]])->first();
+        return view("admin.articles.category.show", compact("language"));
     }
 
     /**
@@ -106,15 +115,12 @@ class AdminArticleCategoryController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+
         // check if category is farsi
         if ($request->lang == 0) {
             $category = ArticleCategory::find($id);
-            $category->delete();
-            return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
-        }
-        // check if category is english
-        if ($request->lang == 1) {
-            $category = EnglishArticleCategory::find($id);
+            $language = Lang::findorfail($category->language->id);
+            $language->delete();
             $category->delete();
             return redirect()->back()->with("success", "دسته بندی مورد نظر شما و تمامی مقالات درون این دسته بندی با موفقیت حذف شد");
         }

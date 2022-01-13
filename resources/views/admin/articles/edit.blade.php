@@ -22,8 +22,11 @@
 
         <div style="margin-top: 25px;">
             <select name="category_id" class="custom-select">
-                <option selected>نام دسته بندی</option>
-                @foreach ($categories as $category)
+                <option value="{{ $article->category->id }}" selected>نام دسته بندی</option>
+                @foreach ($languages as $language)
+                    @php
+                        $category = $language->langable;
+                    @endphp
                     <option value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
 
@@ -73,7 +76,6 @@
             @enderror
         </div>
 
-        <input type="hidden" name="lang" value="{{ $lang }}">
         <div style="margin-top: 25px;">
             <button class="btn btn-success">ویرایش مقاله</button>
         </div>

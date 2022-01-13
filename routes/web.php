@@ -1,27 +1,29 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminArticleCategoryController;
-use App\Http\Controllers\Admin\AdminArticleController;
-use App\Http\Controllers\Admin\AdminBooksController;
-use App\Http\Controllers\Admin\AdminContact;
-use App\Http\Controllers\Admin\AdminFooter;
-use App\Http\Controllers\Admin\AdminOurTeamController;
-use App\Http\Controllers\Admin\AdminTeamMemberController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminFooter;
+use App\Http\Controllers\Admin\AdminContact;
+use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Writer\WriterController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminCourseController;
-use App\Http\Controllers\Admin\AdminInviteCategoryController;
+use App\Http\Controllers\Admin\AdminArticleController;
+use App\Http\Controllers\Admin\AdminOurTeamController;
+use App\Http\Controllers\Writer\WriterBooksController;
+use App\Http\Controllers\Writer\WriterCourseController;
+use App\Http\Controllers\Writer\WriterArticleController;
+use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminInvitePagesController;
 use App\Http\Controllers\Admin\AdminNotificationController;
-use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\Writer\WriterArticleCategoryController;
-use App\Http\Controllers\Writer\WriterArticleController;
-use App\Http\Controllers\Writer\WriterBooksController;
-use App\Http\Controllers\Writer\WriterController;
-use App\Http\Controllers\Writer\WriterCourseController;
-use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
+use App\Http\Controllers\Admin\AdminInviteCategoryController;
+use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Front\UserPanelController;
+use App\Http\Controllers\Writer\WriterInviteCategoryController;
+use App\Http\Controllers\Writer\WriterArticleCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,20 +36,31 @@ use App\Http\Controllers\Writer\WriterInvitePagesController;
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
+
+route::get("/", function () {
+    return redirect()->route("home");
+})->middleware("language");
+
+Route::prefix('/{locale}')->middleware("language")->group(function () {
+    Auth::routes();
+
+    // routing for user panel
+    Route::prefix('panel')->middleware("auth")->group(function () {
+        route::get("/", [UserPanelController::class, "index"])->name("panel.index");
+        route::post("/updatePassword", [UserPanelController::class, "updatePassword"])->name("panel.updatePassword");
+    });
+
+    route::get("/", [HomeController::class, "index"])->name("home");
 });
 
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 Route::get('/recovery', [App\Http\Controllers\Admin\AdminBooksController::class, 'check'])->name('home.check');
 
 
 // admin routing
 route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
-    route::get("/", [AdminController::class, "index"])->name("admin.home");
+    route::get("/home", [AdminController::class, "index"])->name("admin.home");
 
     // admin can do users operation throw this routes##
     route::prefix("users")->group(function () {
@@ -115,37 +128,49 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
         // route for showing all courses
         route::get("/", [AdminCourseController::class, "all"])->name("admin.courses.all");
+        route::get("/farsi", [AdminCourseController::class, "farsi"])->name("admin.courses.all.farsi");
+        route::get("/english", [AdminCourseController::class, "english"])->name("admin.courses.all.english");
         route::get("/create", [AdminCourseController::class, "create"])->name("admin.courses.create");
         route::post("/store", [AdminCourseController::class, "store"])->name("admin.courses.store");
         route::post("/update/{id}", [AdminCourseController::class, "update"])->name("admin.courses.update");
-        route::get("/edit/{id}/{lang}", [AdminCourseController::class, "edit"])->name("admin.courses.edit");
+        route::get("/edit/{id}", [AdminCourseController::class, "edit"])->name("admin.courses.edit");
         route::delete("/delete/{id}", [AdminCourseController::class, "destroy"])->name("admin.courses.destroy");
 
 
         // route for showing free courses
         route::prefix("free")->group(function () {
             route::get("/", [AdminCourseController::class, "free"])->name("admin.courses.free");
+            route::get("/farsi", [AdminCourseController::class, "freeFa"])->name("admin.courses.free.farsi");
+            route::get("/english", [AdminCourseController::class, "freeEn"])->name("admin.courses.free.english");
         });
 
         // route for showing not_free courses
         route::prefix("notfree")->group(function () {
             route::get("/", [AdminCourseController::class, "notfree"])->name("admin.courses.not.free");
+            route::get("/english", [AdminCourseController::class, "notfreeEn"])->name("admin.courses.not.free.english");
+            route::get("/farsi", [AdminCourseController::class, "notfreeFa"])->name("admin.courses.not.free.farsi");
         });
 
         // route for showing online courses
         route::prefix("online")->group(function () {
             route::get("/", [AdminCourseController::class, "online"])->name("admin.courses.online");
+            route::get("/farsi", [AdminCourseController::class, "onlineFa"])->name("admin.courses.online.farsi");
+            route::get("/english", [AdminCourseController::class, "onlineEn"])->name("admin.courses.online.english");
         });
 
         // route for showing offline courses
         route::prefix("offline")->group(function () {
             route::get("/", [AdminCourseController::class, "offline"])->name("admin.courses.offline");
+            route::get("/farsi", [AdminCourseController::class, "offlineFa"])->name("admin.courses.offline.farsi");
+            route::get("/english", [AdminCourseController::class, "offlineEn"])->name("admin.courses.offline.english");
         });
     });
 
     // route for books
     route::prefix("books")->group(function () {
-        route::get("/", [AdminBooksController::class, "index"])->name("admin.books.index");
+        route::get("/", [AdminBooksController::class, "all"])->name("admin.books.all");
+        route::get("/english", [AdminBooksController::class, "english"])->name("admin.books.english");
+        route::get("/farsi", [AdminBooksController::class, "farsi"])->name("admin.books.farsi");
         route::delete("/destroy/{id}", [AdminBooksController::class, "destroy"])->name("admin.books.destroy");
         route::post("/store", [AdminBooksController::class, "store"])->name("admin.books.store");
         route::post("/update/{id}", [AdminBooksController::class, "update"])->name("admin.books.update");
@@ -153,18 +178,20 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
     // route for articles
     route::prefix("articles")->group(function () {
-        route::get("/farsi", [AdminArticleController::class, "indexfarsi"])->name("admin.articles.farsi.index");
-        route::get("/english", [AdminArticleController::class, "indexenglish"])->name("admin.articles.english.index");
-        route::get("/show/{id}/", [AdminArticleController::class, "show"])->name("admin.articles.show");
-        route::delete("/destroy/{id}", [AdminArticleController::class, "destroy"])->name("admin.articles.destroy");
+        route::get("/", [AdminArticleController::class, "all"])->name("admin.articles.all");
+        route::get("/english", [AdminArticleController::class, "english"])->name("admin.articles.english");
+        route::get("/farsi", [AdminArticleController::class, "farsi"])->name("admin.articles.farsi");
         route::get("/create/{lang}", [AdminArticleController::class, "create"])->name("admin.articles.create");
         route::post("/store", [AdminArticleController::class, "store"])->name("admin.articles.store");
-        route::get("/edit/{id}/{lang}", [AdminArticleController::class, "edit"])->name("admin.articles.edit");
+        route::get("/edit/{id}", [AdminArticleController::class, "edit"])->name("admin.articles.edit");
         route::post("/update/{id}", [AdminArticleController::class, "update"])->name("admin.articles.update");
+        route::delete("/destroy/{id}", [AdminArticleController::class, "destroy"])->name("admin.articles.destroy");
 
         // route for article categories
         route::prefix("categories")->group(function () {
-            route::get("/", [AdminArticleCategoryController::class, "index"])->name("admin.articles.categories.index");
+            route::get("/", [AdminArticleCategoryController::class, "all"])->name("admin.articles.categories.all");
+            route::get("/farsi", [AdminArticleCategoryController::class, "farsi"])->name("admin.articles.categories.farsi");
+            route::get("/english", [AdminArticleCategoryController::class, "english"])->name("admin.articles.categories.english");
             route::delete("/destroy/{id}", [AdminArticleCategoryController::class, "destroy"])->name("admin.articles.categories.destroy");
             route::post("/store", [AdminArticleCategoryController::class, "store"])->name("admin.articles.categories.store");
             route::get("/show/{id}/{lang}", [AdminArticleCategoryController::class, "show"])->name("admin.articles.categories.show");
@@ -173,7 +200,9 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
 
     // route for invite
     route::prefix("invite_group")->group(function () {
-        route::get("/", [AdminInviteCategoryController::class, "index"])->name("admin.invites.category.index");
+        route::get("/", [AdminInviteCategoryController::class, "all"])->name("admin.invites.category.all");
+        route::get("/farsi", [AdminInviteCategoryController::class, "farsi"])->name("admin.invites.category.farsi");
+        route::get("/english", [AdminInviteCategoryController::class, "english"])->name("admin.invites.category.english");
         route::delete("/destroy/{id}", [AdminInviteCategoryController::class, "destroy"])->name("admin.invites.category.destroy");
         route::post("/store", [AdminInviteCategoryController::class, "store"])->name("admin.invites.category.store");
         route::get("/show/{id}", [AdminInviteCategoryController::class, "show"])->name("admin.invites.category.show");

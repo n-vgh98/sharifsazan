@@ -19,19 +19,20 @@
                 </span>
             @enderror
         </div>
-
         <div style="margin-top: 25px;">
             <select name="category_id" class="custom-select">
                 <option selected>نام دسته بندی</option>
-                @foreach ($categories as $category)
+                @foreach ($languages as $language)
+                    @php
+                        $category = $language->langable;
+                    @endphp
                     <option value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
-
             </select>
         </div>
 
         <div style="margin-top: 25px;">
-            <label for="image">عکس دوره</label>
+            <label for="image">عکس مقاله</label>
             <input type="file" name="image" id="image" required class="form-control">
         </div>
 
@@ -64,8 +65,6 @@
                 </span>
             @enderror
         </div>
-
-        <input type="hidden" name="lang" value="{{ $lang }}">
         <div style="margin-top: 25px;">
             <button type="submit" class="btn btn-success">ساخت مقاله</button>
         </div>

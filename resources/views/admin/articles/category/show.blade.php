@@ -2,9 +2,12 @@
 @section('sitetitle')
     مقالات
 @endsection
-
+@php
+$number = 1;
+$category = $language->langable;
+@endphp
 @section('pagetitle')
-    لیست مقالات دسته بندی {{ $category->title }}
+    {{ $category->title }} لیست مقالات دسته بندی
 @endsection
 
 @section('content')
@@ -20,22 +23,18 @@
             </tr>
         </thead>
         <tbody>
-            @php
-                $number = 1;
-            @endphp
+
             @foreach ($category->articles as $article)
 
                 <tr>
                     <td>
-                        <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST">
+                        <form action="#" method="POST">
                             @csrf
                             @method("DELETE")
-                            <input type="hidden" name="lang" value="{{ $lang }}">
                             <button class="btn btn-danger" type="submit">حذف</button>
                         </form>
                     </td>
-                    <td><a class="btn btn-warning"
-                            href="{{ route('admin.articles.edit', [$article->id, $lang]) }}">ویرایش</a></td>
+                    <td><a class="btn btn-warning" href="#">ویرایش</a></td>
                     <td>
                         @php
                             echo substr($article->text, 0, 30);
@@ -74,7 +73,6 @@
                     </div>
                 </div>
                 {{-- end of modal to show full text of article --}}
-
                 @php
                     $number++;
                 @endphp
@@ -82,6 +80,5 @@
 
         </tbody>
     </table>
-    <a href="{{ route('admin.articles.create', $lang) }}" class="btn btn-primary">ساخت مقاله جدید</a>
-
+    <a href="{{ route('admin.articles.create', $category->language->name) }}" class="btn btn-primary">ساخت مقاله جدید</a>
 @endsection

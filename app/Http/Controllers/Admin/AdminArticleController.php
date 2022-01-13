@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\File;
 use App\Http\Requests\CreateArticleRequest;
 use App\Models\Article;
 use App\Models\EnglishArticle;
-use App\Models\EnglishArticleCategory;
 use App\Models\FarsiArticle;
 use App\Models\Image;
+use App\Models\Lang;
 
 class AdminArticleController extends Controller
 {
@@ -20,24 +20,44 @@ class AdminArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $articles = Article::all();
-    //     return view("admin.articles.index", compact("articles"));
-    // }
 
-    public function indexfarsi()
+    public function all()
     {
         $articles = Article::all();
-        $lang = 0;
-        return view("admin.articles.index", compact("articles", "lang"));
+        // it show that if we can make new article in this page
+        $makeable = 0;
+        return view("admin.articles.index", compact("articles", "makeable"));
     }
 
-    public function indexenglish()
+    public function english()
     {
-        $articles = EnglishArticle::all();
-        $lang = 1;
-        return view("admin.articles.index", compact("articles", "lang"));
+        $languages = Lang::where([["name", "en"], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        $articles = [];
+        foreach ($languages as $language) {
+            // making collection to array
+            foreach ($language->langable->articles as $articless) {
+                array_push($articles, $articless);
+            }
+        }
+        // this show what category languages should be
+        $makeable = "en";
+        return view("admin.articles.index", compact("articles", "makeable"));
+    }
+
+    public function farsi()
+    {
+        $languages = Lang::where([["name", "fa"], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        $articles = [];
+        foreach ($languages as $language) {
+            // making collection to array
+            foreach ($language->langable->articles as $articless) {
+                array_push($articles, $articless);
+            }
+        }
+
+        // this show what category languages should be
+        $makeable = "fa";
+        return view("admin.articles.index", compact("articles", "makeable"));
     }
 
     /**
@@ -47,17 +67,13 @@ class AdminArticleController extends Controller
      */
     public function create($lang)
     {
-        // check if article is for farsi users
-        if ($lang == 0) {
-            $categories = ArticleCategory::all();
-            return view("admin.articles.create", compact("categories", "lang"));
+        $languages = Lang::where([["name", $lang], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        if (count($languages) == 0) {
+            return redirect()->back()->with("fail", "لطفا ابتدا یک دسته بندی برای مقاله های زبان مورد نظر بسازید ");
+        } else {
+            return view("admin.articles.create", compact("languages", "lang"));
         }
-
-        // check if article is for english users
-        if ($lang == 1) {
-            $categories = EnglishArticleCategory::all();
-            return view("admin.articles.create", compact("categories", "lang"));
-        }
+        return redirect()->back()->with("fail", "مشکلی وجود دارد لطفا با تیم پشتیبانی تماس بگیرید");
     }
 
     /**
@@ -69,57 +85,26 @@ class AdminArticleController extends Controller
     public function store(CreateArticleRequest $request)
     {
 
-        // if article is for farsi users
-        if ($request->lang == 0) {
-            $category = ArticleCategory::find($request->category_id)->first();
-            $article = new Article();
-            $article->title = $request->title;
-            $article->category_id = $request->category_id;
-            $article->text = $request->text;
-            $article->meta_key_words = $request->meta_key_words;
-            $article->meta_descriptions = $request->meta_descriptions;
-            $article->save();
-
-            // saving image in image table
-            $image = new Image();
-            $imagename = time() . "." . $request->image->extension();
-            $filename = $article->title . "." . $category->id;
-            $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
-            $image->name = $request->image_name;
-            $image->alt = $request->alt;
-            $image->uploader_id = auth()->user()->id;
-            $image->path = "photos/articles/$category->title/$filename/$imagename";
-            $article->images()->save($image);
-            // saving image in image table
-
-            return redirect()->route("admin.articles.farsi.index")->with("success", "مقاله شما با موفقیت ساخته شد");
-        }
-
-        // if article is for english users
-        if ($request->lang == 1) {
-            $category = EnglishArticleCategory::find($request->category_id)->first();
-            $article = new EnglishArticle();
-            $article->title = $request->title;
-            $article->category_id = $category->id;
-            $article->text = $request->text;
-            $article->meta_key_words = $request->meta_key_words;
-            $article->meta_descriptions = $request->meta_descriptions;
-            $article->save();
-
-            // saving image in image table
-            $image = new Image();
-            $imagename = time() . "." . $request->image->extension();
-            $filename = $article->title . "." . $category->id;
-            $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
-            $image->name = $request->image_name;
-            $image->alt = $request->alt;
-            $image->uploader_id = auth()->user()->id;
-            $image->path = "photos/articles/$category->title/$filename/$imagename";
-            $article->images()->save($image);
-            // saving image in image table
-
-            return redirect()->route("admin.articles.english.index")->with("success", "مقاله شما با موفقیت ساخته شد");
-        }
+        $category = ArticleCategory::find($request->category_id);
+        $article = new Article();
+        $article->title = $request->title;
+        $article->category_id = $request->category_id;
+        $article->text = $request->text;
+        $article->meta_key_words = $request->meta_key_words;
+        $article->meta_descriptions = $request->meta_descriptions;
+        $article->save();
+        // saving image in image table
+        $image = new Image();
+        $imagename = time() . "." . $request->image->extension();
+        $filename = $article->title . "." . $category->id;
+        $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
+        $image->name = $request->image_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $image->path = "photos/articles/$category->title/$filename/$imagename";
+        $article->images()->save($image);
+        // saving image in image table
+        return redirect()->route("admin.articles.all")->with("success", "مقاله شما با موفقیت ساخته شد");
     }
 
     /**
@@ -139,19 +124,12 @@ class AdminArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, $lang)
+    public function edit($id)
     {
-        if ($lang == 0) {
-            $article = Article::find($id);
-            $categories = ArticleCategory::all();
-            return view("admin.articles.edit", compact("article", "categories", "lang"));
-        }
-
-        if ($lang == 1) {
-            $article = EnglishArticle::find($id);
-            $categories = EnglishArticleCategory::all();
-            return view("admin.articles.edit", compact("article", "categories", "lang"));
-        }
+        $article = Article::find($id);
+        // get categories
+        $languages = Lang::where([["name", $article->category->language->name], ["langable_type", "App\Models\ArticleCategory"]])->get();
+        return view("admin.articles.edit", compact("article", "languages"));
     }
 
 
@@ -165,57 +143,29 @@ class AdminArticleController extends Controller
     public function update(Request $request, $id)
     {
         // check if article is farsi
-        if ($request->lang == 0) {
-            $article =  Article::find($id);
-            $article->title = $request->title;
-            $article->category_id = $request->category_id;
-            $article->meta_key_words = $request->meta_key_words;
-            $article->meta_descriptions = $request->meta_descriptions;
-            $article->text = $request->text;
-            // update image
-            if ($request->image !== null) {
-                $category = ArticleCategory::find($request->category_id)->first();
-                $image = Image::find($article->images[0]->id);
-                File::delete($image->path);
-                $imagename = time() . "." . $request->image->extension();
-                $filename = $article->title . "." . $category->id;
-                $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
-                $image->name = $request->image_name;
-                $image->alt = $request->alt;
-                $image->uploader_id = auth()->user()->id;
-                $image->path = "photos/articles/$category->title/$filename/$imagename";
-                $article->images()->save($image);
-            }
-
-            $article->save();
-            return redirect()->route("admin.articles.farsi.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
+        $article =  Article::find($id);
+        $article->title = $request->title;
+        $article->category_id = $request->category_id;
+        $article->meta_key_words = $request->meta_key_words;
+        $article->meta_descriptions = $request->meta_descriptions;
+        $article->text = $request->text;
+        // update image
+        if ($request->image !== null) {
+            $category = ArticleCategory::find($request->category_id)->first();
+            $image = Image::find($article->images[0]->id);
+            File::delete($image->path);
+            $imagename = time() . "." . $request->image->extension();
+            $filename = $article->title . "." . $category->id;
+            $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
+            $image->name = $request->image_name;
+            $image->alt = $request->alt;
+            $image->uploader_id = auth()->user()->id;
+            $image->path = "photos/articles/$category->title/$filename/$imagename";
+            $article->images()->save($image);
         }
 
-        // check if article is english
-        if ($request->lang == 1) {
-            $article =  EnglishArticle::find($id);
-            $article->title = $request->title;
-            $article->category_id = $request->category_id;
-            $article->meta_key_words = $request->meta_key_words;
-            $article->meta_descriptions = $request->meta_descriptions;
-            $article->text = $request->text;
-            // update image
-            if ($request->image !== null) {
-                $category = EnglishArticleCategory::find($request->category_id)->first();
-                $image = Image::find($article->images[0]->id);
-                File::delete($image->path);
-                $imagename = time() . "." . $request->image->extension();
-                $filename = $article->title . "." . $category->id;
-                $request->image->move(public_path("photos/articles/$category->title/$filename/"), $imagename);
-                $image->name = $request->image_name;
-                $image->alt = $request->alt;
-                $image->uploader_id = auth()->user()->id;
-                $image->path = "photos/articles/$category->title/$filename/$imagename";
-                $article->images()->save($image);
-            }
-            $article->save();
-            return redirect()->route("admin.articles.english.index")->with("success", "مقاله شما با موفقیت ویرایش شد");
-        }
+        $article->save();
+        return redirect()->route("admin.articles.all")->with("success", "مقاله شما با موفقیت ویرایش شد");
     }
 
     /**
@@ -226,26 +176,13 @@ class AdminArticleController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        // check if article is farsi
-        if ($request->lang == 0) {
-            $article = Article::find($id);
-            File::delete($article->images[0]->path);
-            $path = pathinfo($article->images[0]->path)["dirname"];
-            rmdir($path);
-            $article->images()->delete();
-            $article->delete();
-            return redirect()->back()->with("success", "مقاله شما با موفقیت حذف شد");
-        }
 
-        // check if article is english
-        if ($request->lang == 1) {
-            $article = EnglishArticle::find($id);
-            File::delete($article->images[0]->path);
-            $path = pathinfo($article->images[0]->path)["dirname"];
-            rmdir($path);
-            $article->images()->delete();
-            $article->delete();
-            return redirect()->back()->with("success", "مقاله شما با موفقیت حذف شد");
-        }
+        $article = Article::find($id);
+        File::delete($article->images[0]->path);
+        $path = pathinfo($article->images[0]->path)["dirname"];
+        rmdir($path);
+        $article->images()->delete();
+        $article->delete();
+        return redirect()->back()->with("success", "مقاله شما با موفقیت حذف شد");
     }
 }
