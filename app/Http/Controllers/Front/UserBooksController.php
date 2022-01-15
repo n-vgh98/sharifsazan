@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
+use App\Models\Lang;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UserBooksController extends Controller
 {
@@ -12,9 +13,11 @@ class UserBooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view("user.books");
+        $lang = substr($request->getPathInfo(), 1, 2);
+        $languages = Lang::where([["langable_type", "App\Models\Book"], ["name", $lang]])->get();
+        return view("user.books", compact("languages"));
     }
 
     /**

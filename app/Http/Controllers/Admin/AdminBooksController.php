@@ -114,7 +114,7 @@ class AdminBooksController extends Controller
         $book->name = $request->name;
         $book->link = $request->link;
         if ($request->image !== null) {
-            $image = Image::find($book->images[0]->id);
+            $image = Image::find($book->images->id);
             File::delete($image->path);
             $imagename = time() . "." . $request->image->extension();
             $filename = $book->name . "." . $book->id;
@@ -138,8 +138,8 @@ class AdminBooksController extends Controller
     public function destroy(Request $request, $id)
     {
         $book = Book::find($id);
-        $path = pathinfo($book->images[0]->path)["dirname"];
-        File::delete($book->images[0]->path);
+        $path = pathinfo($book->images->path)["dirname"];
+        File::delete($book->images->path);
         rmdir($path);
         $book->images()->delete();
         $book->language()->delete();

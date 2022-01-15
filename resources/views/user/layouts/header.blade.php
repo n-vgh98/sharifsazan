@@ -372,7 +372,7 @@
                          </li>
                      @endforeach
                      <li>
-                         <a href="{{ route('books.index') }}">
+                         <a href="{{ route('bookshelf.index') }}">
                              کتابخانه الکترونیکی
                          </a>
                      </li>
@@ -639,7 +639,7 @@
                      </a>
                  </li>
                  <li>
-                     <a href="{{ route('books.index') }}">
+                     <a href="{{ route('bookshelf.index') }}">
                          کتابخانه الکترونیکی
                      </a>
                  </li>

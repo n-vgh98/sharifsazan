@@ -85,14 +85,14 @@
 
                                     <div style="margin-top: 25px;">
                                         <label for="image_name">image name</label>
-                                        <input type="text" value="{{ $book->images[0]->name }}" name="image_name"
+                                        <input type="text" value="{{ $book->images->name }}" name="image_name"
                                             id="image_name" required class="form-control">
                                     </div>
 
                                     <div style="margin-top: 25px;">
                                         <label for="image_alt">image alt</label>
-                                        <input type="text" value="{{ $book->images[0]->alt }}" name="alt" id="alt"
-                                            required class="form-control">
+                                        <input type="text" value="{{ $book->images->alt }}" name="alt" id="alt" required
+                                            class="form-control">
                                     </div>
 
 
@@ -131,8 +131,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img src="{{ asset($book->images[0]->path) }}" alt=""
-                                    style="height: 500px; width:500px;">
+                                <img src="{{ asset($book->images->path) }}" alt="" style="height: 500px; width:500px;">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>

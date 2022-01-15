@@ -60,8 +60,8 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     });
 
     // routing for user books
-    Route::prefix('books')->group(function () {
-        route::get("/", [UserBooksController::class, "index"])->name("books.index");
+    Route::prefix('bookshelf')->group(function () {
+        route::get("/", [UserBooksController::class, "index"])->name("bookshelf.index");
     });
 
     route::get("/", [HomeController::class, "index"])->name("home");
