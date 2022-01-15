@@ -357,18 +357,20 @@
                              دوره اموزشی
                          </a>
                      </li>
-                     <li>
-                         <a href="article.html">
-                             پژوهش و نوآوری
+                     @php
+                         $articleCategoryLanguages = App\Models\Lang::where([['name', $lang], ['langable_type', 'App\Models\ArticleCategory']])->get();
+                     @endphp
+                     @foreach ($articleCategoryLanguages as $articleCategoryLanguage)
+                         @php
+                             $articleCategory = $articleCategoryLanguage->langable;
+                         @endphp
+                         <li>
+                             <a href="#">
+                                 {{ $articleCategory->title }}
 
-                         </a>
-                     </li>
-                     <li>
-                         <a href="article.html">
-                             تکنولوژی های نوین
-
-                         </a>
-                     </li>
+                             </a>
+                         </li>
+                     @endforeach
                      <li>
                          <a href="article.html">
                              کتابخانه الکترونیکی
@@ -469,23 +471,35 @@
                  </a>
              </li>
              <li>
-                 <a href="#">
-                     <i class="fas fa-user"></i>
-                 </a>
+                 @if (Auth::check())
+                     <a href="{{ route('panel.index') }}"><i
+                             class="fas">{{ auth()->user()->name }}</i></a>
+                 @else
+                     <a href="{{ route('login') }}">
+                         <i class="fas fa-user"></i>
+                     </a>
+                 @endif
+
                  <ul class="wrapper-user-icon">
                      <li class="setting-menu">
-                         <p>تنظیمات</p>
+                         <p> تنظیمات</p>
                          <i class="fas fa-cog"></i>
-
                      </li>
                      <li class="settingg-menu">
-                         <p>خروج</p>
+                         <p> خروج </p>
                          <i class="fas fa-power-off"></i>
                      </li>
                  </ul>
              </li>
          </ul>
      </nav>
+     @auth
+
+         <form action="{{ route('logout') }}" method="POST">
+             @csrf
+             <button type="submit">خروج</button>
+         </form>
+     @endauth
      <!-- end icon main -->
 
 
