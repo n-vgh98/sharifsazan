@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Front\UserBooksController;
 use App\Http\Controllers\Front\UserContactUsController;
 use App\Http\Controllers\Front\UserPanelController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
@@ -56,6 +57,11 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     Route::prefix('contact_us')->group(function () {
         route::get("/", [UserContactUsController::class, "index"])->name("contactus.index");
         route::post("/store", [UserContactUsController::class, "store"])->name("contactus.store");
+    });
+
+    // routing for user books
+    Route::prefix('books')->group(function () {
+        route::get("/", [UserBooksController::class, "index"])->name("books.index");
     });
 
     route::get("/", [HomeController::class, "index"])->name("home");
