@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Front\UserContactUsController;
 use App\Http\Controllers\Front\UserPanelController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterArticleCategoryController;
@@ -49,6 +50,12 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::get("/", [UserPanelController::class, "index"])->name("panel.index");
         route::post("/updatePassword", [UserPanelController::class, "updatePassword"])->name("panel.updatePassword");
         route::post("/updateInformation", [UserPanelController::class, "updateInformation"])->name("panel.updateInformation");
+    });
+
+    // routing for user contactus
+    Route::prefix('contact_us')->group(function () {
+        route::get("/", [UserContactUsController::class, "index"])->name("contactus.index");
+        route::post("/store", [UserContactUsController::class, "store"])->name("contactus.store");
     });
 
     route::get("/", [HomeController::class, "index"])->name("home");
@@ -225,7 +232,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::post("/store", [AdminOurTeamController::class, "store"])->name("admin.our_team.store");
         route::get("/create/{lang}", [AdminOurTeamController::class, "create"])->name("admin.our_team.create");
     });
-    route::prefix("memebrs")->group(function (){
+    route::prefix("memebrs")->group(function () {
         route::get("/{lang}", [AdminTeamMemberController::class, "index"])->name("admin.our_team.member.index");
         // route::get("/edit/{id}", [AdminTeamMemberController::class, "edit"])->name("admin.our_team.member.edit");
         route::post("/update/{id}", [AdminTeamMemberController::class, "update"])->name("admin.our_team.member.update");

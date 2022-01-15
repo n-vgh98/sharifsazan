@@ -410,7 +410,7 @@
 
              </li>
              <li><a href="Proje.html">پروژها</a></li>
-             <li><a href="tamasbama.html">تماس با ما</a></li>
+             <li> <a href="{{ route('contactus.index') }}">تماس با ما</a></li>
              <li><a href="TeamMa.html">درباره ما</a></li>
 
          </ul>
@@ -458,7 +458,7 @@
 
 
      <!-- start icon main -->
-     <nav class="nav-icon-main">
+     {{-- <nav class="nav-icon-main">
          <ul class="ul-icon-main">
              <li>
                  <a href="#">
@@ -492,17 +492,55 @@
                  </ul>
              </li>
          </ul>
+     </nav> --}}
+
+     <nav class="nav-icon-main">
+         <ul class="ul-icon-main">
+             <li>
+                 <a href="#">
+                     <i class="fas fa-comment"></i>
+                 </a>
+             </li>
+             <li>
+                 <a href="#">
+                     <i class="fa fa-shopping-cart"></i>
+                 </a>
+             </li>
+             <li>
+                 @if (Auth::check())
+                     <a href="#">
+                         <i class="fas fa-user">{{ auth()->user()->name }}</i>
+                     </a>
+                     <ul class="wrapper-user-icon">
+                         <li class="setting-menu">
+                             <a href="{{ route('panel.index') }}">
+                                 <button>
+                                     <p class="big-p">تنظیمات</p>
+                                     <i class="fas fa-cog big-p"></i>
+                                 </button>
+                             </a>
+
+                         </li>
+                         <li class="settingg-menu">
+                             <form method="POST" action="{{ route('logout') }}">
+                                 @csrf
+                                 <button>
+                                     <p class="big-p">خروج</p>
+                                     <i class="fas fa-power-off big-p"></i>
+                                 </button>
+                             </form>
+                         </li>
+                     </ul>
+                 @else
+                     <a href="{{ route('login') }}">
+                         <i class="fas fa-user"></i>
+                     </a>
+                 @endif
+
+
+             </li>
+         </ul>
      </nav>
-     @auth
-
-         <form action="{{ route('logout') }}" method="POST">
-             @csrf
-             <button type="submit">خروج</button>
-         </form>
-     @endauth
-     <!-- end icon main -->
-
-
      <!-- end main menu  -->
  </menu>
  <!-- main responsive  menu static end -->
@@ -641,7 +679,7 @@
 
              </ul>
              <div class="toggel">
-                 <a href="#">
+                 <a href="{{ route('contactus.index') }}">
                      <i class="fa fa-phone"></i>‏
                      تماس با ما
                  </a>
