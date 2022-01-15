@@ -55,7 +55,7 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
 
 
 
-Route::get('/recovery', [App\Http\Controllers\Admin\AdminBooksController::class, 'check'])->name('home.check');
+Route::get('fa/recovery', [App\Http\Controllers\Admin\AdminBooksController::class, 'check'])->name('home.check');
 
 
 // admin routing

@@ -1,8 +1,18 @@
  <!-- main responsive top menu static start -->
  @php
+
+     $x = substr(Request::getPathInfo(), 3);
      $lang = substr(Request::getPathInfo(), 1, 2);
+     if ($lang == 'fa') {
+         $lang = 'en';
+         $link = $lang . $x;
+     } else {
+         $lang = 'fa';
+         $link = $lang . $x;
+     }
+
  @endphp
- <menu class="parent-responsive-menu">
+ {{-- <menu class="parent-responsive-menu">
 
      <div class="wrapper-responsive-menu">
          <!-- flag nav start -->
@@ -225,7 +235,263 @@
 
 
      <!-- end main menu  -->
+ </menu> --}}
+
+
+ <!-- main responsive top menu static start -->
+ <menu class="parent-responsive-menu">
+
+     <div class="wrapper-responsive-menu">
+         <!-- flag nav start -->
+
+
+         <div onClick="mFlag()" class="menu-flag menu-flag-show1">
+             <p style="display: inline-block">language
+                 <i class="fas fa-chevron-down"></i>
+             </p>
+             <div class="menu-flag2">
+                 <ul>
+
+                     @if ($lang == 'fa')
+                         <li><a href="/{{ $link }}">Fa</a><img
+                                 src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                         <hr>
+                         <li><a href="#">En</a><img src="{{ asset('frontend/imgs/eng-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                     @else
+                         <li><a href="#">Fa</a><img src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                         <hr>
+                         <li><a href="/{{ $link }}">En</a><img src="{{ asset('frontend/imgs/eng-flag.png') }}"
+                                 alt="">
+                             </a>
+                         </li>
+                     @endif
+                 </ul>
+
+
+             </div>
+
+
+         </div>
+
+
+
+
+
+         <!-- flag nav end -->
+         <!-- left nav start -->
+         <nav class="left-nav-responsive-menu">
+             <ul class="left-ul-responsive-menu">
+                 <li>
+                     <i class="far fa-comment-alt"></i>
+                 </li>
+                 <li>
+                     <i class="fas fa-shopping-cart"></i>
+                 </li>
+                 <button class="btn-responsive-menu">
+                     <i class="fas fa-bars"></i>
+
+                 </button>
+             </ul>
+
+
+         </nav>
+         <!-- left nav start -->
+     </div>
+
+     <!-- nav-flag-main-menu" end -->
+     <!-- start main menu  -->
+
+
+     <nav class="nav-main-menu">
+         <ul class="ul-main-menu">
+             <!-- nav-flag-main-menu" start -->
+
+             <!-- nav-flag-main-menu" end -->
+             <li>
+                 <a href="{{ route('home') }}">خانه</a>
+             </li>
+             <li>
+
+                 خدمات
+
+                 <i class="fa fa-chevron-down"></i>
+                 <!-- start wrapper-main-menu خدمات -->
+                 <ul class="wrapper-main-menu">
+                     <li>
+                         <a href="khadamat.html">توجیه طرح بر مبنای اقتصاد</a>
+                     </li>
+                     <li>
+                         <a href="khadamat.html">
+                             طراحی و شبیه سازی
+                         </a>
+                     </li>
+                     <li>
+                         <a href="khadamat.html">
+                             طرح توجیهی مجتمع های صنعتی
+                         </a>
+                     </li>
+
+                     <li>
+                         <a href="khadamat.html">
+                             بهینه سازی و مقاوم سازی
+                         </a>
+                     </li>
+                 </ul>
+                 <!-- end wrapper-main-menu خدمات -->
+             </li>
+             <li>
+
+                 تحقیق توسعه
+
+                 <i class="fa fa-chevron-down"></i>
+                 <!-- start wrapper-main-menu تحقیق توسعه-->
+                 <ul class="wrapper-main-menu">
+                     <li>
+                         <a href="amozesh.html">
+                             دوره اموزشی
+                         </a>
+                     </li>
+                     <li>
+                         <a href="article.html">
+                             پژوهش و نوآوری
+
+                         </a>
+                     </li>
+                     <li>
+                         <a href="article.html">
+                             تکنولوژی های نوین
+
+                         </a>
+                     </li>
+                     <li>
+                         <a href="article.html">
+                             کتابخانه الکترونیکی
+                         </a>
+                     </li>
+                 </ul>
+                 <!-- end wrapper-main-menu تحقیق توسعه-->
+             </li>
+             <li>
+                 دعوت به همکاری
+                 <i class="fa fa-chevron-down"></i>
+                 <!-- start wrapper-main-menu دعوت به همکاری-->
+                 <ul class="wrapper-main-menu">
+                     <li>
+                         <a href="Davatbehamkari.html">
+                             واحد سازه و پل
+                         </a>
+                     </li>
+                     <li>
+                         <a href="Davatbehamkari.html">
+                             طراحی و شبیه سازی
+                         </a>
+                     </li>
+                     <li>
+                         <a href="Davatbehamkari.html">
+                             واحد معماری و طراحی داخلی واحد اداری-مالی
+                         </a>
+                     </li>
+
+                     <li>
+                         <a href="Davatbehamkari.html">
+                             واحد بازاریابی و فروش
+                         </a>
+                     </li>
+                 </ul>
+                 <!-- end wrapper-main-menu دعوت به همکاری-->
+
+             </li>
+             <li><a href="Proje.html">پروژها</a></li>
+             <li><a href="tamasbama.html">تماس با ما</a></li>
+             <li><a href="TeamMa.html">درباره ما</a></li>
+
+         </ul>
+
+         <!--				mnue flag2 start-->
+         <div onClick="mFlag()" class="menu-flag menu-flag-show2">
+             <p style="display: inline-block">language
+                 <i class="fas fa-chevron-down"></i>
+             </p>
+             <div class="menu-flag2">
+                 <ul>
+
+                     @if ($lang == 'fa')
+                         <li><a href="/{{ $link }}">Fa</a><img
+                                 src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                         <hr>
+                         <li><a href="#">En</a><img src="{{ asset('frontend/imgs/eng-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                     @else
+                         <li><a href="#">Fa</a><img src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                         <hr>
+                         <li><a href="/{{ $link }}">En</a><img
+                                 src="{{ asset('frontend/imgs/eng-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                     @endif
+                 </ul>
+             </div>
+         </div>
+     </nav>
+
+
+
+
+
+
+
+
+
+
+
+     <!-- start icon main -->
+     <nav class="nav-icon-main">
+         <ul class="ul-icon-main">
+             <li>
+                 <a href="#">
+                     <i class="fas fa-comment"></i>
+                 </a>
+             </li>
+             <li>
+                 <a href="#">
+                     <i class="fa fa-shopping-cart"></i>
+                 </a>
+             </li>
+             <li>
+                 <a href="#">
+                     <i class="fas fa-user"></i>
+                 </a>
+                 <ul class="wrapper-user-icon">
+                     <li class="setting-menu">
+                         <p>تنظیمات</p>
+                         <i class="fas fa-cog"></i>
+
+                     </li>
+                     <li class="settingg-menu">
+                         <p>خروج</p>
+                         <i class="fas fa-power-off"></i>
+                     </li>
+                 </ul>
+             </li>
+         </ul>
+     </nav>
+     <!-- end icon main -->
+
+
+     <!-- end main menu  -->
  </menu>
+ <!-- main responsive  menu static end -->
  <!-- main responsive  menu static end -->
 
 
@@ -239,7 +505,7 @@
                  <i class="fa fa-home"></i>
 
 
-                 <a href="homepage.html">
+                 <a href="{{ route('home') }}">
                      خانه
                  </a>
              </div>
