@@ -213,4 +213,5 @@ return [
     "choose-favorite-course" => "انتخاب دوره مورد علاقه شما",
     "fast-login" => "ثبت نام سریع و ورود به سایت",
     "sign-course" => "ثبت سفارش",
+    "contact-suppot" => "لطفا با پشتیبانی تماس بگیرید",
 ];

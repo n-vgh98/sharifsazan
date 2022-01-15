@@ -48,6 +48,7 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     Route::prefix('panel')->middleware("auth")->group(function () {
         route::get("/", [UserPanelController::class, "index"])->name("panel.index");
         route::post("/updatePassword", [UserPanelController::class, "updatePassword"])->name("panel.updatePassword");
+        route::post("/updateInformation", [UserPanelController::class, "updateInformation"])->name("panel.updateInformation");
     });
 
     route::get("/", [HomeController::class, "index"])->name("home");

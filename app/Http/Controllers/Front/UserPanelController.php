@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -30,6 +31,27 @@ class UserPanelController extends Controller
             $user->password = Hash::make($request->passowrd);
             $user->save();
             return redirect()->back()->with("success", (__("translation.password-change-confirm")));
+        }
+    }
+
+
+    public function updateInformation(Request $request)
+    {
+        if (Auth::check()) {
+            $user = User::findorfail(auth()->user()->id);
+            if ($request->name != null) {
+                $user->name = $request->name;
+            } elseif ($request->email != null) {
+                $user->email = $request->email;
+            } elseif ($request->phone_number != null) {
+                $user->phone_number = $request->phone_number;
+            } elseif ($request->gender != null) {
+                $user->phone_number = $request->gender;
+            }
+            $user->save();
+            return redirect()->back()->with("success", __("translation.detail-change-confirm"));
+        } else {
+            return redirect()->back()->with("fail", __("translation.detail-change-confirm"));
         }
     }
 

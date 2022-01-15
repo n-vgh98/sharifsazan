@@ -181,11 +181,5 @@ return [
     "choose-favorite-course" => "choose your favorit course",
     "fast-login" => "login into your account",
     "sign-course" => "participate",
-
-
-
-
-
-
-
+    "contact-suppot" => "Please Contact Support",
 ];

@@ -46,30 +46,40 @@
 
                 <section class="parent-virayesh-etelaat-panel" id="parent-breadcrumb-section-virayesh">
                     <p>ویرایش مشخصات</p>
-                    <form class="grid-virayesh-etelaat">
+                    <form class="grid-virayesh-etelaat" action="{{ route('panel.updateInformation') }}" method="POST">
+                        @csrf
                         <div class="div-box1-virayesh-panel">
-                            <input type="text" placeholder="نام">
-                            <input type="text" placeholder="نام خانوادگی">
-                            <input type="number" placeholder="شماره تماس">
+                            <input type="text" placeholder="نام" name="name" value="{{ auth()->user()->name }}">
+                            <input type="number" name="phone_number" value="{{ auth()->user()->phone_number }}"
+                                placeholder="شماره تماس">
                         </div>
                         <div class="div-box2-virayesh-panel">
                             <div class="jensiate-panel">
                                 <label>جنسیت:</label>
                                 <br>
-                                <input type="radio" id="women" name="sex" value="women">
-                                <label for="women">خانم</label>
-                                <input type="radio" id="men" name="sex" value="men">
-                                <label for="men">آقا</label>
+                                @if (auth()->user()->gender == 0)
+                                    <input type="radio" id="women" name="sex" value="0">
+                                    <label for="women">خانم</label>
+                                    <input checked type="radio" id="men" name="sex" value="1">
+                                    <label for="men">آقا</label>
+                                @else
+                                    <input checked type="radio" id="women" name="sex" value="0">
+                                    <label for="women">خانم</label>
+                                    <input type="radio" id="men" name="sex" value="1">
+                                    <label for="men">آقا</label>
+                                @endif
+
                             </div>
 
-                            <input type="email" placeholder="ایمیل" class="email-virayesh-panel">
+                            <input type="email" name="email" value="{{ auth()->user()->email }}" placeholder="ایمیل"
+                                class="email-virayesh-panel">
                         </div>
 
-
+                        <div class="parent-btn-virayeshe-etelaat">
+                            <button type="submit" class="btn-virayesh-etelaat-panel"> ثبت</button>
+                        </div>
                     </form>
-                    <div class="parent-btn-virayeshe-etelaat">
-                        <button class="btn-virayesh-etelaat-panel"> ثبت</button>
-                    </div>
+
                 </section>
 
 
@@ -115,8 +125,10 @@
 
             <div class="parent-btn-panel">
                 <button class="btn-change-password-panel" id="btn-change-password-panel">تغییر رمز عبور</button>
-                <button class="btn-exit-panel"><a href="#">خروج</a></button>
-
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn-exit-panel"><a href="#">خروج</a></button>
+                </form>
             </div>
 
             <nav class="parent-menu-panel">
