@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\Contact_Us;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UserContactUsController extends Controller
 {
@@ -37,10 +38,17 @@ class UserContactUsController extends Controller
     public function store(Request $request)
     {
         $contact_us = new Contact_Us();
-        $contact_us->name=$request->name;
-        $contact_us->email=$request->email;
-        $contact_us->text=$request->text;
-        
+        $contact_us->name = $request->name;
+        $contact_us->email = $request->email;
+        $contact_us->text = $request->text;
+        // saving file
+        if ($request->file !== null) {
+            $imagename = time() . "." . $request->file->extension();
+            $request->file->move(public_path("photos/files/"), $imagename);
+            $contact_us->file_path = "photos/files/$imagename";
+        }
+        $contact_us->save();
+        return redirect()->back()->with("success", __("translation.contact-done"));
     }
 
     /**

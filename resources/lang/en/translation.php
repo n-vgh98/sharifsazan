@@ -182,4 +182,6 @@ return [
     "fast-login" => "login into your account",
     "sign-course" => "participate",
     "contact-suppot" => "Please Contact Support",
+    "contact-done" => "Your Message Sent Successfully We Will Contact you ASAP",
+
 ];

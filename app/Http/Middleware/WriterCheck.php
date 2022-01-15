@@ -27,7 +27,7 @@ class WriterCheck
         if (in_array("writer", $roles) || in_array("admin", $roles)) {
             return $next($request);
         } else {
-            return redirect()->route("home.index");
+            return redirect()->route("home");
         }
     }
 }

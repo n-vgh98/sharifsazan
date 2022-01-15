@@ -8,14 +8,16 @@
             <div class="background-col1-call">
                 <div class="title-call"><b> ارسال نظرات</b></div>
                 <div class="parent-form">
-                    <form class="form-nazarat-call" action="#">
-                        <input type="text" name="name" placeholder="نام و نام خانوادگی"
+                    <form class="form-nazarat-call" action="{{ route('contactus.store') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="name" required placeholder="نام و نام خانوادگی"
                             onkeypress="return /[a-z -'']/i.test(event.key)" class="tinp">
-                        <input type="" name="email" placeholder=" ایمبل  " class="tinp">
-                        <textarea name="text" placeholder="شرح درخواست" class="tinp"></textarea>
-                        <input type="file" placeholder="بارگذاری فایل" class="tinp">
+                        <input type="" name="email" required placeholder=" ایمبل  " class="tinp">
+                        <textarea name="text" required placeholder="شرح درخواست" class="tinp"></textarea>
+                        <input name="file" type="file" placeholder="بارگذاری فایل" class="tinp">
                         <div class="btn-call">
-                            <button> ثبت</button>
+                            <button type="submit"> ثبت</button>
                         </div>
                     </form>
 

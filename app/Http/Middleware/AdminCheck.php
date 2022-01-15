@@ -27,7 +27,7 @@ class AdminCheck
         if (in_array("admin", $roles)) {
             return $next($request);
         } else {
-            return redirect()->route("home.index");
+            return redirect()->route("home");
         }
     }
 }
