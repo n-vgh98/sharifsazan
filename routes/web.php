@@ -72,7 +72,7 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     // routing for user articl categories
     Route::prefix('article_categories')->group(function () {
         route::get("/{id}", [UserArticleController::class, "index"])->name("article.category.index");
-        route::get("/show/{id}", [UserArticleController::class, "all"])->name("article.category.show");
+        route::get("/show/{id}", [UserArticleController::class, "show"])->name("article.category.show");
     });
 });
 

@@ -1,243 +1,59 @@
-@extends('user.layouts.blade')
-@secttion("content")
-<section>
-    <div class="moshakhasat-header-photo-parent">
-        <figure>
-            <img src="imgs/architecture-g92e1743c5_1920[1] 1 (1).png">
-        </figure>
-    </div>
-    <div class="title-khadamat-page">
+@extends('user.layouts.master')
+@section('content')
+    <section class="khadamat-main-section">
+
         <div>
-            <h1> مشخصات پروژه ...</h1>
+            <figure class="khadamat-img-section">
+                <img src="{{ asset($article->images->path) }}" alt="{{ asset($article->images->alt) }}"
+                    title="{{ asset($article->images->name) }}">
+            </figure>
         </div>
-    </div>
-    <section class="parent-article-moshakhasat">
-        <section>
-            <article>
-
-                <div class="title-article-moshakhasat">
-                    <h2>استوری پروژه</h2>
-                </div>
-                <div class="article-moshakhasat">
-                    <p>
-                        صفحه‌آرایی و
-                        طراحی گرافیک گفته
-                        می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه
-                        اولیه شکل
-                        ظاهری و کلی طرح سفارش
-                        گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن
-                        باشد.
-                        معمولا طراحان گرافیک برای
-                        صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب
-                        کار خود
-                        نشان
-                        دهند که صفحه طراحی
-                        کلی طرح سفارش
-                        گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن
-                        باشد.
-                        معمولا طراحان گرافیک برای
-                        صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب
-                        کار خود
-                        نشان
-                        دهند که صفحه طراحی
-                        کلی طرح سفارش
-                        گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن
-                        باشد.
-                        معمولا طراحان گرافیک برای
-                        صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب
-                        کار خود
-                        نشان
-                        دهند که صفحه طراحی
-
-                        صفحه‌آرایی و
-                        طراحی گرافیک گفته
-                        می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه
-                        اولیه شکل
-                        ظاهری و کلی طرح سفارش
-                        صفحه‌آرایی و
-                        طراحی گرافیک گفته
-                        می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه
-                        اولیه شکل
-                        ظاهری و کلی طرح سفارش
-                        صفحه‌آرایی و
-                        طراحی گرافیک گفته
-                        می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه
-                        اولیه شکل
-                        ظاهری و کلی طرح سفارش
-                        گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن
-                        باشد.
-                        معمولا طراحان گرافیک برای
-                        صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب
-                        کار خود
-                        نشان
-                        دهند که صفحه طراحی
-                        یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه یا صفحه بندی شده بعد از اینکه
-                        متن در آن قرار گیرد چگونه</p>
-                </div>
-            </article>
-
-        </section>
-        <section class="title-article-moshakhasat">
-
-            <div class="examples-project-main">
-
-                <h3 class="project-title-h2">تصاویر اجرایی</h3>
-                <section class="examples-project-full">
-
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                </section>
-            </div>
-
-            <div class="examples-project-main">
-
-                <h3 class="project-title-h2">فضایی بیرونی</h3>
-                <section class="examples-project-full">
-
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                </section>
-            </div>
-
-            <!--			  just 3-->
-            <div class="examples-project-main">
-
-                <h3 class="project-title-h2">پروژه های مشابه</h3>
-                <section class="examples-project-full2">
-
-                    <a href="#">
-                        <div class="examples-project-item2">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item2">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item2">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
-                                شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                </section>
-            </div>
-
-        </section>
-
-        <div class="leftbox-moshakhasatdore">
+        <div class="title-khadamat-page">
             <div>
-                <p class="big-p">مشخصات پروژه</p>
-                <p>نام پروژه :</p>
-                <p>نوع پروژه : مجتمع مسکونی</p>
-                <p>سال طراحی : 1390</p>
-                <p>تعداد طبقه : 18</p>
-                <p>مکان: تهران</p>
-                <p>نام مشتری : اقای کوزه کنانی</p>
-                <p>&nbsp;مساحت: 640 متر مربع</p>
+                <h1> {{ $article->title }}</h1>
+            </div>
+        </div>
+        <section class="khadamat-article-nav">
+            <div class="khadamat-parent-article">
+                <div>
+                    <h2>{{ $article->title }}</h2>
+                    <article>{!! $article->text !!}</article>
+                </div>
             </div>
 
+            <div class="khadamat-parent-box-left">
+                <div class="khadamat-box-left">
+                    <div>
+                        <form class="khadamat-form-search-box" action="">
+                            <div class="khadamat-box-search">
+                                <i class="fa fa-search " aria-hidden="true"></i>
+                            </div>
+                            <div class="khadamat-form-search-box-input">
+                                <input type="search" name="" id="" placeholder="جستجو">
+                            </div>
+                        </form>
+                    </div>
+                    <nav class="khadamat-searchbox-nav">
+                        @foreach ($article->category->articles as $article1)
+                            <div class="khadamat-toggle">
+                                <a href="{{ route('article.category.show', $article->id) }}">{{ $article->title }}</a>
+                            </div>
+                        @endforeach
+                    </nav>
+                </div>
+            </div>
+        </section>
 
 
-
-
-        </div>
-
-
+        <!-- END SECION KHADAMAT -->
     </section>
-</section>
+    <!-- arrow function  -->
+    <div class="arrow-function-scroll ">
+        <a href="#go-to-top">
+            <span>
+                <i class="fa fa-angle-double-up"></i>
+            </span>
+        </a>
+
+    </div>
 @endsection

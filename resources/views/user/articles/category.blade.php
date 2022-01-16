@@ -41,7 +41,7 @@
                         @if ($i < 3)
 
 
-                            <a href="{{ route('article.category.show') }}">
+                            <a href="{{ route('article.category.show', $article->id) }}">
                                 <div class="examples-project-item">
 
                                     <img src="{{ asset($article->images->path) }}" alt="">
@@ -66,7 +66,7 @@
                 <section class="examples-project-full">
 
                     @foreach ($category->articles as $article)
-                        <a href="{{ route('article.category.show') }}">
+                        <a href="{{ route('article.category.show', $article->id) }}">
                             <div class="examples-project-item">
 
                                 <img src="{{ asset($article->images->path) }}" alt="">

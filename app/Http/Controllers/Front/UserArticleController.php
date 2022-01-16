@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Models\Lang;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\ArticleCategory;
 
 class UserArticleController extends Controller
@@ -49,9 +50,11 @@ class UserArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($lang, $id)
     {
-        //
+
+        $article = Article::findorfail($id);
+        return view("user.articles.show", compact("article"));
     }
 
     /**
