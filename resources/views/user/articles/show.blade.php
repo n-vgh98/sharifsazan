@@ -1,94 +1,87 @@
-@extends('user.layouts.master')
-@section('content')
-    <section class="parent-breadcrumb-section parent-article-breadcrumb-section">
-        <div class="breadcrumb-section">
-            <ul id="breadcrumbs">
-                <li><a href="#">خانه</a></li>
-                <li>
-                    <a href="#">دعوت به همکاری</a>
-                </li>
-                <li><a href="#"> آزمون فنی </a></li>
-            </ul>
+@extends('user.layouts.blade')
+@secttion("content")
+<section>
+    <div class="moshakhasat-header-photo-parent">
+        <figure>
+            <img src="imgs/architecture-g92e1743c5_1920[1] 1 (1).png">
+        </figure>
+    </div>
+    <div class="title-khadamat-page">
+        <div>
+            <h1> مشخصات پروژه ...</h1>
         </div>
-    </section>
-    <!-- end breadcrumb -->
-    <h1 class="project-title-h1">نمونه پروژه های طراحی سایت</h1>
+    </div>
+    <section class="parent-article-moshakhasat">
+        <section>
+            <article>
 
-    <section class="right-article-wrapper-full">
-
-        <div class="question-project">
-            <p>عنوان توضیحات کلی در مورد سایت ها</p>
-            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-        </div>
-        <div class="divShowForm">
-
-            <button class="buttonShowForm">نمایش فیلتر ها</button>
-
-        </div>
-        <form id="formID">
-            <fieldset>
-                <legend>فیلتر پروژه ها</legend>
-
-                <div class="div-filter-projects">
-
-                    <div>
-                        <lable><span class="big-p">نوع</span></lable>
-                        <br>
-                        <input type="checkbox">
-                        <lable>مجتمع ساختمانی</lable><br>
-                        <input type="checkbox">
-                        <lable>مجتمع صنعتی</lable><br>
-                        <input type="checkbox">
-                        <lable>پل و نقاطع غیر مسطح</lable>
-
-                    </div>
-                    <div>
-                        <lable><span class="big-p">مفهومی</span></lable>
-                        <br>
-                        <input type="checkbox">
-                        <lable>تکمیل شده</lable><br>
-                        <input type="checkbox">
-                        <lable>در حال پیشرفت</lable><br>
-
-                    </div>
-                    <div>
-                        <lable><span class="big-p">مرتب سازی</span></lable>
-                        <br>
-                        <input type="checkbox">
-                        <lable>پیش فرض</lable><br>
-                        <input type="checkbox">
-                        <lable>مقیاس و منطقه</lable><br>
-                        <input type="checkbox">
-                        <lable>سال</lable><br>
-                        <input type="checkbox">
-                        <lable>متراژ پروژه</lable><br>
-                        <input type="checkbox">
-                        <lable>ارتفاع</lable>
-
-                    </div>
+                <div class="title-article-moshakhasat">
+                    <h2>استوری پروژه</h2>
                 </div>
+                <div class="article-moshakhasat">
+                    <p>
+                        صفحه‌آرایی و
+                        طراحی گرافیک گفته
+                        می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه
+                        اولیه شکل
+                        ظاهری و کلی طرح سفارش
+                        گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن
+                        باشد.
+                        معمولا طراحان گرافیک برای
+                        صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب
+                        کار خود
+                        نشان
+                        دهند که صفحه طراحی
+                        کلی طرح سفارش
+                        گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن
+                        باشد.
+                        معمولا طراحان گرافیک برای
+                        صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب
+                        کار خود
+                        نشان
+                        دهند که صفحه طراحی
+                        کلی طرح سفارش
+                        گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن
+                        باشد.
+                        معمولا طراحان گرافیک برای
+                        صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب
+                        کار خود
+                        نشان
+                        دهند که صفحه طراحی
 
-                <div class="submit-div">
-                    <input type="submit" value="اعمال فیلتر ها">
+                        صفحه‌آرایی و
+                        طراحی گرافیک گفته
+                        می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه
+                        اولیه شکل
+                        ظاهری و کلی طرح سفارش
+                        صفحه‌آرایی و
+                        طراحی گرافیک گفته
+                        می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه
+                        اولیه شکل
+                        ظاهری و کلی طرح سفارش
+                        صفحه‌آرایی و
+                        طراحی گرافیک گفته
+                        می‌شود. طراح گرافیک از این متن به عنوان عنصری از ترکیب بندی برای پر کردن صفحه و ارایه
+                        اولیه شکل
+                        ظاهری و کلی طرح سفارش
+                        گرفته شده استفاده می نماید، تا از نظر گرافیکی نشانگر چگونگی نوع و اندازه فونت و ظاهر متن
+                        باشد.
+                        معمولا طراحان گرافیک برای
+                        صفحه‌آرایی، نخست از متن‌های آزمایشی و بی‌معنی استفاده می‌کنند تا صرفا به مشتری یا صاحب
+                        کار خود
+                        نشان
+                        دهند که صفحه طراحی
+                        یا صفحه بندی شده بعد از اینکه متن در آن قرار گیرد چگونه یا صفحه بندی شده بعد از اینکه
+                        متن در آن قرار گیرد چگونه</p>
                 </div>
+            </article>
 
-            </fieldset>
-        </form>
+        </section>
+        <section class="title-article-moshakhasat">
 
-
-
-
-
-        <section class="article-text-wrapper">
-
-
-
-
-            <!--                           examples project-demo first start                  -->
             <div class="examples-project-main">
 
-                <h2 class="project-title-h2">پروژه ها</h2>
+                <h3 class="project-title-h2">تصاویر اجرایی</h3>
                 <section class="examples-project-full">
 
                     <a href="#">
@@ -96,7 +89,8 @@
 
                             <img src="imgs/b32.png" alt="">
                             <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
                                 کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
 
                         </div>
@@ -106,7 +100,8 @@
 
                             <img src="imgs/b32.png" alt="">
                             <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
                                 کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
                         </div>
                     </a>
@@ -115,7 +110,8 @@
 
                             <img src="imgs/b32.png" alt="">
                             <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
                                 کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
                         </div>
                     </a>
@@ -124,18 +120,17 @@
 
                             <img src="imgs/b32.png" alt="">
                             <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
                                 کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
                         </div>
                     </a>
                 </section>
             </div>
-            <!--                           examples project-demo first start                  -->
 
-            <!--                           examples project-demo second start                  -->
             <div class="examples-project-main">
 
-                <h3 class="project-title-h2">جدید ترین پروژه ها</h3>
+                <h3 class="project-title-h2">فضایی بیرونی</h3>
                 <section class="examples-project-full">
 
                     <a href="#">
@@ -143,7 +138,19 @@
 
                             <img src="imgs/b32.png" alt="">
                             <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="examples-project-item">
+
+                            <img src="imgs/b32.png" alt="">
+                            <p>عنوان</p>
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
                                 کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
                         </div>
                     </a>
@@ -152,7 +159,8 @@
 
                             <img src="imgs/b32.png" alt="">
                             <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
                                 کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
                         </div>
                     </a>
@@ -161,23 +169,75 @@
 
                             <img src="imgs/b32.png" alt="">
                             <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
                                 کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
                         </div>
                     </a>
                 </section>
             </div>
-            <!--                           examples project-demo second end                  -->
+
+            <!--			  just 3-->
+            <div class="examples-project-main">
+
+                <h3 class="project-title-h2">پروژه های مشابه</h3>
+                <section class="examples-project-full2">
+
+                    <a href="#">
+                        <div class="examples-project-item2">
+
+                            <img src="imgs/b32.png" alt="">
+                            <p>عنوان</p>
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="examples-project-item2">
+
+                            <img src="imgs/b32.png" alt="">
+                            <p>عنوان</p>
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="examples-project-item2">
+
+                            <img src="imgs/b32.png" alt="">
+                            <p>عنوان</p>
+                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می
+                                شود
+                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+                        </div>
+                    </a>
+                </section>
+            </div>
+
         </section>
 
+        <div class="leftbox-moshakhasatdore">
+            <div>
+                <p class="big-p">مشخصات پروژه</p>
+                <p>نام پروژه :</p>
+                <p>نوع پروژه : مجتمع مسکونی</p>
+                <p>سال طراحی : 1390</p>
+                <p>تعداد طبقه : 18</p>
+                <p>مکان: تهران</p>
+                <p>نام مشتری : اقای کوزه کنانی</p>
+                <p>&nbsp;مساحت: 640 متر مربع</p>
+            </div>
+
+
+
+
+
+        </div>
+
+
     </section>
+</section>
 @endsection
