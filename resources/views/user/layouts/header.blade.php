@@ -18,39 +18,39 @@
                  <i class="fas fa-chevron-down"></i>
              </p>
              <div class="menu-flag2">
-                <ul>
+                 <ul>
 
-                    @php
-                        $lang = substr(Request::getPathInfo(), 1, 2);
-                        if ($lang == 'fa') {
-                            $lang = 'en';
-                            $link = $lang . $x;
-                        } else {
-                            $lang = 'fa';
-                            $link = $lang . $x;
-                        }
-                    @endphp
+                     @php
+                         $lang = substr(Request::getPathInfo(), 1, 2);
+                         if ($lang == 'fa') {
+                             $lang = 'en';
+                             $link = $lang . $x;
+                         } else {
+                             $lang = 'fa';
+                             $link = $lang . $x;
+                         }
+                     @endphp
 
-                    @if ($lang == 'en')
-                        <li><a href="#">Fa</a><img src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
-                            </a>
-                        </li>
-                        <hr>
-                        <li><a href="/{{ $link }}">En</a><img
-                                src="{{ asset('frontend/imgs/eng-flag.png') }}" alt="">
-                            </a>
-                        </li>
-                    @else
-                        <li><a href="/{{ $link }}">Fa</a><img
-                                src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
-                            </a>
-                        </li>
-                        <hr>
-                        <li><a href="#">En</a><img src="{{ asset('frontend/imgs/eng-flag.png') }}" alt="">
-                            </a>
-                        </li>
-                    @endif
-                </ul>
+                     @if ($lang == 'en')
+                         <li><a href="#">Fa</a><img src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                         <hr>
+                         <li><a href="/{{ $link }}">En</a><img src="{{ asset('frontend/imgs/eng-flag.png') }}"
+                                 alt="">
+                             </a>
+                         </li>
+                     @else
+                         <li><a href="/{{ $link }}">Fa</a><img
+                                 src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                         <hr>
+                         <li><a href="#">En</a><img src="{{ asset('frontend/imgs/eng-flag.png') }}" alt="">
+                             </a>
+                         </li>
+                     @endif
+                 </ul>
 
 
              </div>
@@ -146,7 +146,7 @@
                              $articleCategory = $articleCategoryLanguage->langable;
                          @endphp
                          <li>
-                             <a href="#">
+                             <a href="{{ route('article.category.index', $articleCategory->id) }}">
                                  {{ $articleCategory->title }}
 
                              </a>

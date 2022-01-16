@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Front\UserArticleController;
 use App\Http\Controllers\Front\UserBooksController;
 use App\Http\Controllers\Front\UserContactUsController;
 use App\Http\Controllers\Front\UserPanelController;
@@ -53,6 +54,10 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::post("/updateInformation", [UserPanelController::class, "updateInformation"])->name("panel.updateInformation");
     });
 
+
+
+    route::get("/", [HomeController::class, "index"])->name("home");
+
     // routing for user contactus
     Route::prefix('contact_us')->group(function () {
         route::get("/", [UserContactUsController::class, "index"])->name("contactus.index");
@@ -64,7 +69,11 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::get("/", [UserBooksController::class, "index"])->name("bookshelf.index");
     });
 
-    route::get("/", [HomeController::class, "index"])->name("home");
+    // routing for user articl categories
+    Route::prefix('article_categories')->group(function () {
+        route::get("/{id}", [UserArticleController::class, "index"])->name("article.category.index");
+        route::get("/show/{id}", [UserArticleController::class, "all"])->name("article.category.show");
+    });
 });
 
 

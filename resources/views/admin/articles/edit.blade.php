@@ -47,13 +47,13 @@
 
         <div style="margin-top: 25px;">
             <label for="image_name">image name</label>
-            <input type="text" value="{{ $article->images[0]->name }}" name="image_name" id="image_name" required
+            <input type="text" value="{{ $article->images->name }}" name="image_name" id="image_name" required
                 class="form-control">
         </div>
 
         <div style="margin-top: 25px;">
             <label for="image_alt">image alt</label>
-            <input type="text" value="{{ $article->images[0]->alt }}" name="alt" id="alt" required class="form-control">
+            <input type="text" value="{{ $article->images->alt }}" name="alt" id="alt" required class="form-control">
         </div>
 
 
@@ -93,7 +93,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="{{ asset($article->images[0]->path) }}" alt="" style="height: 500px; width:500px;">
+                    <img src="{{ asset($article->images->path) }}" alt="" style="height: 500px; width:500px;">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>

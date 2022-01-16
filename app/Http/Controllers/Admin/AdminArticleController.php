@@ -152,7 +152,7 @@ class AdminArticleController extends Controller
         // update image
         if ($request->image !== null) {
             $category = ArticleCategory::find($request->category_id)->first();
-            $image = Image::find($article->images[0]->id);
+            $image = Image::find($article->images->id);
             File::delete($image->path);
             $imagename = time() . "." . $request->image->extension();
             $filename = $article->title . "." . $category->id;
@@ -178,8 +178,8 @@ class AdminArticleController extends Controller
     {
 
         $article = Article::find($id);
-        File::delete($article->images[0]->path);
-        $path = pathinfo($article->images[0]->path)["dirname"];
+        File::delete($article->images->path);
+        $path = pathinfo($article->images->path)["dirname"];
         rmdir($path);
         $article->images()->delete();
         $article->delete();
