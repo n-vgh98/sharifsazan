@@ -67,7 +67,8 @@
          <nav class="left-nav-responsive-menu">
              <ul class="left-ul-responsive-menu">
                  <li>
-                     <i class="far fa-comment-alt"></i>
+                     <a href="{{ route('user.notifications.all') }}"><i class="far fa-comment-alt"></i></a>
+
                  </li>
                  <li>
                      <i class="fas fa-shopping-cart"></i>
@@ -289,7 +290,7 @@
      <nav class="nav-icon-main">
          <ul class="ul-icon-main">
              <li>
-                 <a href="#">
+                 <a href="{{ route('user.notifications.all') }}">
                      <i class="fas fa-comment"></i>
                  </a>
              </li>
