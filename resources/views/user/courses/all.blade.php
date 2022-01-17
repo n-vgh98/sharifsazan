@@ -33,7 +33,8 @@
             <button class="buttonShowForm">نمایش فیلتر ها</button>
 
         </div>
-        <form id="formID">
+        <form id="formID" action="{{ route('front.courses.search') }}" method="post">
+            @csrf
             <fieldset>
                 <legend>فیلتر پروژه ها</legend>
 
@@ -42,12 +43,12 @@
                     <div>
                         <lable><span class="big-p">نوع دوره</span></lable>
                         <br>
-                        <input type="checkbox">
+                        <input name="online" type="checkbox">
                         <lable>دوره های آنلاین</lable><br>
-                        <input type="checkbox">
+                        <input name="offline" type="checkbox">
                         <lable>دوره های آفلاین</lable><br>
-                        <input type="checkbox">
-                        <lable>محبوب ترین ها</lable>
+                        <input name="free" type="checkbox">
+                        <lable>دوره های رایگان</lable>
 
                     </div>
                 </div>
@@ -83,12 +84,10 @@
                         @if ($i < 3)
                             <a href="{{ route('front.courses.show', $course->id) }}">
                                 <div class="examples-project-item">
-
                                     <img src="{{ asset($course->images->path) }}" alt="{{ $course->images->alt }}"
                                         title="{{ $course->images->name }}">
                                     <p>{{ $course->title }}</p>
                                     <p>{!! \Illuminate\Support\Str::limit($course->introduction, '50') !!}</p>
-
                                 </div>
                             </a>
                         @endif
@@ -103,85 +102,22 @@
             <!--                           examples project-demo second start                  -->
             <div class="examples-project-main">
 
-                <h3 class="project-title-h2">محبوب ترین ها</h3>
-                <section class="examples-project-full">
-
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                </section>
                 <h3 class="project-title-h2">همه آموزش ها</h3>
                 <section class="examples-project-full">
 
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="examples-project-item">
-
-                            <img src="imgs/b32.png" alt="">
-                            <p>عنوان</p>
-                            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                        </div>
-                    </a>
+                    @foreach ($languages as $language)
+                        @php
+                            $course = $language->langable;
+                        @endphp
+                        <a href="{{ route('front.courses.show', $course->id) }}">
+                            <div class="examples-project-item">
+                                <img src="{{ asset($course->images->path) }}" alt="{{ $course->images->alt }}"
+                                    title="{{ $course->images->name }}">
+                                <p>{{ $course->title }}</p>
+                                <p>{!! \Illuminate\Support\Str::limit($course->introduction, '50') !!}</p>
+                            </div>
+                        </a>
+                    @endforeach
                 </section>
             </div>
             <!--                           examples project-demo second end                  -->
