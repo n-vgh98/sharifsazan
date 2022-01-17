@@ -34,7 +34,7 @@
             <!--                           examples project-demo first start                  -->
             <div class="examples-project-main">
 
-                <h2 class="project-title-h2">پروژه ها</h2>
+                <h2 class="project-title-h2">مقالات</h2>
                 <section class="examples-project-full">
 
                     @foreach ($category->articles as $article)
@@ -44,7 +44,8 @@
                             <a href="{{ route('article.category.show', $article->id) }}">
                                 <div class="examples-project-item">
 
-                                    <img src="{{ asset($article->images->path) }}" alt="">
+                                    <img src="{{ asset($article->images->path) }}" alt="{{ $article->images->alt }}"
+                                        title="{{ $article->images->name }}">
                                     <p>{{ $article->title }}</p>
                                     <p>{!! \Illuminate\Support\Str::limit($article->text, '130') !!}</p>
 
@@ -69,7 +70,8 @@
                         <a href="{{ route('article.category.show', $article->id) }}">
                             <div class="examples-project-item">
 
-                                <img src="{{ asset($article->images->path) }}" alt="">
+                                <img src="{{ asset($article->images->path) }}" alt="{{ $article->images->alt }}"
+                                    title="{{ $article->images->name }}">
                                 <p>{{ $article->title }}</p>
                                 <p>{!! \Illuminate\Support\Str::limit($article->text, '130') !!}</p>
 

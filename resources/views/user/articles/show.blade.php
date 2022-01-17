@@ -2,10 +2,11 @@
 @section('content')
     <section class="khadamat-main-section">
 
+
         <div>
             <figure class="khadamat-img-section">
-                <img src="{{ asset($article->images->path) }}" alt="{{ asset($article->images->alt) }}"
-                    title="{{ asset($article->images->name) }}">
+                <img src="{{ asset($article->images->path) }}" alt="{{ $article->images->alt }}"
+                    title="{{ $article->images->name }}">
             </figure>
         </div>
         <div class="title-khadamat-page">
