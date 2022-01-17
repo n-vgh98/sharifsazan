@@ -74,6 +74,28 @@
                 </ul>
             </li>
             {{-- notifications --}}
+
+            {{-- Start services --}}
+            <li class="header"> خدمات </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>خدمات</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.services.index','fa') }}"><i
+                                class="fa fa-circle-o"></i> محتوای اصلی خدمات</a></li>
+
+                </ul>
+
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.services.category.index','fa') }}"><i
+                                class="fa fa-circle-o"></i>دسته بندی خدمات</a></li>
+                </ul>
+
+            </li>
+
+            {{-- End Services --}}
+
             {{-- amoozesh --}}
             <li class="header">تحقیق و توسعه</li>
             <li class="treeview">
@@ -127,7 +149,7 @@
             </li>
             {{-- end of articels --}}
 
-
+           
             {{-- invite to coaperate --}}
             <li class="header">دعوت به همکاری</li>
             <li class="treeview">

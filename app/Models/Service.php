@@ -18,4 +18,8 @@ class Service extends Model
     {
         return $this->morphOne("App\Models\Image", "imageable");
     }
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }

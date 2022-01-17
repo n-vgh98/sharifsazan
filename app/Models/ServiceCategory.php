@@ -14,4 +14,8 @@ class ServiceCategory extends Model
     {
         return $this->hasOne(Service::class);
     }
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }
