@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdminArticleCategoryController;
 use App\Http\Controllers\Front\UserArticleController;
 use App\Http\Controllers\Front\UserBooksController;
 use App\Http\Controllers\Front\UserContactUsController;
+use App\Http\Controllers\Front\UserNotificiationsController;
 use App\Http\Controllers\Front\UserPanelController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterArticleCategoryController;
@@ -67,6 +68,11 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     // routing for user books
     Route::prefix('bookshelf')->group(function () {
         route::get("/", [UserBooksController::class, "index"])->name("bookshelf.index");
+    });
+
+    // routing for user notifications
+    Route::prefix('notification')->group(function () {
+        route::get("/", [UserNotificiationsController::class, "index"])->name("user.notifications.all");
     });
 
     // routing for user articl categories
