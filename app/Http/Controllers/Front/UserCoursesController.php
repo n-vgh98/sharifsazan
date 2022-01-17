@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
+use App\Models\Lang;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UserCoursesController extends Controller
 {
@@ -12,9 +13,11 @@ class UserCoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $lang = substr($request->getPathInfo(), 1, 2);
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", $lang]])->get();
+        return view("user.courses.all", compact("languages"));
     }
 
     /**

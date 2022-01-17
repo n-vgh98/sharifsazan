@@ -12,7 +12,7 @@ class Course extends Model
     // polymorphic relation to image table
     public function images()
     {
-        return $this->morphMany("App\Models\Image", "imageable");
+        return $this->morphOne("App\Models\Image", "imageable");
     }
     public function language()
     {

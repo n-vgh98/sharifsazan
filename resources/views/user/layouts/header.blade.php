@@ -133,7 +133,7 @@
                  <!-- start wrapper-main-menu تحقیق توسعه-->
                  <ul class="wrapper-main-menu">
                      <li>
-                         <a href="{{ route('user.courses.all') }}">
+                         <a href="{{ route('front.courses.all') }}">
                              دوره آموزشی
                          </a>
                      </li>
@@ -415,7 +415,7 @@
 
              <ul class="ul-wrapper-toggel">
                  <li>
-                     <a href="{{ route('user.courses.all') }}">
+                     <a href="{{ route('front.courses.all') }}">
                          دوره آموزشی
                      </a>
                  </li>

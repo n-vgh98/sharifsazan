@@ -335,7 +335,7 @@ class AdminCourseController extends Controller
 
         // update image
         if ($request->image !== null) {
-            $image = Image::find($course->images[0]->id);
+            $image = Image::find($course->images->id);
             File::delete($image->path);
             $imagename = time() . "." . $request->image->extension();
             $filename = $course->title . "." . $course->id;
@@ -360,7 +360,7 @@ class AdminCourseController extends Controller
     {
 
         $course = Course::find($id);
-        $path = pathinfo($course->images[0]->path)["dirname"];
+        $path = pathinfo($course->images->path)["dirname"];
         foreach ($course->images as $image) {
             File::delete($image->path);
         }
