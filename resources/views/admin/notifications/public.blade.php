@@ -13,6 +13,7 @@
                 <th scope="col">وضعیت نمایش</th>
                 <th scope="col">لینک</th>
                 <th scope="col">خلاصه متن</th>
+                <th scope="col">عنوان</th>
                 <th scope="col">دریافت کننده</th>
                 <th scope="col">#</th>
             </tr>
@@ -70,6 +71,7 @@
                             data-target="#text{{ $notification->id }}">متن
                             کامل</button>...{{ substr($notification->text, 0, 25) }}
                     </td>
+                    <td>{{ $notification->title }}</td>
                     <td>همه کاربران</td>
                     <th scope="row">{{ $number }}</th>
                 </tr>
@@ -124,6 +126,16 @@
                 <div class="modal-body">
                     <form action="{{ route('admin.notifications.store') }}" method="POST">
                         @csrf
+
+                        <div>
+                            <label for="text">عنوان پیام</label>
+                            <input type="text" required name="title" class="form-control">
+                            @error('text')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                         <div>
                             <label for="text">متن پیام</label>
                             <input type="text" required name="text" class="form-control">

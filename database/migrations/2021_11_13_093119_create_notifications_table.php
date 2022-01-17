@@ -16,6 +16,7 @@ class CreateNotificationsTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->nullable()->constrained("users")->onDelete("cascade")->onUpdate("cascade");
+            $table->text("title");
             $table->text("text");
             $table->text("link")->nullable();
             $table->tinyInteger("mode")->comment("0 is private and 1 is public");

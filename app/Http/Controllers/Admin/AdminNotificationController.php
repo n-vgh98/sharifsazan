@@ -50,6 +50,7 @@ class AdminNotificationController extends Controller
     {
         if ($request->mode == 0) {
             $notification = new Notifications();
+            $notification->title = $request->title;
             $notification->text = $request->text;
             $notification->link = $request->link;
             $notification->mode = $request->mode;
@@ -59,6 +60,7 @@ class AdminNotificationController extends Controller
 
         if ($request->mode == 1) {
             $notification = new Notifications();
+            $notification->title = $request->title;
             $notification->text = $request->text;
             $notification->link = $request->link;
             $notification->mode = $request->mode;

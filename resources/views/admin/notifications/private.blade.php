@@ -16,6 +16,7 @@
                 <th scope="col">وضعیت نمایش</th>
                 <th scope="col">لینک</th>
                 <th scope="col">خلاصه متن</th>
+                <th scope="col">عنوان</th>
                 <th scope="col">دریافت کننده</th>
                 <th scope="col">#</th>
             </tr>
@@ -74,6 +75,7 @@
                             کامل</button>...{{ substr($notification->text, 0, 25) }}
                     </td>
                     <td>{{ $notification->user->name }}</td>
+                    <td>{{ $notification->title }}</td>
                     <th scope="row">{{ $number }}</th>
                 </tr>
 
