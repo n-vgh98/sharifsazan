@@ -133,8 +133,8 @@
                  <!-- start wrapper-main-menu تحقیق توسعه-->
                  <ul class="wrapper-main-menu">
                      <li>
-                         <a href="amozesh.html">
-                             دوره اموزشی
+                         <a href="{{ route('user.courses.all') }}">
+                             دوره آموزشی
                          </a>
                      </li>
 
@@ -415,8 +415,8 @@
 
              <ul class="ul-wrapper-toggel">
                  <li>
-                     <a href="amozesh.html">
-                         دوره اموزشی
+                     <a href="{{ route('user.courses.all') }}">
+                         دوره آموزشی
                      </a>
                  </li>
                  <li>
