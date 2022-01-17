@@ -67,7 +67,8 @@
          <nav class="left-nav-responsive-menu">
              <ul class="left-ul-responsive-menu">
                  <li>
-                     <i class="far fa-comment-alt"></i>
+                     <a href="{{ route('user.notifications.all') }}"><i class="far fa-comment-alt"></i></a>
+
                  </li>
                  <li>
                      <i class="fas fa-shopping-cart"></i>
@@ -132,8 +133,8 @@
                  <!-- start wrapper-main-menu تحقیق توسعه-->
                  <ul class="wrapper-main-menu">
                      <li>
-                         <a href="amozesh.html">
-                             دوره اموزشی
+                         <a href="{{ route('front.courses.all') }}">
+                             دوره آموزشی
                          </a>
                      </li>
 
@@ -289,7 +290,7 @@
      <nav class="nav-icon-main">
          <ul class="ul-icon-main">
              <li>
-                 <a href="#">
+                 <a href="{{ route('user.notifications.all') }}">
                      <i class="fas fa-comment"></i>
                  </a>
              </li>
@@ -414,8 +415,8 @@
 
              <ul class="ul-wrapper-toggel">
                  <li>
-                     <a href="amozesh.html">
-                         دوره اموزشی
+                     <a href="{{ route('front.courses.all') }}">
+                         دوره آموزشی
                      </a>
                  </li>
                  <li>

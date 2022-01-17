@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdminArticleCategoryController;
 use App\Http\Controllers\Front\UserArticleController;
 use App\Http\Controllers\Front\UserBooksController;
 use App\Http\Controllers\Front\UserContactUsController;
+use App\Http\Controllers\Front\UserCoursesController;
 use App\Http\Controllers\Front\UserNotificiationsController;
 use App\Http\Controllers\Front\UserPanelController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
@@ -79,6 +80,13 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     Route::prefix('article_categories')->group(function () {
         route::get("/{id}", [UserArticleController::class, "index"])->name("article.category.index");
         route::get("/show/{id}", [UserArticleController::class, "show"])->name("article.category.show");
+    });
+
+    // routing for user courses
+    Route::prefix('Courses')->group(function () {
+        route::get("/", [UserCoursesController::class, "index"])->name("front.courses.all");
+        route::get("/show/{id}", [UserCoursesController::class, "show"])->name("front.courses.show");
+        route::Post("/searchcourse", [UserCoursesController::class, "search"])->name("front.courses.search");
     });
 });
 
