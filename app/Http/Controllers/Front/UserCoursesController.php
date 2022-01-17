@@ -36,10 +36,79 @@ class UserCoursesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function search(Request $request)
     {
-        //
+        $lang = substr($request->getPathInfo(), 1, 2);
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", $lang]])->get();
+        $unfilterdcourses = [];
+        $filterdcourses = [];
+        $filteredcourses = [];
+        $checkfilter = [];
+        // gets all courses
+        foreach ($languages as $language) {
+            array_push($unfilterdcourses, $language->langable);
+        }
+
+        // filtering online courses
+        if ($request->online) {
+            // in too safe bad neshoon mide chia entekhab shodan
+            array_push($checkfilter, "online");
+            if (count($filterdcourses) != 0) {
+                foreach ($filterdcourses as $refilteredcourse) {
+                    if ($refilteredcourse->mode == 1) {
+                        array_push($filteredcourses, $refilteredcourse);
+                    }
+                }
+            } else {
+                foreach ($unfilterdcourses as $unfilterdcourse) {
+                    if ($unfilterdcourse->mode == 1) {
+                        array_push($filteredcourses, $unfilterdcourse);
+                    }
+                }
+            }
+        }
+
+        // filtering offline courses
+        elseif ($request->offline) {
+            array_push($checkfilter, "offline");
+
+            if (count($filterdcourses) != 0) {
+                foreach ($filterdcourses as $refilteredcourse) {
+                    if ($refilteredcourse->mode == 0) {
+                        array_push($filteredcourses, $refilteredcourse);
+                    }
+                }
+            } else {
+                foreach ($unfilterdcourses as $unfilterdcourse) {
+                    if ($unfilterdcourse->mode == 0) {
+                        array_push($filteredcourses, $unfilterdcourse);
+                    }
+                }
+            }
+        }
+
+        // filtering free courses
+        elseif ($request->free) {
+            array_push($checkfilter, "free");
+            if (count($filterdcourses) != 0) {
+                foreach ($filterdcourses as $refilteredcourse) {
+                    if ($refilteredcourse->price == 0) {
+                        array_push($filteredcourses, $refilteredcourse);
+                    }
+                }
+            } else {
+                foreach ($unfilterdcourses as $unfilterdcourse) {
+                    if ($unfilterdcourse->price == 0) {
+                        array_push($filteredcourses, $unfilterdcourse);
+                    }
+                }
+            }
+        } else {
+            return redirect()->route("front.courses.all")->with("fail", "لطفا ابتدا یکی از گزینه های فیلتر را انتخاب کنید");
+        }
+        return view("user.courses.filtered", compact("filteredcourses", "checkfilter"));
     }
+
 
     /**
      * Display the specified resource.

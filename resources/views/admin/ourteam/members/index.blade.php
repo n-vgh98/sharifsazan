@@ -41,7 +41,7 @@
                     <td><span class="badge badge-pill badge-danger">همکار نیست</span></td>
                 @endif
                 <td>{{ $member->job_title }}</td>
-                
+
                 <td>
                     <button type="button" class="" data-toggle="modal"
                         data-target="#member_img{{ $member->id }}">

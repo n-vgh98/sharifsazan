@@ -8,6 +8,9 @@
                 <li>
                     <a href="{{ route('front.courses.all') }}">دوره های آموزشی</a>
                 </li>
+                <li>
+                    <a href="#">دوره های آموزش فیلتر شده</a>
+                </li>
             </ul>
         </div>
     </section>
@@ -15,11 +18,6 @@
 
 
     <h1 class="project-title-h1">دوره های آموزشی</h1>
-
-
-
-
-
 
     <section class="right-article-wrapper-full">
 
@@ -43,13 +41,29 @@
                     <div>
                         <lable><span class="big-p">نوع دوره</span></lable>
                         <br>
-                        <input name="online" id="0" value="1" type="checkbox">
-                        <lable>دوره های آنلاین</lable><br>
-                        <input name="offline" id="1" value="1" type="checkbox">
-                        <lable>دوره های آفلاین</lable><br>
-                        <input name="free" id="2" value="1" type="checkbox">
-                        <lable>دوره های رایگان</lable>
+                        @if (in_array('online', $checkfilter))
+                            <input name="online" checked id="0" value="1" type="checkbox">
+                            <lable>دوره های آنلاین</lable><br>
+                        @else
+                            <input name="online" id="0" value="1" type="checkbox">
+                            <lable>دوره های آنلاین</lable><br>
+                        @endif
 
+                        @if (in_array('offline', $checkfilter))
+                            <input name="offline" checked id="1" value="1" type="checkbox">
+                            <lable>دوره های آفلاین</lable><br>
+                        @else
+                            <input name="offline" id="1" value="1" type="checkbox">
+                            <lable>دوره های آفلاین</lable><br>
+                        @endif
+
+                        @if (in_array('free', $checkfilter))
+                            <input name="free" checked id="2" value="1" type="checkbox">
+                            <lable>دوره های رایگان</lable>
+                        @else
+                            <input name="free" id="2" value="1" type="checkbox">
+                            <lable>دوره های رایگان</lable>
+                        @endif
                     </div>
                 </div>
 
@@ -72,43 +86,10 @@
             <!--                           examples project-demo first start                  -->
             <div class="examples-project-main">
 
-                <h2 class="project-title-h2">آخرین آموزش ها</h2>
-                <section class="examples-project-full">
-                    @php
-                        $i = 1;
-                    @endphp
-                    @foreach ($languages as $language)
-                        @php
-                            $course = $language->langable;
-                        @endphp
-                        @if ($i < 3)
-                            <a href="{{ route('front.courses.show', $course->id) }}">
-                                <div class="examples-project-item">
-                                    <img src="{{ asset($course->images->path) }}" alt="{{ $course->images->alt }}"
-                                        title="{{ $course->images->name }}">
-                                    <p>{{ $course->title }}</p>
-                                    <p>{!! \Illuminate\Support\Str::limit($course->introduction, '50') !!}</p>
-                                </div>
-                            </a>
-                        @endif
-                        @php
-                            $i++;
-                        @endphp
-                    @endforeach
-                </section>
-            </div>
-            <!--                           examples project-demo first start                  -->
-
-            <!--                           examples project-demo second start                  -->
-            <div class="examples-project-main">
-
-                <h3 class="project-title-h2">همه آموزش ها</h3>
+                <h2 class="project-title-h2">فیلتر شده ها</h2>
                 <section class="examples-project-full">
 
-                    @foreach ($languages as $language)
-                        @php
-                            $course = $language->langable;
-                        @endphp
+                    @foreach ($filteredcourses as $course)
                         <a href="{{ route('front.courses.show', $course->id) }}">
                             <div class="examples-project-item">
                                 <img src="{{ asset($course->images->path) }}" alt="{{ $course->images->alt }}"
@@ -120,7 +101,6 @@
                     @endforeach
                 </section>
             </div>
-            <!--                           examples project-demo second end                  -->
 
         </section>
 
