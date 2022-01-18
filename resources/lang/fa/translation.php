@@ -240,5 +240,6 @@ return [
     "filter-error" => "لطفا ابتدا یکی از فیلتر ها را انتخاب کنید",
     "your-message" => "پیام شما",
     "file" => "فایل",
+    "notifications" => "پیام ها",
 
 ];

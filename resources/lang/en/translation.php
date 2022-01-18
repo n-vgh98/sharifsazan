@@ -210,5 +210,6 @@ return [
     "filter-error" => "Please Select One Of The Filter Choices",
     "your-message" => "Your Message",
     "file" => "File",
+    "notifications" => "Notifications",
 
 ];
