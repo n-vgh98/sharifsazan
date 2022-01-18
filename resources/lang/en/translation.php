@@ -21,6 +21,8 @@ return [
     'signup' => 'Sign Up',
     'contact' => 'Contact',
     'language' => 'Language',
+    'setting' => 'Setting',
+
     //_______//
 
 
@@ -183,5 +185,17 @@ return [
     "sign-course" => "participate",
     "contact-suppot" => "Please Contact Support",
     "contact-done" => "Your Message Sent Successfully We Will Contact you ASAP",
+    "services" => "Services",
+    "development-research" => "Development research",
+    "work-with-us" => "Work With Us",
+    "projects" => "Projects",
+    "contact-us" => "Contact Us",
+    "about-us" => "About Us",
+    "courses" => "Courses",
+    "electronic-library" => "Eloctronic Library",
+
+
+
+
 
 ];
