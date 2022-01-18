@@ -46,7 +46,8 @@
 
                 <section class="parent-virayesh-etelaat-panel" id="parent-breadcrumb-section-virayesh">
                     <p> {{ __('translation.change-detail') }}</p>
-                    <form class="grid-virayesh-etelaat">
+                    <form class="grid-virayesh-etelaat" method="POST" action="{{ route('panel.updateInformation') }}">
+                        @csrf
                         <div class="div-box1-virayesh-panel">
                             <input name="name" type="text" value="{{ auth()->user()->name }}">
                             <input type="number" name="phone_number" value="{{ auth()->user()->phone_number }}">

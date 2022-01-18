@@ -211,5 +211,6 @@ return [
     "your-message" => "Your Message",
     "file" => "File",
     "notifications" => "Notifications",
+    "see-more" => "See More",
 
 ];

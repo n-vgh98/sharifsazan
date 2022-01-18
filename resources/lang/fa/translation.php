@@ -241,5 +241,6 @@ return [
     "your-message" => "پیام شما",
     "file" => "فایل",
     "notifications" => "پیام ها",
+    "see-more" => "بیشتر ببینید",
 
 ];

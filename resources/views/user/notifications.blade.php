@@ -3,9 +3,9 @@
     <section class="parent-breadcrumb-section parent-article-breadcrumb-section">
         <div class="breadcrumb-section">
             <ul id="breadcrumbs">
-                <li><a href="{{ route('home') }}">خانه</a></li>
+                <li><a href="{{ route('home') }}">{{ __('translation.home') }}</a></li>
                 <li>
-                    <a href="{{ route('user.notifications.all') }}">اطلاعیه</a>
+                    <a href="{{ route('user.notifications.all') }}">{{ __('translation.notifications') }}</a>
                 </li>
             </ul>
         </div>
@@ -13,7 +13,7 @@
     </section>
     <div class="title-khadamat-page">
         <div>
-            <h1> اطلاعیه</h1>
+            <h1> {{ __('translation.notifications') }}</h1>
         </div>
     </div>
     <section class="parent-parent-box-news">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="parent-btn-more-news">
                     <div class=" btn-more-news">
-                        <a href="#">دیدن جزئیات بیشتر</a>
+                        <a href="#">{{ __('translation.see-more') }}</a>
                     </div>
 
                 </div>
