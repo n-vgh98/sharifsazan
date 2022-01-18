@@ -4,9 +4,9 @@
     <section class="parent-breadcrumb-section parent-article-breadcrumb-section">
         <div class="breadcrumb-section">
             <ul id="breadcrumbs">
-                <li><a href="{{ route('home') }}">خانه</a></li>
+                <li><a href="{{ route('home') }}">{{ __('translation.home') }}</a></li>
                 <li>
-                    <a href="{{ route('front.courses.all') }}">دوره های آموزشی</a>
+                    <a href="{{ route('front.courses.all') }}">{{ __('translation.courses') }}</a>
                 </li>
             </ul>
         </div>
@@ -14,7 +14,7 @@
     <!-- end breadcrumb -->
 
 
-    <h1 class="project-title-h1">دوره های آموزشی</h1>
+    <h1 class="project-title-h1">{{ __('translation.courses') }}</h1>
 
 
 
@@ -30,31 +30,31 @@
         </div>
         <div class="divShowForm">
 
-            <button class="buttonShowForm">نمایش فیلتر ها</button>
+            <button class="buttonShowForm">{{ __('translation.show-filter') }}</button>
 
         </div>
         <form id="formID" action="{{ route('front.courses.search') }}" method="post">
             @csrf
             <fieldset>
-                <legend>فیلتر پروژه ها</legend>
+                <legend>{{ __('translation.filters') }}</legend>
 
                 <div class="div-filter-projects">
 
                     <div>
-                        <lable><span class="big-p">نوع دوره</span></lable>
+                        <lable><span class="big-p">{{ __('translation.kind-of-course') }}</span></lable>
                         <br>
                         <input name="online" id="0" value="1" type="checkbox">
-                        <lable>دوره های آنلاین</lable><br>
+                        <lable>{{ __('translation.online-course') }}</lable><br>
                         <input name="offline" id="1" value="1" type="checkbox">
-                        <lable>دوره های آفلاین</lable><br>
+                        <lable>{{ __('translation.offline-course') }}</lable><br>
                         <input name="free" id="2" value="1" type="checkbox">
-                        <lable>دوره های رایگان</lable>
+                        <lable>{{ __('translation.free-course') }}</lable>
 
                     </div>
                 </div>
 
                 <div class="submit-div">
-                    <input type="submit" value="اعمال فیلتر ها">
+                    <input type="submit" value="{{ __('translation.apply-filter') }}">
                 </div>
 
             </fieldset>
@@ -72,7 +72,7 @@
             <!--                           examples project-demo first start                  -->
             <div class="examples-project-main">
 
-                <h2 class="project-title-h2">آخرین آموزش ها</h2>
+                <h2 class="project-title-h2">{{ __('translation.last-courses') }}</h2>
                 <section class="examples-project-full">
                     @php
                         $i = 1;
@@ -102,7 +102,7 @@
             <!--                           examples project-demo second start                  -->
             <div class="examples-project-main">
 
-                <h3 class="project-title-h2">همه آموزش ها</h3>
+                <h3 class="project-title-h2">{{ __('translation.all-courses') }}</h3>
                 <section class="examples-project-full">
 
                     @foreach ($languages as $language)

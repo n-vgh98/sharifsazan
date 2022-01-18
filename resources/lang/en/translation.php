@@ -197,9 +197,16 @@ return [
     "sharif-sazan" => "Sharif Sazan",
     "last-projects" => "Last Projects",
     "last-articles" => "Last Articles",
-
-
-
-
+    "show-filter" => "Show Filters",
+    "filters" => "Filters",
+    "kind-of-course" => "Kind of Course",
+    "online-course" => "Online Course",
+    "offline-course" => "Offline Course",
+    "free-course" => "Free Course",
+    "last-courses" => "Last Courses",
+    "all-courses" => "All Course",
+    "apply-filter" => "Apply Filters",
+    "filtered" => "Filtered",
+    "filter-error" => "Please Select One Of The Filter Choices",
 
 ];

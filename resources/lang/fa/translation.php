@@ -227,4 +227,19 @@ return [
     "sharif-sazan" => "شریف سازان",
     "last-projects" => "آخرین پروژه ها",
     "last-articles" => "آخرین مقالات",
+    "show-filter" => "نمایش فیلتر ها",
+    "filters" => "فیلترها",
+    "kind-of-course" => "نوع دوره",
+    "online-course" => "دوره های آنلاین",
+    "offline-course" => "دوره های آفلاین",
+    "free-course" => "دوره های رایگان",
+    "all-courses" => "همه دوره ها",
+    "last-courses" => "آخرین دوره ها",
+    "apply-filter" => "اعمال فیلترها",
+    "filtered" => "فیلتر شده ها",
+    "filter-error" => "لطفا ابتدا یکی از فیلتر ها را انتخاب کنید",
+
+
+
+
 ];

@@ -104,7 +104,7 @@ class UserCoursesController extends Controller
                 }
             }
         } else {
-            return redirect()->route("front.courses.all")->with("fail", "لطفا ابتدا یکی از گزینه های فیلتر را انتخاب کنید");
+            return redirect()->route("front.courses.all")->with("fail", __("translation.filter-error"));
         }
         return view("user.courses.filtered", compact("filteredcourses", "checkfilter"));
     }
