@@ -208,5 +208,7 @@ return [
     "apply-filter" => "Apply Filters",
     "filtered" => "Filtered",
     "filter-error" => "Please Select One Of The Filter Choices",
+    "your-message" => "Your Message",
+    "file" => "File",
 
 ];

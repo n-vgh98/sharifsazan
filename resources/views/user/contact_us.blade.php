@@ -6,18 +6,20 @@
         <!-- start section nazarat   -->
         <section class="call-col1">
             <div class="background-col1-call">
-                <div class="title-call"><b> ارسال نظرات</b></div>
+                <div class="title-call"><b> {{ __('translation.your-message') }}</b></div>
                 <div class="parent-form">
                     <form class="form-nazarat-call" action="{{ route('contactus.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
-                        <input type="text" name="name" required placeholder="نام و نام خانوادگی"
+                        <input type="text" name="name" required placeholder="{{ __('translation.name') }}"
                             onkeypress="return /[a-z -'']/i.test(event.key)" class="tinp">
-                        <input type="" name="email" required placeholder=" ایمبل  " class="tinp">
-                        <textarea name="text" required placeholder="شرح درخواست" class="tinp"></textarea>
-                        <input name="file" type="file" placeholder="بارگذاری فایل" class="tinp">
+                        <input type="" name="email" required placeholder=" {{ __('translation.email') }}  "
+                            class="tinp">
+                        <textarea name="text" required placeholder="{{ __('translation.your-message') }}"
+                            class="tinp"></textarea>
+                        <input name="file" type="file" placeholder="{{ __('translation.file') }}" class="tinp">
                         <div class="btn-call">
-                            <button type="submit"> ثبت</button>
+                            <button type="submit"> {{ __('translation.send') }}</button>
                         </div>
                     </form>
 
@@ -30,7 +32,7 @@
         <!-- start section address -->
         <section class="call-col2">
             <div class="title-call">
-                <h2>تماس با ما</h2>
+                <h2>{{ __('translation.contact-us') }}</h2>
             </div>
 
             <div class="parent-address-phone">
