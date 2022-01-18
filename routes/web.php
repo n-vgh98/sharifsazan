@@ -21,6 +21,8 @@ use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Admin\AdminServiceCategoryController;
+use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Front\UserArticleController;
 use App\Http\Controllers\Front\UserBooksController;
 use App\Http\Controllers\Front\UserContactUsController;
@@ -235,6 +237,25 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         });
     });
 
+    //Service routes
+    route::prefix("services")->group(function(){
+        route::get("/{lang}", [AdminServiceController::class, "index"])->name("admin.services.index");
+        route::get("/create", [AdminServiceController::class, "create"])->name("admin.services.create");
+        route::post("/store", [AdminServiceController::class, "store"])->name("admin.services.store");
+        route::post("/update/{id}", [AdminServiceController::class, "update"])->name("admin.services.update");
+        route::get("/edit/{id}/{lang}", [AdminServiceController::class, "edit"])->name("admin.services.edit");
+        route::delete("/delete/{id}", [AdminServiceController::class, "destroy"])->name("admin.services.destroy");
+        //Service Categories routes
+        route::prefix("category")->group(function(){
+            route::get("/{lang}", [AdminServiceCategoryController::class, "index"])->name("admin.services.category.index");
+            route::get("/create", [AdminServiceCategoryController::class, "create"])->name("admin.services.category.create");
+            route::post("/store", [AdminServiceCategoryController::class, "store"])->name("admin.services.category.store");
+            route::post("/update/{id}", [AdminServiceCategoryController::class, "update"])->name("admin.services.category.update");
+            route::get("/edit/{id}/{lang}", [AdminServiceCategoryController::class, "edit"])->name("admin.services.category.edit");
+            route::delete("/delete/{id}", [AdminServiceCategoryController::class, "destroy"])->name("admin.services.category.destroy");
+        });
+    });
+
     // route for invite
     route::prefix("invite_group")->group(function () {
         route::get("/", [AdminInviteCategoryController::class, "all"])->name("admin.invites.category.all");
@@ -328,6 +349,25 @@ route::prefix("writer")->middleware(["auth", "writer"])->group(function () {
         route::get("/", [WriterBooksController::class, "index"])->name("writer.books.index");
         route::delete("/destroy/{id}", [WriterBooksController::class, "destroy"])->name("writer.books.destroy");
         route::post("/store", [WriterBooksController::class, "store"])->name("writer.books.store");
+    });
+
+    //Service routes
+    route::prefix("services")->group(function(){
+        route::get("/", [AdminServiceController::class, "index"])->name("writer.services.index");
+        route::get("/create", [AdminServiceController::class, "create"])->name("writer.services.create");
+        route::post("/store", [AdminServiceController::class, "store"])->name("writer.services.store");
+        route::post("/update/{id}", [AdminServiceController::class, "update"])->name("writer.services.update");
+        route::get("/edit/{id}/{lang}", [AdminServiceController::class, "edit"])->name("writer.services.edit");
+        route::delete("/delete/{id}", [AdminServiceController::class, "destroy"])->name("writer.services.destroy");
+          //Service Categories routes
+          route::prefix("category")->group(function(){
+            route::get("/", [AdminServiceCategoryController::class, "index"])->name("writer.services.category.index");
+            route::get("/create", [AdminServiceCategoryController::class, "create"])->name("writer.services.category.create");
+            route::post("/store", [AdminServiceCategoryController::class, "store"])->name("writer.services.category.store");
+            route::post("/update/{id}", [AdminServiceCategoryController::class, "update"])->name("writer.services.category.update");
+            route::get("/edit/{id}/{lang}", [AdminServiceCategoryController::class, "edit"])->name("writer.services.category.edit");
+            route::delete("/delete/{id}", [AdminServiceCategoryController::class, "destroy"])->name("writer.services.category.destroy");
+          });
     });
 
     // route for articles
