@@ -139,6 +139,7 @@ return [
     'job'                   => 'job',
     'gender'                => 'gender',
     'femail'                => 'femail',
+    'address'                => 'Address',
     'male'                  => 'male',
     'have-account'          => 'Already Sigend Up? ',
     'google-login'          => 'Login With Google',

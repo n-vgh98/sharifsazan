@@ -312,15 +312,15 @@
                  <i class="fa fa-user"></i>
 
                  <a href="panelkarbari.html">
-                     پنل کاربری
+                     {{ __('translation.panel') }}
                  </a>
              </div>
 
              <div class="toggel">
                  <i class="fa fa-map-marker"></i>‏
 
-                 <a href="tamasbama.html">
-                     ادرس
+                 <a href="{{ route('contactus.index') }}">
+                     {{ __('translation.address') }}
                  </a>
              </div>
 

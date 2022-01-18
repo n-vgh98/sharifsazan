@@ -133,7 +133,7 @@ return [
 
 
     // new translations
-    'address'               => 'نشانی',
+    'address'               => 'آدرس',
     'age'                   => 'سن',
     'area'                  => 'منطقه',
     'available'             => 'موجود',
