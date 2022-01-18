@@ -224,5 +224,7 @@ return [
     "about-us" => "درباره ما",
     "courses" => "دوره های آموزشی",
     "electronic-library" => "کتابخانه الکترونیکی",
-
+    "sharif-sazan" => "شریف سازان",
+    "last-projects" => "آخرین پروژه ها",
+    "last-articles" => "آخرین مقالات",
 ];

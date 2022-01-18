@@ -193,6 +193,9 @@ return [
     "about-us" => "About Us",
     "courses" => "Courses",
     "electronic-library" => "Eloctronic Library",
+    "sharif-sazan" => "Sharif Sazan",
+    "last-projects" => "Last Projects",
+    "last-articles" => "Last Articles",
 
 
 
