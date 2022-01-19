@@ -18,4 +18,9 @@ class Course extends Model
     {
         return $this->morphone("App\Models\Lang", "langable");
     }
+
+    public function comments()
+    {
+        return $this->morphone("App\Models\Comment", "commentable");
+    }
 }

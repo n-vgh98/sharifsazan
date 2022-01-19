@@ -33,7 +33,6 @@
 
                 </div>
                 <div class="">
-
                     {!! $course->description !!}
                 </div>
                 </article>
@@ -43,9 +42,7 @@
                         <canvas id="myChart" class="hw"></canvas>
                     </div>
                     @auth
-
                         <div>
-
                             <p> با <span id="sabtenazarclick">ثبت نظر </span>و تجربه خود به کاربران دیگر انتقال دهید
                             </p>
                         </div>
