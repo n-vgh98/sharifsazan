@@ -305,6 +305,15 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::get("/create", [AdminFooter::class, "create"])->name("admin.footer.create");
         route::delete("/destroy/{id}", [AdminFooter::class, "destroy"])->name("admin.footer.destroy");
     });
+
+    // routes for comments
+    route::prefix("comments")->group(function () {
+        route::get("/", [AdminCommentController::class, "index"])->name("admin.comments.index");
+        route::post("/accept/{id}", [AdminCommentController::class, "accept"])->name("admin.comments.accept");
+        route::post("/store", [AdminCommentController::class, "store"])->name("admin.comments.store");
+        route::post("/decline/{id}", [AdminCommentController::class, "decline"])->name("admin.comments.decline");
+        route::delete("/destroy/{id}", [AdminCommentController::class, "destroy"])->name("admin.comments.destroy");
+    });
 });
 // end of admin routing
 
