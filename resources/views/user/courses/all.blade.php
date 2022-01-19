@@ -12,15 +12,7 @@
         </div>
     </section>
     <!-- end breadcrumb -->
-
-
     <h1 class="project-title-h1">{{ __('translation.courses') }}</h1>
-
-
-
-
-
-
     <section class="right-article-wrapper-full">
 
         <div class="question-project">
@@ -39,7 +31,6 @@
                 <legend>{{ __('translation.filters') }}</legend>
 
                 <div class="div-filter-projects">
-
                     <div>
                         <lable><span class="big-p">{{ __('translation.kind-of-course') }}</span></lable>
                         <br>
@@ -52,23 +43,13 @@
 
                     </div>
                 </div>
-
                 <div class="submit-div">
                     <input type="submit" value="{{ __('translation.apply-filter') }}">
                 </div>
 
             </fieldset>
         </form>
-
-
-
-
-
         <section class="article-text-wrapper">
-
-
-
-
             <!--                           examples project-demo first start                  -->
             <div class="examples-project-main">
 

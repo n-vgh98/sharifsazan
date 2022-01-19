@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Lang;
+use App\Models\ShoppingList;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminShoppingListController extends Controller
 {
@@ -12,9 +14,12 @@ class AdminShoppingListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $lang = substr($request->getPathInfo(), 1, 2);
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", $lang]])->get();
+        $orders = ShoppingList::where([["user_id", auth()->user()->id]])->get();
+        return view("user.courses.shoppinglist", compact("orders", "languages"));
     }
 
     /**
@@ -81,5 +86,14 @@ class AdminShoppingListController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function add($lang, $id)
+    {
+        $order = new ShoppingList();
+        $order->user_id = auth()->user()->id;
+        $order->course_id = $id;
+        $order->save();
+        return redirect()->back()->with("success", "دوره مورد نظر شما با موفقیت به سبد خرید شما اضافه شد.");
     }
 }

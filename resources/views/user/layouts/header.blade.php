@@ -11,8 +11,6 @@
 
      <div class="wrapper-responsive-menu">
          <!-- flag nav start -->
-
-
          <div onClick="mFlag()" class="menu-flag menu-flag-show1">
              <p style="display: inline-block">{{ __('translation.language') }}
                  <i class="fas fa-chevron-down"></i>
@@ -30,7 +28,6 @@
                              $link = $lang . $x;
                          }
                      @endphp
-
                      @if ($lang == 'en')
                          <li><a href="#">Fa</a><img src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
                              </a>

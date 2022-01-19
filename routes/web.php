@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdminArticleCategoryController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminServiceCategoryController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminShoppingListController;
 use App\Http\Controllers\Front\UserArticleController;
 use App\Http\Controllers\Front\UserBooksController;
 use App\Http\Controllers\Front\UserContactUsController;
@@ -92,6 +93,12 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::get("/", [UserCoursesController::class, "index"])->name("front.courses.all");
         route::get("/show/{id}", [UserCoursesController::class, "show"])->name("front.courses.show");
         route::Post("/searchcourse", [UserCoursesController::class, "search"])->name("front.courses.search");
+    });
+
+    // order routes
+    route::prefix("shopping_list")->middleware("auth")->group(function () {
+        route::get("/", [AdminShoppingListController::class, "index"])->name("user.shopping.list.index");
+        route::post("/add/{id}", [AdminShoppingListController::class, "add"])->name("user.shopping.list.add");
     });
 });
 

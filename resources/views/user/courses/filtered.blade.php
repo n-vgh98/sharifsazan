@@ -68,22 +68,11 @@
 
             </fieldset>
         </form>
-
-
-
-
-
         <section class="article-text-wrapper">
-
-
-
-
-            <!--                           examples project-demo first start                  -->
+            <!--examples project-demo first start                  -->
             <div class="examples-project-main">
-
                 <h2 class="project-title-h2">{{ __('translation.filtered') }}</h2>
                 <section class="examples-project-full">
-
                     @foreach ($filteredcourses as $course)
                         <a href="{{ route('front.courses.show', $course->id) }}">
                             <div class="examples-project-item">

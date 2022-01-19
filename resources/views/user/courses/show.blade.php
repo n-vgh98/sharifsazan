@@ -175,11 +175,13 @@
                     <p>عنوان شغلی:{{ $course->master_job }}</p>
                 </div>
 
-                <div class="parent-btn-moshakhasat-sabadekharid">
+                <form class="parent-btn-moshakhasat-sabadekharid" method="POST"
+                    action="{{ route('user.shopping.list.add', $course->id) }}">
+                    @csrf
                     <button class="btn-moshakhasat-sabadekharid">
                         <a href="#"> افزودن به سبد خرید</a>
                     </button>
-                </div>
+                </form>
             </div>
 
 
