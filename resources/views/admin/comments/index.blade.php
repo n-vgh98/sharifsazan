@@ -81,13 +81,9 @@
                                         <textarea type="text" disabled name="name" id="name" required
                                             class="form-control">{{ $comment->text }}</textarea>
                                     </div>
-
-
                                     <input type="hidden" name="lang" value="0">
-
                                     <div style="margin-top: 25px;">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
-                                        <button type="submit" class="btn btn-primary"> ذخیره</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
                                     </div>
 
                                 </form>
