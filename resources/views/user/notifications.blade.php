@@ -36,6 +36,25 @@
                 </div>
             </section>
         @endforeach
+        @foreach ($privatenotifications as $privatenotification)
+
+
+            <section class="parent-box-news">
+                <div class="text-news">
+                    <h3>{{ $privatenotification->title }}</h3>
+                    <a href="{{ $privatenotification->link }}"><i class="fa fa-link"></i> Link</a>
+                </div>
+                <div class="text-box-news">
+                    {{ $privatenotification->text }}
+                </div>
+                <div class="parent-btn-more-news">
+                    <div class=" btn-more-news">
+                        <a href="#">{{ __('translation.see-more') }}</a>
+                    </div>
+
+                </div>
+            </section>
+        @endforeach
     </section>
 @endsection
 @section('scripts')
