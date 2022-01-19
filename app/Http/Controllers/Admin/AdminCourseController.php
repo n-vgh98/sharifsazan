@@ -354,12 +354,12 @@ class AdminCourseController extends Controller
             $course->images()->save($image);
         }
 
-        // update image
+        // update master image
         if ($request->master_image !== null) {
             File::delete($course->master_pic_path);
-            $master_image = time() . "." . $request->master_pic->extension();
-            $filename = $course->title . "." . $course->id;
-            $request->master_pic->move(public_path("photos/courses/$filename/"), $master_image);
+            $master_image = time() . "." . $request->master_image->extension();
+            $filename = $course->title . ".master" . $course->id;
+            $request->master_image->move(public_path("photos/courses/$filename/"), $master_image);
             $course->master_pic_name = $request->master_pic_name;
             $course->master_pic_alt = $request->master_pic_alt;
             $course->master_pic_path = "photos/courses/$filename/$master_image";
@@ -379,9 +379,7 @@ class AdminCourseController extends Controller
 
         $course = Course::find($id);
         $path = pathinfo($course->images->path)["dirname"];
-        foreach ($course->images as $image) {
-            File::delete($image->path);
-        }
+        File::delete($course->images->path);
         File::delete($course->master_pic_path);
         rmdir($path);
         $course->images()->delete();
