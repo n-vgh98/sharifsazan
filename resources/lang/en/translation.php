@@ -212,5 +212,9 @@ return [
     "file" => "File",
     "notifications" => "Notifications",
     "see-more" => "See More",
+    "course-information" => "Course Information",
+    "introduction-video" => "Introduction Video",
+    "comment-and-feedback" => "Comments And Feedbacks",
+    "comment-invite-text" => "Send Comment",
 
 ];

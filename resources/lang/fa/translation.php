@@ -242,5 +242,9 @@ return [
     "file" => "فایل",
     "notifications" => "پیام ها",
     "see-more" => "بیشتر ببینید",
+    "course-information" => "مشخصات دوره",
+    "introduction-video" => "ویدیو معرفی دوره",
+    "comment-and-feedback" => "کامنت ها و نظرات",
+    "comment-invite-text" => "با ثبت نظر و تجربه خود به کاربران دیگر انتقال دهید",
 
 ];

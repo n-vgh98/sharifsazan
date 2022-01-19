@@ -259,6 +259,13 @@ class AdminCourseController extends Controller
         $course->licensable = $request->licensable;
         $course->meta_key_words = $request->meta_key_words;
         $course->meta_descriptions = $request->meta_descriptions;
+        // saving master picture
+        $master_image = time() . ".1" . $request->master_pic->extension();
+        $filename = $course->title . "." . $course->id;
+        $request->master_pic->move(public_path("photos/courses/$filename/"), $master_image);
+        $course->master_pic_name = $request->master_pic_name;
+        $course->master_pic_alt = $request->master_pic_alt;
+        $course->master_pic_path = "photos/courses/$filename/$master_image";
         $course->save();
         $courselanguage = new Lang();
         $courselanguage->name = $request->lang;
