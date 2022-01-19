@@ -108,6 +108,7 @@ return [
     'send' => 'Send',
     'close' => 'Close',
     'commenttext' => 'Comment Text',
+    'commentconfirmation' => 'Your Comment Saved Successfully and will show after admin confirmation',
 
 
     //category page

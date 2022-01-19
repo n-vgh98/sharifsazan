@@ -60,7 +60,7 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     });
 
     Route::prefix('commets')->middleware("auth")->group(function () {
-        route::post("/create/{id}", [AdminCommentController::class, "create"])->name("user.comments.create");
+        route::post("/store", [AdminCommentController::class, "store"])->name("user.comments.store");
     });
 
     route::get("/", [HomeController::class, "index"])->name("home");

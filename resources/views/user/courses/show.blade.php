@@ -50,27 +50,24 @@
                 </section>
 
                 @auth
-
                     <!--parent div sabt nazar-->
                     <div class="parent-sabtNazar">
                         <img class="crossSign-sabtNazar" src="{{ asset('frontend/imgs/cross-sign.png') }}" alt="#"
                             title="بستن">
-
-                        <div class="boxDiv-sabtNazar">
-
-
-                            <p class="p-sabtNazar">ایمیل شما<span class="span-sabtNazar"> یا شماره تماس</span></p>
-                            <input type="text">
-                            <p class="p-sabtNazar">نظر شما</p>
-                            <textarea class="nazarShomaText" rows="40" cols="5"> </textarea>
-
-                            <input class="sendBut-sabtNazar" type="submit" value="ثبت نظر">
-
-                        </div>
+                        <form action="{{ route('user.comments.store') }}" method="POST">
+                            @csrf
+                            <div class="boxDiv-sabtNazar">
+                                <p class="p-sabtNazar">ایمیل شما<span class="span-sabtNazar"> یا شماره تماس</span></p>
+                                <input name="email" disabled value="{{ auth()->user()->email }}" type="text">
+                                <p class="p-sabtNazar">نظر شما</p>
+                                <textarea name="text" class="nazarShomaText" rows="40" cols="5"> </textarea>
+                                <input class="sendBut-sabtNazar" type="submit" value="ثبت نظر">
+                                <input type="hidden" name="commentable" value="Course">
+                                <input type="hidden" name="course_id" value="{{ $course->id }}">
+                            </div>
+                        </form>
                     </div>
                     <!--end parent div sabt nazar-->
-
-
                 @endauth
 
 

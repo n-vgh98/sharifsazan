@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class AdminCommentController extends Controller
@@ -22,9 +24,8 @@ class AdminCommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($lang, $id)
+    public function create()
     {
-        dd($id);
     }
 
     /**
@@ -35,7 +36,13 @@ class AdminCommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = Course::find($request->course_id);
+        $comment = new Comment();
+        $comment->text = $request->text;
+        $comment->status = 0;
+        $comment->user_id = auth()->user()->id;
+        $course->comments()->save($comment);
+        return redirect()->back()->with("success", __("translation.commentconfirmation"));
     }
 
     /**

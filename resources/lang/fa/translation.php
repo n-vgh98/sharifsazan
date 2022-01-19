@@ -105,6 +105,7 @@ return [
     'send' => 'ارسال',
     'close' => 'بستن',
     'commenttext' => 'متن کامنت',
+    'commentconfirmation' => 'کامت شما با موفثقیت ثبت شد و پس از تایید پشتیبانی بر روی سایت نمایش داده خواهد شد',
     //
     // category page//
     'subcategorytitle' => '',
