@@ -50,28 +50,29 @@
                         @csrf
                         <div class="div-box1-virayesh-panel">
                             <input name="name" type="text" value="{{ auth()->user()->name }}">
-                            <input type="number" name="phone_number" value="{{ auth()->user()->phone_number }}">
+                            <input type="number" name="phone" value="{{ auth()->user()->phone }}">
                         </div>
                         <div class="div-box2-virayesh-panel">
                             <div class="jensiate-panel">
                                 <label>{{ __('translation.gender') }}:</label>
                                 <br>
                                 @if (auth()->user()->gender == 1)
-                                    <input type="radio" id="women" checked name="sex" value="women">
+                                    <input type="radio" id="women" checked name="sex" value="1">
                                 @else
-                                    <input type="radio" id="women" name="sex" value="women">
+                                    <input type="radio" id="women" name="sex" value="1">
                                 @endif
                                 <label for="women">{{ __('translation.femail') }}</label>
                                 @if (auth()->user()->gender == 0)
-                                    <input type="radio" id="men" name="sex" checked value="men">
+                                    <input type="radio" id="men" name="sex" checked value="0">
 
                                 @else
-                                    <input type="radio" id="men" name="sex" value="men">
+                                    <input type="radio" id="men" name="sex" value="0">
                                 @endif
                                 <label for="men">{{ __('translation.male') }}</label>
                             </div>
 
-                            <input type="email" value="{{ auth()->user()->email }}" class="email-virayesh-panel">
+                            <input type="email" name="email" value="{{ auth()->user()->email }}"
+                                class="email-virayesh-panel">
                         </div>
                         <div class="parent-btn-virayeshe-etelaat">
                             <button class="btn-virayesh-etelaat-panel">{{ __('translation.send') }}</button>

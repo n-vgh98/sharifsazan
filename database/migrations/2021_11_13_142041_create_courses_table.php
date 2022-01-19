@@ -25,8 +25,8 @@ class CreateCoursesTable extends Migration
             $table->string("master_name");
             $table->string("master_job");
             $table->text("master_pic_path")->nullable();
-            $table->string("name")->nullable();
-            $table->string("alt")->nullable();
+            $table->string("master_pic_name")->nullable();
+            $table->string("master_pic_alt")->nullable();
             $table->tinyInteger("type")->comment("1 is physical and 0 is electronic");
             $table->tinyInteger("mode")->comment("1 is online and 0 is offline");
             $table->text("link")->nullable()->comment("for electronic courses");

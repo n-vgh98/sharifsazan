@@ -170,11 +170,11 @@
                     @endif
                 </div>
 
-                {{-- <div class="img-parent-master-moshakhasat">
-                    <figure><img src="imgs/-5908894733596472842_121 2.png"></figure>
+                <div class="img-parent-master-moshakhasat">
+                    <figure><img src="{{ asset($course->master_pic_path) }}"></figure>
 
 
-                </div> --}}
+                </div>
 
                 <div class="namedars-moshakhasat">
                     <p>نام درس:{{ $course->master_name }}</p>
