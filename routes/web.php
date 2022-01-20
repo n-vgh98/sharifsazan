@@ -31,6 +31,7 @@ use App\Http\Controllers\Front\UserContactUsController;
 use App\Http\Controllers\Front\UserCoursesController;
 use App\Http\Controllers\Front\UserNotificiationsController;
 use App\Http\Controllers\Front\UserPanelController;
+use App\Http\Controllers\Front\UserWorkWithUsController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterArticleCategoryController;
 
@@ -99,6 +100,15 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::prefix("shopping_list")->middleware("auth")->group(function () {
         route::get("/", [AdminShoppingListController::class, "index"])->name("user.shopping.list.index");
         route::post("/add/{id}", [AdminShoppingListController::class, "add"])->name("user.shopping.list.add");
+    });
+
+    // order routes
+    route::prefix("work_with_us")->group(function () {
+        route::get("/{id}", [UserWorkWithUsController::class, "show"])->name("user.work.with.us.show");
+        route::get("/sabtename/{id}", [UserWorkWithUsController::class, "sabtename"])->name("user.work.with.us.sabtename");
+        route::get("/fani/{id}", [UserWorkWithUsController::class, "fani"])->name("user.work.with.us.fani");
+        route::get("/karname/{id}", [UserWorkWithUsController::class, "karname"])->name("user.work.with.us.karname");
+        route::get("/amali/{id}", [UserWorkWithUsController::class, "amali"])->name("user.work.with.us.amali");
     });
 });
 

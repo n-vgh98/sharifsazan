@@ -20,6 +20,7 @@
                 <th scope="col">تنظیمات</th>
                 <th scope="col">مشاهده</th>
                 <th scope="col">زبان</th>
+                <th scope="col">لینک کارنامه</th>
                 <th scope="col">لینک فرم آزمون عملی</th>
                 <th scope="col">لینک فرم آزمون فنی</th>
                 <th scope="col">لینک فرم ثبت نام</th>
@@ -47,6 +48,7 @@
                             صفحات گروه</a>
                     </td>
                     <td>{{ $category->language->name }}</td>
+                    <td><a href="{{ $category->karname }}">فرم کارنامه</a></td>
                     <td><a href="{{ $category->technical_exam_form_link }}">فرم آزمون عملی</a></td>
                     <td><a href="{{ $category->practical_exam_form_link }}">فرم آزمون فنی</a></td>
                     <td><a href="{{ $category->register_form_link }}">فرم ثبت نام</a></td>
@@ -97,6 +99,10 @@
                             <label for="practical_exam_form_link">لینک آزمون فنی</label>
                             <input type="text" name="practical_exam_form_link" id="practical_exam_form_link" required
                                 class="form-control">
+                        </div>
+                        <div style="margin-top: 25px;">
+                            <label for="practical_exam_form_link">لینک کارنامه</label>
+                            <input type="text" name="karname" id="practical_exam_form_link" required class="form-control">
                         </div>
                         <div style="margin-top: 25px;">
                             <select name="lang" class="custom-select">

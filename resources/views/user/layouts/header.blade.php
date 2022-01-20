@@ -163,27 +163,20 @@
                  <i class="fa fa-chevron-down"></i>
                  <!-- start wrapper-main-menu دعوت به همکاری-->
                  <ul class="wrapper-main-menu">
-                     <li>
-                         <a href="Davatbehamkari.html">
-                             واحد سازه و پل
-                         </a>
-                     </li>
-                     <li>
-                         <a href="Davatbehamkari.html">
-                             طراحی و شبیه سازی
-                         </a>
-                     </li>
-                     <li>
-                         <a href="Davatbehamkari.html">
-                             واحد معماری و طراحی داخلی واحد اداری-مالی
-                         </a>
-                     </li>
-
-                     <li>
-                         <a href="Davatbehamkari.html">
-                             واحد بازاریابی و فروش
-                         </a>
-                     </li>
+                     @php
+                         $lang = substr(Request::getPathInfo(), 1, 2);
+                         $workWithUsCategoryLanguages = App\Models\Lang::where([['name', $lang], ['langable_type', 'App\Models\InviteCategory']])->get();
+                     @endphp
+                     @foreach ($workWithUsCategoryLanguages as $workWithUsCategoryLanguage)
+                         @php
+                             $category = $workWithUsCategoryLanguage->langable;
+                         @endphp
+                         <li>
+                             <a href="{{ route('user.work.with.us.show', $category->id) }}">
+                                 {{ $category->title }}
+                             </a>
+                         </li>
+                     @endforeach
                  </ul>
                  <!-- end wrapper-main-menu دعوت به همکاری-->
 
