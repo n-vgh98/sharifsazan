@@ -39,7 +39,7 @@
 
 
 
-        <h1 class="project-title-h1">شریف سازان</h1>
+        <h1 class="project-title-h1">{{ __('translation.sharif-sazan') }}</h1>
 
         <section class="why-us">
 
@@ -72,7 +72,7 @@
         <!--just 3-->
         <div class="examples-project-main">
 
-            <h2 class="project-title-h2">آخرین پروژه ها</h2>
+            <h2 class="project-title-h2">{{ __('translation.last-projects') }}</h2>
             <section class="examples-project-full2">
 
                 <a href="#">
@@ -109,7 +109,7 @@
         <!--			  just 3-->
         <div class="examples-project-main">
 
-            <h3 class="project-title-h2">آخرین پروژه ها</h3>
+            <h3 class="project-title-h2">{{ __('translation.last-projects') }}</h3>
             <section class="examples-project-full2">
 
                 <a href="#">

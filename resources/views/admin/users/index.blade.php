@@ -149,13 +149,23 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">ارسال پیام به {{ $user->name }}
                                 </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.notifications.store') }}" method="POST">
+                                <form action="{{ route('admin.notifications.store', $user->id) }}" method="POST">
                                     @csrf
+                                    <div>
+                                        <label for="text">عتوان پیام</label>
+                                        <input type="text" required name="title" class="form-control">
+                                        @error('text')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                     <div>
                                         <label for="text">متن پیام</label>
                                         <input type="text" required name="text" class="form-control">
@@ -181,7 +191,7 @@
                                         <button type="submit" class="btn btn-primary">ارسال</button>
                                     </div>
                                     <input type="hidden" name="mode" value="0">
-                                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 </form>
                             </div>
                             <div class="modal-footer">

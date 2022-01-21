@@ -4,12 +4,9 @@
     <section class="parent-breadcrumb-section parent-article-breadcrumb-section">
         <div class="breadcrumb-section">
             <ul id="breadcrumbs">
-                <li><a href="{{ route('home') }}">خانه</a></li>
+                <li><a href="{{ route('home') }}">{{ __('translation.home') }}</a></li>
                 <li>
-                    <a href="{{ route('front.courses.all') }}">دوره های آموزشی</a>
-                </li>
-                <li>
-                    <a href="#">دوره های آموزش فیلتر شده</a>
+                    <a href="{{ route('front.courses.all') }}">{{ __('translation.courses') }}</a>
                 </li>
             </ul>
         </div>
@@ -17,7 +14,7 @@
     <!-- end breadcrumb -->
 
 
-    <h1 class="project-title-h1">دوره های آموزشی</h1>
+    <h1 class="project-title-h1">{{ __('translation.courses') }}</h1>
 
     <section class="right-article-wrapper-full">
 
@@ -27,14 +24,12 @@
                 کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
         </div>
         <div class="divShowForm">
-
-            <button class="buttonShowForm">نمایش فیلتر ها</button>
-
+            <button class="buttonShowForm">{{ __('translation.show-filter') }}</button>
         </div>
         <form id="formID" action="{{ route('front.courses.search') }}" method="post">
             @csrf
             <fieldset>
-                <legend>فیلتر پروژه ها</legend>
+                <legend>{{ __('translation.filters') }}</legend>
 
                 <div class="div-filter-projects">
 
@@ -43,52 +38,41 @@
                         <br>
                         @if (in_array('online', $checkfilter))
                             <input name="online" checked id="0" value="1" type="checkbox">
-                            <lable>دوره های آنلاین</lable><br>
+                            <lable>{{ __('translation.online-course') }}</lable><br>
                         @else
                             <input name="online" id="0" value="1" type="checkbox">
-                            <lable>دوره های آنلاین</lable><br>
+                            <lable>{{ __('translation.online-course') }}</lable><br>
                         @endif
 
                         @if (in_array('offline', $checkfilter))
                             <input name="offline" checked id="1" value="1" type="checkbox">
-                            <lable>دوره های آفلاین</lable><br>
+                            <lable>{{ __('translation.offline-course') }}</lable><br>
                         @else
                             <input name="offline" id="1" value="1" type="checkbox">
-                            <lable>دوره های آفلاین</lable><br>
+                            <lable>{{ __('translation.offline-course') }}</lable><br>
                         @endif
 
                         @if (in_array('free', $checkfilter))
                             <input name="free" checked id="2" value="1" type="checkbox">
-                            <lable>دوره های رایگان</lable>
+                            <lable>{{ __('translation.free-course') }}</lable>
                         @else
                             <input name="free" id="2" value="1" type="checkbox">
-                            <lable>دوره های رایگان</lable>
+                            <lable>{{ __('translation.free-course') }}</lable>
                         @endif
                     </div>
                 </div>
 
                 <div class="submit-div">
-                    <input type="submit" value="اعمال فیلتر ها">
+                    <input type="submit" value="{{ __('translation.apply-filter') }}">
                 </div>
 
             </fieldset>
         </form>
-
-
-
-
-
         <section class="article-text-wrapper">
-
-
-
-
-            <!--                           examples project-demo first start                  -->
+            <!--examples project-demo first start                  -->
             <div class="examples-project-main">
-
-                <h2 class="project-title-h2">فیلتر شده ها</h2>
+                <h2 class="project-title-h2">{{ __('translation.filtered') }}</h2>
                 <section class="examples-project-full">
-
                     @foreach ($filteredcourses as $course)
                         <a href="{{ route('front.courses.show', $course->id) }}">
                             <div class="examples-project-item">

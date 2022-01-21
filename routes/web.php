@@ -21,14 +21,17 @@ use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminServiceCategoryController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminShoppingListController;
 use App\Http\Controllers\Front\UserArticleController;
 use App\Http\Controllers\Front\UserBooksController;
 use App\Http\Controllers\Front\UserContactUsController;
 use App\Http\Controllers\Front\UserCoursesController;
 use App\Http\Controllers\Front\UserNotificiationsController;
 use App\Http\Controllers\Front\UserPanelController;
+use App\Http\Controllers\Front\UserWorkWithUsController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterArticleCategoryController;
 
@@ -58,7 +61,9 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::post("/updateInformation", [UserPanelController::class, "updateInformation"])->name("panel.updateInformation");
     });
 
-
+    Route::prefix('commets')->middleware("auth")->group(function () {
+        route::post("/store", [AdminCommentController::class, "store"])->name("user.comments.store");
+    });
 
     route::get("/", [HomeController::class, "index"])->name("home");
 
@@ -89,6 +94,21 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::get("/", [UserCoursesController::class, "index"])->name("front.courses.all");
         route::get("/show/{id}", [UserCoursesController::class, "show"])->name("front.courses.show");
         route::Post("/searchcourse", [UserCoursesController::class, "search"])->name("front.courses.search");
+    });
+
+    // order routes
+    route::prefix("shopping_list")->middleware("auth")->group(function () {
+        route::get("/", [AdminShoppingListController::class, "index"])->name("user.shopping.list.index");
+        route::post("/add/{id}", [AdminShoppingListController::class, "add"])->name("user.shopping.list.add");
+    });
+
+    // order routes
+    route::prefix("work_with_us")->group(function () {
+        route::get("/{id}", [UserWorkWithUsController::class, "show"])->name("user.work.with.us.show");
+        route::get("/sabtename/{id}", [UserWorkWithUsController::class, "sabtename"])->name("user.work.with.us.sabtename");
+        route::get("/fani/{id}", [UserWorkWithUsController::class, "fani"])->name("user.work.with.us.fani");
+        route::get("/karname/{id}", [UserWorkWithUsController::class, "karname"])->name("user.work.with.us.karname");
+        route::get("/amali/{id}", [UserWorkWithUsController::class, "amali"])->name("user.work.with.us.amali");
     });
 });
 
@@ -238,7 +258,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     });
 
     //Service routes
-    route::prefix("services")->group(function(){
+    route::prefix("services")->group(function () {
         route::get("/{lang}", [AdminServiceController::class, "index"])->name("admin.services.index");
         route::get("/create/{lang}", [AdminServiceController::class, "create"])->name("admin.services.create");
         route::post("/store", [AdminServiceController::class, "store"])->name("admin.services.store");
@@ -247,7 +267,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::delete("/delete/{id}", [AdminServiceController::class, "destroy"])->name("admin.services.destroy");
         route::post("/updateimage/{id}", [AdminServiceController::class, "updateimage"])->name("admin.services.update.image");
         //Service Categories routes
-        route::prefix("category")->group(function(){
+        route::prefix("category")->group(function () {
             route::get("/{lang}", [AdminServiceCategoryController::class, "index"])->name("admin.services.category.index");
             route::get("/create", [AdminServiceCategoryController::class, "create"])->name("admin.services.category.create");
             route::post("/store", [AdminServiceCategoryController::class, "store"])->name("admin.services.category.store");
@@ -304,6 +324,15 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::get("/create", [AdminFooter::class, "create"])->name("admin.footer.create");
         route::delete("/destroy/{id}", [AdminFooter::class, "destroy"])->name("admin.footer.destroy");
     });
+
+    // routes for comments
+    route::prefix("comments")->group(function () {
+        route::get("/", [AdminCommentController::class, "index"])->name("admin.comments.index");
+        route::post("/accept/{id}", [AdminCommentController::class, "accept"])->name("admin.comments.accept");
+        route::post("/store", [AdminCommentController::class, "store"])->name("admin.comments.store");
+        route::post("/decline/{id}", [AdminCommentController::class, "decline"])->name("admin.comments.decline");
+        route::delete("/destroy/{id}", [AdminCommentController::class, "destroy"])->name("admin.comments.destroy");
+    });
 });
 // end of admin routing
 
@@ -354,22 +383,22 @@ route::prefix("writer")->middleware(["auth", "writer"])->group(function () {
     });
 
     //Service routes
-    route::prefix("services")->group(function(){
+    route::prefix("services")->group(function () {
         route::get("/", [AdminServiceController::class, "index"])->name("writer.services.index");
         route::get("/create", [AdminServiceController::class, "create"])->name("writer.services.create");
         route::post("/store", [AdminServiceController::class, "store"])->name("writer.services.store");
         route::post("/update/{id}", [AdminServiceController::class, "update"])->name("writer.services.update");
         route::get("/edit/{id}/{lang}", [AdminServiceController::class, "edit"])->name("writer.services.edit");
         route::delete("/delete/{id}", [AdminServiceController::class, "destroy"])->name("writer.services.destroy");
-          //Service Categories routes
-          route::prefix("category")->group(function(){
+        //Service Categories routes
+        route::prefix("category")->group(function () {
             route::get("/", [AdminServiceCategoryController::class, "index"])->name("writer.services.category.index");
             route::get("/create", [AdminServiceCategoryController::class, "create"])->name("writer.services.category.create");
             route::post("/store", [AdminServiceCategoryController::class, "store"])->name("writer.services.category.store");
             route::post("/update/{id}", [AdminServiceCategoryController::class, "update"])->name("writer.services.category.update");
             route::get("/edit/{id}/{lang}", [AdminServiceCategoryController::class, "edit"])->name("writer.services.category.edit");
             route::delete("/delete/{id}", [AdminServiceCategoryController::class, "destroy"])->name("writer.services.category.destroy");
-          });
+        });
     });
 
     // route for articles

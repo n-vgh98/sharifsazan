@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Lang;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -104,7 +105,7 @@ class UserCoursesController extends Controller
                 }
             }
         } else {
-            return redirect()->route("front.courses.all")->with("fail", "لطفا ابتدا یکی از گزینه های فیلتر را انتخاب کنید");
+            return redirect()->route("front.courses.all")->with("fail", __("translation.filter-error"));
         }
         return view("user.courses.filtered", compact("filteredcourses", "checkfilter"));
     }
@@ -116,9 +117,10 @@ class UserCoursesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($lang, $id)
     {
-        //
+        $course = Course::find($id);
+        return view("user.courses.show", compact("course"));
     }
 
     /**

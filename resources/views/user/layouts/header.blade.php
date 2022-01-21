@@ -11,10 +11,8 @@
 
      <div class="wrapper-responsive-menu">
          <!-- flag nav start -->
-
-
          <div onClick="mFlag()" class="menu-flag menu-flag-show1">
-             <p style="display: inline-block">language
+             <p style="display: inline-block">{{ __('translation.language') }}
                  <i class="fas fa-chevron-down"></i>
              </p>
              <div class="menu-flag2">
@@ -30,7 +28,6 @@
                              $link = $lang . $x;
                          }
                      @endphp
-
                      @if ($lang == 'en')
                          <li><a href="#">Fa</a><img src="{{ asset('frontend/imgs/iran-flag.png') }}" alt="">
                              </a>
@@ -94,11 +91,11 @@
 
              <!-- nav-flag-main-menu" end -->
              <li>
-                 <a href="{{ route('home') }}">خانه</a>
+                 <a href="{{ route('home') }}">{{ __('translation.home') }}</a>
              </li>
              <li>
 
-                 خدمات
+                 {{ __('translation.services') }}
 
                  <i class="fa fa-chevron-down"></i>
                  <!-- start wrapper-main-menu خدمات -->
@@ -127,14 +124,14 @@
              </li>
              <li>
 
-                 تحقیق توسعه
+                 {{ __('translation.development-research') }}
 
                  <i class="fa fa-chevron-down"></i>
                  <!-- start wrapper-main-menu تحقیق توسعه-->
                  <ul class="wrapper-main-menu">
                      <li>
                          <a href="{{ route('front.courses.all') }}">
-                             دوره آموزشی
+                             {{ __('translation.courses') }}
                          </a>
                      </li>
 
@@ -155,51 +152,44 @@
                      @endforeach
                      <li>
                          <a href="{{ route('bookshelf.index') }}">
-                             کتابخانه الکترونیکی
+                             {{ __('translation.electronic-library') }}
                          </a>
                      </li>
                  </ul>
                  <!-- end wrapper-main-menu تحقیق توسعه-->
              </li>
              <li>
-                 دعوت به همکاری
+                 {{ __('translation.work-with-us') }}
                  <i class="fa fa-chevron-down"></i>
                  <!-- start wrapper-main-menu دعوت به همکاری-->
                  <ul class="wrapper-main-menu">
-                     <li>
-                         <a href="Davatbehamkari.html">
-                             واحد سازه و پل
-                         </a>
-                     </li>
-                     <li>
-                         <a href="Davatbehamkari.html">
-                             طراحی و شبیه سازی
-                         </a>
-                     </li>
-                     <li>
-                         <a href="Davatbehamkari.html">
-                             واحد معماری و طراحی داخلی واحد اداری-مالی
-                         </a>
-                     </li>
-
-                     <li>
-                         <a href="Davatbehamkari.html">
-                             واحد بازاریابی و فروش
-                         </a>
-                     </li>
+                     @php
+                         $lang = substr(Request::getPathInfo(), 1, 2);
+                         $workWithUsCategoryLanguages = App\Models\Lang::where([['name', $lang], ['langable_type', 'App\Models\InviteCategory']])->get();
+                     @endphp
+                     @foreach ($workWithUsCategoryLanguages as $workWithUsCategoryLanguage)
+                         @php
+                             $category = $workWithUsCategoryLanguage->langable;
+                         @endphp
+                         <li>
+                             <a href="{{ route('user.work.with.us.show', $category->id) }}">
+                                 {{ $category->title }}
+                             </a>
+                         </li>
+                     @endforeach
                  </ul>
                  <!-- end wrapper-main-menu دعوت به همکاری-->
 
              </li>
-             <li><a href="Proje.html">پروژها</a></li>
-             <li> <a href="{{ route('contactus.index') }}">تماس با ما</a></li>
-             <li><a href="TeamMa.html">درباره ما</a></li>
+             <li><a href="Proje.html">{{ __('translation.projects') }}</a></li>
+             <li> <a href="{{ route('contactus.index') }}"> {{ __('translation.contact-us') }}</a></li>
+             <li><a href="TeamMa.html">{{ __('translation.about-us') }}</a></li>
 
          </ul>
 
          <!--				mnue flag2 start-->
          <div onClick="mFlag()" class="menu-flag menu-flag-show2">
-             <p style="display: inline-block">language
+             <p style="display: inline-block">{{ __('translation.language') }}
                  <i class="fas fa-chevron-down"></i>
              </p>
              <div class="menu-flag2">
@@ -241,52 +231,6 @@
      </nav>
 
 
-
-
-
-
-
-
-
-
-
-     <!-- start icon main -->
-     {{-- <nav class="nav-icon-main">
-         <ul class="ul-icon-main">
-             <li>
-                 <a href="#">
-                     <i class="fas fa-comment"></i>
-                 </a>
-             </li>
-             <li>
-                 <a href="#">
-                     <i class="fa fa-shopping-cart"></i>
-                 </a>
-             </li>
-             <li>
-                 @if (Auth::check())
-                     <a href="{{ route('panel.index') }}"><i
-                             class="fas">{{ auth()->user()->name }}</i></a>
-                 @else
-                     <a href="{{ route('login') }}">
-                         <i class="fas fa-user"></i>
-                     </a>
-                 @endif
-
-                 <ul class="wrapper-user-icon">
-                     <li class="setting-menu">
-                         <p> تنظیمات</p>
-                         <i class="fas fa-cog"></i>
-                     </li>
-                     <li class="settingg-menu">
-                         <p> خروج </p>
-                         <i class="fas fa-power-off"></i>
-                     </li>
-                 </ul>
-             </li>
-         </ul>
-     </nav> --}}
-
      <nav class="nav-icon-main">
          <ul class="ul-icon-main">
              <li>
@@ -308,7 +252,7 @@
                          <li class="setting-menu">
                              <a href="{{ route('panel.index') }}">
                                  <button>
-                                     <p class="big-p">تنظیمات</p>
+                                     <p class="big-p">{{ __('translation.setting') }}</p>
                                      <i class="fas fa-cog big-p"></i>
                                  </button>
                              </a>
@@ -318,7 +262,7 @@
                              <form method="POST" action="{{ route('logout') }}">
                                  @csrf
                                  <button>
-                                     <p class="big-p">خروج</p>
+                                     <p class="big-p">{{ __('translation.logout') }}</p>
                                      <i class="fas fa-power-off big-p"></i>
                                  </button>
                              </form>
@@ -351,28 +295,28 @@
 
 
                  <a href="{{ route('home') }}">
-                     خانه
+                     {{ __('translation.home') }}
                  </a>
              </div>
              <div class="toggel">
                  <i class="fa fa-user"></i>
 
                  <a href="panelkarbari.html">
-                     پنل کاربری
+                     {{ __('translation.panel') }}
                  </a>
              </div>
 
              <div class="toggel">
                  <i class="fa fa-map-marker"></i>‏
 
-                 <a href="tamasbama.html">
-                     ادرس
+                 <a href="{{ route('contactus.index') }}">
+                     {{ __('translation.address') }}
                  </a>
              </div>
 
              <div class="toggel">
                  <i class="fab fa-gg"></i>
-                 خدمات
+                 {{ __('translation.services') }}
                  <i class="fa fa-chevron-circle-down"></i>
              </div>
 
@@ -402,13 +346,13 @@
              <div class="toggel">
                  <i class="fa fa-file"></i>‏
                  <a href="Proje.html">
-                     پروژه ها
+                     {{ __('translation.projects') }}
                  </a>
              </div>
              <div class="toggel">
                  <i class="fa fa-list-alt" aria-hidden="true"></i>‏
 
-                 تحقیق توسعه
+                 {{ __('translation.development-research') }}
                  <i class="fa fa-chevron-circle-down"></i>‏
 
              </div>
@@ -416,7 +360,8 @@
              <ul class="ul-wrapper-toggel">
                  <li>
                      <a href="{{ route('front.courses.all') }}">
-                         دوره آموزشی
+                         {{ __('translation.courses') }}
+
                      </a>
                  </li>
                  <li>
@@ -433,14 +378,14 @@
                  </li>
                  <li>
                      <a href="{{ route('bookshelf.index') }}">
-                         کتابخانه الکترونیکی
+                         {{ __('translation.electronic-library') }}
                      </a>
                  </li>
              </ul>
 
              <div class="toggel">
                  <i class="far fa-handshake"></i>
-                 دعوت به همکاری
+                 {{ __('translation.work-with-us') }}
                  <i class="fa fa-chevron-circle-down"></i>‏
 
 
@@ -474,7 +419,7 @@
              <div class="toggel">
                  <a href="{{ route('contactus.index') }}">
                      <i class="fa fa-phone"></i>‏
-                     تماس با ما
+                     {{ __('translation.contact-us') }}
                  </a>
 
              </div>
@@ -482,7 +427,7 @@
                  <a href="#">
                      <i class="fa fa-building"></i>‏
 
-                     درباره ما
+                     {{ __('translation.about-us') }}
                  </a>
 
              </div>

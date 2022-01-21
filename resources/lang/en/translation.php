@@ -21,6 +21,8 @@ return [
     'signup' => 'Sign Up',
     'contact' => 'Contact',
     'language' => 'Language',
+    'setting' => 'Setting',
+
     //_______//
 
 
@@ -106,6 +108,7 @@ return [
     'send' => 'Send',
     'close' => 'Close',
     'commenttext' => 'Comment Text',
+    'commentconfirmation' => 'Your Comment Saved Successfully and will show after admin confirmation',
 
 
     //category page
@@ -137,6 +140,7 @@ return [
     'job'                   => 'job',
     'gender'                => 'gender',
     'femail'                => 'femail',
+    'address'                => 'Address',
     'male'                  => 'male',
     'have-account'          => 'Already Sigend Up? ',
     'google-login'          => 'Login With Google',
@@ -183,5 +187,35 @@ return [
     "sign-course" => "participate",
     "contact-suppot" => "Please Contact Support",
     "contact-done" => "Your Message Sent Successfully We Will Contact you ASAP",
+    "services" => "Services",
+    "development-research" => "Development research",
+    "work-with-us" => "Work With Us",
+    "projects" => "Projects",
+    "contact-us" => "Contact Us",
+    "about-us" => "About Us",
+    "courses" => "Courses",
+    "electronic-library" => "Eloctronic Library",
+    "sharif-sazan" => "Sharif Sazan",
+    "last-projects" => "Last Projects",
+    "last-articles" => "Last Articles",
+    "show-filter" => "Show Filters",
+    "filters" => "Filters",
+    "kind-of-course" => "Kind of Course",
+    "online-course" => "Online Course",
+    "offline-course" => "Offline Course",
+    "free-course" => "Free Course",
+    "last-courses" => "Last Courses",
+    "all-courses" => "All Course",
+    "apply-filter" => "Apply Filters",
+    "filtered" => "Filtered",
+    "filter-error" => "Please Select One Of The Filter Choices",
+    "your-message" => "Your Message",
+    "file" => "File",
+    "notifications" => "Notifications",
+    "see-more" => "See More",
+    "course-information" => "Course Information",
+    "introduction-video" => "Introduction Video",
+    "comment-and-feedback" => "Comments And Feedbacks",
+    "comment-invite-text" => "Send Comment",
 
 ];

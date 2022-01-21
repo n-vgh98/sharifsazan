@@ -49,6 +49,7 @@ class AdminNotificationController extends Controller
     public function store(NotificationRequest $request)
     {
         if ($request->mode == 0) {
+
             $notification = new Notifications();
             $notification->title = $request->title;
             $notification->text = $request->text;

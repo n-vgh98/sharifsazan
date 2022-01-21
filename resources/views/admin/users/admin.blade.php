@@ -160,6 +160,15 @@
                                     <form action="{{ route('admin.notifications.store', $user->id) }}" method="POST">
                                         @csrf
                                         <div>
+                                            <label for="text">عتوان پیام</label>
+                                            <input type="text" required name="title" class="form-control">
+                                            @error('text')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div>
                                             <label for="text">متن پیام</label>
                                             <input type="text" required name="text" class="form-control">
                                             @error('text')
@@ -184,6 +193,7 @@
                                             <button type="submit" class="btn btn-primary">ارسال</button>
                                         </div>
                                         <input type="hidden" name="mode" value="0">
+                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                     </form>
                                 </div>
                                 <div class="modal-footer">

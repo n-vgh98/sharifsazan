@@ -21,6 +21,7 @@ return [
     'signup' => 'ثبت نام',
     'contact' => 'تماس با ما',
     'language' => 'زبان',
+    'setting' => 'تنظیمات',
     //_______//
 
 
@@ -104,6 +105,7 @@ return [
     'send' => 'ارسال',
     'close' => 'بستن',
     'commenttext' => 'متن کامنت',
+    'commentconfirmation' => 'کامت شما با موفثقیت ثبت شد و پس از تایید پشتیبانی بر روی سایت نمایش داده خواهد شد',
     //
     // category page//
     'subcategorytitle' => '',
@@ -132,7 +134,7 @@ return [
 
 
     // new translations
-    'address'               => 'نشانی',
+    'address'               => 'آدرس',
     'age'                   => 'سن',
     'area'                  => 'منطقه',
     'available'             => 'موجود',
@@ -215,4 +217,35 @@ return [
     "sign-course" => "ثبت سفارش",
     "contact-suppot" => "لطفا با پشتیبانی تماس بگیرید",
     "contact-done" => "پیام شما با موفقیت برای تیم شریف سازان ارسال شد در اسرع وقت با شما تماس گرفته خواهد شد",
+    "services" => "خدمات",
+    "development-research" => "تحقیق توسعه",
+    "work-with-us" => "همکاری با ما",
+    "projects" => "پروژه ها",
+    "contact-us" => "تماس با ما",
+    "about-us" => "درباره ما",
+    "courses" => "دوره های آموزشی",
+    "electronic-library" => "کتابخانه الکترونیکی",
+    "sharif-sazan" => "شریف سازان",
+    "last-projects" => "آخرین پروژه ها",
+    "last-articles" => "آخرین مقالات",
+    "show-filter" => "نمایش فیلتر ها",
+    "filters" => "فیلترها",
+    "kind-of-course" => "نوع دوره",
+    "online-course" => "دوره های آنلاین",
+    "offline-course" => "دوره های آفلاین",
+    "free-course" => "دوره های رایگان",
+    "all-courses" => "همه دوره ها",
+    "last-courses" => "آخرین دوره ها",
+    "apply-filter" => "اعمال فیلترها",
+    "filtered" => "فیلتر شده ها",
+    "filter-error" => "لطفا ابتدا یکی از فیلتر ها را انتخاب کنید",
+    "your-message" => "پیام شما",
+    "file" => "فایل",
+    "notifications" => "پیام ها",
+    "see-more" => "بیشتر ببینید",
+    "course-information" => "مشخصات دوره",
+    "introduction-video" => "ویدیو معرفی دوره",
+    "comment-and-feedback" => "کامنت ها و نظرات",
+    "comment-invite-text" => "با ثبت نظر و تجربه خود به کاربران دیگر انتقال دهید",
+
 ];

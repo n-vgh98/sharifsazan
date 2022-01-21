@@ -19,6 +19,7 @@ class CreateInviteCategoriesTable extends Migration
             $table->text("register_form_link");
             $table->text("technical_exam_form_link")->comment("fani");
             $table->text("practical_exam_form_link")->comment("amali");
+            $table->text("karname")->comment("karname");
             $table->timestamps();
         });
     }

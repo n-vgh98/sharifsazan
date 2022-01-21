@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Notifications;
+use App\Models\Comment;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
-
-class UserNotificiationsController extends Controller
+class AdminCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,8 @@ class UserNotificiationsController extends Controller
      */
     public function index()
     {
-        $notifications = Notifications::where("user_id", null)->get();
-        $privatenotifications = Notifications::where("user_id", auth()->user()->id)->get();
-        return view("user.notifications", compact("notifications", "privatenotifications"));
+        $comments = Comment::all();
+        return view("admin.comments.index", compact("comments"));
     }
 
     /**
@@ -28,7 +27,6 @@ class UserNotificiationsController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -39,7 +37,13 @@ class UserNotificiationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = Course::find($request->course_id);
+        $comment = new Comment();
+        $comment->text = $request->text;
+        $comment->status = 0;
+        $comment->user_id = auth()->user()->id;
+        $course->comments()->save($comment);
+        return redirect()->back()->with("success", __("translation.commentconfirmation"));
     }
 
     /**
@@ -84,6 +88,24 @@ class UserNotificiationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $comment->delete();
+        return redirect()->back()->with("success", "پیام مورد نظر حذف شد");
+    }
+
+    public function accept($id)
+    {
+        $comment = Comment::find($id);
+        $comment->status = 1;
+        $comment->save();
+        return redirect()->back()->with("success", "پیام مورد نظر به حالت تایید شده تغیر کرد");
+    }
+
+    public function decline($id)
+    {
+        $comment = Comment::find($id);
+        $comment->status = 0;
+        $comment->save();
+        return redirect()->back()->with("success", "پیام مورد نظر دیگر نمایش داده نمیشود");
     }
 }

@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Notifications;
 use Illuminate\Http\Request;
 
-
-class UserNotificiationsController extends Controller
+class AdminMarkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class UserNotificiationsController extends Controller
      */
     public function index()
     {
-        $notifications = Notifications::where("user_id", null)->get();
-        $privatenotifications = Notifications::where("user_id", auth()->user()->id)->get();
-        return view("user.notifications", compact("notifications", "privatenotifications"));
+        //
     }
 
     /**

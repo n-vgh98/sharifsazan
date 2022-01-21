@@ -109,7 +109,7 @@
         </div>
 
         <div style="margin-top: 25px;">
-            <label for="image">عکس مقاله</label>
+            <label for="image">عکس دوره</label>
             <input type="file" name="image" id="image" required class="form-control">
         </div>
 
@@ -121,6 +121,23 @@
         <div style="margin-top: 25px;">
             <label for="alt">Alt</label>
             <input type="text" name="alt" id="alt" required class="form-control">
+        </div>
+
+        {{-- master picture --}}
+
+        <div style="margin-top: 25px;">
+            <label for="master_image">عکس استاد</label>
+            <input type="file" name="master_image" id="master_image" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="master_pic_name">نام عکس</label>
+            <input type="text" name="master_pic_name" id="master_pic_name" required class="form-control">
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="master_pic_alt">Alt</label>
+            <input type="text" name="master_pic_alt" id="master_pic_alt" required class="form-control">
         </div>
 
         <div style="margin-top: 25px;">

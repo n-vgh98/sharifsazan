@@ -259,6 +259,13 @@ class AdminCourseController extends Controller
         $course->licensable = $request->licensable;
         $course->meta_key_words = $request->meta_key_words;
         $course->meta_descriptions = $request->meta_descriptions;
+        // saving master picture
+        $master_image = time() . "." . $request->master_image->extension();
+        $filename = $course->title . ".master" . $course->id;
+        $request->master_image->move(public_path("photos/courses/$filename/"), $master_image);
+        $course->master_pic_name = $request->master_pic_name;
+        $course->master_pic_alt = $request->master_pic_alt;
+        $course->master_pic_path = "photos/courses/$filename/$master_image";
         $course->save();
         $courselanguage = new Lang();
         $courselanguage->name = $request->lang;
@@ -346,6 +353,17 @@ class AdminCourseController extends Controller
             $image->path = "photos/courses/$filename/$imagename";
             $course->images()->save($image);
         }
+
+        // update master image
+        if ($request->master_image !== null) {
+            File::delete($course->master_pic_path);
+            $master_image = time() . "." . $request->master_image->extension();
+            $filename = $course->title . ".master" . $course->id;
+            $request->master_image->move(public_path("photos/courses/$filename/"), $master_image);
+            $course->master_pic_name = $request->master_pic_name;
+            $course->master_pic_alt = $request->master_pic_alt;
+            $course->master_pic_path = "photos/courses/$filename/$master_image";
+        }
         $course->save();
         return redirect()->route("admin.courses.all")->with("success", ".دوره شما با موفقیت ویرایش شد");
     }
@@ -361,9 +379,8 @@ class AdminCourseController extends Controller
 
         $course = Course::find($id);
         $path = pathinfo($course->images->path)["dirname"];
-        foreach ($course->images as $image) {
-            File::delete($image->path);
-        }
+        File::delete($course->images->path);
+        File::delete($course->master_pic_path);
         rmdir($path);
         $course->images()->delete();
         $course->language()->delete();

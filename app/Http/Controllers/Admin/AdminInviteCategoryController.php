@@ -56,6 +56,7 @@ class AdminInviteCategoryController extends Controller
         $category->practical_exam_form_link = $request->practical_exam_form_link;
         $category->technical_exam_form_link = $request->technical_exam_form_link;
         $category->register_form_link = $request->register_form_link;
+        $category->karname = $request->karname;
         $category->save();
         $categorylanguage = new Lang();
         $categorylanguage->name = $request->lang;

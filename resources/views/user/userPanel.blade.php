@@ -30,10 +30,10 @@
                 <section class="parent-breadcrumb-section">
                     <div class="breadcrumb-section">
                         <ul id="breadcrumbs">
-                            <li><a href="{{ route('home') }}">خانه</a></li>
+                            <li><a href="{{ route('home') }}"> {{ __('translation.home') }}</a></li>
                             <li>
                                 <a href="{{ route('panel.index') }}">
-                                    پنل کاربر
+                                    {{ __('translation.panel') }}
                                 </a>
                             </li>
                             <p class="sapcelipanel">/</p>
@@ -45,50 +45,59 @@
                 </section>
 
                 <section class="parent-virayesh-etelaat-panel" id="parent-breadcrumb-section-virayesh">
-                    <p>ویرایش مشخصات</p>
-                    <form class="grid-virayesh-etelaat">
+                    <p> {{ __('translation.change-detail') }}</p>
+                    <form class="grid-virayesh-etelaat" method="POST" action="{{ route('panel.updateInformation') }}">
+                        @csrf
                         <div class="div-box1-virayesh-panel">
-                            <input type="text" placeholder="نام">
-                            <input type="text" placeholder="نام خانوادگی">
-                            <input type="number" placeholder="شماره تماس">
+                            <input name="name" type="text" value="{{ auth()->user()->name }}">
+                            <input type="number" name="phone" value="{{ auth()->user()->phone }}">
                         </div>
                         <div class="div-box2-virayesh-panel">
                             <div class="jensiate-panel">
-                                <label>جنسیت:</label>
+                                <label>{{ __('translation.gender') }}:</label>
                                 <br>
-                                <input type="radio" id="women" name="sex" value="women">
-                                <label for="women">خانم</label>
-                                <input type="radio" id="men" name="sex" value="men">
-                                <label for="men">آقا</label>
+                                @if (auth()->user()->gender == 1)
+                                    <input type="radio" id="women" checked name="sex" value="1">
+                                @else
+                                    <input type="radio" id="women" name="sex" value="1">
+                                @endif
+                                <label for="women">{{ __('translation.femail') }}</label>
+                                @if (auth()->user()->gender == 0)
+                                    <input type="radio" id="men" name="sex" checked value="0">
+
+                                @else
+                                    <input type="radio" id="men" name="sex" value="0">
+                                @endif
+                                <label for="men">{{ __('translation.male') }}</label>
                             </div>
 
-                            <input type="email" placeholder="ایمیل" class="email-virayesh-panel">
+                            <input type="email" name="email" value="{{ auth()->user()->email }}"
+                                class="email-virayesh-panel">
                         </div>
-
-
+                        <div class="parent-btn-virayeshe-etelaat">
+                            <button class="btn-virayesh-etelaat-panel">{{ __('translation.send') }}</button>
+                        </div>
                     </form>
-                    <div class="parent-btn-virayeshe-etelaat">
-                        <button class="btn-virayesh-etelaat-panel"> ثبت</button>
-                    </div>
                 </section>
 
 
                 <section class="parent-virayaesh-panel">
                     <div>
-                        <p>تغییر رمز عبور</p>
+                        <p>{{ __('translation.change-password') }}</p>
                     </div>
                     <div class="wrapper-virayesh-panel">
 
                         <form action="{{ route('panel.updatePassword') }}" method="POST">
                             @csrf
-                            <p>رمز عبور جدید*:</p>
+                            <p>{{ __('translation.new-password') }}*:</p>
                             <input name="password" type="password">
                             <div>
-                                <p>تکرار رمز عبور جدید*:</p>
+                                <p>{{ __('translation.password_confirmation') }}*:</p>
                             </div>
                             <input name="password_confirmation" type="password">
                             <br>
-                            <button type="submit" class="button-changepass"> تغییر رمز عبور </button>
+                            <button type="submit" class="button-changepass"> {{ __('translation.change-password') }}
+                            </button>
                         </form>
 
 
@@ -110,12 +119,16 @@
 
             </div>
 
-            <div>نام و نام خانوادگی:{{ auth()->user()->name }}</div>
-            <div>email:{{ auth()->user()->email }}</div>
+            <div>{{ __('translation.name') }}:{{ auth()->user()->name }}</div>
+            <div>{{ __('translation.email') }}:{{ auth()->user()->email }}</div>
 
             <div class="parent-btn-panel">
-                <button class="btn-change-password-panel" id="btn-change-password-panel">تغییر رمز عبور</button>
-                <button class="btn-exit-panel"><a href="#">خروج</a></button>
+                <button class="btn-change-password-panel"
+                    id="btn-change-password-panel">{{ __('translation.change-password') }}</button>
+                <form action="{{ route('logout') }}" method="POST"> @csrf<button class="btn-exit-panel"><a
+                            href="#">{{ __('translation.logout') }}</a></button>
+                </form>
+
 
             </div>
 
@@ -124,28 +137,28 @@
                     <li class="virayesh-panel">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         <a href="#" id="virayesh-panel">
-                            ویرایش
+                            {{ __('translation.change-detail') }}
                         </a>
                     </li>
 
                     <li>
                         <i class="fa fa-window-restore" aria-hidden="true"></i>
-                        <a href="#">
-                            اخبار
+                        <a href="{{ route('user.notifications.all') }}">
+                            {{ __('translation.notifications') }}
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <i class="fa fa-folder-open" aria-hidden="true"></i>
                         <a href="#">
                             دوره های من
                         </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                         <i class="fa fa-cart-plus" aria-hidden="true"></i>
                         <a href="#">
                             سبد خرید
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </nav>
         </section>

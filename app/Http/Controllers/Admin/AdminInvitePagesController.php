@@ -119,10 +119,8 @@ class AdminInvitePagesController extends Controller
     public function destroy($id)
     {
         $page = InvitePage::find($id);
-        $path = pathinfo($page->images[0]->path)["dirname"];
-        foreach ($page->images as $image) {
-            File::delete($image->path);
-        }
+        $path = pathinfo($page->images->path)["dirname"];
+        File::delete($page->images->path);
         rmdir($path);
         $page->images()->delete();
         $page->delete();

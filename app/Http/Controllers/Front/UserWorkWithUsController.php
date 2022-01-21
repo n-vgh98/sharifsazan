@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use App\Models\Notifications;
+use App\Models\InviteCategory;
 use Illuminate\Http\Request;
 
-
-class UserNotificiationsController extends Controller
+class UserWorkWithUsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,7 @@ class UserNotificiationsController extends Controller
      */
     public function index()
     {
-        $notifications = Notifications::where("user_id", null)->get();
-        $privatenotifications = Notifications::where("user_id", auth()->user()->id)->get();
-        return view("user.notifications", compact("notifications", "privatenotifications"));
+        //
     }
 
     /**
@@ -48,9 +45,19 @@ class UserNotificiationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($lang, $id)
     {
-        //
+        $page = [];
+
+        $category = InviteCategory::findorfail($id);
+        foreach ($category->pages as $allpages) {
+            if ($allpages->title == 3) {
+                array_push($page, $allpages);
+            }
+        }
+        // inverrt to collection
+        $page = $page[0];
+        return view("user.work_with_us.index", compact("page"));
     }
 
     /**

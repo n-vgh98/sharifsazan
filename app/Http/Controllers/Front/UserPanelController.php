@@ -41,12 +41,15 @@ class UserPanelController extends Controller
             $user = User::findorfail(auth()->user()->id);
             if ($request->name != null) {
                 $user->name = $request->name;
-            } elseif ($request->email != null) {
+            }
+            if ($request->email != null) {
                 $user->email = $request->email;
-            } elseif ($request->phone_number != null) {
-                $user->phone_number = $request->phone_number;
-            } elseif ($request->gender != null) {
-                $user->phone_number = $request->gender;
+            }
+            if ($request->phone != null) {
+                $user->phone = $request->phone;
+            }
+            if ($request->sex != null) {
+                $user->gender = $request->sex;
             }
             $user->save();
             return redirect()->back()->with("success", __("translation.detail-change-confirm"));
