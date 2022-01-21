@@ -9,9 +9,9 @@ class Service extends Model
 {
     use HasFactory;
 
-    public function category()
-    {
-        return $this->hasOne(ServiceCategory::class);
+    public function category(){
+        
+        return $this->belongsTo("App\Models\ServiceCategory");
     }
 
     public function images()

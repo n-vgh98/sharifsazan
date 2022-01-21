@@ -1,38 +1,47 @@
 @extends('admin.layouts.master')
 @section('sitetitle')
-    ساخت مقاله
+    ساخت خدمات
 @endsection
 
 @section('pagetitle')
-    ساخت مقاله جدید
+    ساخت خدمات جدید
 @endsection
 
 @section('content')
-    <form action="{{ route('admin.articles.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.services.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div>
-            <label for="title">عنوان مقاله</label>
+            <label for="title">عنوان خدمات</label>
             <input class="form-control" type="text" name="title" id="title" required>
             @error('title')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
+        </div><br>
+        <div>
+            <label for="slug">نام مستعار(slug) </label>
+            <input class="form-control" type="text" name="slug" id="slug">
         </div>
-        <div style="margin-top: 25px;">
-            <select name="category_id" class="custom-select">
-                <option selected>نام دسته بندی</option>
-                @foreach ($languages as $language)
-                    @php
-                        $category = $language->langable;
-                    @endphp
-                    <option value="{{ $category->id }}">{{ $category->title }}</option>
-                @endforeach
+        <br>
+        <div>
+            <label style="display: inline-block;
+                    max-width: 100%;
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                    ">نام دسته بندی:</label>
+            <select class="form-control" name="category">
+            @foreach ($languages as $language)
+                @php
+                    $category = $language->langable;
+                @endphp
+                <option value="{{$category->id}}">{{$category->title}}</option>
+            @endforeach
             </select>
         </div>
 
         <div style="margin-top: 25px;">
-            <label for="image">عکس مقاله</label>
+            <label for="image">عکس خدمات</label>
             <input type="file" name="image" id="image" required class="form-control">
         </div>
 
@@ -47,26 +56,27 @@
         </div>
 
         <div style="margin-top: 25px;">
-            <label for="meta_key_words">کلمات کلیدی</label>
-            <input type="text" name="meta_key_words" id="meta_key_words" required class="form-control">
+            <label for="meta_keywords">کلمات کلیدی</label>
+            <input type="text" name="meta_keywords" id="meta_keywords" required class="form-control">
         </div>
 
         <div style="margin-top: 25px;">
             <label for="meta_description">meta description</label>
-            <input type="text" name="meta_descriptions" id="meta_descriptions" required class="form-control">
+            <input type="text" name="meta_description" id="meta_description" required class="form-control">
         </div>
 
         <div style="margin-top: 25px;">
-            <label for="text">متن مقاله</label>
-            <textarea name="text" id="text" rows="10" cols="80"></textarea>
-            @error('text')
+            <label for="description">متن خدمات</label>
+            <textarea name="description" id="description" rows="10" cols="80"></textarea>
+            @error('description')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
         </div>
+        <input type="hidden" value="{{$lang}}" name="lang">
         <div style="margin-top: 25px;">
-            <button type="submit" class="btn btn-success">ساخت مقاله</button>
+            <button type="submit" class="btn btn-success">ساخت خدمات</button>
         </div>
     </form>
 @endsection
@@ -75,6 +85,6 @@
     <script src="{{ asset('adminpanel/ckeditor/ckeditor.js') }}"></script>
 
     <script>
-        CKEDITOR.replace('text');
+        CKEDITOR.replace('description');
     </script>
 @endsection

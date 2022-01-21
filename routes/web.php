@@ -240,19 +240,21 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     //Service routes
     route::prefix("services")->group(function(){
         route::get("/{lang}", [AdminServiceController::class, "index"])->name("admin.services.index");
-        route::get("/create", [AdminServiceController::class, "create"])->name("admin.services.create");
+        route::get("/create/{lang}", [AdminServiceController::class, "create"])->name("admin.services.create");
         route::post("/store", [AdminServiceController::class, "store"])->name("admin.services.store");
         route::post("/update/{id}", [AdminServiceController::class, "update"])->name("admin.services.update");
-        route::get("/edit/{id}/{lang}", [AdminServiceController::class, "edit"])->name("admin.services.edit");
+        route::get("/edit/{id}", [AdminServiceController::class, "edit"])->name("admin.services.edit");
         route::delete("/delete/{id}", [AdminServiceController::class, "destroy"])->name("admin.services.destroy");
+        route::post("/updateimage/{id}", [AdminServiceController::class, "updateimage"])->name("admin.services.update.image");
         //Service Categories routes
         route::prefix("category")->group(function(){
             route::get("/{lang}", [AdminServiceCategoryController::class, "index"])->name("admin.services.category.index");
             route::get("/create", [AdminServiceCategoryController::class, "create"])->name("admin.services.category.create");
             route::post("/store", [AdminServiceCategoryController::class, "store"])->name("admin.services.category.store");
             route::post("/update/{id}", [AdminServiceCategoryController::class, "update"])->name("admin.services.category.update");
-            route::get("/edit/{id}/{lang}", [AdminServiceCategoryController::class, "edit"])->name("admin.services.category.edit");
+            route::get("/edit/{id}", [AdminServiceCategoryController::class, "edit"])->name("admin.services.category.edit");
             route::delete("/delete/{id}", [AdminServiceCategoryController::class, "destroy"])->name("admin.services.category.destroy");
+            
         });
     });
 
