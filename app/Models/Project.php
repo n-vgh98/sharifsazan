@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
+    public function galleries()
+    {
+        return $this->hasMany("App\Models\ProjectGallery","project_id");
+    }
 }
