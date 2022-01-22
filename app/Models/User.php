@@ -59,4 +59,9 @@ class User extends Authenticatable
     {
         return $this->morphMany("App\Models\Image", "imageable");
     }
+
+    public function karname()
+    {
+        return $this->hasOne("App\Models\Karname");
+    }
 }

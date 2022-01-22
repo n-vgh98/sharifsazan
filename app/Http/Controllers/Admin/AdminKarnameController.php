@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Karname;
 use Illuminate\Http\Request;
 
 class AdminKarnameController extends Controller
@@ -35,7 +36,13 @@ class AdminKarnameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $karname = new Karname();
+        $karname->user_id = $request->id;
+        $karname->fani = $request->fani;
+        $karname->amali = $request->amali;
+        $karname->final = $request->final;
+        $karname->save();
+        return redirect()->back()->with("success", "کارنامه با موفقیت برای فرد مورد نظر ثبت شد");
     }
 
     /**
@@ -44,9 +51,14 @@ class AdminKarnameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function update(Request $request, $id)
     {
-        //
+        $karname = Karname::find($id);
+        $karname->fani = $request->fani;
+        $karname->amali = $request->amali;
+        $karname->final = $request->final;
+        $karname->save();
+        return redirect()->back()->with("success", "کارنامه با موفقیت برای فرد مورد نظر ویرایش شد");
     }
 
     /**
@@ -67,10 +79,6 @@ class AdminKarnameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

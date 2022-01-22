@@ -11,6 +11,7 @@
         <tr>
             <th scope="col">تنظیمات</th>
             <th scope="col">امکانات</th>
+            <th scope="col">کارنامه</th>
             <th scope="col">تغیر سطوح دسترسی </th>
             <th scope="col">دسترسی ها</th>
             <th scope="col">جنسیت</th>
@@ -61,6 +62,25 @@
                             ارسال پیام
                         </button>
                     </td>
+                    {{-- end of section for sending message to user --}}
+
+                    {{-- section for sending message to user --}}
+                    @if ($user->karname == null)
+                        <td>
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#karname{{ $user->id }}">
+                                ساخت کارنامه
+                            </button>
+                        </td>
+                    @else
+                        <td>
+                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                data-target="#update{{ $user->id }}">
+                                ویرایش کارنامه
+                            </button>
+                        </td>
+                    @endif
+
                     {{-- end of section for sending message to user --}}
 
                     {{-- section for changing roles --}}
@@ -151,8 +171,7 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">ارسال پیام به {{ $user->name }}
                                 </h5>
-                                <button type="button" class="close" data-dismiss="modal"
-                                    aria-label="Close">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -202,6 +221,135 @@
                         </div>
                     </div>
                 </div>
+
+
+                {{-- modal for sending karname to user --}}
+                <div class="modal fade" id="karname{{ $user->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">ارسال کارنامه به {{ $user->name }}
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('admin.karname.store', $user->id) }}" method="POST">
+                                    @csrf
+                                    <div>
+                                        <label for="text">نمره آزمون فنی</label>
+                                        <input type="text" required name="fani" class="form-control">
+                                        @error('text')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="text">نمره آزمون عملی</label>
+                                        <input type="text" required name="amali" class="form-control">
+                                        @error('text')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label for="text">نمره نهایی</label>
+                                        <input type="text" required name="final" class="form-control">
+                                        @error('text')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div style="margin-top:15px;">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">منصرف
+                                            شدم</button>
+                                        <button type="submit" class="btn btn-primary">ارسال</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- modal for updating karname to user --}}
+                @if ($user->karname != null)
+                    <div class="modal fade" id="update{{ $user->id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">ارسال کارنامه به
+                                        {{ $user->name }}
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('admin.karname.update', $user->karname->id) }}"
+                                        method="POST">
+                                        @csrf
+                                        <div>
+                                            <label for="text">نمره آزمون فنی</label>
+                                            <input type="text" value="{{ $user->karname->fani }}" required
+                                                name="fani" class="form-control">
+                                            @error('text')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div>
+                                            <label for="text">نمره آزمون عملی</label>
+                                            <input type="text" value="{{ $user->karname->amali }}" required
+                                                name="amali" class="form-control">
+                                            @error('text')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div>
+                                            <label for="text">نمره نهایی</label>
+                                            <input type="text" value="{{ $user->karname->final }}" required
+                                                name="final" class="form-control">
+                                            @error('text')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div style="margin-top:15px;">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">منصرف
+                                                شدم</button>
+                                            <button type="submit" class="btn btn-primary">ارسال</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
 
                 @php
                     $number++;

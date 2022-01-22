@@ -22,6 +22,7 @@ use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
 use App\Http\Controllers\Admin\AdminCommentController;
+use App\Http\Controllers\Admin\AdminKarnameController;
 use App\Http\Controllers\Admin\AdminServiceCategoryController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminShoppingListController;
@@ -154,6 +155,12 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     });
     // ##
 
+    // route for karname
+    route::prefix("karname")->group(function () {
+        route::post("/{id}", [AdminKarnameController::class, "store"])->name("admin.karname.store");
+        route::post("/update/{id}", [AdminKarnameController::class, "update"])->name("admin.karname.update");
+    });
+
 
     // contact us routes
     route::prefix("contact")->group(function () {
@@ -274,7 +281,6 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
             route::post("/update/{id}", [AdminServiceCategoryController::class, "update"])->name("admin.services.category.update");
             route::get("/edit/{id}", [AdminServiceCategoryController::class, "edit"])->name("admin.services.category.edit");
             route::delete("/delete/{id}", [AdminServiceCategoryController::class, "destroy"])->name("admin.services.category.destroy");
-            
         });
     });
 
