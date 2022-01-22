@@ -19,7 +19,14 @@ class UserCoursesController extends Controller
     {
         $lang = substr($request->getPathInfo(), 1, 2);
         $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", $lang]])->get();
-        return view("user.courses.all", compact("languages"));
+        $decoration = null;
+        $settings = Lang::where([["langable_type", "App\Models\PageDecoration"], ["name", $lang]])->get();
+        foreach ($settings as $setting) {
+            if ($setting->langable->page_name == "courses" or $setting->langable->page_name == "course") {
+                $decoration = $setting->langable;
+            }
+        }
+        return view("user.courses.all", compact("languages", "decoration"));
     }
 
     /**
