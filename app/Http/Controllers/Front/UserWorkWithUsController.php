@@ -56,7 +56,11 @@ class UserWorkWithUsController extends Controller
             }
         }
         // inverrt to collection
-        $page = $page[0];
+        if (count($page) != 0) {
+            $page = $page[0];
+        } else {
+            return redirect()->back()->with("fail", "صفحه مورد نظر پیدا نشد");
+        }
         return view("user.work_with_us.index", compact("page"));
     }
 
@@ -66,9 +70,23 @@ class UserWorkWithUsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function sabtename($lang, $id)
     {
-        //
+        $page = [];
+
+        $category = InviteCategory::findorfail($id);
+        foreach ($category->pages as $allpages) {
+            if ($allpages->title == 0) {
+                array_push($page, $allpages);
+            }
+        }
+        // inverrt to collection
+        if (count($page) != 0) {
+            $page = $page[0];
+        } else {
+            return redirect()->back()->with("fail", "صفحه مورد نظر پیدا نشد");
+        }
+        return view("user.work_with_us.sabtename", compact("page"));
     }
 
     /**
