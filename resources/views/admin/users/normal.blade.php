@@ -269,7 +269,8 @@
                                     </div>
 
                                     <div>
-                                        <select name="staus" class="form-select" aria-label="Default select example">
+                                        <select name="status" class="form-select"
+                                            aria-label="Default select example">
                                             <option selected>وضعیت قبولی</option>
                                             <option value="1">قبول</option>
                                             <option value="0">مردود</option>
@@ -342,12 +343,11 @@
                                                 </span>
                                             @enderror
                                         </div>
-
                                         <div>
-                                            <select name="staus" class="form-select"
+                                            <select name="status" class="form-select"
                                                 aria-label="Default select example">
 
-                                                @if ($user->karname->status = 0)
+                                                @if ($user->karname->status == 1)
                                                     <option selected value="1">قبول</option>
                                                     <option value="0">مردود</option>
                                                 @else

@@ -129,6 +129,12 @@ class UserWorkWithUsController extends Controller
         return view("user.work_with_us.fani", compact("page"));
     }
 
+    public function karname()
+    {
+        $user = auth()->user();
+        $karname = $user->karname;
+        return view("user.work_with_us.karname", compact("karname"));
+    }
     /**
      * Update the specified resource in storage.
      *
