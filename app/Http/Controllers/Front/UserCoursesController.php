@@ -6,6 +6,7 @@ use App\Models\Lang;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 
 class UserCoursesController extends Controller
 {
@@ -18,7 +19,14 @@ class UserCoursesController extends Controller
     {
         $lang = substr($request->getPathInfo(), 1, 2);
         $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", $lang]])->get();
-        return view("user.courses.all", compact("languages"));
+        $decoration = null;
+        $settings = Lang::where([["langable_type", "App\Models\PageDecoration"], ["name", $lang]])->get();
+        foreach ($settings as $setting) {
+            if ($setting->langable->page_name == "courses" or $setting->langable->page_name == "course") {
+                $decoration = $setting->langable;
+            }
+        }
+        return view("user.courses.all", compact("languages", "decoration"));
     }
 
     /**
@@ -41,6 +49,7 @@ class UserCoursesController extends Controller
     {
         $lang = substr($request->getPathInfo(), 1, 2);
         $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", $lang]])->get();
+
         $unfilterdcourses = [];
         $filterdcourses = [];
         $filteredcourses = [];
@@ -120,7 +129,8 @@ class UserCoursesController extends Controller
     public function show($lang, $id)
     {
         $course = Course::find($id);
-        return view("user.courses.show", compact("course"));
+        $comments = Comment::where([["status", 1], ["commentable_id", $id], ["parent_id", null], ["commentable_type", "App\Models\Course"]])->get();
+        return view("user.courses.show", compact("course", "comments"));
     }
 
     /**

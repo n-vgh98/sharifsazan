@@ -8,30 +8,32 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Writer\WriterController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Front\UserBooksController;
+use App\Http\Controllers\Front\UserPanelController;
 use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Front\UserArticleController;
+use App\Http\Controllers\Front\UserCoursesController;
 use App\Http\Controllers\Admin\AdminArticleController;
+use App\Http\Controllers\Admin\AdminCommentController;
+use App\Http\Controllers\Admin\AdminKarnameController;
 use App\Http\Controllers\Admin\AdminOurTeamController;
+use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Writer\WriterBooksController;
+use App\Http\Controllers\Front\UserContactUsController;
 use App\Http\Controllers\Writer\WriterCourseController;
+use App\Http\Controllers\Front\UserWorkWithUsController;
 use App\Http\Controllers\Writer\WriterArticleController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
 use App\Http\Controllers\Admin\AdminInvitePagesController;
 use App\Http\Controllers\Admin\AdminNotificationController;
+use App\Http\Controllers\Admin\AdminShoppingListController;
+use App\Http\Controllers\Front\UserNotificiationsController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
+use App\Http\Controllers\Admin\AdminPageDecorationController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
-use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminServiceCategoryController;
-use App\Http\Controllers\Admin\AdminServiceController;
-use App\Http\Controllers\Admin\AdminShoppingListController;
-use App\Http\Controllers\Front\UserArticleController;
-use App\Http\Controllers\Front\UserBooksController;
-use App\Http\Controllers\Front\UserContactUsController;
-use App\Http\Controllers\Front\UserCoursesController;
-use App\Http\Controllers\Front\UserNotificiationsController;
-use App\Http\Controllers\Front\UserPanelController;
-use App\Http\Controllers\Front\UserWorkWithUsController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterArticleCategoryController;
 
@@ -154,6 +156,22 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     });
     // ##
 
+    // route for karname
+    route::prefix("karname")->group(function () {
+        route::post("/{id}", [AdminKarnameController::class, "store"])->name("admin.karname.store");
+        route::post("/update/{id}", [AdminKarnameController::class, "update"])->name("admin.karname.update");
+    });
+
+    //route for page_decoration
+    route::prefix("page_decoration")->group(function () {
+        route::get("/{lang}", [AdminPageDecorationController::class, "index"])->name("admin.page.decoration.index");
+        route::get("/create/{lang}", [AdminPageDecorationController::class, "create"])->name("admin.page.decoration.create");
+        route::post("/store", [AdminPageDecorationController::class, "store"])->name("admin.page.decoration.store");
+        route::get("/edit/{id}", [AdminPageDecorationController::class, "edit"])->name("admin.page.decoration.edit");
+        route::patch("update/{id}", [AdminPageDecorationController::class, "update"])->name("admin.page.decoration.update");
+        route::delete("destroy/{id}", [AdminPageDecorationController::class, "destroy"])->name("admin.page.decoration.destroy");
+        route::post("articles/updateimage/{id}", [AdminPageDecorationController::class, "updateimage"])->name("admin.page.decoration.update.image");
+    });
 
     // contact us routes
     route::prefix("contact")->group(function () {
@@ -274,7 +292,6 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
             route::post("/update/{id}", [AdminServiceCategoryController::class, "update"])->name("admin.services.category.update");
             route::get("/edit/{id}", [AdminServiceCategoryController::class, "edit"])->name("admin.services.category.edit");
             route::delete("/delete/{id}", [AdminServiceCategoryController::class, "destroy"])->name("admin.services.category.destroy");
-            
         });
     });
 

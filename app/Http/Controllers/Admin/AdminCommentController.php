@@ -37,12 +37,27 @@ class AdminCommentController extends Controller
      */
     public function store(Request $request)
     {
-        $course = Course::find($request->course_id);
-        $comment = new Comment();
-        $comment->text = $request->text;
-        $comment->status = 0;
-        $comment->user_id = auth()->user()->id;
-        $course->comments()->save($comment);
+        if ($request->answer == 1) {
+            $genesis = Comment::find($request->parent_id);
+            $comment = new Comment();
+            $comment->text = $request->text;
+            $comment->status = 1;
+            $comment->parent_id = $request->parent_id;
+            $comment->commentable_type = $genesis->commentable_type;
+            $comment->commentable_id = $genesis->commentable_id;
+            $comment->writer_id = auth()->user()->id;
+            $comment->save();
+            // $course->commetable_id=
+            // $course->commetable_type=
+        } else {
+            $course = Course::find($request->course_id);
+            $comment = new Comment();
+            $comment->text = $request->text;
+            $comment->status = 0;
+            $comment->writer_id = auth()->user()->id;
+            $course->comments()->save($comment);
+        }
+
         return redirect()->back()->with("success", __("translation.commentconfirmation"));
     }
 

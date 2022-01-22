@@ -17,6 +17,7 @@
             <tr>
                 <th scope="col">تنظیمات</th>
                 <th scope="col">تاییدیه</th>
+                <th scope="col">پاسخ</th>
                 <th scope="col">متن کامنت</th>
                 <th scope="col">نام ارسال کننده </th>
                 <th scope="col">#</th>
@@ -52,11 +53,23 @@
                         @endif
                     </td>
 
+                    <td>
+                        @if ($comment->parent_id == null)
+                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                data-target="#answer{{ $comment->id }}">
+                                پاسخ
+                            </button>
+                        @else
+                            <p>امکان پاسخگویی وجود ندارد</p>
+                        @endif
+
+                    </td>
+
                     <td><button type="button" class="btn btn-warning" data-toggle="modal"
                             data-target="#exampleModalLong0{{ $comment->id }}">
                             مشاهده متن کامل
                         </button></td>
-                    <td>{{ $comment->sender->name }}</td>
+                    <td>{{ $comment->writer->name }}</td>
                     <th scope="row">{{ $number }}</th>
                 </tr>
                 @php
@@ -91,6 +104,41 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!-- Modal for answer-->
+                <div class="modal fade" id="answer{{ $comment->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('admin.comments.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div style="margin-top: 25px;">
+                                        <label for="name">متن</label>
+                                        <textarea type="text" name="text" id="name" required
+                                            class="form-control"></textarea>
+                                    </div>
+                                    <input type="hidden" name="answer" value="1">
+                                    <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                                    <div style="margin-top: 25px;">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                                        <button type="submit" class="btn btn-primary">اراسال</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
 
             @endforeach
