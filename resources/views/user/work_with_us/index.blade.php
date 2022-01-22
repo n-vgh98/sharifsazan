@@ -85,17 +85,19 @@
                 </a>
             </div>
             <!-- box-4 -->
-            <div class="box-davat-page">
-                <a href="{{ route('user.work.with.us.karname', $page->category->id) }}">
-                    <div class="box-davat-page-div">
+            @auth
 
-                        <img src="{{ asset('frontend/imgs/Group 1385.png') }}" alt="">
-                    </div>
-                    <div class="text-box-davat">
-                        <p>نمره نهایی</p>
-                    </div>
-                </a>
-            </div>
+                <div class="box-davat-page">
+                    <a href="{{ route('user.work.with.us.karname', $page->category->id) }}">
+                        <div class="box-davat-page-div">
+                            <img src="{{ asset('frontend/imgs/Group 1385.png') }}" alt="">
+                        </div>
+                        <div class="text-box-davat">
+                            <p>نمره نهایی</p>
+                        </div>
+                    </a>
+                </div>
+            @endauth
         </section>
 
 
