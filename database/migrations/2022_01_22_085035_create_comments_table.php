@@ -15,11 +15,12 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("writer_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("parent_id")->nullable()->constrained("comments")->onDelete("cascade")->onUpdate("cascade");
             $table->text("text");
-            $table->tinyInteger("status");
-            $table->string("commentable_type");
+            $table->tinyInteger("status")->default(0)->comment("0 is not accept and 1 is accept");
             $table->integer("commentable_id");
+            $table->text("commentable_type");
             $table->timestamps();
         });
     }

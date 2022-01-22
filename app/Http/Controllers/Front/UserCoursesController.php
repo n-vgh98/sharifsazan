@@ -6,6 +6,7 @@ use App\Models\Lang;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 
 class UserCoursesController extends Controller
 {
@@ -41,6 +42,7 @@ class UserCoursesController extends Controller
     {
         $lang = substr($request->getPathInfo(), 1, 2);
         $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", $lang]])->get();
+
         $unfilterdcourses = [];
         $filterdcourses = [];
         $filteredcourses = [];
@@ -120,7 +122,8 @@ class UserCoursesController extends Controller
     public function show($lang, $id)
     {
         $course = Course::find($id);
-        return view("user.courses.show", compact("course"));
+        $comments = Comment::where([["status", 1], ["commentable_id", $id], ["parent_id", null], ["commentable_type", "App\Models\Course"]])->get();
+        return view("user.courses.show", compact("course", "comments"));
     }
 
     /**

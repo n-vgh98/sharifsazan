@@ -82,16 +82,28 @@
                     <i class="fa fa-dashboard"></i> <span>خدمات</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.services.index','fa') }}"><i
+                    <li class="active"><a href="{{ route('admin.services.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i> محتوای اصلی خدمات</a></li>
 
                 </ul>
 
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.services.category.index','fa') }}"><i
+                    <li class="active"><a href="{{ route('admin.services.category.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>دسته بندی خدمات</a></li>
                 </ul>
 
+            </li>
+
+            {{-- comments --}}
+            <li class="header"> کامنت ها </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>کامنت ها</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.comments.index') }}"><i
+                                class="fa fa-circle-o"></i> کامنت ها</a></li>
+                </ul>
             </li>
 
             {{-- End Services --}}
@@ -149,7 +161,7 @@
             </li>
             {{-- end of articels --}}
 
-           
+
             {{-- invite to coaperate --}}
             <li class="header">دعوت به همکاری</li>
             <li class="treeview">
@@ -178,10 +190,10 @@
                     <i class="fa fa-dashboard"></i> <span>تیم ما</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.our_team.index','fa') }}"><i
-                                    class="fa fa-circle-o"></i>صفحه اصلی تیم ما</a></li>
-                    <li class="active"><a href="{{route('admin.our_team.member.index','fa')}}"><i
-                                    class="fa fa-circle-o"></i>همکاران </a></li>
+                    <li class="active"><a href="{{ route('admin.our_team.index', 'fa') }}"><i
+                                class="fa fa-circle-o"></i>صفحه اصلی تیم ما</a></li>
+                    <li class="active"><a href="{{ route('admin.our_team.member.index', 'fa') }}"><i
+                                class="fa fa-circle-o"></i>همکاران </a></li>
                 </ul>
             </li>
             {{-- End OurTeam --}}
@@ -193,9 +205,10 @@
                     <i class="fa fa-dashboard"></i> <span>footer</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                   <li class="active">
-                        <a href="{{route('admin.footer.index','fa')}}"><i class="fa fa-circle-o"></i>متن های Footer</a>
-                    </li> 
+                    <li class="active">
+                        <a href="{{ route('admin.footer.index', 'fa') }}"><i class="fa fa-circle-o"></i>متن های
+                            Footer</a>
+                    </li>
                 </ul>
             </li>
             {{-- End Footer --}}

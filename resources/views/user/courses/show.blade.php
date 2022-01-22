@@ -38,15 +38,19 @@
                 </article>
                 <section class="parent-nazarat-moshakhasat">
                     <h3 class="title-nazarat-moshakhasat ">{{ __('translation.comment-and-feedback') }}</h3>
-                    <div class="parent-chart-moshakhasat">
-                        <canvas id="myChart" class="hw"></canvas>
-                    </div>
                     @auth
+
+                    @endauth
+                    @if (auth()->check())
                         <div>
                             <p> با <span id="sabtenazarclick">ثبت نظر </span>و تجربه خود به کاربران دیگر انتقال دهید
                             </p>
                         </div>
-                    @endauth
+                    @else
+                        <div>
+                            <a href="{{ route('login') }}">برای ثبت نظر وارد حساب کاربری خود شوید</a>
+                        </div>
+                    @endif
                 </section>
 
                 @auth
@@ -69,77 +73,29 @@
                     </div>
                     <!--end parent div sabt nazar-->
                 @endauth
+                @auth
+                    <h3 class="title-nazarat-moshakhasat">نظر کاربران</h3>
+                    <section class="section-nazar">
+                        <form class="form-nazar">
+                            <fieldset>
+                                <legend>نظر کاربران</legend>
+                                @foreach ($comments as $comment)
+                                    <div class="form-nazar-div1"><label>{{ $comment->writer->name }}</label>
+                                        <textarea disabled="disabled">{{ $comment->text }}</textarea>
+                                    </div>
+                                    @foreach ($comment->answers as $answer)
+                                        <div class="form-nazar-div2"> <label class="form-nazar-margin">Admin</label>
+                                            <textarea class="form-nazar-margin"
+                                                disabled="disabled">{{ $answer->text }}</textarea>
+                                        </div>
+                                    @endforeach
+                                    <hr>
+                                @endforeach
 
-
-
-                <div class="parent-nazaratform-moshakhasat">
-                    <h3 class="title-article-moshakhasat"> نظرات شرکت کنندگان</h3>
-                    <div class="nazarat-sherkatkonandegan-moshakhasat">
-                        <form action="/action_page.php">
-                            <label for="fanebayan">فن بیان مدرس:</label>
-                            <select id="fanebayan" name="fanebayan">
-                                <option value="1">1 </option>
-                                <option value="2">2 </option>
-                                <option value="3">3 </option>
-                                <option value="4">4 </option>
-                                <option value="5">5 </option>
-                                <option value="6">6 </option>
-                                <option value="7">7 </option>
-                                <option value="8">8 </option>
-                                <option value="9">9 </option>
-                                <option value="10">10</option>
-                            </select>
-                            <label for="kharidbesarfe">خرید به صرفه:</label>
-                            <select id="kharidbesarfe" name="kharidbesarfe">
-                                <option value="1">1 </option>
-                                <option value="2">2 </option>
-                                <option value="3">3 </option>
-                                <option value="4">4 </option>
-                                <option value="5">5 </option>
-                                <option value="6">6 </option>
-                                <option value="7">7 </option>
-                                <option value="8">8 </option>
-                                <option value="9">9 </option>
-                                <option value="10">10</option>
-                            </select>
-                            <label for="keifiatdore">کیفیت دوره اموزشی:</label>
-                            <select id="keifiatdore" name="keifiatdore">
-                                <option value="1">1 </option>
-                                <option value="2">2 </option>
-                                <option value="3">3 </option>
-                                <option value="4">4 </option>
-                                <option value="5">5 </option>
-                                <option value="6">6 </option>
-                                <option value="7">7 </option>
-                                <option value="8">8 </option>
-                                <option value="9">9 </option>
-                                <option value="10">10</option>
-                            </select>
-                            <label for="mofid">مفید و موثر بودن دوره:</label>
-                            <select id="mofid" name="mofid">
-                                <option value="1">1 </option>
-                                <option value="2">2 </option>
-                                <option value="3">3 </option>
-                                <option value="4">4 </option>
-                                <option value="5">5 </option>
-                                <option value="6">6 </option>
-                                <option value="7">7 </option>
-                                <option value="8">8 </option>
-                                <option value="9">9 </option>
-                                <option value="10">10</option>
-                            </select>
-
+                            </fieldset>
                         </form>
-                    </div>
-                </div>
-
-                <div class="parent-sabtenazar-moshakhasat">
-                    <button class="sabtenazar-moshakhasat">
-                        <a href="#">
-
-                            {{ __('translation.send') }} </a>
-                    </button>
-                </div>
+                    </section>
+                @endauth
             </section>
 
             <div class="leftbox-moshakhasatdore">
