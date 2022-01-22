@@ -110,6 +110,25 @@ class UserWorkWithUsController extends Controller
         return view("user.work_with_us.fani", compact("page"));
     }
 
+    public function amali($lang, $id)
+    {
+        $page = [];
+
+        $category = InviteCategory::findorfail($id);
+        foreach ($category->pages as $allpages) {
+            if ($allpages->title == 2) {
+                array_push($page, $allpages);
+            }
+        }
+        // inverrt to collection
+        if (count($page) != 0) {
+            $page = $page[0];
+        } else {
+            return redirect()->back()->with("fail", "صفحه مورد نظر پیدا نشد");
+        }
+        return view("user.work_with_us.fani", compact("page"));
+    }
+
     /**
      * Update the specified resource in storage.
      *
