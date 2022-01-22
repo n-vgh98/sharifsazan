@@ -41,6 +41,7 @@ class AdminKarnameController extends Controller
         $karname->fani = $request->fani;
         $karname->amali = $request->amali;
         $karname->final = $request->final;
+        $karname->status = $request->status;
         $karname->save();
         return redirect()->back()->with("success", "کارنامه با موفقیت برای فرد مورد نظر ثبت شد");
     }
@@ -57,6 +58,7 @@ class AdminKarnameController extends Controller
         $karname->fani = $request->fani;
         $karname->amali = $request->amali;
         $karname->final = $request->final;
+        $karname->status = $request->status;
         $karname->save();
         return redirect()->back()->with("success", "کارنامه با موفقیت برای فرد مورد نظر ویرایش شد");
     }

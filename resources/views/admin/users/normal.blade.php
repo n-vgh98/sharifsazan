@@ -268,6 +268,14 @@
                                         @enderror
                                     </div>
 
+                                    <div>
+                                        <select name="staus" class="form-select" aria-label="Default select example">
+                                            <option selected>وضعیت قبولی</option>
+                                            <option value="1">قبول</option>
+                                            <option value="0">مردود</option>
+                                        </select>
+                                    </div>
+
                                     <div style="margin-top:15px;">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">منصرف
                                             شدم</button>
@@ -333,6 +341,21 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
+                                        </div>
+
+                                        <div>
+                                            <select name="staus" class="form-select"
+                                                aria-label="Default select example">
+
+                                                @if ($user->karname->status = 0)
+                                                    <option selected value="1">قبول</option>
+                                                    <option value="0">مردود</option>
+                                                @else
+                                                    <option value="1">قبول</option>
+                                                    <option selected value="0">مردود</option>
+                                                @endif
+
+                                            </select>
                                         </div>
 
                                         <div style="margin-top:15px;">

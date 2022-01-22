@@ -18,6 +18,7 @@ class CreateKarnamesTable extends Migration
             $table->integer("amali")->nullable();
             $table->integer("fani")->nullable();
             $table->integer("final")->nullable();
+            $table->tinyInteger("status")->nullable()->comment("1 is success and 0 is fail");
             $table->foreignId("user_id")->constrained("users")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
