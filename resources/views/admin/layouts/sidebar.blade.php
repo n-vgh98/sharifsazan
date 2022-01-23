@@ -183,6 +183,27 @@
 
             {{-- invite to coaperate --}}
 
+            {{-- Start Projects --}}
+            <li class="header">پروژه ها</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>پروژه ها</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.projects.index','fa') }}"><i
+                                class="fa fa-circle-o"></i> همه پروژه ها</a></li>
+
+                </ul>
+
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.projects.gallery.index','fa') }}"><i
+                                class="fa fa-circle-o"></i>گالری پروژه ها</a></li>
+                </ul>
+
+            </li>
+
+            {{-- End Projects --}}
+
             {{-- Start OurTeam --}}
             <li class="header">تیم ما</li>
             <li class="treeview">

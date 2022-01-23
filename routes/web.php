@@ -34,6 +34,8 @@ use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminPageDecorationController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
 use App\Http\Controllers\Admin\AdminServiceCategoryController;
+use App\Http\Controllers\Admin\AdminProjectController;
+use App\Http\Controllers\Admin\AdminProjectGalleryController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterArticleCategoryController;
 
@@ -272,6 +274,26 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
             route::delete("/destroy/{id}", [AdminArticleCategoryController::class, "destroy"])->name("admin.articles.categories.destroy");
             route::post("/store", [AdminArticleCategoryController::class, "store"])->name("admin.articles.categories.store");
             route::get("/show/{id}/{lang}", [AdminArticleCategoryController::class, "show"])->name("admin.articles.categories.show");
+        });
+    });
+
+    //Projects routes
+    route::prefix("projects")->group(function () {
+        route::get("/{lang}", [AdminProjectController::class, "index"])->name("admin.projects.index");
+        route::get("/create/{lang}", [AdminProjectController::class, "create"])->name("admin.projects.create");
+        route::post("/store", [AdminProjectController::class, "store"])->name("admin.projects.store");
+        route::post("/update/{id}", [AdminProjectController::class, "update"])->name("admin.projects.update");
+        route::get("/edit/{id}", [AdminProjectController::class, "edit"])->name("admin.projects.edit");
+        route::delete("/delete/{id}", [AdminProjectController::class, "destroy"])->name("admin.projects.destroy");
+        route::post("/updateimage/{id}", [AdminProjectController::class, "updateimage"])->name("admin.projects.update.image");
+        //Service Categories routes
+        route::prefix("gallery")->group(function () {
+            route::get("/{lang}", [AdminProjectGalleryController::class, "index"])->name("admin.projects.gallery.index");
+            route::get("/create", [AdminProjectGalleryController::class, "create"])->name("admin.projects.gallery.create");
+            route::post("/store", [AdminProjectGalleryController::class, "store"])->name("admin.projects.gallery.store");
+            route::post("/update/{id}", [AdminProjectGalleryController::class, "update"])->name("admin.projects.gallery.update");
+            route::get("/edit/{id}", [AdminProjectGalleryController::class, "edit"])->name("admin.projects.gallery.edit");
+            route::delete("/delete/{id}", [AdminProjectGalleryController::class, "destroy"])->name("admin.projects.gallery.destroy");
         });
     });
 
