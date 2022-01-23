@@ -23,7 +23,8 @@ class HomeController extends Controller
                 $decoration = $setting->langable;
             }
         }
-        return view("user.index", compact("decoration"));
+        $sliderlanguages = Lang::where([["langable_type", "App\Models\IndexSlider"], ["name", $lang]])->get();
+        return view("user.index", compact("decoration", "sliderlanguages"));
     }
 
     /**

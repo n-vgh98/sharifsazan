@@ -5,23 +5,26 @@
 
         <div id="mydiv">
             <div class="slideshow-container">
-                <div class="mySlides fade">
-                    <div class="numbertext">1 / 3</div>
-                    <img src="{{ asset('frontend/imgs/swiper_slider.png') }}" style="width:100%">
-                    <div class="text">Caption Text</div>
-                </div>
+                @php
+                    $i = 1;
+                @endphp
+                @foreach ($sliderlanguages as $sliderlanguage)
 
-                <div class="mySlides fade">
-                    <div class="numbertext">2 / 3</div>
-                    <img src="{{ asset('frontend/imgs/swiper_slider.png') }}" style="width:100%">
-                    <div class="text">Caption Two</div>
-                </div>
+                    @php
+                        $image = $sliderlanguage->langable->detail;
+                    @endphp
+                    @if ($i < 4)
 
-                <div class="mySlides fade">
-                    <div class="numbertext">3 / 3</div>
-                    <img src="{{ asset('frontend/imgs/swiper_slider.png') }}" style="width:100%">
-                    <div class="text">Caption Three</div>
-                </div>
+
+                        <div class="mySlides fade">
+                            <div class="numbertext">1 / 3</div>
+                            <img src="{{ asset($image->path) }}" style="width:100%">
+                        </div>
+                    @endif
+                    @php
+                        $i++;
+                    @endphp
+                @endforeach
 
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
