@@ -14,12 +14,13 @@
     <!-- end breadcrumb -->
     <h1 class="project-title-h1">{{ __('translation.courses') }}</h1>
     <section class="right-article-wrapper-full">
+        @if ($decoration != null)
 
-        <div class="question-project">
-            <p>عنوان توضیحات کلی در مورد دوره ها</p>
-            <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-        </div>
+            <div class="question-project">
+                <p>{!! $decoration->text !!}</p>
+            </div>
+        @endif
+
         <div class="divShowForm">
 
             <button class="buttonShowForm">{{ __('translation.show-filter') }}</button>

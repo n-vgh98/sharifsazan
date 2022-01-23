@@ -24,7 +24,7 @@ class UserBooksController extends Controller
                 $decoration = $setting->langable;
             }
         }
-        return view("user.books", compact("languages", compact("decoration")));
+        return view("user.books", compact("languages", "decoration"));
     }
 
     /**

@@ -41,33 +41,25 @@
 
         <h1 class="project-title-h1">{{ __('translation.sharif-sazan') }}</h1>
 
-        <section class="why-us">
+        @if ($decoration != null)
 
-            <div>
-                <section class="sections-title">
-                    <p>
-                        چرا ما
-                    </p>
+            <section class="why-us">
 
-                </section>
-                <article>
-                    <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها
-                        و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-                        کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و
-                        آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه
-                        ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که
-                        تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی
-                        دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                    </p>
-                </article>
-            </div>
+                <div>
+                    <article>
+                        <p>
+                            {!! $decoration->text !!}
+                        </p>
+                    </article>
+                </div>
 
-            <figure>
-                <img src="{{ asset('frontend/imgs/1-TEAM.jpg') }}" alt="">
-            </figure>
+                <figure>
+                    <img src="{{ asset($decoration->image->path) }}" alt="{{ $decoration->image->alt }}"
+                        title="{{ $decoration->image->name }}">
+                </figure>
 
-        </section>
+            </section>
+        @endif
 
         <!--just 3-->
         <div class="examples-project-main">
@@ -83,61 +75,6 @@
                         <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
                             کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
 
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="examples-project-item2">
-
-                        <img src="imgs/b32.png" alt="">
-                        <p>عنوان</p>
-                        <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                            کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="examples-project-item2">
-
-                        <img src="imgs/b32.png" alt="">
-                        <p>عنوان</p>
-                        <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                            کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                    </div>
-                </a>
-            </section>
-        </div>
-
-        <!--			  just 3-->
-        <div class="examples-project-main">
-
-            <h3 class="project-title-h2">{{ __('translation.last-projects') }}</h3>
-            <section class="examples-project-full2">
-
-                <a href="#">
-                    <div class="examples-project-item2">
-
-                        <img src="imgs/b32.png" alt="">
-                        <p>عنوان</p>
-                        <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                            کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="examples-project-item2">
-
-                        <img src="imgs/b32.png" alt="">
-                        <p>عنوان</p>
-                        <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                            کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="examples-project-item2">
-
-                        <img src="imgs/b32.png" alt="">
-                        <p>عنوان</p>
-                        <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                            کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
                     </div>
                 </a>
             </section>
