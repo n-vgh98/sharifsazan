@@ -1,13 +1,22 @@
 <!-- start title about and p  -->
+@php
+
+    $lang = substr(Request::getPathInfo(), 1, 2);
+    $footers = App\Models\Lang::where([['langable_type', 'App\Models\Footer'], ['name', $lang]])->get();
+    
+ @endphp
+ @foreach($footers as $footer)
+@php
+    $footer = $footer->langable;
+@endphp
 <div class="row-one-footer">
                 <div class="title-footer">
                     <h4>درباره مرکز</h4>
                 </div>
                 <article>
+            
                     <p>
-                        جدید ترین رویداد های ایران و جهان نمونده است.
-                        اقدام به ارتقاء سطح کیفی مطاب خود همگام با و فکری به غالب نیاز های جامعه معماری ایران رسیدن به
-                        هدف ایجاد بستر پاسخگو به لحاظ فنی موسسه شریف سازان جهت
+                       {{$footer->about_us}}
                     </p>
                 </article>
             </div>
@@ -20,7 +29,7 @@
                     <p>
                         <span><i class="fa fa-marker"></i></span>
 
-                        خیابان انقلاب اسلامی نبش کوچه 72 , ساختمان نادر,طبقه 5 واحد 504
+                       {{$footer->address}}
                     </p>
                 </div>
                 <div class="parent-phone">
@@ -29,9 +38,9 @@
                         <span>
                             <i class="fa fa-phone"></i>
                         </span>
-                        43 3065 36 071
+                       {{$footer->phone_num}}
                     </p>
-                    <p>0429 731 0917</p>
+                    <p>{{$footer->mobile_num}}</p>
                 </div>
                 <div class="btn-footer">
                     <a href="#">درخواست پروژه</a>
@@ -120,25 +129,26 @@
             <nav class="social-media-footer">
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="{{$footer->face_link}}">
                             <i class="fab fa-facebook-square"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{$footer->LinkedIn_link}}">
                             <i class="fab fa-linkedin"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{$footer->mail_link}}">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{$footer->insta_link}}">
                             <i class="fab fa-instagram-square"></i>
                         </a>
                     </li>
                 </ul>
             </nav>
 
+@endforeach

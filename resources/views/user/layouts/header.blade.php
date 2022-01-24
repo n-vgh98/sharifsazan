@@ -100,25 +100,20 @@
                  <i class="fa fa-chevron-down"></i>
                  <!-- start wrapper-main-menu خدمات -->
                  <ul class="wrapper-main-menu">
+                     @php
+                         $lang = substr(Request::getPathInfo(), 1, 2);
+                         $services = App\Models\Lang::where([['name', $lang], ['langable_type', 'App\Models\Service']])->get();
+                     @endphp
+                     @foreach ($services as $service)
+                         @php
+                             $service = $service->langable;
+                         @endphp    
                      <li>
-                         <a href="khadamat.html">توجیه طرح بر مبنای اقتصاد</a>
+                     
+                         <a href="{{route('service.index',$service->slug)}}">{{$service->category->title}}</a>
+                       
                      </li>
-                     <li>
-                         <a href="khadamat.html">
-                             طراحی و شبیه سازی
-                         </a>
-                     </li>
-                     <li>
-                         <a href="khadamat.html">
-                             طرح توجیهی مجتمع های صنعتی
-                         </a>
-                     </li>
-
-                     <li>
-                         <a href="khadamat.html">
-                             بهینه سازی و مقاوم سازی
-                         </a>
-                     </li>
+                     @endforeach
                  </ul>
                  <!-- end wrapper-main-menu خدمات -->
              </li>

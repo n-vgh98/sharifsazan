@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AdminOurTeamController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Writer\WriterBooksController;
 use App\Http\Controllers\Front\UserContactUsController;
+use App\Http\Controllers\Front\UserServiceController;
 use App\Http\Controllers\Writer\WriterCourseController;
 use App\Http\Controllers\Front\UserWorkWithUsController;
 use App\Http\Controllers\Writer\WriterArticleController;
@@ -93,6 +94,9 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::get("/{id}", [UserArticleController::class, "index"])->name("article.category.index");
         route::get("/show/{id}", [UserArticleController::class, "show"])->name("article.category.show");
     });
+     
+    //services front route
+    route::get("service/{slug}",[UserServiceController::class, "index"])->name("service.index");
 
     // routing for user courses
     Route::prefix('Courses')->group(function () {
