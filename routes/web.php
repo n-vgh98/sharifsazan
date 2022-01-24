@@ -14,18 +14,21 @@ use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Front\UserArticleController;
 use App\Http\Controllers\Front\UserCoursesController;
+use App\Http\Controllers\Front\UserProjectController;
+use App\Http\Controllers\Front\UserServiceController;
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminKarnameController;
 use App\Http\Controllers\Admin\AdminOurTeamController;
+use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Writer\WriterBooksController;
 use App\Http\Controllers\Front\UserContactUsController;
-use App\Http\Controllers\Front\UserServiceController;
 use App\Http\Controllers\Writer\WriterCourseController;
 use App\Http\Controllers\Front\UserWorkWithUsController;
 use App\Http\Controllers\Writer\WriterArticleController;
 use App\Http\Controllers\Admin\AdminTeamMemberController;
+use App\Http\Controllers\Admin\AdminIndexSliderController;
 use App\Http\Controllers\Admin\AdminInvitePagesController;
 use App\Http\Controllers\Admin\AdminNotificationController;
 use App\Http\Controllers\Admin\AdminShoppingListController;
@@ -33,11 +36,9 @@ use App\Http\Controllers\Front\UserNotificiationsController;
 use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminPageDecorationController;
-use App\Http\Controllers\Admin\AdminArticleCategoryController;
-use App\Http\Controllers\Admin\AdminIndexSliderController;
-use App\Http\Controllers\Admin\AdminServiceCategoryController;
-use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminProjectGalleryController;
+use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Admin\AdminServiceCategoryController;
 use App\Http\Controllers\Writer\WriterInviteCategoryController;
 use App\Http\Controllers\Writer\WriterArticleCategoryController;
 
@@ -97,6 +98,9 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
      
     //services front route
     route::get("service/{slug}",[UserServiceController::class, "index"])->name("service.index");
+
+    //projects front routes
+    route::get("project",[UserProjectController::class, "index"])->name("project.index");
 
     // routing for user courses
     Route::prefix('Courses')->group(function () {
@@ -297,7 +301,7 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         route::get("/create/{lang}", [AdminProjectController::class, "create"])->name("admin.projects.create");
         route::post("/store", [AdminProjectController::class, "store"])->name("admin.projects.store");
         route::post("/update/{id}", [AdminProjectController::class, "update"])->name("admin.projects.update");
-        route::get("/edit/{id}", [AdminProjectController::class, "edit"])->name("admin.projects.edit");
+        route::get("/edit/{id}/{lang}", [AdminProjectController::class, "edit"])->name("admin.projects.edit");
         route::delete("/delete/{id}", [AdminProjectController::class, "destroy"])->name("admin.projects.destroy");
         route::post("/updateimage/{id}", [AdminProjectController::class, "updateimage"])->name("admin.projects.update.image");
         //Service Categories routes

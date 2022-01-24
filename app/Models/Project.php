@@ -16,4 +16,8 @@ class Project extends Model
     {
         return $this->hasMany("App\Models\ProjectGallery","project_id");
     }
+    public function images()
+    {
+        return $this->morphOne("App\Models\Image", "imageable");
+    }
 }

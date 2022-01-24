@@ -176,7 +176,7 @@
                  <!-- end wrapper-main-menu دعوت به همکاری-->
 
              </li>
-             <li><a href="Proje.html">{{ __('translation.projects') }}</a></li>
+             <li><a href="{{route('project.index')}}">{{ __('translation.projects') }}</a></li>
              <li> <a href="{{ route('contactus.index') }}"> {{ __('translation.contact-us') }}</a></li>
              <li><a href="TeamMa.html">{{ __('translation.about-us') }}</a></li>
 

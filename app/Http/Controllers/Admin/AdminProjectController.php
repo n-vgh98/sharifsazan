@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Lang;
+use App\Models\Image;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminProjectController extends Controller
 {
@@ -46,8 +47,19 @@ class AdminProjectController extends Controller
         $project->location = $request->input('location');
         $project->customer_name = $request->input('customer_name');
         $project->area = $request->input('area');
+        $project->status = $request->input('status');
         $project->description = $request->input('description');
         $project->save();
+
+         //create images
+         $image = new Image();
+         $image->name = $request->image_name;
+         $image->alt = $request->alt;
+         $image->uploader_id = auth()->user()->id;
+         $imagename = time() . "." . $request->image->extension();
+         $request->image->move(public_path("images/projects/main/"), $imagename);
+         $image->path = "images/projects/main/" . $imagename;
+         $project->images()->save($image);
 
         // saving language for footer
         $language = new Lang();
@@ -75,7 +87,8 @@ class AdminProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::with('images')->findOrFail($id);
+        return view('admin.projects.edit',compact('project'));
     }
 
     /**
@@ -96,9 +109,10 @@ class AdminProjectController extends Controller
         $project->customer_name = $request->input('customer_name');
         $project->area = $request->input('area');
         $project->description = $request->input('description');
+        $project->status = $request->input('status');
         $project->save();
 
-        return redirect()->back()->with("success", "پروژه با موفقیت ویرایش شد");
+        return redirect()->route('admin.projects.index',$request->lang)->with("success", "پروژه با موفقیت ویرایش شد");
 
     }
 
@@ -111,8 +125,25 @@ class AdminProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
+        unlink($project->images->path);
+        $project->images()->delete();
         $project->delete();
         $project->language()->delete();
         return redirect()->back()->with("success", "پروژه با موفقیت حذف شد");
+    }
+
+    public function updateimage(Request $request, $id)
+    {
+        $image = Image::find($id);
+        $image->name = $request->name;
+        $image->alt = $request->alt;
+        if ($request->path !== null) {
+            unlink($image->path);
+            $imagename = time() . "." . $request->path->extension();
+            $request->path->move(public_path("images/projects/main/"), $imagename);
+            $image->path = "images/projects/main/" . $imagename;
+        }
+        $image->save();
+        return redirect()->back()->with("success", "عکس خدمات  با موفقیت ویرایش شد");
     }
 }
