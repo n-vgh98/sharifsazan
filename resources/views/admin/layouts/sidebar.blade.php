@@ -190,13 +190,13 @@
                     <i class="fa fa-dashboard"></i> <span>پروژه ها</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.projects.index','fa') }}"><i
+                    <li class="active"><a href="{{ route('admin.projects.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i> همه پروژه ها</a></li>
 
                 </ul>
 
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.projects.gallery.index','fa') }}"><i
+                    <li class="active"><a href="{{ route('admin.projects.gallery.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>گالری پروژه ها</a></li>
                 </ul>
 
@@ -243,6 +243,9 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.page.decoration.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i> تنظیمات</a></li>
+
+                    <li class="active"><a href="{{ route('admin.index.slider.index', 'fa') }}"><i
+                                class="fa fa-circle-o"></i> اسلایدر صفحه اصلی</a></li>
                 </ul>
             </li>
         </ul>

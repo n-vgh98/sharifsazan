@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
+use App\Models\Lang;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -12,9 +13,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        return view("user.index");
+
+        $decoration = null;
+        $settings = Lang::where([["langable_type", "App\Models\PageDecoration"], ["name", $lang]])->get();
+        foreach ($settings as $setting) {
+            if ($setting->langable->page_name == "index" or $setting->langable->page_name == "home") {
+                $decoration = $setting->langable;
+            }
+        }
+        $sliderlanguages = Lang::where([["langable_type", "App\Models\IndexSlider"], ["name", $lang]])->get();
+        return view("user.index", compact("decoration", "sliderlanguages"));
     }
 
     /**

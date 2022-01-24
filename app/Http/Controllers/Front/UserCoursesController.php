@@ -116,7 +116,14 @@ class UserCoursesController extends Controller
         } else {
             return redirect()->route("front.courses.all")->with("fail", __("translation.filter-error"));
         }
-        return view("user.courses.filtered", compact("filteredcourses", "checkfilter"));
+        $decoration = null;
+        $settings = Lang::where([["langable_type", "App\Models\PageDecoration"], ["name", $lang]])->get();
+        foreach ($settings as $setting) {
+            if ($setting->langable->page_name == "courses" or $setting->langable->page_name == "course") {
+                $decoration = $setting->langable;
+            }
+        }
+        return view("user.courses.filtered", compact("filteredcourses", "checkfilter", "decoration"));
     }
 
 

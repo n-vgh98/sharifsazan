@@ -33,6 +33,7 @@ use App\Http\Controllers\Writer\WriterInvitePagesController;
 use App\Http\Controllers\Admin\AdminInviteCategoryController;
 use App\Http\Controllers\Admin\AdminPageDecorationController;
 use App\Http\Controllers\Admin\AdminArticleCategoryController;
+use App\Http\Controllers\Admin\AdminIndexSliderController;
 use App\Http\Controllers\Admin\AdminServiceCategoryController;
 use App\Http\Controllers\Admin\AdminProjectController;
 use App\Http\Controllers\Admin\AdminProjectGalleryController;
@@ -158,11 +159,20 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
     });
     // ##
 
+    route::prefix("index_slider")->group(function () {
+        route::get("/{lang}", [AdminIndexSliderController::class, "index"])->name("admin.index.slider.index");
+        route::post("/store", [AdminIndexSliderController::class, "store"])->name("admin.index.slider.store");
+        route::post("/update/{id}", [AdminIndexSliderController::class, "update"])->name("admin.index.slider.update");
+        route::delete("/destroy/{id}", [AdminIndexSliderController::class, "destroy"])->name("admin.index.slider.destroy");
+    });
+
     // route for karname
     route::prefix("karname")->group(function () {
         route::post("/{id}", [AdminKarnameController::class, "store"])->name("admin.karname.store");
         route::post("/update/{id}", [AdminKarnameController::class, "update"])->name("admin.karname.update");
     });
+
+
 
     //route for page_decoration
     route::prefix("page_decoration")->group(function () {

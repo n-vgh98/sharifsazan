@@ -17,7 +17,14 @@ class UserBooksController extends Controller
     {
         $lang = substr($request->getPathInfo(), 1, 2);
         $languages = Lang::where([["langable_type", "App\Models\Book"], ["name", $lang]])->get();
-        return view("user.books", compact("languages"));
+        $decoration = null;
+        $settings = Lang::where([["langable_type", "App\Models\PageDecoration"], ["name", $lang]])->get();
+        foreach ($settings as $setting) {
+            if ($setting->langable->page_name == "books" or $setting->langable->page_name == "book") {
+                $decoration = $setting->langable;
+            }
+        }
+        return view("user.books", compact("languages", "decoration"));
     }
 
     /**
