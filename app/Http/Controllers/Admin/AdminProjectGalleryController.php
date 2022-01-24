@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Lang;
+use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Models\ProjectGallery;
+use App\Http\Controllers\Controller;
 
 class AdminProjectGalleryController extends Controller
 {
@@ -12,9 +15,10 @@ class AdminProjectGalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        //
+        $languages = Lang::where([["langable_type","App\Models\Projectgallery"],["name",$lang]])->get();
+        return view('admin.projects.gallery.index',compact(['languages','lang']));
     }
 
     /**
@@ -22,9 +26,10 @@ class AdminProjectGalleryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($lang)
     {
-        //
+        $languages = Lang::where([["langable_type","App\Models\Project"],["name",$lang]])->get();
+        return view('admin.projects.gallery.create',compact(['languages','lang']));
     }
 
     /**
@@ -35,7 +40,23 @@ class AdminProjectGalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project_image = new ProjectGallery();
+        $imagename = time() . "." . $request->image->extension();
+        $request->image->move(public_path("images/projects/$project_image->project_id/"), $imagename);
+        $project_image->path = "images/projects/$project_image->project_id/" . $imagename;
+        $project_image->name = $request->input('image_name');
+        $project_image->description = $request->input("description");
+        $project_image->mode = $request->input('mode');
+        $project_image->project_id = $request->input('project_id');
+        $project_image->alt = $request->input('alt');
+        $project_image->uploader_id = auth()->user()->id;
+        $project_image->save();
+        //create languages
+        $language = new Lang();
+        $language->name = $request->lang;
+        $project_image->language()->save($language);
+
+        return redirect()->route('admin.projects.gallery.index',$request->lang)->with('success','تصویر جدید با موفقیت ثبت شد.');
     }
 
     /**
@@ -55,9 +76,11 @@ class AdminProjectGalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,$lang)
     {
-        //
+        $photo = ProjectGallery::findOrFail($id);
+        $languages = Lang::where([["langable_type","App\Models\Project"],["name",$lang]])->get();
+        return view('admin.projects.gallery.edit',compact(['photo','languages']));
     }
 
     /**
@@ -69,7 +92,21 @@ class AdminProjectGalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project_image = ProjectGallery::findOrFail($id);
+        $project_image->name = $request->input('image_name');
+        $project_image->description = $request->input("description");
+        $project_image->mode = $request->input('mode');
+        $project_image->project_id = $request->input('project_id');
+        $project_image->alt = $request->input('alt');
+        $project_image->uploader_id = auth()->user()->id;
+        if ($request->image !== null) {
+            unlink($project_image->path);
+            $imagename = time() . "." . $request->image->extension();
+            $request->image->move(public_path("images/projects/$project_image->project_id/"), $imagename);
+            $project_image->path = "images/projects/$project_image->project_id/" . $imagename;
+        }
+        $project_image->save();
+        return redirect()->route('admin.projects.gallery.index',$request->lang)->with("success", "عکس خدمات  با موفقیت ویرایش شد");
     }
 
     /**
@@ -80,6 +117,10 @@ class AdminProjectGalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $photo = ProjectGallery::findOrFail($id);
+        unlink($photo->path);
+        $photo->language()->delete();
+        $photo->delete();
+        return redirect()->back()->with("success","حذف شد.");
     }
 }

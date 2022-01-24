@@ -289,10 +289,10 @@ route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
         //Service Categories routes
         route::prefix("gallery")->group(function () {
             route::get("/{lang}", [AdminProjectGalleryController::class, "index"])->name("admin.projects.gallery.index");
-            route::get("/create", [AdminProjectGalleryController::class, "create"])->name("admin.projects.gallery.create");
+            route::get("/create/{lang}", [AdminProjectGalleryController::class, "create"])->name("admin.projects.gallery.create");
             route::post("/store", [AdminProjectGalleryController::class, "store"])->name("admin.projects.gallery.store");
             route::post("/update/{id}", [AdminProjectGalleryController::class, "update"])->name("admin.projects.gallery.update");
-            route::get("/edit/{id}", [AdminProjectGalleryController::class, "edit"])->name("admin.projects.gallery.edit");
+            route::get("/edit/{id}/{lang}", [AdminProjectGalleryController::class, "edit"])->name("admin.projects.gallery.edit");
             route::delete("/delete/{id}", [AdminProjectGalleryController::class, "destroy"])->name("admin.projects.gallery.destroy");
         });
     });

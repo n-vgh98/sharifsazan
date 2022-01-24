@@ -126,7 +126,7 @@ class AdminOurTeamController extends Controller
             $image_1->path = "photos/our_team/$filename/$imagename";
             $ourteam->images()->save($image_1);
         }
-        if($file = $request->file('image_1')) {
+        if($file = $request->file('image_2')) {
             $image_2 = Image::findOrFail($ourteam->images[1]->id);
             $imagename = time() . "." . $request->image_2->getClientOriginalName();
             $filename = $ourteam->name . "." . $ourteam->id;
@@ -137,7 +137,7 @@ class AdminOurTeamController extends Controller
             $image_2->path = "photos/our_team/$filename/$imagename";
             $ourteam->images()->save($image_2);
         }
-        if($file = $request->file('image_1')) {
+        if($file = $request->file('image_3')) {
             $image_3 = Image::findOrFail($ourteam->images[2]->id);
             $imagename = time() . "." . $request->image_3->getClientOriginalName();
             $filename = $ourteam->name . "." . $ourteam->id;

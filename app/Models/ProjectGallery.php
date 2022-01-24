@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectGallery extends Model
 {
     use HasFactory;
+    protected $table = "projects_gallery";
     public function language()
     {
         return $this->morphOne("App\Models\Lang", "langable");
