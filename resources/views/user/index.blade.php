@@ -15,7 +15,6 @@
                     @endphp
                     @if ($i < 4)
 
-
                         <div class="mySlides fade">
                             <div class="numbertext">1 / 3</div>
                             <img src="{{ asset($image->path) }}" style="width:100%">

@@ -107,12 +107,13 @@
                      @foreach ($services as $service)
                          @php
                              $service = $service->langable;
-                         @endphp    
-                     <li>
-                     
-                         <a href="{{route('service.index',$service->slug)}}">{{$service->category->title}}</a>
-                       
-                     </li>
+                         @endphp
+                         <li>
+
+                             <a
+                                 href="{{ route('service.index', $service->slug) }}">{{ $service->category->title }}</a>
+
+                         </li>
                      @endforeach
                  </ul>
                  <!-- end wrapper-main-menu خدمات -->
@@ -176,9 +177,9 @@
                  <!-- end wrapper-main-menu دعوت به همکاری-->
 
              </li>
-             <li><a href="{{route('project.index')}}">{{ __('translation.projects') }}</a></li>
+             <li><a href="{{ route('project.index') }}">{{ __('translation.projects') }}</a></li>
              <li> <a href="{{ route('contactus.index') }}"> {{ __('translation.contact-us') }}</a></li>
-             <li><a href="{{route('about_us.front.index')}}">{{ __('translation.about-us') }}</a></li>
+             <li><a href="{{ route('about_us.front.index') }}">{{ __('translation.about-us') }}</a></li>
 
          </ul>
 
@@ -296,7 +297,7 @@
              <div class="toggel">
                  <i class="fa fa-user"></i>
 
-                 <a href="panelkarbari.html">
+                 <a href="{{ route('panel.index') }}">
                      {{ __('translation.panel') }}
                  </a>
              </div>
@@ -314,9 +315,7 @@
                  {{ __('translation.services') }}
                  <i class="fa fa-chevron-circle-down"></i>
              </div>
-
-
-
+             
              <ul class="ul-wrapper-toggel">
                  <li>
                      <a href="khadamat.html">توجیه طرح بر مبنای اقتصاد</a>
@@ -359,18 +358,21 @@
 
                      </a>
                  </li>
-                 <li>
-                     <a href="article.html">
-                         پژوهش و نوآوری
+                 @php
+                     $lang = substr(Request::getPathInfo(), 1, 2);
+                     $articleCategoryLanguages = App\Models\Lang::where([['name', $lang], ['langable_type', 'App\Models\ArticleCategory']])->get();
+                 @endphp
+                 @foreach ($articleCategoryLanguages as $articleCategoryLanguage)
+                     @php
+                         $articleCategory = $articleCategoryLanguage->langable;
+                     @endphp
+                     <li>
+                         <a href="{{ route('article.category.index', $articleCategory->id) }}">
+                             {{ $articleCategory->title }}
 
-                     </a>
-                 </li>
-                 <li>
-                     <a href="article.html">
-                         تکنولوژی های نوین
-
-                     </a>
-                 </li>
+                         </a>
+                     </li>
+                 @endforeach
                  <li>
                      <a href="{{ route('bookshelf.index') }}">
                          {{ __('translation.electronic-library') }}
@@ -387,29 +389,20 @@
              </div>
              <ul class="ul-wrapper-toggel">
 
-                 <li>
-                     <a href="#">
-                         واحد سازه و پل
-                     </a>
-                 </li>
-                 <li>
-                     <a href="#">
-                         طراحی و شبیه سازی
-                     </a>
-                 </li>
-                 <li>
-                     <a href="#">
-                         واحد معماری و طراحی داخلی واحد اداری-مالی
-                     </a>
-                 </li>
-
-                 <li>
-                     <a href="#">
-                         واحد بازاریابی و فروش
-                     </a>
-                 </li>
-
-
+                 @php
+                     $lang = substr(Request::getPathInfo(), 1, 2);
+                     $workWithUsCategoryLanguages = App\Models\Lang::where([['name', $lang], ['langable_type', 'App\Models\InviteCategory']])->get();
+                 @endphp
+                 @foreach ($workWithUsCategoryLanguages as $workWithUsCategoryLanguage)
+                     @php
+                         $category = $workWithUsCategoryLanguage->langable;
+                     @endphp
+                     <li>
+                         <a href="{{ route('user.work.with.us.show', $category->id) }}">
+                             {{ $category->title }}
+                         </a>
+                     </li>
+                 @endforeach
              </ul>
              <div class="toggel">
                  <a href="{{ route('contactus.index') }}">
