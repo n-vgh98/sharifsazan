@@ -67,27 +67,6 @@
                              
                         </section> 
                         </div>
-					
-					<!--			  just 3-->
-			  <!-- <div class="examples-project-main">
-                               
-                            <h3 class="project-title-h2">پروژه های مشابه</h3>
-                            <section class="examples-project-full2">
-                        
-                           <a href="#"> 
-                               <div class="examples-project-item2">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                   <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                                
-                            </div></a>
-                           
-                            
-                        </section> 
-                        </div>	
-					 -->
                 </section>
 
                 <div class="leftbox-moshakhasatdore">

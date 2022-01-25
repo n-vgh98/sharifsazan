@@ -30,4 +30,5 @@ class UserProjectController extends Controller
         $project_photo = ProjectGallery::where('project_id',$project->id)->get();
         return view('user.projects.show',compact(['languages','project','project_photo']));
     }
+
 }

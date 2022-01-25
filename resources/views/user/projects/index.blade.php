@@ -12,15 +12,7 @@
                 </div>
             </section>
             <!-- end breadcrumb -->
-		
-           
              <h1 class="project-title-h1">{{ __('translation.projects') }} </h1>
-		
-		
-        
-				
-				
-				
                 <section class="right-article-wrapper-full">
                     
                     <div class="question-project">
@@ -28,68 +20,7 @@
                             {!! $decoration->text !!}
                         </p>
                     </div>
-					<div class="divShowForm">
-					
-					<button class="buttonShowForm">نمایش فیلتر ها</button>
-					
-					</div>
-					<form id="formID">
-					<fieldset><legend >فیلتر پروژه ها</legend>
-						
-				<div class="div-filter-projects">	
-					
-					<div>
-						<lable><span class="big-p">نوع</span></lable>
-						<br>
-						<input type="checkbox">
-						<lable>مجتمع ساختمانی</lable><br>
-                        <input type="checkbox">
-						<lable>مجتمع صنعتی</lable><br>
-                        <input type="checkbox">
-						<lable>پل و نقاطع غیر مسطح</lable>
-						
-					</div>	
-					<div>
-						<lable><span class="big-p">مفهومی</span></lable>
-						<br>
-						<input type="checkbox">
-						<lable>تکمیل شده</lable><br>
-                        <input type="checkbox">
-						<lable>در حال پیشرفت</lable><br>
-						
-					</div>	
-					<div>
-						<lable><span class="big-p">مرتب سازی</span></lable>
-						<br>
-						<input type="checkbox">
-						<lable>پیش فرض</lable><br>
-                        <input type="checkbox">
-						<lable>مقیاس و منطقه</lable><br>
-                        <input type="checkbox">
-						<lable>سال</lable><br>
-						<input type="checkbox">
-						<lable>متراژ پروژه</lable><br>
-                        <input type="checkbox">
-						<lable>ارتفاع</lable>
-						
-					</div>
-				</div>		
-						
-						<div class="submit-div">
-							<input  type="submit" value="اعمال فیلتر ها">
-						</div>
-					
-					</fieldset>
-					</form>
-					
-					
-					
-					
-
                     <section class="article-text-wrapper">
-                        
-                      
-                        
                         
 <!--                           examples project-demo first start                  -->
                            <div class="examples-project-main">
