@@ -12,6 +12,7 @@ use App\Http\Controllers\Front\UserBooksController;
 use App\Http\Controllers\Front\UserPanelController;
 use App\Http\Controllers\Admin\AdminBooksController;
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Front\UserAboutUsController;
 use App\Http\Controllers\Front\UserArticleController;
 use App\Http\Controllers\Front\UserCoursesController;
 use App\Http\Controllers\Front\UserProjectController;
@@ -100,7 +101,13 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::get("service/{slug}",[UserServiceController::class, "index"])->name("service.index");
 
     //projects front routes
-    route::get("project",[UserProjectController::class, "index"])->name("project.index");
+    Route::prefix('project')->group(function () {
+        route::get("/", [UserProjectController::class, "index"])->name("project.index");
+        route::get("/{name}", [UserProjectController::class, "show"])->name("project.show.details");
+    });
+
+    //about_us route
+    route::get('about_us',[UserAboutUsController::class, "index"])->name("about_us.front.index");
 
     // routing for user courses
     Route::prefix('Courses')->group(function () {

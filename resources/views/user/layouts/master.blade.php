@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+@if ($local = app()->getLocale() == 'fa')
+<html lang="fa" dir="rtl">
+@else
+<html lang="en" dir="ltr">
+
+@endif
 
 <head>
     @include('user.layouts.head')

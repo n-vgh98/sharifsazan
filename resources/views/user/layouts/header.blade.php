@@ -178,7 +178,7 @@
              </li>
              <li><a href="{{route('project.index')}}">{{ __('translation.projects') }}</a></li>
              <li> <a href="{{ route('contactus.index') }}"> {{ __('translation.contact-us') }}</a></li>
-             <li><a href="TeamMa.html">{{ __('translation.about-us') }}</a></li>
+             <li><a href="{{route('about_us.front.index')}}">{{ __('translation.about-us') }}</a></li>
 
          </ul>
 

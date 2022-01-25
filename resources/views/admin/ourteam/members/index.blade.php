@@ -157,44 +157,7 @@
                                                value="{{ $member->name }}" required autocomplete="name" autofocus>
                                     </div>
                                 </div>
-                                <!-- <div class="form-group row">
-                                    <label for="image">تصویر  همکار </label>
-                                    <input type="file" name="image" id="image" required class="form-control">
-                                </div> -->
-                                <div class="form-group row">
-                                    <label for="path" class="col-md-4 col-form-label text-md-right">{{ __('عکس') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="path" type="file" class="form-control @error('path') is-invalid @enderror"
-                                            name="path" valu="path" required autocomplete="path" autofocus>
-                                    </div>
-                                </div>
-                                <!-- <div class="form-group row">
-                                    <label for="image_name">نام عکس</label>
-                                    <input type="text" name="image_name" id="image_name" required class="form-control">
-                                </div> -->
-                                <div class="form-group row">
-                                    <label for="img_name"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('عکس name') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="path" type="text" class="form-control @error('img_name') is-invalid @enderror"
-                                            name="img_name" value="img_name" required autocomplete="img_name"
-                                            autofocus>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="alt" class="col-md-4 col-form-label text-md-right">{{ __('عکس alt') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="path" type="text" class="form-control @error('alt') is-invalid @enderror"
-                                            name="alt" value="alt" required autocomplete="alt" autofocus>
-                                    </div>
-                                </div>
-                                <!-- <div class="form-group row">
-                                    <label for="alt">Alt</label>
-                                    <input type="text" name="alt" id="alt" required class="form-control">
-                                </div> -->
+                            
                                 <div class="form-group row">
                                     <label for="job_title" class="col-md-4 col-form-label text-md-right">عنوان
                                         شغلی:</label>
@@ -228,10 +191,10 @@
                                         class="col-md-4 col-form-label text-md-right">مدیر یا همکار؟</label>
                                     <div class="radio">
                                     <label>
-                                        <input type="radio" id="0" name="admin" value="0">همکار
+                                        <input type="radio" id="0" name="admin" value="0" {{ $member->admin == "0" ? 'checked' : '' }}>همکار
                                     </label>
                                     <label>
-                                        <input type="radio" id="1" name="admin" value="1">مدیر
+                                        <input type="radio" id="1" name="admin" value="1" {{ $member->admin == "1" ? 'checked' : '' }}>مدیر
                                     </label>
                                     </div>
                                 </div>
@@ -240,10 +203,10 @@
                                         class="col-md-4 col-form-label text-md-right">درحال حاضر همکار است یا خیر؟</label>
                                     <div class="radio">
                                         <label>
-                                            <input type="radio"  id="1" name="mode" value="1">همکار است
+                                            <input type="radio"  id="1" name="mode" value="1" {{ $member->mode == "1" ? 'checked' : '' }}>همکار است
                                         </label>
                                         <label>
-                                            <input type="radio"  id="0" name="mode" value="0">قطع همکاری
+                                            <input type="radio"  id="0" name="mode" value="0" {{ $member->mode == "0" ? 'checked' : '' }}>قطع همکاری
                                         </label>
                                     </div>
                                 </div>
@@ -253,7 +216,6 @@
                                     </button>
                                     <button type="submit" class="btn btn-primary">ارسال</button>
                                 </div>
-                                <input type="hidden" name="mode" value="1">
                             </form>
                         </div>
                         <div class="modal-members">
@@ -401,7 +363,6 @@
                             </button>
                             <button type="submit" class="btn btn-primary">ارسال</button>
                         </div>
-                        <input type="hidden" name="mode" value="1">
                     </form>
                 </div>
                 <div class="modal-members">

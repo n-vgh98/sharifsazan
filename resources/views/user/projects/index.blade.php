@@ -98,39 +98,17 @@
                             <section class="examples-project-full">
                         @foreach($languages as $language)
                             @php
-                            
                                 $project = $language->langable;
                             @endphp
-                           <a href="#"> 
+                           <a href="{{route('project.show.details',$project->name)}}"> 
                                <div class="examples-project-item">
                                 
-                                
+                                <img src="{{asset($project->images->path)}}" alt="{{asset($project->images->alt)}}">
                                 <p>{{$project->name}}</p>
                                    <p>{!! $project->description !!}</p>
                                 
                             </div></a>
                         @endforeach
-                            <!-- <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                            </div></a>
-                             <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                 <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                            </div></a>
-                             <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                 <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                            </div></a> -->
                         </section> 
                         </div>
 <!--                           examples project-demo first start                  -->
@@ -140,69 +118,40 @@
                                
                             <h3 class="project-title-h2">جدید ترین پروژه ها</h3>
                             <section class="examples-project-full">
-                        
-                           <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                               <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+                            @foreach($languages as $language)
+                            @php
+                                $project = $language->langable;
+                                $project->orderBy('created_at','desc')->take(6);
+                            @endphp
+                            <a href="{{route('project.show.details',$project->name)}}"> 
+                               <div class="examples-project-item">
+                                
+                                <img src="{{asset($project->images->path)}}" alt="{{asset($project->images->alt)}}">
+                                <p>{{$project->name}}</p>
+                                   <p>{!! $project->description !!}</p>
+                                
                             </div></a>
-                            <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                            </div></a>
-                             <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                 <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                            </div></a>
-                             <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                 <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                            </div></a>
+                            @endforeach
                         </section>
  
 							   
 							   <h3 class="project-title-h2">پروژه های در حال ساخت</h3>
                             <section class="examples-project-full">
-                        
-                           <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                               <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
+                            @foreach($languages as $language)
+                            @php
+                                $project = $language->langable;
+                            @endphp
+                            @if($project->status == 0)
+                            <a href="{{route('project.show.details',$project->name)}}"> 
+                               <div class="examples-project-item">
+                                
+                                <img src="{{asset($project->images->path)}}" alt="{{asset($project->images->alt)}}">
+                                <p>{{$project->name}}</p>
+                                   <p>{!! $project->description !!}</p>
+                                
                             </div></a>
-                            <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                            </div></a>
-                             <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                 <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                            </div></a>
-                             <a href="#"> <div class="examples-project-item">
-                            
-                                <img src="imgs/b32.png" alt="">
-                                <p>عنوان</p>
-                                 <p>کسب و کاردیجیتال: به تکنیک ها و عملیاتی که در فضای مجازی باعث فروش محصولات و خدمات می شود
-                                کسب و کار دیجیتال گفته می شود که به آنdigital marketing هم می گویند.</p>
-                            </div></a>
+                            @endif
+                            @endforeach
                         </section>
                         </div>
 <!--                           examples project-demo second end                  -->
