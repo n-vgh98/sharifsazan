@@ -317,29 +317,25 @@
              </div>
              
              <ul class="ul-wrapper-toggel">
-                 <li>
-                     <a href="khadamat.html">توجیه طرح بر مبنای اقتصاد</a>
-                 </li>
-                 <li>
-                     <a href="khadamat.html">
-                         طراحی و شبیه سازی
-                     </a>
-                 </li>
-                 <li>
-                     <a href="khadamat.html">
-                         طرح توجیهی مجتمع های صنعتی
-                     </a>
-                 </li>
-
-                 <li>
-                     <a href="khadamat.html">بهینه سازی و مقاوم سازی</a>
-                 </li>
-
+                     @php
+                         $lang = substr(Request::getPathInfo(), 1, 2);
+                         $workWithUsCategoryLanguages = App\Models\Lang::where([['name', $lang], ['langable_type', 'App\Models\InviteCategory']])->get();
+                     @endphp
+                     @foreach ($workWithUsCategoryLanguages as $workWithUsCategoryLanguage)
+                         @php
+                             $category = $workWithUsCategoryLanguage->langable;
+                         @endphp
+                         <li>
+                             <a href="{{ route('user.work.with.us.show', $category->id) }}">
+                                 {{ $category->title }}
+                             </a>
+                         </li>
+                     @endforeach
              </ul>
 
              <div class="toggel">
                  <i class="fa fa-file"></i>‏
-                 <a href="Proje.html">
+                 <a href="{{route('project.index')}}">
                      {{ __('translation.projects') }}
                  </a>
              </div>
@@ -412,15 +408,12 @@
 
              </div>
              <div class="toggel">
-                 <a href="#">
+                 <a href="{{route('about_us.front.index')}}">
                      <i class="fa fa-building"></i>‏
 
                      {{ __('translation.about-us') }}
                  </a>
-
              </div>
-
-
          </ul>
      </nav>
  </menu>

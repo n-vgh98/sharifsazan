@@ -31,5 +31,8 @@ class UserProjectController extends Controller
         return view('user.projects.show', compact(['languages', 'project', 'project_photo']));
     }
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 5f28ff8d201de0af780ba263fb78f2725f587d6e
 }

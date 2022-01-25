@@ -2043,6 +2043,7 @@ input:hover {
 	overflow-x: scroll;
 	display: flex;
 	height: 100vh;
+	margin-right: 100px;
 }
 
 .main-scorllsHorinzentalPages::-webkit-scrollbar,
@@ -2396,7 +2397,6 @@ nav{
 .MenuPageScorll > nav > ul > li {
 	width: 100%;
 	display: flex;
-	justify-content: flex-end;
 	padding: 19px;
 }
 .MenuPageScorll > nav > ul > li > span {
@@ -2416,7 +2416,6 @@ nav{
 	cursor: pointer;
 	width: 100%;
 	display: flex;
-	justify-content: flex-end;
 	padding: 19px;
 }
 .MenuPageScorll > nav > ul > li > a:hover {
